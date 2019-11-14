@@ -3,7 +3,7 @@
 
 # <h1> Selous </h1> 
 
-Selous (say-lou) is a job search tracking tool. Selous enables job seekers to organize potential positions and track their progress with each job application.
+*Selous* (say-lou) is a job search tracking tool. *Selous* enables job seekers to organize potential positions and track their progress with each job application.
 
 ## Cool graphic / DEMO
 
