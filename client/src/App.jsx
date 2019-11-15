@@ -28,6 +28,7 @@ export default class App extends Component {
             <li key={index}>{creature}</li>
           ))}
         </ul>
+        <h1>Joel Sucks!</h1>
       </>
     );
   }
