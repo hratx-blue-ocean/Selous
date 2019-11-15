@@ -7,7 +7,6 @@ import { red, pink } from '@material-ui/core/colors';
 const useStyles = makeStyles({
   root: {
     padding: 10,
-    background: pink,
   },
 });
 
