@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 import IconButton from '@material-ui/core/IconButton';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
@@ -40,19 +41,15 @@ const useStyles = makeStyles(theme => ({
   break: {
       maxWidth: 1240,
       marginTop: 20,
-      height: .5,
-      color: "black",
-      background: "black",
-      opacity: .5,
+      borderTop: "1px solid darkgrey",
+      marginLeft: "auto",
+      marginRight: "auto",
+      height: 75,
   },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     background: theme.palette.common.white,
-     '&$focused': {
-            color: 'red',
-        },
-    focused: {},
     // opacity: 0.15,
     // backgroundColor: fade(theme.palette.common.white, 0.15),
     // '&:hover': {
@@ -87,6 +84,28 @@ const useStyles = makeStyles(theme => ({
       width: 100,
     },
   },
+  button: {
+    margin: theme.spacing(0),
+  },
+  leftGroup: {
+    float: 'left',
+    display: 'flex',
+  },
+  rightGroup: {
+    float: 'right',
+    display: 'flex',
+  },
+  hello: {
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    color: 'rgba(0, 0, 0, 0.87)',
+    fontSize: '0.875rem',
+    minWidth: '64px',
+    fontWeight: 500,
+    lineHeight: 1.75,
+    letterSpacing: '0.02857em',
+    textTransform: 'uppercase',
+    margin: theme.spacing(1.1),
+  }
 }));
 
 export default function Headerbar() {
@@ -132,7 +151,32 @@ export default function Headerbar() {
           <Button color="inherit">Logout</Button> */}
         </Toolbar>
       </AppBar>
-      <hr className={classes.break}></hr>
+      <div className={classes.break}>
+        <div className={classes.leftGroup}>
+            <ButtonGroup>
+            <Button variant='text' href="#" className={classes.button}>
+                Home
+            </Button>
+            {/* <Button variant='text' href="#" className={classes.button}>
+                Search
+            </Button> */}
+            <Button variant='text' href="#" className={classes.button}>
+                Dashboard
+            </Button>
+            </ButtonGroup>
+        </div>
+        <div className={classes.rightGroup}>
+            <ButtonGroup>
+            <Button variant='text' href="#" className={classes.button}>
+                About
+            </Button>
+            <Typography className={classes.hello}>
+                Hello Mario! 
+                {/* needs state name */}
+            </Typography>
+            </ButtonGroup>
+        </div>
+      </div>
     </div>
   );
 }
