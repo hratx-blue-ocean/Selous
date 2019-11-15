@@ -4,10 +4,11 @@ import Goals from './components/goals.jsx';
 
 // Imported for render testing
 import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
-
+import Headerbar from './components/headerbar/Headerbar.jsx'
 export default function App() {
   return (
     <>
+      <Headerbar/>
       <h1>Welcome to Blue Ocean!</h1>
       <ul>
         {result.map((creature, index) => (
