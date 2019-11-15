@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
     minWidth: '100%',
     padding: '0',
   },
+  button2: {
+    backgroundColor: '#9F6CB7',
+    fontSize: '14px',
+  },
   goalsContainer: {
     justifyContent: 'center',
   },
@@ -73,13 +77,13 @@ export default function Goals() {
                   </Typography>
                 </CardContent>
                 <CardActions className={classes.cardFooter}>
-                  <Button size="small" color="primary">
+                  <Button size="small" className={classes.button2}>
                     -
                   </Button>
                   <Typography>
                     This is the number {card} goal
                   </Typography>
-                  <Button size="small" color="primary">
+                  <Button size="small" className={classes.button2}>
                     +
                   </Button>
                 </CardActions>
