@@ -5,30 +5,28 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import IconButton from '@material-ui/core/IconButton';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
 import RoomIcon from '@material-ui/icons/Room';
-import { Fade } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   app: {
-    background: "#9f6cb7",
-    overflow: "hidden",
+    background: '#9f6cb7',
+    overflow: 'hidden',
     maxWidth: 1140,
     minHeight: 72,
-    marginLeft: "auto",
-    marginRight: "auto",
+    marginLeft: 'auto',
+    marginRight: 'auto',
   },
   logo: {
-    overflow: "hidden",
-    marginLeft: "15%",
+    overflow: 'hidden',
+    marginLeft: '15%',
   },
   title: {
-    marginLeft: "2%",
+    marginLeft:'2%',
     flexGrow: 1,
     fontSize: 42,
     fontFamily: [
@@ -36,15 +34,15 @@ const useStyles = makeStyles(theme => ({
     ].join(','),
   },
   signup: {
-      marginRight: "3%",
+    marginRight: '3%',
   },
   break: {
-      maxWidth: 1240,
-      marginTop: 20,
-      borderTop: "1px solid darkgrey",
-      marginLeft: "auto",
-      marginRight: "auto",
-      height: 75,
+    maxWidth: 1240,
+    marginTop: 20,
+    borderTop: '1px solid darkgrey',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    height: 75,
   },
   search: {
     position: 'relative',
@@ -96,7 +94,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
   },
   hello: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Roboto","Helvetica","Arial", sans-serif',
     color: 'rgba(0, 0, 0, 0.87)',
     fontSize: '0.875rem',
     minWidth: '64px',
@@ -105,7 +103,7 @@ const useStyles = makeStyles(theme => ({
     letterSpacing: '0.02857em',
     textTransform: 'uppercase',
     margin: theme.spacing(1.1),
-  }
+  },
 }));
 
 export default function Headerbar() {
@@ -115,8 +113,8 @@ export default function Headerbar() {
     <div className={classes.root}>
       <AppBar position="static" className={classes.app}>
         <Toolbar>
-            <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo}/>
-          <Typography variant="h6" className={classes.title}>
+          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo}/>
+          <Typography variant="'h6'" className={classes.title}>
             Selous
           </Typography>
           {/* <Button color="inherit" className={classes.signup}>Signup</Button>
@@ -153,28 +151,28 @@ export default function Headerbar() {
       </AppBar>
       <div className={classes.break}>
         <div className={classes.leftGroup}>
-            <ButtonGroup>
-            <Button variant='text' href="#" className={classes.button}>
+          <ButtonGroup>
+            <Button variant="text" href="#" className={classes.button}>
                 Home
             </Button>
-            {/* <Button variant='text' href="#" className={classes.button}>
+            {/* <Button variant='text' href='#' className={classes.button}>
                 Search
             </Button> */}
-            <Button variant='text' href="#" className={classes.button}>
+            <Button variant="text" href="#" className={classes.button}>
                 Dashboard
             </Button>
-            </ButtonGroup>
+          </ButtonGroup>
         </div>
         <div className={classes.rightGroup}>
-            <ButtonGroup>
-            <Button variant='text' href="#" className={classes.button}>
+          <ButtonGroup>
+            <Button variant="text" href="#" className={classes.button}>
                 About
             </Button>
             <Typography className={classes.hello}>
-                Hello Mario! 
-                {/* needs state name */}
+                Hello Mario!
+              {/* needs state name */}
             </Typography>
-            </ButtonGroup>
+          </ButtonGroup>
         </div>
       </div>
     </div>
