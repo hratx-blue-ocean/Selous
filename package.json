@@ -21,6 +21,10 @@
   },
   "homepage": "https://github.com/selder18/blue-ocean-rewrite#readme",
   "dependencies": {
+    "@material-ui/core": "^4.6.1",
+    "@material-ui/icons": "^4.5.1",
+    "@mdi/js": "^4.5.95",
+    "@mdi/react": "^1.2.1",
     "dotenv": "^8.2.0"
   },
   "devDependencies": {

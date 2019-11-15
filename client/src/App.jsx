@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import fetch from 'node-fetch';
 // import './App.css';
+import JobSearch from './components/JobSearch.jsx';
 
 export default class App extends Component {
   constructor(props) {
@@ -28,6 +29,7 @@ export default class App extends Component {
             <li key={index}>{creature}</li>
           ))}
         </ul>
+        <JobSearch />
       </>
     );
   }
