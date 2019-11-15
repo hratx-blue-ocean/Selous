@@ -8,9 +8,7 @@ import Headerbar from './components/headerbar/Headerbar.jsx'
 export default function App() {
   return (
     <>
-<<<<<<< HEAD
       <Headerbar/>
-=======
       <h1>Welcome to Blue Ocean!</h1>
       <ul>
         {result.map((creature, index) => (
@@ -18,7 +16,6 @@ export default function App() {
         ))}
       </ul>
       <Goals />
->>>>>>> dev
       <DetailsPage />
     </>
   );
