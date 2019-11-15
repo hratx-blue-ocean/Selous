@@ -1,6 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
+import {
+  Paper,
+  Grid,
+} from '@material-ui/core';
 import JobComponent from './JobComponent.jsx';
 
 const useStyles = makeStyles({
@@ -9,6 +12,9 @@ const useStyles = makeStyles({
     paddingRight: 40,
     paddingTop: 10,
     paddingBottom: 10,
+    borderWidth: 1,
+    borderColor: 'purple',
+    borderStyle: 'solid',
   },
 });
 
@@ -17,12 +23,14 @@ export default function PaperSheet() {
 
   return (
     <Paper container className={classes.root} mx={100}>
-      <JobComponent />
-      <JobComponent />
-      <JobComponent />
-      <JobComponent />
-      <JobComponent />
-      <JobComponent />
+      <Grid>
+        <JobComponent />
+        <JobComponent />
+        <JobComponent />
+        <JobComponent />
+        <JobComponent />
+        <JobComponent />
+      </Grid>
     </Paper>
   );
 }

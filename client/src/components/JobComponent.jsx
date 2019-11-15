@@ -1,10 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Avatar from '@material-ui/core/Avatar';
-import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
+import {
+  Avatar,
+  Card,
+  Button,
+  Typography,
+  Grid,
+} from '@material-ui/core/';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import Grid from '@material-ui/core/Grid';
+import { combineReducers } from 'redux';
 
 const useStyles = makeStyles({
   root: {
@@ -13,6 +17,11 @@ const useStyles = makeStyles({
     borderColor: 'purple',
     borderStyle: 'solid',
     boxShadow: 3,
+    '&:hover': {
+      background: 'purple',
+    },
+    textTransform: 'none',
+    textAlign: 'left',
   },
   logo: {
     margin: 10,
@@ -28,30 +37,32 @@ export default function PaperSheet() {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root} boxShadow={3} onClick={() => { console.log('joel sucks'); }}>
-      <Grid container wrap="wrap" spacing={2}>
-        <Grid item>
-          <Avatar className={classes.logo}>
-            <AssignmentIcon />
-          </Avatar>
+    <Button>
+      <Card className={classes.root} onClick={() => { console.log('joel sucks'); }}>
+        <Grid container item wrap="wrap" spacing={2}>
+          <Grid item>
+            <Avatar className={classes.logo}>
+              <AssignmentIcon />
+            </Avatar>
+          </Grid>
+          <Grid container item xs direction="column" textAlign="left">
+            <Typography variant="h5" component="search_Position">
+              Senior Software Development Engineer
+            </Typography>
+            <Typography component="search_company">
+              Whole Foods Market
+            </Typography>
+            <Typography component="search_location">
+              Austin, TX
+            </Typography>
+          </Grid>
+          <Grid container item xs={3} justifyContent="center" alignContent="flex-end">
+            <Typography component="search_daysAgo">
+              30+ days ago
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item xs container direction="column">
-          <Typography variant="h5" component="search_Position">
-            Senior Software Development Engineer
-          </Typography>
-          <Typography component="search_company">
-            Whole Foods Market
-          </Typography>
-          <Typography component="search_location">
-            Austin, TX
-          </Typography>
-        </Grid>
-        <Grid container item xs={2} justifyContent="center" alignContent="flex-end">
-          <Typography component="search_daysAgo">
-            30+ days ago
-          </Typography>
-        </Grid>
-      </Grid>
-    </Card>
+      </Card>
+    </Button>
   );
 }
