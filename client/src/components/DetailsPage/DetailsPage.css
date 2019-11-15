@@ -5,7 +5,7 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-rows: 20% 80%;
+    grid-template-rows: 15% 85%;
     grid-template-areas: 
         'header'
         'page_body';
@@ -35,11 +35,23 @@
 
 .company_notes {
     margin: 0;
-    padding: 0;
+    padding: 20px;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
     grid-area: company_notes;
+}
+
+.company_notes_box{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+    border: 2px solid #9F6CB7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
 }
 
 .progress_tabs_wrapper{
@@ -63,19 +75,22 @@
     width: 100%;
     height: 100%;
     grid-area: progress_tabs_header;
+    display: grid;
+    place-items: center;
 }
 
 .progress_tabs{
     margin: 0;
     padding: 0;
+    padding-right: 20px;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
     grid-area: progress_tabs;
     display: grid;
-    grid-template-columns: 5% repeat(3, 30%) 5%;
+    grid-template-columns: 2% repeat(3, 32%) 2%;
     grid-template-areas:
-        'left_button tab1 tab2 tab3 right_button';
+        'left_button tab_wrapper_one tab_wrapper_two tab_wrapper_three right_button';
 }
 
 .left_button{
@@ -84,33 +99,35 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    grid-area: left_button; 
+    grid-area: left_button;
+    display: grid;
 }
 
-.tab1{
+.tab_wrapper_one{
     margin: 0;
-    padding: 0;
+    padding: 20px;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    grid-area: tab1;
+    grid-area: tab_wrapper_one;
 }
 
-.tab2{
+.tab_wrapper_two{
     margin: 0;
-    padding: 0;
+    padding: 20px;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    grid-area: tab2;
+    grid-area: tab_wrapper_two;
 }
-.tab3{
+
+.tab_wrapper_three{
     margin: 0;
-    padding: 0;
+    padding: 20px;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    grid-area: tab3;
+    grid-area: tab_wrapper_three;
 }
 
 .right_button{
@@ -119,5 +136,44 @@
     box-sizing: border-box;
     width: 100%;
     height: 100%;
-    grid-area: right_button; 
+    grid-area: right_button;
+    display: grid;
+}
+
+.tab{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 470px;
+    background: #FFFFFF;
+    border: 2px solid #9F6CB7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+}
+
+.tab_whats_next{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 470px;
+    background: #FFFFFF;
+    border: 2px solid #9F6CB7;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 8px; 
+}
+
+.button{
+    display: flex;
+    place-self: center;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 20px;
+    height: 100px;
+    background: #9F6CB7;
+    border: 1px solid #000000;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
 }
