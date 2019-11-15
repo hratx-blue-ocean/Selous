@@ -1,12 +1,7 @@
 import React from 'react';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import {
+  Button, Card, CardActions, CardContent, CssBaseline, Typography, makeStyles, Container,
+} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   titleCard: {
@@ -36,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '0',
   },
   button2: {
-    backgroundColor: '#9F6CB7',
     fontSize: '14px',
   },
   goalsContainer: {
@@ -59,45 +53,45 @@ export default function Goals() {
   return (
     <>
       <CssBaseline />
-        <main>
-          <Container className={classes.goalsContainer} maxWidth="xs">
-            <Card className={classes.titleCard}>
-              <CardContent className={classes.titleCardContent}>
-                <Typography variant="h3" component="h3">
-                  Goals
+      <main>
+        <Container className={classes.goalsContainer} maxWidth="xs">
+          <Card className={classes.titleCard}>
+            <CardContent className={classes.titleCardContent}>
+              <Typography variant="h3" component="h3">
+                Goals
+              </Typography>
+            </CardContent>
+          </Card>
+          <hr style={{margin: '20px 10px'}}/>
+          {cards.map((card) => (
+            <Card className={classes.card}>
+              <CardContent className={classes.cardContent}>
+                <Typography variant="h5" component="h2">
+                  {card} / 5
                 </Typography>
               </CardContent>
+              <CardActions className={classes.cardFooter}>
+                <Button size="small" className={classes.button2}>
+                  -
+                </Button>
+                <Typography>
+                  This is the number {card} goal
+                </Typography>
+                <Button size="small" className={classes.button2}>
+                  +
+                </Button>
+              </CardActions>
             </Card>
-            <hr style={{margin: '20px 10px'}}/>
-            {cards.map((card) => (
-              <Card className={classes.card}>
-                <CardContent className={classes.cardContent}>
-                  <Typography variant="h5" component="h2">
-                    {card} / 5
-                  </Typography>
-                </CardContent>
-                <CardActions className={classes.cardFooter}>
-                  <Button size="small" className={classes.button2}>
-                    -
-                  </Button>
-                  <Typography>
-                    This is the number {card} goal
-                  </Typography>
-                  <Button size="small" className={classes.button2}>
-                    +
-                  </Button>
-                </CardActions>
-              </Card>
-            ))}
-            <CardActions className={classes.buttonContainer}>
-              <Button
-                variant="contained"
-                size="large"
-                className={classes.button1}
-              >
-                +
-              </Button>
-            </CardActions>
+          ))}
+          <CardActions className={classes.buttonContainer}>
+            <Button
+              variant="contained"
+              size="large"
+              className={classes.button1}
+            >
+              +
+            </Button>
+          </CardActions>
         </Container>
       </main>
     </>
