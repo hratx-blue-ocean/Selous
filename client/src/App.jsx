@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import fetch from 'node-fetch';
+import Headerbar from './components/headerbar/headerbar.jsx';
 // import './App.css';
 
 /*
@@ -30,13 +31,13 @@ export default function App() {
 
   return (
     <>
+      <Headerbar />
       <h1>Welcome to Blue Ocean!</h1>
       <ul>
         {result.map((creature, index) => (
           <li key={index}>{creature}</li>
         ))}
       </ul>
-      <h1>Tylers Linter sucks donkey wang</h1>
     </>
   );
 }
