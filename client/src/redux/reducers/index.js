@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
 
-const rootReducer = combineReducers({});
+// Reducers
+import toggleTestReducer from './toggleTestReducer.js';
+
+const rootReducer = combineReducers({
+  toggle: toggleTestReducer,
+});
 
 export default rootReducer;
