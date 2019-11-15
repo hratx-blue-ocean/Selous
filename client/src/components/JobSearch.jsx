@@ -5,7 +5,10 @@ import JobComponent from './JobComponent.jsx';
 
 const useStyles = makeStyles({
   root: {
-    padding: 10,
+    paddingLeft: 40,
+    paddingRight: 40,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
 });
 
@@ -13,7 +16,7 @@ export default function PaperSheet() {
   const classes = useStyles();
 
   return (
-    <Paper container className={classes.root}>
+    <Paper container className={classes.root} mx={100}>
       <JobComponent />
       <JobComponent />
       <JobComponent />
