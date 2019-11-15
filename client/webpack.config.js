@@ -2,6 +2,7 @@ const path = require('path');
 
 const SRC_DIR = path.join(__dirname, '/src');
 const DIST_DIR = path.join(__dirname, '/public');
+
 module.exports = {
   entry: `${SRC_DIR}/index.jsx`,
   output: {
@@ -16,14 +17,31 @@ module.exports = {
         loader: 'eslint-loader',
       },
       {
-        test: /\.js?/,
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
         include: SRC_DIR,
-        loader: 'babel-loader',
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
         include: SRC_DIR,
-        loader: 'css-loader',
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+        ],
       },
     ],
   },
@@ -31,5 +49,8 @@ module.exports = {
     contentBase: DIST_DIR,
     compress: true,
     port: 9000,
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
   },
 };
