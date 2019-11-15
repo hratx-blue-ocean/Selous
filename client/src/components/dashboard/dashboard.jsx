@@ -1,7 +1,7 @@
 import React from 'react';
 import DashboardRow from './dashboardRow.jsx';
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   return(
     <div>
       <DashboardRow />
