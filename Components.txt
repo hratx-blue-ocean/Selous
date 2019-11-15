@@ -1,0 +1,8 @@
+- Login / Registration
+- Navigation /  Footer
+- Dashboard
+- Salary Data
+- Cover Letters
+- Search Jobs 
+- Job Listings
+- Contacts
