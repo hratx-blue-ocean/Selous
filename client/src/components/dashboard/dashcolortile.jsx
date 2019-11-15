@@ -1,8 +1,8 @@
 import React from 'react';
 
-const DashColorTile = (props) => (
+const DashColorTile = () => (
   <>
-    <div className={`${props} dash-step-tile`} />
+    <div className={`${props.class} dash-step-tile`}> </div>
     <div>
       modal goes here
     </div>
