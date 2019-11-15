@@ -1,16 +1,12 @@
 import React from 'react';
 
-const DashColorTile = (props) => {
-    return(
-        <>
-            <div className={`${props.class} dash-step-tile`}>   
-            </div>
-            <div>
-                modal goes here
-            </div>
-        </>
-    );
-}
+const DashColorTile = (props) => (
+  <>
+    <div className={`${props} dash-step-tile`} />
+    <div>
+      modal goes here
+    </div>
+  </>
+);
 
 export default DashColorTile;
-

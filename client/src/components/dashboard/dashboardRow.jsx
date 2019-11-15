@@ -1,7 +1,7 @@
 import React from 'react';
 import DashColorTile from './dashcolortile.jsx';
 
-const DashboardRow = (props) => {
+const DashboardRow = () => {
     return (
         <div>
             <div className='dash_companytile'>

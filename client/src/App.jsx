@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import fetch from 'node-fetch';
+import Dashboard from './components/dashboard/dashboard.jsx';
+import './components/dashboard/dashboard.css';
 // import './App.css';
 
 /*
@@ -37,6 +39,7 @@ export default function App() {
         ))}
       </ul>
       <h1>Tylers Linter sucks donkey wang</h1>
+      <Dashboard />
     </>
   );
 }
