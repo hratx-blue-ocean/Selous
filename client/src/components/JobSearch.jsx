@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
-import JobComponent from './JobComponent.jsx'
-import { red, pink } from '@material-ui/core/colors';
+import JobComponent from './JobComponent.jsx';
 
 const useStyles = makeStyles({
   root: {
@@ -14,7 +13,7 @@ export default function PaperSheet() {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root}>
+    <Paper container className={classes.root}>
       <JobComponent />
       <JobComponent />
       <JobComponent />

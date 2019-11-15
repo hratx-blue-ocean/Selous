@@ -10,9 +10,15 @@ import Grid from '@material-ui/core/Grid';
 const useStyles = makeStyles({
   root: {
     margin: 10,
+    border: 1,
   },
   logo: {
     margin: 10,
+
+  },
+  search_daysAgo: {
+    margin: 10,
+    alignItems: 'flex-end',
   },
 });
 
@@ -21,7 +27,7 @@ export default function PaperSheet() {
 
   return (
     <Card className={classes.root}>
-      <Grid container wrap="nowrap" spacing={2}>
+      <Grid container wrap="wrap" spacing={2}>
         <Grid item>
           <Avatar className={classes.logo}>
             <AssignmentIcon />
@@ -36,6 +42,11 @@ export default function PaperSheet() {
           </Typography>
           <Typography component="search_Location">
             Austin, TX
+          </Typography>
+        </Grid>
+        <Grid container item xs={2} alignContent="flex-end" >
+          <Typography component="search_daysAgo">
+            30+ days ago
           </Typography>
         </Grid>
       </Grid>
