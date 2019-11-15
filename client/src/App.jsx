@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import fetch from 'node-fetch';
-// import './App.css';
+import Goals from './components/goals.jsx';
 
 /*
 useFetch()
@@ -36,7 +36,7 @@ export default function App() {
           <li key={index}>{creature}</li>
         ))}
       </ul>
-      <h1>Tylers Linter sucks donkey wang</h1>
+      <Goals />
     </>
   );
 }
