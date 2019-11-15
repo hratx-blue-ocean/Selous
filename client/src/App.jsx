@@ -8,8 +8,6 @@ useFetch()
 @param 'defaultData' The default data for the seaCreatures hook
 @return 'seaCreatures' SeaCreatures is returned after the data is recieved from the fetch request
 */
-
-// Custom hook with useEffect
 const useFetch = (url, defaultData) => {
   // Hooks
   const [seaCreatures, setSeaCreatures] = useState(defaultData);
