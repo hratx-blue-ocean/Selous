@@ -4,9 +4,9 @@
   "description": "Congratulations and welcome to your first day at Blue Ocean! We are literally an underwater agile software development company.",
   "main": "index.js",
   "scripts": {
-    "setup": "npm install && cd ./client && npm install ; cd ../server && npm install",
+    "setup": "npm install && cd ./client && npm install && cd ../server && npm install",
     "test": "cd ./client && npm test",
-    "launch": "cd ./client && npm run-script build && cd ../server && node bin/www && cd ../client webpack-dev-server &",
+    "launch": "cd ./client && npm run-script build && cd ../server && nodemon bin/www && cd ../client webpack-dev-server &",
     "lint:client": "cd ./client && ./node_modules/.bin/eslint \"src/**/*.{js,jsx}\" && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'",
     "lint:server": "cd ./server && ../node_modules/.bin/eslint \"routes/**/*.js\" 2>/dev/null && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'"
   },
@@ -21,11 +21,8 @@
   },
   "homepage": "https://github.com/selder18/blue-ocean-rewrite#readme",
   "dependencies": {
-    "@material-ui/core": "^4.6.1",
-    "@material-ui/icons": "^4.5.1",
-    "@mdi/js": "^4.5.95",
-    "@mdi/react": "^1.2.1",
-    "dotenv": "^8.2.0"
+    "dotenv": "^8.2.0",
+    "nodemon": "^1.19.4"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",
