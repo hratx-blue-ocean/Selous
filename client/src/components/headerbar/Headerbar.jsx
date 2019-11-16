@@ -104,8 +104,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Headerbar() {
   const classes = useStyles();
-  const eslint = `${InputBase},${SearchIcon},${RoomIcon}`;
-  console.log(eslint);
+  // const eslint = `${InputBase},${SearchIcon},${RoomIcon}`;
+  // console.log(eslint);
 
   return (
     <div className={classes.root}>
