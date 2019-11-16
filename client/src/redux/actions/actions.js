@@ -1,5 +1,3 @@
-export default function toggleAction() {
-  return {
-    type: 'TOGGLE',
-  };
-}
+export default {
+  toggleAction: () => ({ type: 'TOGGLE' }),
+};
