@@ -105,12 +105,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Headerbar() {
   const classes = useStyles();
+  const eslint = `${InputBase},${SearchIcon},${RoomIcon}`;
+  console.log(eslint);
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.app}>
         <Toolbar>
-          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo}/>
+          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo} />
           <Typography variant="'h6'" className={classes.title}>
             Selous
           </Typography>
