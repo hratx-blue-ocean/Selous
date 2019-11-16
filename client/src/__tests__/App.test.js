@@ -1,8 +1,13 @@
-import React from 'react'
-import {render, fireEvent, cleanup, waitForElement} from 'react-testing-library'
+import React from 'react';
+import {
+  render,
+  fireEvent,
+  cleanup,
+  waitForElement,
+} from 'react-testing-library';
 
 // this adds custom jest matchers from jest-dom
-import 'jest-dom/extend-expect'
+import 'jest-dom/extend-expect';
 import App from '../App';
 
 afterEach(cleanup);
