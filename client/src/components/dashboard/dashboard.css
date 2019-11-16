@@ -59,10 +59,11 @@
 .dash-magenta {
     background: rgba(100, 100, 100, 0.85);
 }
-.dash-modal {
+.dash-step-modal {
     display: flex;
     background: rgba(0, 0, 0, 0);
     position: fixed;
+    width: 114px;
 }
 .dash-modal-triangle {
     width: 10px;
