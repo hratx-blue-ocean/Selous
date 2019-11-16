@@ -11,61 +11,61 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {createMuiTheme } from '@material-ui/core';
+import { createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
-  palette:{
-    primary:purple
+  palette: {
+    primary: purple
   },
-  typography: {useNextVariants: true}
+  typography: { useNextVariants: true }
 })
 
-const useStyles = makeStyles(theme => ({
-  
+const useStyles = makeStyles((theme) => ({
+
   '@global': {
-  body: {
-    backgroundColor: theme.palette.common.white
+    body: {
+      backgroundColor: theme.palette.common.white,
+    },
+
+  },
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
   },
 
-},
-  paper: {
-  marginTop: theme.spacing(8),
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center'
-},
-
   avatar: {
-  margin: theme.spacing(1),
-  backgroundColor: theme.palette.secondary.main,
-},
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
   form: {
-  width: '100%', // Fix IE 11 issue.
-  marginTop: theme.spacing(3),
-},
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
   submit: {
-  margin: theme.spacing(3, 0, 2),
-  backgroundColor: '#9f6cb7',
-  borderRadius: '15px',
-},
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#9f6cb7',
+    borderRadius: '15px',
+  },
   input: {
-},
+  },
 }));
 
 const actionLogin = (userName) => {
   return {
-    type:'USER_LOGIN',
-    payload:{
-      user:userName
+    type: 'USER_LOGIN',
+    payload: {
+      user: userName,
     }
   }
 }
 
-const loginReducer = (state = '', action) =>{
-  switch(action.type){
+const loginReducer = (state = '', action) => {
+  switch (action.type) {
     case 'USER_LOGIN':
-      return action.payload.user
+      return action.payload.user;
     default:
       return state;
   }
@@ -75,24 +75,24 @@ const loginObj = {
 
 }
 
-const writeToLogin = function(event){
+const writeToLogin = function (event) {
   loginObj[event.target.name] = event.target.value;
 }
 
-const handleLogin = function(e){
+const handleLogin = function (e) {
   e.preventDefault()
   //Check auth
   //If correct, pull data from DB for user
 }
 
-function SignIn({dispatch}) {
+function SignIn({ dispatch }) {
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        
+
         {/* Logo
          <Avatar className={classes.avatar}>
         </Avatar> */}
@@ -110,7 +110,7 @@ function SignIn({dispatch}) {
             name="email"
             autoComplete="email"
             autoFocus
-            onChange={(e)=> writeToLogin(e)}
+            onChange={(e) => writeToLogin(e)}
 
           />
           <TextField
@@ -123,11 +123,11 @@ function SignIn({dispatch}) {
             type="password"
             id="password"
             autoComplete="current-password"
-            onChange={(e)=> writeToLogin(e)}
+            onChange={(e) => writeToLogin(e)}
 
           />
           <FormControlLabel
-            control={<Checkbox value="remember"/>}
+            control={<Checkbox value="remember" />}
             label="Remember me"
           />
           <Button
@@ -160,4 +160,5 @@ function SignIn({dispatch}) {
   );
 }
 
-export default connect(null, mapDispatchToProps)(SignIn)
+// export default connect(null, mapDispatchToProps)(SignIn)
+export default SignIn;

@@ -11,7 +11,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { OutlinedInput, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
-import { connect } from 'http2';
 
 const theme = createMuiTheme({
   palette:{
@@ -194,4 +193,5 @@ function SignUp() {
   );
 }
 
-export default connect(null, mapDispatchToProps)(SignUp)
+// export default connect(null, mapDispatchToProps)(SignUp)
+export default SignUp;

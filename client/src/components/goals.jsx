@@ -68,7 +68,7 @@ export default function Goals() {
                 </Typography>
               </CardContent>
             </Card>
-            <hr style={{margin: '20px 10px'}}/>
+            <hr style={{ margin: '20px 10px' }} />
             {cards.map((card) => (
               <Card className={classes.card}>
                 <CardContent className={classes.cardContent}>

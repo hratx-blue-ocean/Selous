@@ -1,10 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  AppBar, Toolbar, Typography, Button, ButtonGroup, InputBase,
+  AppBar, Toolbar, Typography, Button, ButtonGroup,
+  // InputBase,
 } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import RoomIcon from '@material-ui/icons/Room';
+// import SearchIcon from '@material-ui/icons/Search';
+// import RoomIcon from '@material-ui/icons/Room';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -110,7 +111,7 @@ export default function Headerbar() {
     <div className={classes.root}>
       <AppBar position="static" className={classes.app}>
         <Toolbar>
-          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo}/>
+          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo} />
           <Typography variant="'h6'" className={classes.title}>
             Selous
           </Typography>
