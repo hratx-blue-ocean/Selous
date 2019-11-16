@@ -45,8 +45,9 @@ export default function App() {
         ))} */}
       </ul>
       <WhatsNext />
-        <Box p={2}/>
-        <EditModal />
+      <Box p={2} />
+      <EditModal />
+      <Box p={2} />
       <Grid>
         <Grid
           container
