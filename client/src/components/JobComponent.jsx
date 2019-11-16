@@ -45,8 +45,8 @@ export default function PaperSheet() {
   return (
     <Button>
       <Card className={classes.root} onClick={() => { console.log('joel sucks'); }}>
-        <Grid container item wrap="wrap" spacing={2} justify="center" alignItems="center" className={classes.mainContainer}>
-          <Grid item>
+        <Grid container item wrap="wrap" spacing={2} className={classes.mainContainer}>
+          <Grid item alignItems="center">
             <Avatar className={classes.logo}>
               <AssignmentIcon />
             </Avatar>
@@ -62,8 +62,8 @@ export default function PaperSheet() {
               Austin, TX
             </Typography>
           </Grid>
-          <Grid container item xs={3} direction="column" alignSelf="flex-end" display="flex" alignItems="flex-end" alignContent="flex-end">
-            <Typography component="search_daysAgo" alignSelf="flex-end">
+          <Grid container item xs={3} display="flex" alignItems="flex-end">
+            <Typography component="search_daysAgo">
               30+ days ago
             </Typography>
           </Grid>
