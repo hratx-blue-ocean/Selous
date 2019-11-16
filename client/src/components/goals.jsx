@@ -3,10 +3,9 @@ import { connect } from 'react-redux';
 import {
   Button, Card, CardActions, CardContent, CssBaseline, Typography, makeStyles, Container,
 } from '@material-ui/core';
-import addGoalAction from '../redux/actions/actions.js';
-import incrementGoalAction from '../redux/actions/actions.js';
-import decrementGoalAction from '../redux/actions/actions.js';
-import getGoalsAction from '../redux/actions/actions.js';
+import {
+  addGoalAction, incrementGoalAction, decrementGoalAction, getGoalsAction,
+} from '../redux/actions/actions.js';
 
 const mapStateToProps = (state) => ({
   addGoal: state.addGoal,
@@ -55,13 +54,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-// const currentGoals = useEffect
-
 const Goals = ({ addGoal, currentGoals, dispatch }) => {
-  const classes = useStyles();
   useEffect(() => {
-    dispatch(getGoalsAction.getGoalsAction());
-  });
+    dispatch(getGoalsAction());
+  }, []);
+
+  const classes = useStyles();
 
   if (addGoal) {
     return <div>This is a test div</div>;
@@ -79,29 +77,29 @@ const Goals = ({ addGoal, currentGoals, dispatch }) => {
             </CardContent>
           </Card>
           <hr style={{ margin: '20px 10px' }} />
-          {currentGoals.map((currentGoal) => (
-            <Card key={currentGoal.id} className={classes.card}>
+          {currentGoals.map((currentGoal, index) => (
+            <Card key={currentGoal.goalName} className={classes.card}>
               <CardContent className={classes.cardContent}>
                 <Typography variant="h5" component="h2">
-                  {`${currentGoal.progress} / `}
-                  {currentGoal.goal}
+                  {`${currentGoal.goalProgress} / `}
+                  {currentGoal.goalTarget}
                 </Typography>
               </CardContent>
               <CardActions className={classes.cardFooter}>
                 <Button
                   size="small"
                   className={classes.button2}
-                  onClick={() => dispatch(decrementGoalAction.decrementGoalAction())}
+                  onClick={() => dispatch(decrementGoalAction(index))}
                 >
                   -
                 </Button>
                 <Typography>
-                  {currentGoal.title}
+                  {currentGoal.goalName}
                 </Typography>
                 <Button
                   size="small"
                   className={classes.button2}
-                  onClick={() => dispatch(incrementGoalAction.incrementGoalAction())}
+                  onClick={() => dispatch(incrementGoalAction(index))}
                 >
                   +
                 </Button>
@@ -113,7 +111,7 @@ const Goals = ({ addGoal, currentGoals, dispatch }) => {
               variant="contained"
               size="large"
               className={classes.button1}
-              onClick={() => dispatch(addGoalAction.addGoalAction())}
+              onClick={() => dispatch(addGoalAction())}
             >
               +
             </Button>

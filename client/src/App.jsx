@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import 'babel-polyfill';
 import fetch from 'node-fetch';
 import Goals from './components/Goals.jsx';
 import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
