@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './ProgressTabs.css';
+import ButtonLeft from './ButtonLeft/ButtonLeft.jsx';
+import ButtonRight from './ButtonRight/ButtonRight.jsx';
 
 export default function ProgressTabs() {
   return (
@@ -11,9 +13,7 @@ export default function ProgressTabs() {
 
       <div className={styles.progress_tabs}>
 
-        <div className={styles.left_button}>
-          <div className={styles.button} />
-        </div>
+        <ButtonLeft />
 
         <div className={styles.tab_wrapper_one}>
 
@@ -51,9 +51,7 @@ export default function ProgressTabs() {
           </div>
         </div>
 
-        <div className={styles.right_button}>
-          <div className={styles.button} />
-        </div>
+        <ButtonRight />
 
       </div>
     </div>
