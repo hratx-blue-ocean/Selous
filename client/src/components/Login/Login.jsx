@@ -14,7 +14,7 @@ import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 
-const theme = createMuiTheme({
+const theme2 = createMuiTheme({
   palette: {
     primary: purple,
   },
