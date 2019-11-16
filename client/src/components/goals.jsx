@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
   },
   cardContent: {
     textAlign: 'center',
@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonContainer: {
     padding: '0',
-  }
+  },
 }));
 
 const cards = [1, 2, 3, 4];
@@ -59,45 +59,45 @@ export default function Goals() {
   return (
     <>
       <CssBaseline />
-        <main>
-          <Container className={classes.goalsContainer} maxWidth="xs">
-            <Card className={classes.titleCard}>
-              <CardContent className={classes.titleCardContent}>
-                <Typography variant="h3" component="h3">
-                  Goals
+      <main>
+        <Container className={classes.goalsContainer} maxWidth="xs">
+          <Card className={classes.titleCard}>
+            <CardContent className={classes.titleCardContent}>
+              <Typography variant="h3" component="h3">
+                Goals
                 </Typography>
+            </CardContent>
+          </Card>
+          <hr style={{ margin: '20px 10px' }} />
+          {cards.map((card) => (
+            <Card className={classes.card}>
+              <CardContent className={classes.cardContent}>
+                <Typography variant="h5" component="h2">
+                  {card} / 5
+                  </Typography>
               </CardContent>
+              <CardActions className={classes.cardFooter}>
+                <Button size="small" className={classes.button2}>
+                  -
+                  </Button>
+                <Typography>
+                  This is the number {card} goal
+                  </Typography>
+                <Button size="small" className={classes.button2}>
+                  +
+                  </Button>
+              </CardActions>
             </Card>
-            <hr style={{margin: '20px 10px'}}/>
-            {cards.map((card) => (
-              <Card className={classes.card}>
-                <CardContent className={classes.cardContent}>
-                  <Typography variant="h5" component="h2">
-                    {card} / 5
-                  </Typography>
-                </CardContent>
-                <CardActions className={classes.cardFooter}>
-                  <Button size="small" className={classes.button2}>
-                    -
-                  </Button>
-                  <Typography>
-                    This is the number {card} goal
-                  </Typography>
-                  <Button size="small" className={classes.button2}>
-                    +
-                  </Button>
-                </CardActions>
-              </Card>
-            ))}
-            <CardActions className={classes.buttonContainer}>
-              <Button
-                variant="contained"
-                size="large"
-                className={classes.button1}
-              >
-                +
+          ))}
+          <CardActions className={classes.buttonContainer}>
+            <Button
+              variant="contained"
+              size="large"
+              className={classes.button1}
+            >
+              +
               </Button>
-            </CardActions>
+          </CardActions>
         </Container>
       </main>
     </>
