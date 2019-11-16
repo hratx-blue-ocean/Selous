@@ -14,11 +14,11 @@ const useStyles = makeStyles({
   root: {
     margin: 10,
     borderWidth: 1,
-    borderColor: 'purple',
+    borderColor: '#9F6CB7',
     borderStyle: 'solid',
     boxShadow: 3,
     '&:hover': {
-      background: 'purple',
+      background: '#9F6CB7',
     },
     textTransform: 'none',
     textAlign: 'left',
