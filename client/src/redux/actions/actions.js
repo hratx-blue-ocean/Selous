@@ -1,17 +1,9 @@
-const toggleAction = () => ({ type: 'TOGGLE' });
+export const toggleAction = () => ({ type: 'TOGGLE' });
 
-const addGoalAction = () => ({ type: 'ADD_GOAL' });
+export const addGoalAction = () => ({ type: 'ADD_GOAL' });
 
-const incrementGoalAction = () => ({ type: 'INCREMENT_GOAL' });
+export const incrementGoalAction = (id) => ({ type: 'INCREMENT_GOAL', id });
 
-const decrementGoalAction = () => ({ type: 'DECREMENT_GOAL' });
+export const decrementGoalAction = (id) => ({ type: 'DECREMENT_GOAL', id });
 
-const getGoalsAction = () => ({ type: 'GET_GOALS' });
-
-export default {
-  addGoalAction,
-  toggleAction,
-  incrementGoalAction,
-  decrementGoalAction,
-  getGoalsAction,
-};
+export const getGoalsAction = () => ({ type: 'GET_GOALS' });
