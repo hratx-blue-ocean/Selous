@@ -1,10 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  AppBar, Toolbar, Typography, Button, ButtonGroup, InputBase,
+  AppBar, Toolbar, Typography, Button, ButtonGroup,
 } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import RoomIcon from '@material-ui/icons/Room';
 
 const useStyles = makeStyles((theme) => ({
   root: {
