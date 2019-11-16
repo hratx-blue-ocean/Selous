@@ -1,22 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import fetch from 'node-fetch';
-import Goals from './components/goals.jsx';
+import React from 'react';
 
 // Imported for render testing
-import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
-import Headerbar from './components/headerbar/Headerbar.jsx'
+// import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
+import Headerbar from './components/headerbar/Headerbar.jsx';
+import Goals from './components/goals.jsx';
+
 export default function App() {
   return (
     <>
-      <Headerbar/>
-      <h1>Welcome to Blue Ocean!</h1>
-      <ul>
-        {result.map((creature, index) => (
-          <li key={index}>{creature}</li>
-        ))}
-      </ul>
+      <Headerbar />
       <Goals />
-      <DetailsPage />
     </>
   );
 }
