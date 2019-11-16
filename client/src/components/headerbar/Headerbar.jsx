@@ -5,9 +5,6 @@ import {
   AppBar, Toolbar, Typography, Button, ButtonGroup,
 } from '@material-ui/core';
 
-// import SearchIcon from '@material-ui/icons/Search';
-// import RoomIcon from '@material-ui/icons/Room';
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
