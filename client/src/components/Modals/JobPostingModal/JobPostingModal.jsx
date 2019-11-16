@@ -1,13 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import styles from './JobPostingModal.css';
 
 import {
-  Typography,
   Fab,
   Box,
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
-import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles(({
   bigContainer: {
@@ -15,7 +14,6 @@ const useStyles = makeStyles(({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    zIndex: 3,
   },
   container: {
     display: 'flex',
@@ -107,7 +105,7 @@ const useStyles = makeStyles(({
 export default function JobPostingModal() {
   const classes = useStyles();
   return (
-    <div className={classes.bigContainer}>
+    <div className={styles.modal}>
       <div className={classes.container}>
         <div className={classes.header}>
           <h1 className={classes.title}>title</h1>
@@ -121,7 +119,7 @@ export default function JobPostingModal() {
           <h3 className={classes.titleSec}>Company Name</h3>
           <h5 className={classes.titleTer}>City Name</h5>
         </div>
-        <div className={classes.description}></div>
+        <div className={classes.description} />
         <button className={classes.apply}>Apply</button>
       </div>
     </div>

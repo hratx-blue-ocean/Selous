@@ -62,9 +62,6 @@ typings/
 
 # Mac Finder
 .DS_Store
-<<<<<<< HEAD
-=======
 
 # Webpack
->>>>>>> dev
 bundle.js
