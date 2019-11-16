@@ -75,6 +75,14 @@ export default function Goals() {
                 <Typography variant="h5" component="h2">
                   {card} / 5
                 </Typography>
+            </CardContent>
+          </Card>
+          <hr style={{ margin: '20px 10px' }} />
+          {cards.map((card) => (
+            <Card className={classes.card}>
+              <CardContent className={classes.cardContent}>
+                <Typography variant="h5" component="h2">
+                  {card} / 5
               </CardContent>
               <CardActions className={classes.cardFooter}>
                 <Button size="small" className={classes.button2}>
@@ -96,29 +104,29 @@ export default function Goals() {
                     {`${card} `}
                     / 5
                   </Typography>
-                </CardContent>
-                <CardActions className={classes.cardFooter}>
-                  <Button size="small" className={classes.button2}>
-                    -
+              </CardContent>
+              <CardActions className={classes.cardFooter}>
+                <Button size="small" className={classes.button2}>
+                  -
                   </Button>
-                  <Typography>
-                    This is the number {card} goal
+                <Typography>
+                  This is the number {card} goal
                   </Typography>
-                  <Button size="small" className={classes.button2}>
-                    +
+                <Button size="small" className={classes.button2}>
+                  +
                   </Button>
-                </CardActions>
-              </Card>
-            ))}
-            <CardActions className={classes.buttonContainer}>
-              <Button
-                variant="contained"
-                size="large"
-                className={classes.button1}
-              >
-                +
+              </CardActions>
+            </Card>
+          ))}
+          <CardActions className={classes.buttonContainer}>
+            <Button
+              variant="contained"
+              size="large"
+              className={classes.button1}
+            >
+              +
               </Button>
-            </CardActions>
+          </CardActions>
         </Container>
       </main>
     </>

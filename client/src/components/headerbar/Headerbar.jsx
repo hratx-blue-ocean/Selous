@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+
 import {
   AppBar, Toolbar, Typography, Button, ButtonGroup,
 } from '@material-ui/core';
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     fontSize: 42,
     fontFamily: [
-      'Verdana',
+      'Cairo',
     ].join(','),
   },
   signup: {
@@ -37,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     borderTop: '1px solid darkgrey',
     marginLeft: 'auto',
     marginRight: 'auto',
-    height: 75,
+    height: 40,
   },
   search: {
     position: 'relative',
@@ -150,23 +151,23 @@ export default function Headerbar() {
         <div className={classes.leftGroup}>
           <ButtonGroup>
             <Button variant="text" href="#" className={classes.button}>
-                Home
+              Home
             </Button>
             {/* <Button variant='text' href='#' className={classes.button}>
                 Search
             </Button> */}
             <Button variant="text" href="#" className={classes.button}>
-                Dashboard
+              Dashboard
             </Button>
           </ButtonGroup>
         </div>
         <div className={classes.rightGroup}>
           <ButtonGroup>
             <Button variant="text" href="#" className={classes.button}>
-                About
+              About
             </Button>
             <Typography className={classes.hello}>
-                Hello Mario!
+              Hello Mario!
               {/* needs state name */}
             </Typography>
           </ButtonGroup>

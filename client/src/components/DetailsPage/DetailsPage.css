@@ -3,11 +3,10 @@
     padding: 0;
     box-sizing: border-box;
     width: 100vw;
-    height: 100vh;
+    height: 82vh;
     display: grid;
-    grid-template-rows: 20% 80%;
+    grid-template-rows: 100%;
     grid-template-areas: 
-        'header'
         'page_body';
 }
 
@@ -15,6 +14,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     grid-area: header;
 }
 
@@ -22,5 +23,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    width: 100%;
+    height: 100%;
     grid-area: page_body;
+    display: grid;
+    grid-template-columns: 25% 75%;
+    grid-template-areas: 
+        'company_notes progress_tabs_wrapper';
+    padding-right: 165px;
+    padding-left: 165px;
 }
