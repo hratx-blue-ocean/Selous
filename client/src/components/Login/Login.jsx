@@ -16,10 +16,10 @@ import { purple } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
-    primary: purple
+    primary: purple,
   },
-  typography: { useNextVariants: true }
-})
+  typography: { useNextVariants: true },
+});
 
 const useStyles = makeStyles((theme) => ({
 
@@ -52,38 +52,37 @@ const useStyles = makeStyles((theme) => ({
   input: {
   },
 }));
+//    Redux Action
+// const actionLogin = (userName) => ({
+//   type: 'USER_LOGIN',
+//   payload: {
+//     user: userName,
+//   }
+// });
 
-const actionLogin = (userName) => {
-  return {
-    type: 'USER_LOGIN',
-    payload: {
-      user: userName,
-    }
-  }
-}
-
-const loginReducer = (state = '', action) => {
-  switch (action.type) {
-    case 'USER_LOGIN':
-      return action.payload.user;
-    default:
-      return state;
-  }
-}
+//      Redux Reducer
+// const loginReducer = (state = '', action) => {
+//   switch (action.type) {
+//     case 'USER_LOGIN':
+//       return action.payload.user;
+//     default:
+//       return state;
+//   }
+// };
 
 const loginObj = {
 
-}
+};
 
-const writeToLogin = function (event) {
+const writeToLogin = (event) => {
   loginObj[event.target.name] = event.target.value;
-}
+};
 
-const handleLogin = function (e) {
-  e.preventDefault()
-  //Check auth
-  //If correct, pull data from DB for user
-}
+const handleLogin = (e) => {
+  e.preventDefault();
+  // Check auth
+  // If correct, pull data from DB for user
+};
 
 function SignIn({ dispatch }) {
   const classes = useStyles();
@@ -98,7 +97,7 @@ function SignIn({ dispatch }) {
         </Avatar> */}
         <Typography component="h1" variant="h5">
           Sign in
-            </Typography>
+        </Typography>
         <form className={classes.form} noValidate>
           <TextField
             variant="filled"
@@ -139,23 +138,22 @@ function SignIn({ dispatch }) {
             className={classes.submit}
           >
             Sign In
-              </Button>
+          </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              {/* <Link href="#" variant="body2">
                 Forgot password?
-                  </Link>
+              </Link> */}
             </Grid>
             <Grid item>
-              <Link href="#" variant="body2">
-                {"Don't have an account? Sign Up"}
+              <Link href="/SignUp" variant="body2">
+                Don&apos;t have an account? Sign Up
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={8}>
-      </Box>
+      <Box mt={8} />
     </Container>
   );
 }

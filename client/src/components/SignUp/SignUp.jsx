@@ -9,73 +9,71 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { OutlinedInput, MuiThemeProvider, createMuiTheme } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
-  palette:{
-    primary:purple
+  palette: {
+    primary: purple,
   },
-  typography: {useNextVariants: true}
-})
+  typography: { useNextVariants: true },
+});
 
-const useStyles = makeStyles(theme => ({
-  
+const useStyles = makeStyles((theme) => ({
   '@global': {
-  body: {
-    backgroundColor: theme.palette.common.white
-  },
+    body: {
+      backgroundColor: theme.palette.common.white,
+    },
 
-},
+  },
   paper: {
-  marginTop: theme.spacing(8),
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center'
-},
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
 
   avatar: {
-  margin: theme.spacing(1),
-  backgroundColor: theme.palette.secondary.main,
-},
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
   form: {
-  width: '100%', // Fix IE 11 issue.
-  marginTop: theme.spacing(3),
-},
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
   submit: {
-  margin: theme.spacing(3, 0, 2),
-  backgroundColor: '#9f6cb7',
-  borderRadius: '15px',
-},
+    margin: theme.spacing(3, 0, 2),
+    backgroundColor: '#9f6cb7',
+    borderRadius: '15px',
+  },
   input: {
     // '&.MuiInput-underline.Mui-focused:after':{
     //   borderBottom:'2px #9f6cb7 solid',
     //   fontSize:'50px'
     // },
-  backgroundColor: 'lightgrey',
-  // '&.Mui-focused':{
-  //   backgroundColor:'green',
-  //   color:'#9f6cb7'
-  // },
+    backgroundColor: 'lightgrey',
+    // '&.Mui-focused':{
+    //   backgroundColor:'green',
+    //   color:'#9f6cb7'
+    // },
 
 
-},
+  },
 }));
 const signupObj = {
 
-}
+};
 
-const writeToObj = function(event){
+const writeToObj = (event) => {
   signupObj[event.target.name] = event.target.value;
-}
+};
 
-const handleClick = function(e){
-  e.preventDefault()
-  console.log(signupObj)
-  if(signupObj.password === signupObj.passwordConfirm){
-    //Write data to the database
+const handleClick = (e) => {
+  e.preventDefault();
+  if (signupObj.password === signupObj.passwordConfirm) {
+    // Write data to the database
   }
-}
+};
 
 function SignUp() {
   const classes = useStyles();
@@ -93,18 +91,18 @@ function SignUp() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <MuiThemeProvider theme={theme}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="filled"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                onChange={(e)=> writeToObj(e)}
-                autoFocus
-              />
-             </MuiThemeProvider>
+                <TextField
+                  autoComplete="fname"
+                  name="firstName"
+                  variant="filled"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  onChange={(e) => writeToObj(e)}
+                  autoFocus
+                />
+              </MuiThemeProvider>
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -115,7 +113,7 @@ function SignUp() {
                 label="Last Name"
                 name="lastName"
                 autoComplete="lname"
-                onChange={(e)=> writeToObj(e)}
+                onChange={(e) => writeToObj(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -127,7 +125,7 @@ function SignUp() {
                 label="Email Address"
                 name="email"
                 autoComplete="email"
-                onChange={(e)=> writeToObj(e)}
+                onChange={(e) => writeToObj(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -139,7 +137,7 @@ function SignUp() {
                 label="Username"
                 name="username"
                 autoComplete="username"
-                onChange={(e)=> writeToObj(e)}
+                onChange={(e) => writeToObj(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -152,7 +150,7 @@ function SignUp() {
                 type="password"
                 id="password"
                 autoComplete="current-password"
-                onChange={(e)=> writeToObj(e)}
+                onChange={(e) => writeToObj(e)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -175,20 +173,20 @@ function SignUp() {
             color="primary"
             className={classes.submit}
             // onClick={dispatch(saveUser())}
-            onClick={(e) => handleClick(e)}>
+            onClick={(e) => handleClick(e)}
+          >
             Sign Up
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
+              <Link href="/Login" variant="body2">
                 Already have an account? Sign in
               </Link>
             </Grid>
           </Grid>
         </form>
       </div>
-      <Box mt={5}>
-      </Box>
+      <Box mt={5} />
     </Container>
   );
 }
