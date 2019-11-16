@@ -21,6 +21,7 @@ const useFetch = (url, defaultData) => {
   }, url);
   return seaCreatures;
 };
+
 export default function App() {
   const api = 'http://localhost:8000/api/example';
   const result = useFetch(api, []);
