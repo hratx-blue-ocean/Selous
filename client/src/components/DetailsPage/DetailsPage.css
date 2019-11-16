@@ -1,0 +1,26 @@
+.container {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 20% 80%;
+    grid-template-areas: 
+        'header'
+        'page_body';
+}
+
+.header{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    grid-area: header;
+}
+
+.page_body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    grid-area: page_body;
+}
