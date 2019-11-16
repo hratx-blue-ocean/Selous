@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     fontSize: 42,
     fontFamily: [
-      'Verdana',
+      'Cairo',
     ].join(','),
   },
   signup: {

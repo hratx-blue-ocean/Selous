@@ -22,21 +22,29 @@ const DetailsPage = () => (
             <div className={styles.tab}>
               <div className={styles.tab_header}>Title</div>
               <div className={styles.tab_body}>Body</div>
-              <div className={styles.tab_edit}>Edit</div>
+              <div className={styles.tab_edit}>
+                <div className={styles.edit}>Edit</div>
+              </div>
             </div>
+            <div className={styles.check} />
           </div>
           <div className={styles.tab_wrapper_two}>
             <div className={styles.tab}>
               <div className={styles.tab_header}>Title</div>
               <div className={styles.tab_body}>Body</div>
-              <div className={styles.tab_edit}>Edit</div>
+              <div className={styles.tab_edit}>
+                <div className={styles.edit}>Edit</div>
+              </div>
             </div>
+            <div className={styles.check} />
           </div>
           <div className={styles.tab_wrapper_three}>
             <div className={styles.tab}>
               <div className={styles.tab_header} />
               <div className={styles.tab_body}>Whats next?</div>
-              <div className={styles.tab_edit} />
+              <div className={styles.tab_edit}>
+                <div className={styles.edit}>Next Step</div>
+              </div>
             </div>
           </div>
           <div className={styles.right_button}>
