@@ -6,7 +6,6 @@ const mapStateToProps = (state) => ({ toggle: state.toggle });
 
 const DetailsPage = () => (
   <div className={styles.container}>
-    <div className={styles.header}>Header</div>
     <div className={styles.page_body}>
       <div className={styles.company_notes}>
         <div className={styles.company_notes_box}>Amazon</div>

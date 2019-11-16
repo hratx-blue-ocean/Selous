@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 // import Goals from './components/goals.jsx';
 
 import DetailsPage from './components/DetailsPage/DetailsPage.jsx';

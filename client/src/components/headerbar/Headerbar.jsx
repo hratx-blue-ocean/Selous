@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     borderTop: '1px solid darkgrey',
     marginLeft: 'auto',
     marginRight: 'auto',
-    height: 75,
+    height: 40,
   },
   search: {
     position: 'relative',
