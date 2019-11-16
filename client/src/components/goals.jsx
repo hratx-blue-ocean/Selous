@@ -66,6 +66,7 @@ export default function Goals() {
               <Typography variant="h3" component="h3">
                 Goals
                 </Typography>
+<<<<<<< HEAD
             </CardContent>
           </Card>
           <hr style={{ margin: '20px 10px' }} />
@@ -74,6 +75,17 @@ export default function Goals() {
               <CardContent className={classes.cardContent}>
                 <Typography variant="h5" component="h2">
                   {card} / 5
+=======
+              </CardContent>
+            </Card>
+            <hr style={{ margin: '20px 10px' }} />
+            {cards.map((card) => (
+              <Card className={classes.card}>
+                <CardContent className={classes.cardContent}>
+                  <Typography variant="h5" component="h2">
+                    {`${card} `}
+                    / 5
+>>>>>>> dev
                   </Typography>
               </CardContent>
               <CardActions className={classes.cardFooter}>
