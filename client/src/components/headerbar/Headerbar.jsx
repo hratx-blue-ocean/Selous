@@ -148,7 +148,7 @@ export default function Headerbar() {
       <div className={classes.break}>
         <div className={classes.leftGroup}>
           <ButtonGroup>
-            <Button variant="text" href="#" className={classes.button}>
+            <Button variant="text" href="/header" className={classes.button}>
               Home
             </Button>
             {/* <Button variant='text' href='#' className={classes.button}>

@@ -8,19 +8,19 @@ import TabOne from './TabOne/TabOne.jsx';
 import TabTwo from './TabTwo/TabTwo.jsx';
 import TabThree from './TabThree/TabThree.jsx';
 
-export default function ProgressTabs() {
+export default function ProgressTabs({ companyName, tabs }) {
   return (
     <div className={styles.progress_tabs_wrapper}>
 
       <div className={styles.progress_tabs_header}>
-        <h1>Your progress with Amazon</h1>
+        <h1>{`Your progress with ${companyName}`}</h1>
       </div>
 
       <div className={styles.progress_tabs}>
         <ButtonLeft />
-        <TabOne />
-        <TabTwo />
-        <TabThree />
+        <TabOne tab={tabs ? tabs[tabs.length - 3] : null} />
+        <TabTwo tab={tabs ? tabs[tabs.length - 2] : null} />
+        <TabThree tab={tabs ? tabs[tabs.length - 1] : null} />
         <ButtonRight />
       </div>
     </div>
