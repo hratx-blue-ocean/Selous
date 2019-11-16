@@ -1,18 +1,17 @@
 import React from 'react';
-// import fetch from 'node-fetch';
-import Dashboard from './components/dashboard/dashboard.jsx';
-import './components/dashboard/dashboard.css';
-// import './App.css';
+import Goals from './components/goals.jsx';
 
 // Imported for render testing
 import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
+import Headerbar from './components/headerbar/Headerbar.jsx';
+import Dashboard from './components/dashboard/dashboard.jsx';
 
 export default function App() {
   return (
     <>
-      <h1>Welcome to Blue Ocean!</h1>
-
+      <Headerbar />
       <Dashboard />
+      <Goals />
       <DetailsPage />
     </>
   );

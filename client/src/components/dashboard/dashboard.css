@@ -14,49 +14,86 @@
 }
 
 .dash-companytile {
+    display: flex;
     width: 90px;
     height: 90px;
+    color: #FFF;
+    justify-content: center;
+    flex-direction: column;
     font-weight: 300;
-    font-size: 24px;
+    font-size: 18px;
     text-align: center;
-    vertical-align: middle;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-right: 10px;
+    background: #9f6cb7;
+    word-wrap: normal;
 }
 .dash-step-tile {
     width: 35px;
     height: 90px;
+    margin: 0px 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .dash-red {
+    width: 35px;
+    height: 90px;
+    margin: 0px 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: rgba(236, 73, 73, 0.85);
 }
 
 .dash-orange {
+    width: 35px;
+    height: 90px;
+    margin: 0px 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: rgba(236, 132, 73, 0.85);
 
 }
 .dash-yellow {
+    width: 35px;
+    height: 90px;
+    margin: 0px 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: rgba(236, 220, 73, 0.85);
 
 }
 .dash-green {
-
+    width: 35px;
+    height: 90px;
+    margin: 0px 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: rgba(155, 236, 73, 0.85);
 
 }
 .dash-gray {
+    width: 35px;
+    height: 90px;
+    margin: 0px 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: rgba(160, 160, 160, 0.85);
 }
 .dash-blue {
+    width: 35px;
+    height: 90px;
+    margin: 0px 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: rgba(0, 215, 243, 0.85);
 
 }
 .dash-pinky {
+    width: 35px;
+    height: 90px;
+    margin: 0px 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: rgba(243, 150, 255, 0.85);
 }
 
 .dash-magenta {
+    width: 35px;
+    height: 90px;
+    margin: 0px 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     background: rgba(100, 100, 100, 0.85);
 }
 .dash-step-modal {
