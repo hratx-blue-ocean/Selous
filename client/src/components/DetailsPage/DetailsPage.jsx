@@ -1,19 +1,15 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import styles from './DetailsPage.css';
-import toggleAction from '../../redux/actions/actions.js';
+import CompanyNotes from './CompanyNotes/CompanyNotes.jsx';
+import ProgressTabs from './ProgressTabs/ProgressTabs.jsx';
 
-const mapStateToProps = (state) => ({ toggle: state.toggle });
-
-const DetailsPage = ({ toggle, dispatch }) => (
+const DetailsPage = () => (
   <div className={styles.container}>
-    <div className={styles.header}>Header</div>
-    <div className={styles.page_body}>Body</div>
-
-    {toggle ? <div>Show if true</div> : <div>Show if false</div>}
-
-    <button type="button" onClick={() => dispatch(toggleAction())}>Toggle</button>
+    <div className={styles.page_body}>
+      <CompanyNotes />
+      <ProgressTabs />
+    </div>
   </div>
 );
 
-export default connect(mapStateToProps)(DetailsPage);
+export default DetailsPage;

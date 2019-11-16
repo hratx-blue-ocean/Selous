@@ -3,6 +3,9 @@ import 'babel-polyfill';
 import fetch from 'node-fetch';
 import Goals from './components/Goals.jsx';
 import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
+import Headerbar from './components/headerbar/Headerbar.jsx';
+import SignUp from './components/SignUp/SignUp.jsx';
+import Login from './components/Login/Login.jsx';
 
 /*
 useFetch()
@@ -28,15 +31,12 @@ export default function App() {
   const result = useFetch(api, []);
 
   return (
-    <>
-      <h1>Welcome to Blue Ocean!</h1>
-      <ul>
-        {result.map((creature, index) => (
-          <li key={index}>{creature}</li>
-        ))}
-      </ul>
-      <Goals />
+    <div>
+      <Headerbar />
+      {/* <Goals /> */}
       <DetailsPage />
-    </>
+      <Login />
+      <SignUp />
+    </div>
   );
 }
