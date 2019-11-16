@@ -3,6 +3,7 @@ import fetch from 'node-fetch';
 // import './App.css';
 import {
   Grid,
+  Box,
 } from '@material-ui/core/';
 import JobSearch from './components/JobSearch.jsx';
 import Goals from './components/goals.jsx';
@@ -44,6 +45,7 @@ export default function App() {
         ))} */}
       </ul>
       <WhatsNext />
+        <Box m={2}/>
       <Grid>
         <Grid
           container
