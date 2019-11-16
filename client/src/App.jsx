@@ -6,6 +6,12 @@ import {
   Grid,
 } from '@material-ui/core/';
 
+import Goals from './components/goals.jsx';
+
+// Imported for render testing
+import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
+import Headerbar from './components/headerbar/Headerbar.jsx'
+
 /*
 useFetch()
 @param 'url' The url used for the fetch request
@@ -28,12 +34,9 @@ const useFetch = (url, defaultData) => {
 };
 
 export default function App() {
-  // Variable Decleration
-  const api = 'http://localhost:8000/api/example';
-  const result = useFetch(api, []);
-
   return (
     <>
+      <Headerbar/>
       <h1>Welcome to Blue Ocean!</h1>
       <ul>
         {result.map((creature, index) => (
@@ -49,6 +52,8 @@ export default function App() {
       >
         <JobSearch />
       </Grid>
+      <Goals />
+      <DetailsPage />
     </>
   );
 }
