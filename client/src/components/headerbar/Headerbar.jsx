@@ -2,10 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar, Toolbar, Typography, Button, ButtonGroup,
-  // InputBase,
 } from '@material-ui/core';
-// import SearchIcon from '@material-ui/icons/Search';
-// import RoomIcon from '@material-ui/icons/Room';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,6 +103,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Headerbar() {
   const classes = useStyles();
+  const eslint = `${InputBase},${SearchIcon},${RoomIcon}`;
+  console.log(eslint);
 
   return (
     <div className={classes.root}>
