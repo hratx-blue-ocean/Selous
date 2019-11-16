@@ -6,9 +6,10 @@ import {
   Card,
   Fab,
   Box,
+  Button,
 } from '@material-ui/core';
+import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import NotInterestedIcon from '@material-ui/icons/NotInterested';
 
 const useStyles = makeStyles({
   root: {
@@ -26,20 +27,38 @@ const useStyles = makeStyles({
   notes: {
     borderRadius: '8px',
     padding: 10,
+    background: '#FFFFFF',
     width: '447px',
-    height: '100px', //'293px'
+    height: '293px',
     borderWidth: 1,
     borderColor: 'purple',
     borderStyle: 'solid',
+    boxShadow: 5,
   },
   do: {
-    color: 'green',
-    fontSize: 34, //54
+    color: '#69B92A',
+    fontSize: 54,
+    stroke: 'black',
+    strokeWidth: '.5px',
   },
   doNot: {
-    color: 'red',
-    fontSize: 54, //54
-    margin: 1,
+    color: '#DB5C5C',
+    fontSize: 54,
+    transform: 'rotate(45deg)',
+    stroke: 'black',
+    strokeWidth: '.5px',
+  },
+  buttons: {
+    marginRight: 6,
+    float: 'right',
+    marginTop: '35%',
+  },
+  fabStuff: {
+    size: 'small',
+    marginTop: 5,
+  },
+  buttonBoi: {
+    borderRadius: 40,
   },
 });
 
@@ -47,23 +66,27 @@ export default function WhatsNext() {
   const classes = useStyles();
 
   return (
-    <Card container className={classes.root} direction="row" justify="space-between">
+    <Box className={classes.root}>
       <Typography>
         Notes
       </Typography>
-      <Card item className={classes.notes} justifyItem="left" alignItems="flex-end">
+
+      <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
+        <Fab className={classes.buttonBoi}>
+          <AddCircleIcon className={classes.doNot} />
+        </Fab>
+        <Fab className={classes.fabStuff}>
+          <CheckCircleIcon className={classes.do} />
+        </Fab>
+      </Box>
+
+      <Box className={classes.notes} boxShadow={3}>
+
         <Typography>
             THIS INFO SHOULD COME FROM THE DATABASE
         </Typography>
-          <Box>
-            <Fab item className={classes.doNot} flexDirection="column" display="flex" alignItems="flex-end">
-              <NotInterestedIcon />
-            </Fab>
-            <Fab item>
-              <CheckCircleIcon className={classes.do} flexDirection="column" display="flex" alignItems="flex-end"/>
-            </Fab>
-          </Box>
-      </Card>
-    </Card>
+
+      </Box>
+    </Box>
   );
 }

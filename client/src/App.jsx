@@ -45,7 +45,7 @@ export default function App() {
         ))} */}
       </ul>
       <WhatsNext />
-        <Box m={2}/>
+        <Box p={2}/>
       <Grid>
         <Grid
           container
@@ -53,7 +53,7 @@ export default function App() {
           justify="center"
           alignItems="center"
         >
-        <Goals />
+        <Goals/>
       </Grid>
         <JobSearch />
       </Grid>
