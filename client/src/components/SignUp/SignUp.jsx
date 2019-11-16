@@ -19,30 +19,32 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((themes) => ({
   '@global': {
     body: {
-      backgroundColor: theme.palette.common.white,
+      backgroundColor: themes.palette.common.white,
     },
 
   },
   paper: {
-    marginTop: theme.spacing(8),
+    marginTop: themes.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
 
   avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    margin: themes.spacing(1),
+    backgroundColor: themes.palette.common.white,
+    maxWidth: '150px',
+    maxHeight: '150px',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginTop: themes.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: themes.spacing(3, 0, 2),
     backgroundColor: '#9f6cb7',
     borderRadius: '15px',
   },
@@ -82,8 +84,11 @@ function SignUp() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        {/* <Avatar className={classes.avatar}>
-        </Avatar> */}
+        <img
+          className={classes.avatar}
+          src="https://elasticbeanstalk-us-east-2-603157185647.s3.us-east-2.amazonaws.com/Selous.png"
+          alt="Selous Logo"
+        />
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
@@ -145,11 +150,10 @@ function SignUp() {
                 variant="filled"
                 required
                 fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
+                name="zipcode"
+                label="Zipcode"
+                id="zipcode"
+                autoComplete="zipcode"
                 onChange={(e) => writeToObj(e)}
               />
             </Grid>
@@ -158,11 +162,12 @@ function SignUp() {
                 variant="filled"
                 required
                 fullWidth
-                name="passwordConfirm"
-                label="Confirm Password"
+                name="password"
+                label="Password"
                 type="password"
                 id="password"
-                autoComplete="confirm-password"
+                autoComplete="current-password"
+                onChange={(e) => writeToObj(e)}
               />
             </Grid>
           </Grid>

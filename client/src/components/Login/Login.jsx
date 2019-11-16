@@ -14,12 +14,15 @@ import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 
+
 const theme2 = createMuiTheme({
   palette: {
     primary: purple,
   },
   typography: { useNextVariants: true },
 });
+
+console.log(theme2);
 
 const useStyles = makeStyles((theme) => ({
 
@@ -38,7 +41,9 @@ const useStyles = makeStyles((theme) => ({
 
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.common.white,
+    maxWidth: '150px',
+    maxHeight: '150px',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -84,17 +89,18 @@ const handleLogin = (e) => {
   // If correct, pull data from DB for user
 };
 
-function SignIn({ dispatch }) {
+function SignIn() {
   const classes = useStyles();
 
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-
-        {/* Logo
-         <Avatar className={classes.avatar}>
-        </Avatar> */}
+        <img
+          className={classes.avatar}
+          src="https://elasticbeanstalk-us-east-2-603157185647.s3.us-east-2.amazonaws.com/Selous.png"
+          alt="Selous Logo"
+        />
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
