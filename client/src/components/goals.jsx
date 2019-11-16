@@ -1,12 +1,16 @@
-import React from 'react';
-import Button from '@material-ui/core/Button';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import {
+  Button, Card, CardActions, CardContent, CssBaseline, Typography, makeStyles, Container,
+} from '@material-ui/core';
+import {
+  addGoalAction, incrementGoalAction, decrementGoalAction, getGoalsAction,
+} from '../redux/actions/actions.js';
+
+const mapStateToProps = (state) => ({
+  addGoal: state.addGoal,
+  currentGoals: state.currentGoals,
+});
 
 const useStyles = makeStyles((theme) => ({
   titleCard: {
@@ -36,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '0',
   },
   button2: {
-    backgroundColor: '#9F6CB7',
     fontSize: '14px',
   },
   goalsContainer: {
@@ -51,12 +54,17 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const cards = [1, 2, 3, 4];
+const Goals = ({ addGoal, currentGoals, dispatch }) => {
+  useEffect(() => {
+    dispatch(getGoalsAction());
+  }, []);
 
-export default function Goals() {
   const classes = useStyles();
 
-  return (
+  if (addGoal) {
+    return <div>This is a test div</div>;
+  }
+  return (currentGoals.length > 0 && (
     <>
       <CssBaseline />
       <main>
@@ -69,52 +77,32 @@ export default function Goals() {
             </CardContent>
           </Card>
           <hr style={{ margin: '20px 10px' }} />
-          {cards.map((card) => (
-            <Card className={classes.card}>
+          {currentGoals.map((currentGoal, index) => (
+            <Card key={currentGoal.goalName} className={classes.card}>
               <CardContent className={classes.cardContent}>
                 <Typography variant="h5" component="h2">
-                  {card} / 5
+                  {`${currentGoal.goalProgress} / `}
+                  {currentGoal.goalTarget}
                 </Typography>
-            </CardContent>
-          </Card>
-          <hr style={{ margin: '20px 10px' }} />
-          {cards.map((card) => (
-            <Card className={classes.card}>
-              <CardContent className={classes.cardContent}>
-                <Typography variant="h5" component="h2">
-                  {card} / 5
               </CardContent>
               <CardActions className={classes.cardFooter}>
-                <Button size="small" className={classes.button2}>
+                <Button
+                  size="small"
+                  className={classes.button2}
+                  onClick={() => dispatch(decrementGoalAction(index))}
+                >
                   -
                 </Button>
                 <Typography>
-                  This is the number {card} goal
+                  {currentGoal.goalName}
                 </Typography>
-                <Button size="small" className={classes.button2}>
+                <Button
+                  size="small"
+                  className={classes.button2}
+                  onClick={() => dispatch(incrementGoalAction(index))}
+                >
                   +
                 </Button>
-              </CardActions>
-            </Card>
-            <hr style={{ margin: '20px 10px' }} />
-            {cards.map((card) => (
-              <Card className={classes.card}>
-                <CardContent className={classes.cardContent}>
-                  <Typography variant="h5" component="h2">
-                    {`${card} `}
-                    / 5
-                  </Typography>
-              </CardContent>
-              <CardActions className={classes.cardFooter}>
-                <Button size="small" className={classes.button2}>
-                  -
-                  </Button>
-                <Typography>
-                  This is the number {card} goal
-                  </Typography>
-                <Button size="small" className={classes.button2}>
-                  +
-                  </Button>
               </CardActions>
             </Card>
           ))}
@@ -123,12 +111,15 @@ export default function Goals() {
               variant="contained"
               size="large"
               className={classes.button1}
+              onClick={() => dispatch(addGoalAction())}
             >
               +
-              </Button>
+            </Button>
           </CardActions>
         </Container>
       </main>
     </>
-  );
-}
+  ));
+};
+
+export default connect(mapStateToProps)(Goals);

@@ -14,32 +14,12 @@ import Headerbar from './components/headerbar/Headerbar.jsx';
 import WhatsNext from './components/WhatsNext.jsx';
 import EditModal from './components/EditModal.jsx';
 import LandingPage from './components/LandingPage/LandingPage.jsx';
-/*
-useFetch()
-@param 'url' The url used for the fetch request
-@param 'defaultData' The default data for the seaCreatures hook
-@return 'seaCreatures' SeaCreatures is returned after the data is recieved from the fetch request
-*/
-// const useFetch = (url, defaultData) => {
-//   // Hooks
-//   const [seaCreatures, setSeaCreatures] = useState(defaultData);
-
-//   useEffect(() => {
-//     fetch(url)
-//       .then((res) => res.json())
-//       .then((result) => {
-//         setSeaCreatures(result.data);
-//       });
-//   }, url);
-
-//   return seaCreatures;
-// };
 
 export default function App() {
   return (
     <>
       <Headerbar />
-      <LandingPage position="absolute"/>
+      <LandingPage position="absolute" />
       <WhatsNext />
       <Box p={2} />
       <EditModal />
@@ -51,26 +31,11 @@ export default function App() {
           justify="center"
           alignItems="center"
         >
-          <Goals/>
+          <Goals />
         </Grid>
         <JobSearch />
       </Grid>
       <Goals />
-import React from 'react';
-// import Goals from './components/goals.jsx';
-import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
-import Headerbar from './components/headerbar/Headerbar.jsx';
-import SignUp from './components/SignUp/SignUp.jsx';
-import Login from './components/Login/Login.jsx';
-
-export default function App() {
-  return (
-    <div>
-      <Headerbar />
-      {/* <Goals /> */}
-      <DetailsPage />
-      <Login />
-      <SignUp />
-    </div>
+    </>
   );
 }
