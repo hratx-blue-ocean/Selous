@@ -6,6 +6,7 @@ import {
   Typography,
 } from '@material-ui/core/';
 import SearchIcon from '@material-ui/icons/Search';
+import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 
 import { combineReducers } from 'redux';
 
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
     borderRadius: '8px',
     padding: 10,
     background: '#FFFFFF',
-    width: '447px',
+    width: '445px',
     border: 'none',
   },
 });
@@ -34,6 +35,16 @@ export default function PaperSheet() {
       <Card container className={classes.root}>
         <Button item m={2}>
           <SearchIcon style={{
+            position: 'start',
+          }}
+          />
+        </Button>
+        <input item type="search" className={classes.next} alignContent="flex-start" position="absolute" />
+      </Card>
+
+      <Card container className={classes.root} position="absolute">
+        <Button item m={2}>
+          <RoomOutlinedIcon style={{
             position: 'start',
           }}
           />

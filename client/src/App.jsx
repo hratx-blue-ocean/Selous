@@ -39,7 +39,7 @@ export default function App() {
   return (
     <>
       <Headerbar />
-      <LandingPage />
+      <LandingPage position="absolute"/>
       <WhatsNext />
       <Box p={2} />
       <EditModal />
@@ -51,7 +51,7 @@ export default function App() {
           justify="center"
           alignItems="center"
         >
-          <Goals />
+          <Goals/>
         </Grid>
         <JobSearch />
       </Grid>
