@@ -12,7 +12,7 @@ import Goals from './components/goals.jsx';
 import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
 import Headerbar from './components/headerbar/Headerbar.jsx';
 import WhatsNext from './components/WhatsNext.jsx';
-
+import EditModal from './components/EditModal.jsx';
 /*
 useFetch()
 @param 'url' The url used for the fetch request
@@ -46,6 +46,7 @@ export default function App() {
       </ul>
       <WhatsNext />
         <Box p={2}/>
+        <EditModal />
       <Grid>
         <Grid
           container
