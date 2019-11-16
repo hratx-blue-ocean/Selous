@@ -1,9 +1,9 @@
+
 language: node_js
 node_js:
-- "12.13.0"
-
+ - "10.6.0 "
 before_script:
-- "npm run-script setup"
-- "npm run-script launch"
+ - "npm run-script setup"
+  - "npm run-script launch"
 - "npm run-script launch2"
 - "npm run-script launch3"
