@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import styles from './JobPostingModal.css';
 
 import {
   Fab,
@@ -105,7 +104,7 @@ const useStyles = makeStyles(({
 export default function JobPostingModal() {
   const classes = useStyles();
   return (
-    <div className={styles.modal}>
+    <div>
       <div className={classes.container}>
         <div className={classes.header}>
           <h1 className={classes.title}>title</h1>
