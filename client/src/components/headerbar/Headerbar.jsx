@@ -1,10 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+
 import {
-  AppBar, Toolbar, Typography, Button, ButtonGroup, InputBase,
+  AppBar, Toolbar, Typography, Button, ButtonGroup,
 } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import RoomIcon from '@material-ui/icons/Room';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     fontSize: 42,
     fontFamily: [
-      'Verdana',
+      'Cairo',
     ].join(','),
   },
   signup: {
@@ -39,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     borderTop: '1px solid darkgrey',
     marginLeft: 'auto',
     marginRight: 'auto',
-    height: 75,
+    height: 40,
   },
   search: {
     position: 'relative',
@@ -105,12 +104,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Headerbar() {
   const classes = useStyles();
+  // const eslint = `${InputBase},${SearchIcon},${RoomIcon}`;
+  // console.log(eslint);
 
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.app}>
         <Toolbar>
-          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo}/>
+          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo} />
           <Typography variant="'h6'" className={classes.title}>
             Selous
           </Typography>
@@ -150,23 +151,23 @@ export default function Headerbar() {
         <div className={classes.leftGroup}>
           <ButtonGroup>
             <Button variant="text" href="#" className={classes.button}>
-                Home
+              Home
             </Button>
             {/* <Button variant='text' href='#' className={classes.button}>
                 Search
             </Button> */}
             <Button variant="text" href="#" className={classes.button}>
-                Dashboard
+              Dashboard
             </Button>
           </ButtonGroup>
         </div>
         <div className={classes.rightGroup}>
           <ButtonGroup>
             <Button variant="text" href="#" className={classes.button}>
-                About
+              About
             </Button>
             <Typography className={classes.hello}>
-                Hello Mario!
+              Hello Mario!
               {/* needs state name */}
             </Typography>
           </ButtonGroup>

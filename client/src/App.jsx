@@ -1,22 +1,23 @@
-import React, { useState, useEffect } from 'react';
-import fetch from 'node-fetch';
-import Goals from './components/goals.jsx';
-
-// Imported for render testing
+import React from 'react';
 import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
-import Headerbar from './components/headerbar/Headerbar.jsx'
+import Headerbar from './components/headerbar/Headerbar.jsx';
+import SignUp from './components/SignUp/SignUp.jsx';
+import Login from './components/Login/Login.jsx';
+import AddJobModal from './components/Modals/AddJobModal/AddJobModal.jsx';
+import AddGoalModal from './components/Modals/AddGoalModal/AddGoalModal.jsx';
+import JobPostingModal from './components/Modals/JobPostingModal/JobPostingModal.jsx';
+
 export default function App() {
   return (
-    <>
-      <Headerbar/>
-      <h1>Welcome to Blue Ocean!</h1>
-      <ul>
-        {result.map((creature, index) => (
-          <li key={index}>{creature}</li>
-        ))}
-      </ul>
-      <Goals />
-      <DetailsPage />
-    </>
+    <div>
+      {/* <Headerbar /> */}
+      {/* <Goals /> */}
+      {/* <DetailsPage /> */}
+      {/* <Login /> */}
+      {/* <SignUp /> */}
+      {/* <AddJobModal /> */}
+      {/* <AddGoalModal /> */}
+      <JobPostingModal />
+    </div>
   );
 }

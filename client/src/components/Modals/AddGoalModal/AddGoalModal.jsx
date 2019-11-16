@@ -14,8 +14,8 @@ const useStyles = makeStyles(({
     display: 'flex',
     flexDirection: 'row',
     padding: 10,
-    width: '790px',
-    height: '300px',
+    width: '390px',
+    height: '150px',
     borderRadius: '8px',
     fontFamily: 'Arial',
     fontSize: '18px',
@@ -53,7 +53,7 @@ const useStyles = makeStyles(({
     background: '#FFFFFF',
     width: '300px',
     borderWidth: 1,
-    marginRight: 25,
+    marginRight: 10,
     marginBottom: 20,
     borderColor: 'purple',
     borderStyle: 'solid',
@@ -77,7 +77,6 @@ const useStyles = makeStyles(({
     float: 'right',
     alignSelf: 'flex-end',
     marginBottom: 10,
-    marginLeft: 10,
   },
   fabStuff: {
     size: 'small',
@@ -96,52 +95,32 @@ const useStyles = makeStyles(({
   },
 }));
 
-export default function AddJobModal() {
+export default function addGoalModal() {
   const classes = useStyles();
   return (
     <div className={classes.container}>
       <div className={classes.notesContainer}>
         <div>
           <Typography>
-            Company
+            Objective
           </Typography>
           <input type="text" className={classes.next} />
         </div>
         <div>
           <Typography>
-            Roll / Position
-          </Typography>
-          <input type="text" className={classes.next} />
-        </div>
-        <div>
-          <Typography>
-            Contact
-          </Typography>
-          <input type="text" className={classes.next} />
-        </div>
-        <div>
-          <Typography>
-            Contact E-mail
+            Frequency
           </Typography>
           <input type="text" className={classes.next} />
         </div>
       </div>
-      <div className={classes.rightContainer}>
-        <div className={classes.notesContainer}>
-          <Typography>
-            Job Details / Notes
-          </Typography>
-          <textarea className={classes.notes} />
-        </div>
-        <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
-          <Fab className={classes.buttonBoi}>
-            <AddCircleIcon className={classes.doNot} />
-          </Fab>
-          <Fab className={classes.fabStuff}>
-            <CheckCircleIcon className={classes.do} />
-          </Fab>
-        </Box>
-      </div>
+      <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
+        <Fab className={classes.buttonBoi}>
+          <AddCircleIcon className={classes.doNot} />
+        </Fab>
+        <Fab className={classes.fabStuff}>
+          <CheckCircleIcon className={classes.do} />
+        </Fab>
+      </Box>
     </div>
   );
 }
