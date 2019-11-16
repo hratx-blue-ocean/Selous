@@ -1,16 +1,16 @@
-import React from 'react'
-import {render, fireEvent, cleanup, waitForElement} from 'react-testing-library'
+import React from 'react';
+import { render } from 'react-testing-library';
+import Headerbar from '../components/headerbar/Headerbar.jsx';
 
-// this adds custom jest matchers from jest-dom
-import 'jest-dom/extend-expect';
-import App from '../App';
+test('true is true', () => {
+  expect(true).toBe(true);
+});
 
-afterEach(cleanup);
-
-describe("Headerbar", () => {
-  it("should render without crashing", () => {
+describe('Headerbar', () => {
+  it('should render without crashing', () => {
     const { container } = render(<Headerbar />);
-
     expect(container).toBeTruthy();
   });
 });
+
+// more tests here
