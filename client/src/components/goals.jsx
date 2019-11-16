@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'space-between',
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
   },
   cardContent: {
     textAlign: 'center',
@@ -68,12 +68,13 @@ export default function Goals() {
                 </Typography>
               </CardContent>
             </Card>
-            <hr style={{margin: '20px 10px'}}/>
+            <hr style={{ margin: '20px 10px' }} />
             {cards.map((card) => (
               <Card className={classes.card}>
                 <CardContent className={classes.cardContent}>
                   <Typography variant="h5" component="h2">
-                    {card} / 5
+                    {`${card} `}
+                    / 5
                   </Typography>
                 </CardContent>
                 <CardActions className={classes.cardFooter}>
