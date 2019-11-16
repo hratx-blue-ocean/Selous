@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import fetch from 'node-fetch';
 // import './App.css';
 import JobSearch from './components/JobSearch.jsx';
+import {
+  Grid,
+} from '@material-ui/core/';
 
 /*
 useFetch()
@@ -38,7 +41,14 @@ export default function App() {
         ))}
       </ul>
       <h1>Tylers Linter sucks donkey wang</h1>
-      <JobSearch />
+      <Grid
+        container
+        direction="row"
+        justify="center"
+        alignItems="center"
+      >
+        <JobSearch />
+      </Grid>
     </>
   );
 }

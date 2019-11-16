@@ -15,6 +15,9 @@ const useStyles = makeStyles({
     borderWidth: 1,
     borderColor: 'purple',
     borderStyle: 'solid',
+    alignContent: 'center',
+    width: '80%',
+
   },
 });
 
@@ -22,8 +25,8 @@ export default function PaperSheet() {
   const classes = useStyles();
 
   return (
-    <Paper container className={classes.root} mx={100}>
-      <Grid>
+    <Paper container className={classes.root}>
+      <Grid container justify="center" alignItems="center">
         <JobComponent />
         <JobComponent />
         <JobComponent />

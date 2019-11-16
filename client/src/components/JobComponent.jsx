@@ -31,6 +31,12 @@ const useStyles = makeStyles({
     margin: 10,
     alignItems: 'flex-end',
   },
+  mainContainer: {
+    width: '100%',
+  },
+  text: {
+    width: '800px',
+  },
 });
 
 export default function PaperSheet() {
@@ -39,13 +45,13 @@ export default function PaperSheet() {
   return (
     <Button>
       <Card className={classes.root} onClick={() => { console.log('joel sucks'); }}>
-        <Grid container item wrap="wrap" spacing={2}>
+        <Grid container item wrap="wrap" spacing={2} justify="center" alignItems="center" className={classes.mainContainer}>
           <Grid item>
             <Avatar className={classes.logo}>
               <AssignmentIcon />
             </Avatar>
           </Grid>
-          <Grid container item xs direction="column" textAlign="left">
+          <Grid container item xs direction="column" textAlign="left" className={classes.text}>
             <Typography variant="h5" component="search_Position">
               Senior Software Development Engineer
             </Typography>
@@ -56,8 +62,8 @@ export default function PaperSheet() {
               Austin, TX
             </Typography>
           </Grid>
-          <Grid container item xs={3} justifyContent="center" alignContent="flex-end">
-            <Typography component="search_daysAgo">
+          <Grid container item xs={3} direction="column" alignSelf="flex-end" display="flex" alignItems="flex-end" alignContent="flex-end">
+            <Typography component="search_daysAgo" alignSelf="flex-end">
               30+ days ago
             </Typography>
           </Grid>
