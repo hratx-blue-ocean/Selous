@@ -10,6 +10,13 @@ import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 const useStyles = makeStyles(({
+  bigContainer: {
+    height: '100%',
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 3,
+  },
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -100,21 +107,23 @@ const useStyles = makeStyles(({
 export default function JobPostingModal() {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
-      <div className={classes.header}>
-        <h1 className={classes.title}>title</h1>
-        <Box className={classes.buttons}>
-          <Fab className={classes.buttonBoi}>
-            <AddCircleIcon className={classes.doNot} />
-          </Fab>
-        </Box>
+    <div className={classes.bigContainer}>
+      <div className={classes.container}>
+        <div className={classes.header}>
+          <h1 className={classes.title}>title</h1>
+          <Box className={classes.buttons}>
+            <Fab className={classes.buttonBoi}>
+              <AddCircleIcon className={classes.doNot} />
+            </Fab>
+          </Box>
+        </div>
+        <div className={classes.titlesContainer}>
+          <h3 className={classes.titleSec}>Company Name</h3>
+          <h5 className={classes.titleTer}>City Name</h5>
+        </div>
+        <div className={classes.description}></div>
+        <button className={classes.apply}>Apply</button>
       </div>
-      <div className={classes.titlesContainer}>
-        <h3 className={classes.titleSec}>Company Name</h3>
-        <h5 className={classes.titleTer}>City Name</h5>
-      </div>
-      <div className={classes.description}></div>
-      <button className={classes.apply}>Apply</button>
     </div>
   );
 }
