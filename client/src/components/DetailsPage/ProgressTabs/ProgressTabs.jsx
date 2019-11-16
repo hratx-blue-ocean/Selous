@@ -1,5 +1,7 @@
 import React from 'react';
 import styles from './ProgressTabs.css';
+
+// Components
 import ButtonLeft from './ButtonLeft/ButtonLeft.jsx';
 import ButtonRight from './ButtonRight/ButtonRight.jsx';
 import TabOne from './TabOne/TabOne.jsx';
