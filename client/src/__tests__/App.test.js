@@ -12,3 +12,5 @@ describe('Headerbar', () => {
     expect(container).toBeTruthy();
   });
 });
+
+// more tests here
