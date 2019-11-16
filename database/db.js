@@ -1,30 +1,12 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://FriendMiles:Igala1rele@cluster0-4q3ra.gcp.mongodb.net/test', {useNewUrlParser: true });
+mongoose.connect('mongodb+srv://FriendMiles:Igala1rele@cluster0-4q3ra.gcp.mongodb.net/Selous', { useNewUrlParser: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  // we're connected!
+  console.log('Mongo is Connected');
 });
 
-
-const UserSchema = new mongoose.Schema({
-  userId: Number,
-  userName: String,
-  password: String,
-  zipcode: Number,
-  firstName: String,
-  lastName: String,
-  userJobs: [JobSchema],
-  userGoals: [
-    {
-      goalName: String,
-      goalTarget: Number,
-      goalProgress: Number,
-    },
-  ],
-
-});
 
 const JobSchema = new mongoose.Schema ({
   completed: Boolean,
@@ -44,6 +26,56 @@ const JobSchema = new mongoose.Schema ({
   ],
 });
 
+const UserSchema = new mongoose.Schema({
+  userName: String,
+  password: String,
+  zipcode: Number,
+  firstName: String,
+  lastName: String,
+  userJobs: [JobSchema],
+  userGoals: [
+    {
+      goaldId: Number,
+      goalName: String,
+      goalTarget: Number,
+      goalProgress: Number,
+    },
+  ],
+
+});
+
+const User = mongoose.model('User', UserSchema);
+const Job = mongoose.model('Job', JobSchema);
+
+const addUser = () =>{
+  const user = new User({
+    userName: 'FriendMiles',
+    password: 'password',
+    zipcode: '12345',
+    firstName: 'Miles',
+    lastName: 'Sobhani',
+    userJobs: [],
+    userGoals: [],
+  });
+
+  user.save();
+};
+
+const addJob = (userId, jobData) => {
+  const job = new Job({
+  completed: false,
+  notes: jobData,
+  createdAt: String,
+  company: String,
+  position: String,
+  contactName: String,
+  contactEmail: String,
+  progressArray:
+  })
+  User.findOne({ _id:userId }).then((user) => {
+    user.userJobs.push()
+  })
+}
 
 // userId = username, password, zipcode, firstname, lastname
 // read to check username availability then
@@ -63,3 +95,4 @@ const JobSchema = new mongoose.Schema ({
 // read when user logs in
 // edit
 // delete
+module.exports = { addUser }
