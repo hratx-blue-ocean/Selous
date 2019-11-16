@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/selder18/blue-ocean-rewrite#readme",
   "dependencies": {
+    "@material-ui/system": "^4.5.2",
     "dotenv": "^8.2.0",
     "nodemon": "^1.19.4"
   },

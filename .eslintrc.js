@@ -17,6 +17,6 @@ module.exports = {
     "react/jsx-uses-vars": 2,
     "react/no-array-index-key": 1,
     "react/destructuring-assignment": 1,
-    "import/extensions": ['error', 'always', {ignorePackages: true} ],
+    "import/extensions": 'ignore',
   },
 };
