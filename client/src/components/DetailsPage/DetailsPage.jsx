@@ -3,7 +3,12 @@ import { connect } from 'react-redux';
 import styles from './DetailsPage.css';
 import toggleAction from '../../redux/actions/actions.js';
 
-const mapStateToProps = (state) => ({ toggle: state.toggle });
+const mapStateToProps = (state) => {
+  console.log(state)
+
+  return {toggle: state.toggle}
+};
+
 
 const DetailsPage = ({ toggle, dispatch }) => (
   <div className={styles.container}>
