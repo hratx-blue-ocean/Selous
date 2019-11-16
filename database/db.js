@@ -8,7 +8,7 @@ db.once('open', () => {
 });
 
 
-const JobSchema = new mongoose.Schema ({
+const JobSchema = new mongoose.Schema({
   completed: Boolean,
   notes: String,
   createdAt: String,
@@ -47,7 +47,7 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 const Job = mongoose.model('Job', JobSchema);
 
-const addUser = () =>{
+const addUser = () => {
   const user = new User({
     userName: 'FriendMiles',
     password: 'password',
@@ -63,19 +63,19 @@ const addUser = () =>{
 
 const addJob = (userId, jobData) => {
   const job = new Job({
-  completed: false,
-  notes: jobData,
-  createdAt: String,
-  company: String,
-  position: String,
-  contactName: String,
-  contactEmail: String,
-  progressArray:
-  })
-  User.findOne({ _id:userId }).then((user) => {
-    user.userJobs.push()
-  })
-}
+    completed: false,
+    notes: jobData,
+    createdAt: String,
+    company: String,
+    position: String,
+    contactName: String,
+    contactEmail: String,
+    progressArray: [],
+  });
+  User.findOne({ _id: userId }).then((user) => {
+    user.userJobs.push(job)
+  });
+};
 
 // userId = username, password, zipcode, firstname, lastname
 // read to check username availability then
@@ -95,4 +95,4 @@ const addJob = (userId, jobData) => {
 // read when user logs in
 // edit
 // delete
-module.exports = { addUser }
+module.exports = { addUser, addJob };
