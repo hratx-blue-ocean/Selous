@@ -1,12 +1,13 @@
 import React from 'react';
 import DashColorTile from './dashcolortile.jsx';
+import styles from './dashboard.css';
 
 const DashboardRow = () => (
-  <div>
-    <div className="dash_companytile">
+  <div className={styles['dashboard-row']}>
+    <div className={styles['dash-companytile']}>
       IBM
     </div>
-    <DashColorTile />
+    <DashColorTile class="dash-red" />
   </div>
 );
 

@@ -9,6 +9,8 @@
     border-bottom: 1px solid #000;
     padding: 16px 8px;
     margin: 0 25px;
+    display:flex;
+    flex-direction: row;
 }
 
 .dash-companytile {
@@ -19,6 +21,7 @@
     text-align: center;
     vertical-align: middle;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    margin-right: 10px;
 }
 .dash-step-tile {
     width: 35px;
@@ -54,19 +57,36 @@
 }
 
 .dash-magenta {
-    background: rgba(107, 0, 54, 0.85);
+    background: rgba(100, 100, 100, 0.85);
 }
 .dash-modal {
+    display: flex;
     background: rgba(0, 0, 0, 0);
+    position: fixed;
 }
 .dash-modal-triangle {
+    width: 10px;
+    height: 10px;
     border: 1px solid #FFFFFF;
+    background: rgb(0, 0, 0);
     box-sizing: border-box;
     transform: matrix(0.71, -0.61, 0.82, 0.71, 0, 0);
+    margin: 0px;
+    position: absolute;
+    left: 48%;
+    top: -5px;
+    z-index: 1;
+
 }
 .dash-modal-elipse {
+    height: 30px;
+    width: 114px;
+    border: solid 2px black;
     background: #FFFFFF;
     box-sizing: border-box;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
+    text-align: center;
+    padding-top: 5px;
+    z-index: 2;
 }
