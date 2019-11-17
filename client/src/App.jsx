@@ -1,5 +1,5 @@
 import React from 'react';
-// import Goals from './components/goals.jsx';
+import Goals from './components/Goals/Goals.jsx';
 import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
 import Headerbar from './components/headerbar/Headerbar.jsx';
 import SignUp from './components/SignUp/SignUp.jsx';
@@ -9,7 +9,7 @@ export default function App() {
   return (
     <div>
       <Headerbar />
-      {/* <Goals /> */}
+      <Goals />
       <DetailsPage />
       <Login />
       <SignUp />
