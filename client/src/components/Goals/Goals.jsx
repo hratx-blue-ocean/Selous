@@ -5,7 +5,7 @@ import {
 } from '@material-ui/core';
 import {
   addGoalAction, incrementGoalAction, decrementGoalAction, getGoalsAction,
-} from '../redux/actions/actions.js';
+} from '../../redux/actions/actions.js';
 
 const mapStateToProps = (state) => ({
   addGoal: state.addGoal,
@@ -84,7 +84,7 @@ const Goals = ({ addGoal, currentGoals, dispatch }) => {
                   {`${currentGoal.goalProgress} / `}
                   {currentGoal.goalTarget}
                 </Typography>
-              </CardContent>
+            </CardContent>
               <CardActions className={classes.cardFooter}>
                 <Button
                   size="small"
