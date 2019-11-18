@@ -24,7 +24,7 @@ const theme = createMuiTheme({
 const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
-      backgroundColor: themes.palette.common.white,
+      backgroundColor: theme.palette.common.white,
     },
 
   },
@@ -35,17 +35,17 @@ const useStyles = makeStyles((theme) => ({
   },
 
   avatar: {
-    margin: themes.spacing(1),
-    backgroundColor: themes.palette.common.white,
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.common.white,
     maxWidth: '150px',
     maxHeight: '150px',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
-    marginTop: themes.spacing(3),
+    marginTop: theme.spacing(3),
   },
   submit: {
-    margin: themes.spacing(3, 0, 2),
+    margin: theme.spacing(3, 0, 2),
     backgroundColor: '#9f6cb7',
     borderRadius: '15px',
   },
