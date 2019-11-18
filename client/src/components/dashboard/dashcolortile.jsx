@@ -14,7 +14,10 @@ const DashModalCss = {
   textAlign: 'center',
   paddingTop: '5px',
   zIndex: '2',
+<<<<<<< HEAD
   display: 'hidden',
+=======
+>>>>>>> dashboard
 
 };
 

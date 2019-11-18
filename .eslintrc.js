@@ -20,6 +20,8 @@ module.exports = {
     "import/extensions": "ignore",
     "react/prop-types": 0,
     "linebreak-style": 0,
-    "no-array-index-key": 0
+    "no-array-index-key": 0,
+    "import/extensions": 0,
+    "react/prop-types": 0
   },
 };
