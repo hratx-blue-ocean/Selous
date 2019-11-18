@@ -5,6 +5,7 @@ import App from './App.jsx';
 import JobSearch from './components/JobSearch/JobSearch.jsx';
 import Login from './components/Login/Login.jsx';
 import Signup from './components/SignUp/SignUp.jsx';
+import Dashboard from './components/dashboard/dashboard.jsx';
 
 export default function Root({ store }) {
   return (
@@ -14,6 +15,7 @@ export default function Root({ store }) {
         <Route path="/home" component={JobSearch} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
+        <Route path="/dashboard" component={Dashboard} />
       </Router>
     </Provider>
   );
