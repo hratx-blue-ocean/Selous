@@ -1,4 +1,4 @@
-export function jobPostingModalReducer(state = false, action) {
+export function jobPostingModalReducer(state = true, action) {
   switch (action.type) {
     case 'SHOW_JOB_POSTING':
       return !state;

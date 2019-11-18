@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Avatar,
@@ -8,7 +9,11 @@ import {
   Grid,
 } from '@material-ui/core/';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-// import { combineReducers } from 'redux';
+
+import jobPostingModal from '../Modals/JobPostingModal/JobPostingModal.jsx';
+import showJobAction from '../../redux/actions/actions.js';
+
+const mapStateToProps = (state) => ({ show: state.jobPostingModal });
 
 const useStyles = makeStyles({
   root: {
@@ -39,36 +44,41 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PaperSheet() {
+function PaperSheet({ dispatch }) {
   const classes = useStyles();
 
   return (
-    <Button>
-      <Card className={classes.root} onClick={() => { console.log('joel sucks'); }}>
-        <Grid container item wrap="wrap" spacing={2} className={classes.mainContainer}>
-          <Grid item alignItems="center">
-            <Avatar className={classes.logo}>
-              <AssignmentIcon />
-            </Avatar>
+    <>
+      <jobPostingModal />
+      <Button>
+        <Card className={classes.root} onClick={() => dispatch(showJobAction())}>
+          <Grid container item wrap="wrap" spacing={2} className={classes.mainContainer}>
+            <Grid item alignItems="center">
+              <Avatar className={classes.logo}>
+                <AssignmentIcon />
+              </Avatar>
+            </Grid>
+            <Grid container item xs direction="column" textAlign="left" className={classes.text}>
+              <Typography variant="h5" component="search_Position">
+                Senior Software Development Engineer
+              </Typography>
+              <Typography component="search_company">
+                Whole Foods Market
+              </Typography>
+              <Typography component="search_location">
+                Austin, TX
+              </Typography>
+            </Grid>
+            <Grid container item xs={3} display="flex" alignItems="flex-end">
+              <Typography component="search_daysAgo">
+                30+ days ago
+              </Typography>
+            </Grid>
           </Grid>
-          <Grid container item xs direction="column" textAlign="left" className={classes.text}>
-            <Typography variant="h5" component="search_Position">
-              Senior Software Development Engineer
-            </Typography>
-            <Typography component="search_company">
-              Whole Foods Market
-            </Typography>
-            <Typography component="search_location">
-              Austin, TX
-            </Typography>
-          </Grid>
-          <Grid container item xs={3} display="flex" alignItems="flex-end">
-            <Typography component="search_daysAgo">
-              30+ days ago
-            </Typography>
-          </Grid>
-        </Grid>
-      </Card>
-    </Button>
+        </Card>
+      </Button>
+    </>
   );
 }
+
+export default connect(mapStateToProps)(PaperSheet);

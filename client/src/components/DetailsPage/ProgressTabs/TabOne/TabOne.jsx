@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styles from './TabOne.css';
 
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
-import editAction from '../../../../redux/actions/editAction.js';
+import editAction from '../../../../redux/actions/actions.js';
 
 const mapStateToProps = (state) => ({ show: state.editModal });
 
