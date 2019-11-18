@@ -98,7 +98,7 @@ const useStyles = makeStyles(({
   },
   titleTer: {
     fontSize: 20,
-  }
+  },
 }));
 
 export default function JobPostingModal() {
@@ -119,7 +119,7 @@ export default function JobPostingModal() {
           <h5 className={classes.titleTer}>City Name</h5>
         </div>
         <div className={classes.description} />
-        <button className={classes.apply}>Apply</button>
+        <button type="button" className={classes.apply}>Apply</button>
       </div>
     </div>
   );
