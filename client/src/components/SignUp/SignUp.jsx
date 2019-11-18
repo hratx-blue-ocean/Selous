@@ -24,6 +24,7 @@ const useStyles = makeStyles((themes) => ({
   '@global': {
     body: {
       backgroundColor: themes.palette.common.white,
+      margin: '8px',
     },
 
   },

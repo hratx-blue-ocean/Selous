@@ -10,7 +10,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { createMuiTheme } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
 
@@ -22,13 +22,12 @@ const theme2 = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-console.log(theme2);
-
 const useStyles = makeStyles((theme) => ({
 
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
+      margin: '8px',
     },
 
   },
@@ -116,6 +115,7 @@ function SignIn() {
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
+          <MuiThemeProvider theme={theme2} />
           <TextField
             variant="filled"
             required
@@ -126,7 +126,6 @@ function SignIn() {
             autoComplete="username"
             autoFocus
             onChange={(e) => writeToLogin(e)}
-
           />
           <TextField
             variant="filled"
