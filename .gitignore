@@ -65,3 +65,5 @@ typings/
 
 # Webpack
 bundle.js
+package.json
+/client/public/bundle.js
