@@ -11,7 +11,7 @@ import TabTwo from './TabTwo/TabTwo.jsx';
 import TabThree from './TabThree/TabThree.jsx';
 
 // Actions
-import Actions from '../../../redux/actions/actions.js';
+import { setDisplayedTabs } from '../../../redux/actions/actions.js';
 
 const ProgressTabs = ({
   companyTabsTEST,
@@ -21,7 +21,7 @@ const ProgressTabs = ({
 }) => {
   useEffect(() => {
     if (companyTabsTEST) {
-      dispatch(Actions.setDisplayedTabs([...companyTabsTEST.slice(-2), whatsNextTab]));
+      dispatch(setDisplayedTabs([...companyTabsTEST.slice(-2), whatsNextTab]));
     }
   }, [companyTabsTEST]);
 
