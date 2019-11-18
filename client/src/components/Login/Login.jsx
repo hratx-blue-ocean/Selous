@@ -1,5 +1,4 @@
 import React from 'react';
-// import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -13,6 +12,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
+import axios from 'axios';
+
 
 // eslint-disable-next-line
 const theme2 = createMuiTheme({
@@ -21,6 +22,8 @@ const theme2 = createMuiTheme({
   },
   typography: { useNextVariants: true },
 });
+
+console.log(theme2);
 
 const useStyles = makeStyles((theme) => ({
 
@@ -39,7 +42,9 @@ const useStyles = makeStyles((theme) => ({
 
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.common.white,
+    maxWidth: '150px',
+    maxHeight: '150px',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -81,8 +86,19 @@ const writeToLogin = (event) => {
 
 const handleLogin = (e) => {
   e.preventDefault();
-  // Check auth
+  axios.post('/login', {
+    userName: loginObj.username,
+    password: loginObj.password,
   // If correct, pull data from DB for user
+  }).then((response) => {
+    // Check auth
+    if (response) {
+      // Update state with response data
+      console.log(response);
+    } else {
+      console.log('invalid login');
+    }
+  });
 };
 
 function SignIn() {
@@ -92,23 +108,23 @@ function SignIn() {
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-
-        {/* Logo
-         <Avatar className={classes.avatar}>
-        </Avatar> */}
+        <img
+          className={classes.avatar}
+          src="https://elasticbeanstalk-us-east-2-603157185647.s3.us-east-2.amazonaws.com/Selous.png"
+          alt="Selous Logo"
+        />
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
             variant="filled"
-            margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
             autoFocus
             onChange={(e) => writeToLogin(e)}
 
