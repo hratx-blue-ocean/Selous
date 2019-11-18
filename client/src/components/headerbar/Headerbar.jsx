@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, BrowserRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
@@ -20,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 72,
     marginLeft: 'auto',
     marginRight: 'auto',
+    marginTop: '8px',
   },
   logo: {
     overflow: 'hidden',
@@ -116,8 +117,10 @@ export default function Headerbar() {
           <Typography variant="h6" className={classes.title}>
             Selous
           </Typography>
-          <Button color="inherit" className={classes.signup} component={Link} to="/signup">Signup</Button>
-          <Button color="inherit" component={Link} to="/login">Login</Button>
+          <BrowserRouter>
+            <Button color="inherit" className={classes.signup} component={Link} to="/signup">Signup</Button>
+            <Button color="inherit" component={Link} to="/login">Login</Button>
+          </BrowserRouter>
           {/* <Button color="inherit">Logout</Button> */}
           {/* <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -151,25 +154,27 @@ export default function Headerbar() {
       <div className={classes.break}>
         <div className={classes.leftGroup}>
           <ButtonGroup>
-            <Button
-              className={classes.button}
-              variant="text"
-              component={Link}
-              to="/home"
-            >
-              Home
-            </Button>
-            {/* <Button variant='text' href='#' className={classes.button}>
-                Search
-            </Button> */}
-            <Button
-              className={classes.button}
-              variant="text"
-              component={Link}
-              to="/dashboard"
-            >
-              Dashboard
-            </Button>
+            <BrowserRouter>
+              <Button
+                className={classes.button}
+                variant="text"
+                component={Link}
+                to="/home"
+              >
+                Home
+              </Button>
+              {/* <Button variant='text' href='#' className={classes.button}>
+                  Search
+              </Button> */}
+              <Button
+                className={classes.button}
+                variant="text"
+                component={Link}
+                to="/dashboard"
+              >
+                Dashboard
+              </Button>
+            </BrowserRouter>
           </ButtonGroup>
         </div>
         <div className={classes.rightGroup}>

@@ -14,6 +14,9 @@ import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
 
 const theme = createMuiTheme({
+  formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
+    '&$formLabelFocused': { color: purple },
+  },
   palette: {
     primary: purple,
   },
@@ -25,6 +28,7 @@ const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
+      margin: '8px',
     },
 
   },
@@ -48,9 +52,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#9f6cb7',
     borderRadius: '15px',
-  },
-  input: {
-    backgroundColor: 'lightgrey',
   },
 }));
 
@@ -97,10 +98,11 @@ function SignUp() {
           Sign up
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             <Grid item xs={12} sm={6}>
               <MuiThemeProvider theme={theme}>
                 <TextField
+                  // className={classes.input}
                   autoComplete="fname"
                   name="firstName"
                   variant="filled"

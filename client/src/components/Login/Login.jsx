@@ -10,13 +10,16 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { createMuiTheme } from '@material-ui/core';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
 
 
 // eslint-disable-next-line
 const theme2 = createMuiTheme({
+  formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
+    '&$formLabelFocused': { color: purple },
+  },
   palette: {
     primary: purple,
   },
@@ -28,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
+      margin: '8px',
     },
 
   },
@@ -51,8 +55,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#9f6cb7',
     borderRadius: '15px',
-  },
-  input: {
   },
 }));
 //    Redux Action
@@ -114,6 +116,7 @@ function SignIn() {
           Sign in
         </Typography>
         <form className={classes.form} noValidate>
+          <MuiThemeProvider theme={theme2} />
           <TextField
             variant="filled"
             required
@@ -124,7 +127,6 @@ function SignIn() {
             autoComplete="username"
             autoFocus
             onChange={(e) => writeToLogin(e)}
-
           />
           <TextField
             variant="filled"
