@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
+import axios from 'axios';
 
 const theme = createMuiTheme({
   palette: {
@@ -19,6 +20,7 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
+// eslint-disable-next-line
 const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
@@ -27,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
 
   },
   paper: {
-    marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -35,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
 
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.common.white,
+    maxWidth: '150px',
+    maxHeight: '150px',
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -47,19 +50,11 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '15px',
   },
   input: {
-    // '&.MuiInput-underline.Mui-focused:after':{
-    //   borderBottom:'2px #9f6cb7 solid',
-    //   fontSize:'50px'
-    // },
     backgroundColor: 'lightgrey',
-    // '&.Mui-focused':{
-    //   backgroundColor:'green',
-    //   color:'#9f6cb7'
-    // },
-
-
   },
 }));
+
+// Pseudostate
 const signupObj = {
 
 };
@@ -68,22 +63,36 @@ const writeToObj = (event) => {
   signupObj[event.target.name] = event.target.value;
 };
 
+// Submit
 const handleClick = (e) => {
   e.preventDefault();
-  if (signupObj.password === signupObj.passwordConfirm) {
-    // Write data to the database
-  }
+  // Check auth
+  axios.post('/signup', {
+    data: signupObj,
+    // If correct, pull data from DB for user
+  }).then((response) => {
+    if (response) {
+      // Update state with response data
+      console.log(response);
+    } else {
+      console.log('Username taken! Try another');
+    }
+  });
+  // Write data to the database
 };
 
 function SignUp() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        {/* <Avatar className={classes.avatar}>
-        </Avatar> */}
+        <img
+          className={classes.avatar}
+          src="https://elasticbeanstalk-us-east-2-603157185647.s3.us-east-2.amazonaws.com/Selous.png"
+          alt="Selous Logo"
+        />
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
@@ -145,11 +154,10 @@ function SignUp() {
                 variant="filled"
                 required
                 fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
+                name="zipcode"
+                label="Zipcode"
+                id="zipcode"
+                autoComplete="zipcode"
                 onChange={(e) => writeToObj(e)}
               />
             </Grid>
@@ -158,11 +166,12 @@ function SignUp() {
                 variant="filled"
                 required
                 fullWidth
-                name="passwordConfirm"
-                label="Confirm Password"
+                name="password"
+                label="Password"
                 type="password"
                 id="password"
-                autoComplete="confirm-password"
+                autoComplete="current-password"
+                onChange={(e) => writeToObj(e)}
               />
             </Grid>
           </Grid>

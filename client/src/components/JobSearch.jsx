@@ -31,17 +31,27 @@ const JobSearch = ({ dispatch, jobSearchData }) => {
     if (jobSearchData.length === 0) {
       axios.get('https://jobs.github.com/positions.json?description=node')
         .then((results) => {
-          console.log('axios ran');
-          console.log(results);
           dispatch(setApiDataAction(results));
         })
         .catch((err)=>{
           console.log(err);
         });
     }
-  });
 
-  console.log(jobSearchData);
+    if (jobSearchData.length === 0 && true === false) {
+      const locationTemp = 'chicago';
+      const descriptionTemp = 'dev';
+
+      axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
+      // https://jobs.github.com/positions.json?description=python&location=new+york
+        .then((results) => {
+          dispatch(setApiDataAction(results));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  });
 
   return (
     <Paper container className={classes.root}>

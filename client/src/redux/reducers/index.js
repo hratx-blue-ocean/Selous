@@ -1,11 +1,19 @@
 import { combineReducers } from 'redux';
 // Reducers
-import toggleTestReducer from './toggleTestReducer.js';
-import apiDataReducer from './apiDataReducer.js';
+import whatsNextReducer from './whatsNextReducer';
+import displayedTabsReducer from './displayedTabsReducer.js';
+import companyTabsReducerTEST from './companyTabsReducerTEST.js';
+import addGoalReducer from './addGoalReducer.js';
+import goalsHandlerReducer from './goalsHandlerReducer.js';
+import userJobsReducer from './userJobsReducer.js';
 
 const rootReducer = combineReducers({
-  toggle: toggleTestReducer,
-  apiData: apiDataReducer,
+  addGoal: addGoalReducer,
+  currentGoals: goalsHandlerReducer,
+  whatsNextTab: whatsNextReducer,
+  displayedTabs: displayedTabsReducer,
+  companyTabsTEST: companyTabsReducerTEST,
+  userJobs: userJobsReducer,
 });
 
 export default rootReducer;
