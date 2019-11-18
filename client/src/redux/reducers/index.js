@@ -6,6 +6,7 @@ import displayedTabsReducer from './displayedTabsReducer.js';
 import companyTabsReducerTEST from './companyTabsReducerTEST.js';
 import addGoalReducer from './addGoalReducer.js';
 import goalsHandlerReducer from './goalsHandlerReducer.js';
+import userJobsReducer from './userJobsReducer.js';
 
 const rootReducer = combineReducers({
   addGoal: addGoalReducer,
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   whatsNextTab: whatsNextReducer,
   displayedTabs: displayedTabsReducer,
   companyTabsTEST: companyTabsReducerTEST,
+  userJobs: userJobsReducer,
 });
 
 export default rootReducer;
