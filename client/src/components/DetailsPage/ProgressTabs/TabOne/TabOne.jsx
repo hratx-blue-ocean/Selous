@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styles from './TabOne.css';
 
-import JobPostingModal from '../../../Modals/JobPostingModal/JobPostingModal.jsx';
+import EditDetailsModal from '../../../Modals/EditModal.jsx';
 import editAction from '../../../../redux/actions/editAction.js';
 
 const mapStateToProps = (state) => ({ show: state.editModal });
@@ -10,7 +10,7 @@ const mapStateToProps = (state) => ({ show: state.editModal });
 const Tab = ({ dispatch }) => {
   return (
     <>
-      <JobPostingModal />
+      <EditDetailsModal />
       <div className={styles.tab_wrapper_one}>
         <div className={styles.tab}>
           <div className={styles.tab_header}>Title</div>
