@@ -8,8 +8,7 @@ import editAction from '../../../../redux/actions/actions.js';
 
 const mapStateToProps = (state) => ({ show: state.editModal });
 
-const Tab = ({ tab, dispatch }) => {
-  return (
+const Tab = ({ tab, dispatch }) => (
     <>
       <EditDetailsModal />
       <div className={styles.tab_wrapper_one}>
