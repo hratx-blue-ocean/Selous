@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const logger = require('morgan');
 const express = require('express');
+const path = require('path');
 
 const app = express();
 
@@ -14,10 +15,14 @@ app.use((_, res, next) => {
 
 app.use(logger('dev'));
 
-// You can place your routes here, feel free to refactor:
-const { example } = require('./routes');
+app.use(express.static(path.join(__dirname, '../client/public')));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/example', example);
+// You can place your routes here, feel free to refactor:
+const { db } = require('./routes');
+
+app.use('/db', db);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
