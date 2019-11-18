@@ -28,7 +28,6 @@ const useStyles = makeStyles((themes) => ({
 
   },
   paper: {
-    marginTop: themes.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
