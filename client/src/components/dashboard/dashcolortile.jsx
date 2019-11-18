@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+/* eslint-disable react/jsx-indent */
 /* eslint-disable react/jsx-equals-spacing */
 import React from 'react';
 import { Manager, Reference, Popper } from 'react-popper';
@@ -14,11 +16,6 @@ const DashModalCss = {
   textAlign: 'center',
   paddingTop: '5px',
   zIndex: '2',
-<<<<<<< HEAD
-  display: 'hidden',
-=======
->>>>>>> dashboard
-
 };
 
 const DashColorTile = ({ tileName, number }) => {
@@ -38,18 +35,18 @@ const DashColorTile = ({ tileName, number }) => {
     <Manager>
       <Reference>
         {({ ref }) => (
-          <div className = {styles[squareStyle]} ref={ref} />
+          <div className={styles[squareStyle]} ref={ref} />
         )}
       </Reference>
       <Popper placement="bottom" data-styles={DashModalCss}>
         {({
           ref, style, arrowProps, placement,
         }) => (
-          <div ref={ref} style={style} className={styles['dash-modal-elipse']}>
-            {tileName}
-            <div innerRef={arrowProps.ref} style={arrowProps.style} data-placement={placement} />
-          </div>
-        )}
+            <div ref={ref} style={style} className={styles['dash-modal-elipse']}>
+              {tileName}
+              <div innerRef={arrowProps.ref} style={arrowProps.style} data-placement={placement} />
+            </div>
+          )}
       </Popper>
     </Manager>
   );
