@@ -6,6 +6,9 @@ import {
   AppBar, Toolbar, Typography, Button, ButtonGroup,
 } from '@material-ui/core';
 
+// import SearchIcon from '@material-ui/icons/Search';
+// import RoomIcon from '@material-ui/icons/Room';
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -163,9 +166,9 @@ export default function Headerbar() {
               className={classes.button}
               variant="text"
               component={Link}
-              to="/"
+              to="/dashboard"
             >
-            Dashboard
+              Dashboard
             </Button>
           </ButtonGroup>
         </div>
@@ -175,7 +178,7 @@ export default function Headerbar() {
               className={classes.button}
               variant="text"
               component={Link}
-              to="/"
+              to="/details"
             >
               About
             </Button>
