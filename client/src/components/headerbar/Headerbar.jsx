@@ -5,11 +5,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   AppBar, Toolbar, Typography, Button, ButtonGroup,
 } from '@material-ui/core';
-<<<<<<< HEAD
-=======
 // import SearchIcon from '@material-ui/icons/Search';
 // import RoomIcon from '@material-ui/icons/Room';
->>>>>>> dashboard
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -115,11 +112,7 @@ export default function Headerbar() {
       <AppBar position="static" className={classes.app}>
         <Toolbar>
           <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo} />
-<<<<<<< HEAD
           <Typography variant="h6" className={classes.title}>
-=======
-          <Typography variant="'h6'" className={classes.title}>
->>>>>>> dashboard
             Selous
           </Typography>
           <Button color="inherit" className={classes.signup} component={Link} to="/signup">Signup</Button>
