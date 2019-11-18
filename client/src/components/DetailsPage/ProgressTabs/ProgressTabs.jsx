@@ -25,7 +25,6 @@ const ProgressTabs = ({
     }
   }, [companyTabsTEST]);
 
-
   return (
     <div className={styles.progress_tabs_wrapper}>
 

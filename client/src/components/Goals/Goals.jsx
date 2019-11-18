@@ -13,6 +13,9 @@ const mapStateToProps = (state) => ({
 });
 
 const useStyles = makeStyles((theme) => ({
+  goalsTrackerContainer: {
+    flex: 2,
+  },
   titleCard: {
     backgroundColor: '#9F6CB7',
   },
@@ -65,7 +68,7 @@ const Goals = ({ addGoal, currentGoals, dispatch }) => {
     return <div>This is a test div</div>;
   }
   return (currentGoals.length > 0 && (
-    <>
+    <div className={classes.goalsTrackerContainer}>
       <CssBaseline />
       <main>
         <Container className={classes.goalsContainer} maxWidth="xs">
@@ -118,7 +121,7 @@ const Goals = ({ addGoal, currentGoals, dispatch }) => {
           </CardActions>
         </Container>
       </main>
-    </>
+    </div>
   ));
 };
 
