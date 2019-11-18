@@ -15,6 +15,7 @@ import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
 
 
+// eslint-disable-next-line
 const theme2 = createMuiTheme({
   palette: {
     primary: purple,
