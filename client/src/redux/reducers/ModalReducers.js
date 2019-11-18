@@ -6,7 +6,7 @@ export function jobPostingModalReducer(state = false, action) {
       return state;
   }
 }
-export function addGoalModalReducer(state = false, action) {
+export function addGoalModalReducer(state = true, action) {
   switch (action.type) {
     case 'ADD_GOAL':
       return !state;

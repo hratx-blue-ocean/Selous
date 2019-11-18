@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styles from './TabThree.css';
-import whatsNextAction from '../../../../redux/actions/actions.js';
+import { whatsNextAction } from '../../../../redux/actions/actions.js';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
 
 const mapStateToProps = (state) => ({ show: state.whatsNextModal });
