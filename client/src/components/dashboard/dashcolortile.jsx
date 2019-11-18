@@ -5,6 +5,7 @@ import React from 'react';
 import Popper from '@material-ui/core/Popper';
 import styles from './dashboard.css';
 
+
 // const DashModalCss = {
 //   height: '30px',
 //   width: '114px',
@@ -19,6 +20,7 @@ import styles from './dashboard.css';
 
 // };
 
+
 const DashColorTile = ({ tileName, number }) => {
   const colors = {
     1: 'red',
@@ -30,15 +32,15 @@ const DashColorTile = ({ tileName, number }) => {
     7: 'magenta',
     8: 'gray',
   };
-  const [anchorE1, setAnchorE1] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const handleMouseEnter = (event) => {
-    setAnchorE1(event.currentTarget);
+    setAnchorEl(event.currentTarget);
   };
 
   const handleMouseLeave = () => {
-    setAnchorE1(null);
+    setAnchorEl(null);
   };
-  const open = Boolean(anchorE1);
+  const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
   const squareStyle = `dash-${colors[number]}`;
   return (
@@ -48,19 +50,26 @@ const DashColorTile = ({ tileName, number }) => {
         className = {styles[squareStyle]}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-      />
-      <Popper
-        container={document.getElementById(tileName)}
-        id={id}
-        open={open}
-        anchorE1={anchorE1}
-        position= "bottom"
       >
-        <div className={styles['dash-modal-triangle']}> </div>
-        <div className={styles['dash-modal-elipse']}>
-          {tileName}
-        </div>
-      </Popper>
+        <Popper
+          placement= "bottom"
+          id={id}
+          open={open}
+          anchorEl={anchorEl}
+          modifiers={{
+            arrow: {
+              enabled: true,
+            },
+          }}
+        >
+          <div>
+            <div className={styles['dash-modal-triangle']}> </div>
+            <div className={styles['dash-modal-elipse']}>
+              {tileName}
+            </div>
+          </div>
+        </Popper>
+      </div>
     </>
   );
 };
