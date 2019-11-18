@@ -1,8 +1,9 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import App from './App.jsx';
+// import App from './App.jsx';
 import Header from './components/header/Header.jsx';
+import JobSearch from './components/JobSearch.jsx';
 
 export default function Root({ store }) {
   return (
@@ -21,6 +22,7 @@ export default function Root({ store }) {
           <Route path="/header" component={Header} />
         </div>
       </Router>
+      <JobSearch />
     </Provider>
   );
 }

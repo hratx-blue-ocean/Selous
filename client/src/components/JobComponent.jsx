@@ -8,7 +8,6 @@ import {
   Grid,
 } from '@material-ui/core/';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-// import { combineReducers } from 'redux';
 
 const useStyles = makeStyles({
   root: {
@@ -39,7 +38,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PaperSheet() {
+const JobComponent = () => {
   const classes = useStyles();
 
   return (
@@ -71,4 +70,6 @@ export default function PaperSheet() {
       </Card>
     </Button>
   );
-}
+};
+
+export default JobComponent;

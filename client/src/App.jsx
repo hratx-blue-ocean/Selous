@@ -12,8 +12,8 @@ import Goals from './components/goals.jsx';
 // Imported for render testing
 // import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
 import Headerbar from './components/headerbar/Headerbar.jsx';
-import WhatsNext from './components/WhatsNext.jsx';
-import EditModal from './components/EditModal.jsx';
+// import WhatsNext from './components/WhatsNext.jsx';
+// import EditModal from './components/EditModal.jsx';
 import LandingPage from './components/LandingPage/LandingPage.jsx';
 
 export default function App() {
@@ -21,9 +21,9 @@ export default function App() {
     <>
       <Headerbar />
       <LandingPage position="absolute" />
-      <WhatsNext />
+      {/* <WhatsNext />
       <Box p={2} />
-      <EditModal />
+      <EditModal /> */}
       <Box p={2} />
       <Grid>
         <Grid

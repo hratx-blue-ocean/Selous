@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Paper,
   Grid,
 } from '@material-ui/core';
 import JobComponent from './JobComponent.jsx';
+import { setApiDataAction } from '../redux/actions/actions.js';
 
 const useStyles = makeStyles({
   root: {
@@ -21,8 +24,24 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PaperSheet() {
+const JobSearch = ({ dispatch, jobSearchData }) => {
   const classes = useStyles();
+  useEffect(() => {
+    //console.log(jobSearchData.length)
+    if (jobSearchData.length === 0) {
+      axios.get('https://jobs.github.com/positions.json?description=node')
+        .then((results) => {
+          console.log('axios ran');
+          console.log(results);
+          dispatch(setApiDataAction(results));
+        })
+        .catch((err)=>{
+          console.log(err);
+        });
+    }
+  });
+
+  console.log(jobSearchData);
 
   return (
     <Paper container className={classes.root}>
@@ -36,4 +55,8 @@ export default function PaperSheet() {
       </Grid>
     </Paper>
   );
-}
+};
+
+const mapStatesToProps = (state) => ({ jobSearchData: state.apiData });
+
+export default connect(mapStatesToProps)(JobSearch);

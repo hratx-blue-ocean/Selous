@@ -7,3 +7,7 @@ export const incrementGoalAction = (id) => ({ type: 'INCREMENT_GOAL', id });
 export const decrementGoalAction = (id) => ({ type: 'DECREMENT_GOAL', id });
 
 export const getGoalsAction = () => ({ type: 'GET_GOALS' });
+
+export const getApiDataAction = () => ({ type: 'GET' });
+
+export const setApiDataAction = (payload) => ({ type: 'SET', payload });
