@@ -1,11 +1,15 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+// import styles from './JobPostingModal.css'
 
 import {
   Fab,
   Box,
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
+import Modal from '@material-ui/core/Modal';
+import { connect } from 'react-redux';
+import editAction from '../../../redux/actions/editAction.js';
 
 const useStyles = makeStyles(({
   bigContainer: {
@@ -13,6 +17,9 @@ const useStyles = makeStyles(({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
   },
   container: {
     display: 'flex',
@@ -20,7 +27,7 @@ const useStyles = makeStyles(({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     padding: 10,
-    width: '60%',
+    width: '50%',
     height: '90%',
     borderRadius: '8px',
     fontFamily: 'Arial',
@@ -29,6 +36,7 @@ const useStyles = makeStyles(({
     border: 2,
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
+    opacity: '100%',
   },
   header: {
     display: 'flex',
@@ -101,26 +109,51 @@ const useStyles = makeStyles(({
   }
 }));
 
-export default function JobPostingModal() {
+const mapStateToProps = (state) => ({ show: state.editModal });
+
+function JobPostingModal({ show, dispatch }) {
   const classes = useStyles();
+
+  // const [open, setOpen] = React.useState(true);
+
+  // const handleOpen = () => {
+  //   setOpen(true);
+  // };
+
+  // const handleClose = () => {
+  //   setOpen(false);
+  // };
+
   return (
     <div>
-      <div className={classes.container}>
-        <div className={classes.header}>
-          <h1 className={classes.title}>title</h1>
-          <Box className={classes.buttons}>
-            <Fab className={classes.buttonBoi}>
-              <AddCircleIcon className={classes.doNot} />
-            </Fab>
-          </Box>
+      {/* <button type="button" onClick={handleOpen}>
+        Open Modal
+      </button> */}
+      <Modal
+        className={classes.bigContainer}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={show}
+      >
+        <div className={classes.container}>
+          <div className={classes.header}>
+            <h1 className={classes.title}>title</h1>
+            <Box className={classes.buttons}>
+              <Fab className={classes.buttonBoi}>
+                <AddCircleIcon className={classes.doNot} onClick={() => dispatch(editAction())} />
+              </Fab>
+            </Box>
+          </div>
+          <div className={classes.titlesContainer}>
+            <h3 className={classes.titleSec}>Company Name</h3>
+            <h5 className={classes.titleTer}>City Name</h5>
+          </div>
+          <div className={classes.description} />
+          <button type="button" className={classes.apply}>Apply</button>
         </div>
-        <div className={classes.titlesContainer}>
-          <h3 className={classes.titleSec}>Company Name</h3>
-          <h5 className={classes.titleTer}>City Name</h5>
-        </div>
-        <div className={classes.description} />
-        <button className={classes.apply}>Apply</button>
-      </div>
+      </Modal>
     </div>
   );
 }
+
+export default connect(mapStateToProps)(JobPostingModal);
