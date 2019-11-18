@@ -17,3 +17,5 @@ export const setDisplayedTabs = (payload) => ({ type: 'SET', payload });
 export const whatsNextGetTab = () => ({ type: 'GET_TAB' });
 
 export const AddJobAction = (job) => ({ type: 'ADD_JOB', job });
+
+export const getTabColors = () => ({ type: 'GET' });

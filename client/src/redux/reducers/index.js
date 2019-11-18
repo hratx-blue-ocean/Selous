@@ -7,6 +7,7 @@ import companyTabsReducerTEST from './companyTabsReducerTEST.js';
 import addGoalReducer from './addGoalReducer.js';
 import goalsHandlerReducer from './goalsHandlerReducer.js';
 import userJobsReducer from './userJobsReducer.js';
+import tabColorsReducer from './tabColorsReducer.js';
 
 const rootReducer = combineReducers({
   addGoal: addGoalReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   displayedTabs: displayedTabsReducer,
   companyTabsTEST: companyTabsReducerTEST,
   userJobs: userJobsReducer,
+  tabColors: tabColorsReducer,
 });
 
 export default rootReducer;
