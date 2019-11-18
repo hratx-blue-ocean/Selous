@@ -63,7 +63,7 @@ const validateLogin = (name, password) => {
 };
 
 
-const validateSignup = (userData) => {
+const validateSignup = (userData, (err, callback) => {
   User.findOne({ userName: userData.userName }).then((user) => {
     if (user === null) {
       const newUser = new User({
@@ -75,7 +75,7 @@ const validateSignup = (userData) => {
         userJobs: [],
         userGoals: [],
       });
-      newUser.save().then((data) => data)
+      newUser.save().then((data) => { callback(data); })
         .catch((err) => { if (err) console.log(err); });
     } else {
       console.log('Username already taken');
