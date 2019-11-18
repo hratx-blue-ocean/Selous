@@ -30,12 +30,32 @@ const DashColorTile = ({ tileName, number }) => {
     7: 'magenta',
     8: 'gray',
   };
+  const [anchorE1, setAnchorE1] = React.useState(null);
+  const handleMouseEnter = (event) => {
+    setAnchorE1(event.currentTarget);
+  };
 
+  const handleMouseLeave = () => {
+    setAnchorE1(null);
+  };
+  const open = Boolean(anchorE1);
+  const id = open ? 'simple-popper' : undefined;
   const squareStyle = `dash-${colors[number]}`;
   return (
     <>
-      <div id={tileName} className = {styles[squareStyle]} />
-      <Popper>
+      <div
+        id={tileName}
+        className = {styles[squareStyle]}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      />
+      <Popper
+        container={document.getElementById(tileName)}
+        id={id}
+        open={open}
+        anchorE1={anchorE1}
+        position= "bottom"
+      >
         <div className={styles['dash-modal-triangle']}> </div>
         <div className={styles['dash-modal-elipse']}>
           {tileName}
