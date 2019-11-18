@@ -50,9 +50,6 @@ const useStyles = makeStyles((themes) => ({
     backgroundColor: '#9f6cb7',
     borderRadius: '15px',
   },
-  input: {
-    backgroundColor: 'lightgrey',
-  },
 }));
 
 // Pseudostate
@@ -98,10 +95,11 @@ function SignUp() {
           Sign up
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             <Grid item xs={12} sm={6}>
               <MuiThemeProvider theme={theme}>
                 <TextField
+                  // className={classes.input}
                   autoComplete="fname"
                   name="firstName"
                   variant="filled"

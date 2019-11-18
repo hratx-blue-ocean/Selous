@@ -53,8 +53,6 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#9f6cb7',
     borderRadius: '15px',
   },
-  input: {
-  },
 }));
 //    Redux Action
 // const actionLogin = (userName) => ({
