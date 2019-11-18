@@ -84,7 +84,7 @@ const Goals = ({ addGoal, currentGoals, dispatch }) => {
                   {`${currentGoal.goalProgress} / `}
                   {currentGoal.goalTarget}
                 </Typography>
-            </CardContent>
+              </CardContent>
               <CardActions className={classes.cardFooter}>
                 <Button
                   size="small"
