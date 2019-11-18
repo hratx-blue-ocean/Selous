@@ -4,7 +4,7 @@ const SRC_DIR = path.join(__dirname, '/src');
 const DIST_DIR = path.join(__dirname, '/public');
 
 module.exports = {
-  entry: ['babel-polyfill', `${SRC_DIR}/index.jsx`],
+  entry: [`${SRC_DIR}/index.jsx`],
   output: {
     filename: 'bundle.js',
     path: DIST_DIR,
@@ -12,7 +12,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|mjs|jsx)$/,
+        test: /\.(js|jsx)$/,
         enforce: 'pre',
         loader: 'eslint-loader',
       },
@@ -46,6 +46,7 @@ module.exports = {
     ],
   },
   devServer: {
+    historyApiFallback: true,
     contentBase: DIST_DIR,
     compress: true,
     port: 9000,
