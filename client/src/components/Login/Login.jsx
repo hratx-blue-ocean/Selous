@@ -14,6 +14,7 @@ import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 
+// eslint-disable-next-line
 const theme2 = createMuiTheme({
   palette: {
     primary: purple,
@@ -84,7 +85,7 @@ const handleLogin = (e) => {
   // If correct, pull data from DB for user
 };
 
-function SignIn({ dispatch }) {
+function SignIn() {
   const classes = useStyles();
 
   return (
