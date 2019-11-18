@@ -104,13 +104,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Headerbar() {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.app}>
         <Toolbar>
           <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo} />
-          <Typography variant="'h6'" className={classes.title}>
+          <Typography variant="h6" className={classes.title}>
             Selous
           </Typography>
           {/* <Button color="inherit" className={classes.signup}>Signup</Button>
