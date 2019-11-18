@@ -1,25 +1,39 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
-import Axios from 'axios';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  Paper,
+  Grid,
+} from '@material-ui/core';
+import JobComponent from './JobComponent.jsx';
 
-const apiObj = [];
+const useStyles = makeStyles({
+  root: {
+    paddingLeft: 40,
+    paddingRight: 40,
+    paddingTop: 10,
+    paddingBottom: 10,
+    borderWidth: 1,
+    borderColor: 'purple',
+    borderStyle: 'solid',
+    alignContent: 'center',
+    width: '80%',
 
-const apiReq = () => {
-  Axios('https://jobs.github.com/positions.json?description=node').then((results) => {
-    results.forEach((element) => {
-      apiObj.push(element);
-    });
-  });
-};
+  },
+});
 
-export default function JobSearch() {
-  apiReq();
+export default function PaperSheet() {
+  const classes = useStyles();
+
   return (
-    <Paper>
-      <Typography>
-        This is a test
-      </Typography>
+    <Paper container className={classes.root}>
+      <Grid container justify="center" alignItems="center">
+        <JobComponent />
+        <JobComponent />
+        <JobComponent />
+        <JobComponent />
+        <JobComponent />
+        <JobComponent />
+      </Grid>
     </Paper>
   );
 }
