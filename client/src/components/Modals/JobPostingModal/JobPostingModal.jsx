@@ -8,7 +8,7 @@ import {
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import addJobAction from '../../../redux/actions/actions.js';
+import { showJobAction } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   bigContainer: {
@@ -126,7 +126,7 @@ function JobPostingModal({ show, dispatch }) {
             <h1 className={classes.title}>title</h1>
             <Box className={classes.buttons}>
               <Fab className={classes.buttonBoi}>
-                <AddCircleIcon className={classes.doNot} onClick={() => dispatch(addJobAction())} />
+                <AddCircleIcon className={classes.doNot} onClick={() => dispatch(showJobAction())} />
               </Fab>
             </Box>
           </div>

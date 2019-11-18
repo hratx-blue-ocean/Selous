@@ -165,9 +165,9 @@ export default function Headerbar() {
               className={classes.button}
               variant="text"
               component={Link}
-              to="/"
+              to="/dashboard"
             >
-            Dashboard
+              Dashboard
             </Button>
           </ButtonGroup>
         </div>
@@ -177,7 +177,7 @@ export default function Headerbar() {
               className={classes.button}
               variant="text"
               component={Link}
-              to="/"
+              to="/details"
             >
               About
             </Button>

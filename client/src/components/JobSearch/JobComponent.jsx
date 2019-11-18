@@ -10,8 +10,8 @@ import {
 } from '@material-ui/core/';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
-import jobPostingModal from '../Modals/JobPostingModal/JobPostingModal.jsx';
-import showJobAction from '../../redux/actions/actions.js';
+import JobPostingModal from '../Modals/JobPostingModal/JobPostingModal.jsx';
+import { showJobAction } from '../../redux/actions/actions.js';
 
 const mapStateToProps = (state) => ({ show: state.jobPostingModal });
 
@@ -49,7 +49,7 @@ function PaperSheet({ dispatch }) {
 
   return (
     <>
-      <jobPostingModal />
+      <JobPostingModal />
       <Button>
         <Card className={classes.root} onClick={() => dispatch(showJobAction())}>
           <Grid container item wrap="wrap" spacing={2} className={classes.mainContainer}>
