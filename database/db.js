@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://FriendMiles:Igala1rele@cluster0-4q3ra.gcp.mongodb.net/Selous', { useNewUrlParser: true });
+mongoose.connect('mongodb+srv://FriendMiles:Igala1rele@cluster0-4q3ra.gcp.mongodb.net/Selous', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -47,7 +47,7 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 const Job = mongoose.model('Job', JobSchema);
 
-const validateLogin = (name, password) => {
+const validateLogin = (name, password, callback) => {
   User.findOne({ userName: name }).then((user) => {
     if (user === null) {
       console.log('incorrect username');
@@ -63,24 +63,33 @@ const validateLogin = (name, password) => {
 };
 
 
-const validateSignup = (userData, (err, callback) => {
-  User.findOne({ userName: userData.userName }).then((user) => {
-    if (user === null) {
-      const newUser = new User({
-        userName: userData.userName,
-        password: userData.password,
-        zipcode: userData.zipcode,
-        firstName: userData.firstName,
-        lastName: userData.lastName,
-        userJobs: [],
-        userGoals: [],
-      });
-      newUser.save().then((data) => { callback(data); })
-        .catch((err) => { if (err) console.log(err); });
-    } else {
-      console.log('Username already taken');
-    }
-  });
+const validateSignup = (userData, callback) => {
+  User.findOne({ userName: userData.userName })
+    .then((user) => {
+      if (user === null) {
+        const newUser = new User({
+          userName: userData.userName,
+          password: userData.password,
+          zipcode: userData.zipcode,
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          userJobs: [],
+          userGoals: [],
+        });
+        newUser.save()
+          .then((data) => {
+            callback(null, data);
+          })
+          .catch((err) => {
+            if (err) callback(err, null);
+          });
+      } else {
+        callback(null, 'username already taken');
+      }
+    })
+    .catch((error) => {
+      callback(error, null);
+    });
 };
 
 //
