@@ -15,7 +15,7 @@ const ButtonLeft = ({
         if (JSON.stringify(displayedTabs[0]) === JSON.stringify(companyTabsTEST[i])) {
           const tab = companyTabsTEST[i - 1];
           tab.color = tabColors[companyTabsTEST.indexOf(tab)];
-          dispatch(moveLeftDisplayedTabs(companyTabsTEST[i - 1]));
+          dispatch(moveLeftDisplayedTabs(tab));
         }
       }
     }
