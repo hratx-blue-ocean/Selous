@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import toggleTestReducer from './toggleTestReducer.js';
-import testDataForDetailsPageReducer from './testDataForDetailsPageReducer.js';
+import whatsNextReducer from './whatsNextReducer';
+import displayedTabsReducer from './displayedTabsReducer.js';
+import companyTabsReducerTEST from './companyTabsReducerTEST.js';
 
 const rootReducer = combineReducers({
-  toggle: toggleTestReducer,
-  testData: testDataForDetailsPageReducer,
+  whatsNextTab: whatsNextReducer,
+  displayedTabs: displayedTabsReducer,
+  companyTabsTEST: companyTabsReducerTEST,
 });
 
 export default rootReducer;
