@@ -86,7 +86,7 @@ const handleLogin = (e) => {
   axios.post('/login', {
     userName: loginObj.username,
     password: loginObj.password,
-  // If correct, pull data from DB for user
+    // If correct, pull data from DB for user
   }).then((response) => {
     // Check auth
     if (response) {
@@ -100,75 +100,76 @@ const handleLogin = (e) => {
 
 function SignIn() {
   const classes = useStyles();
-
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <img
-          className={classes.avatar}
-          src="https://elasticbeanstalk-us-east-2-603157185647.s3.us-east-2.amazonaws.com/Selous.png"
-          alt="Selous Logo"
-        />
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
-        <form className={classes.form} noValidate>
-          <MuiThemeProvider theme={theme2} />
-          <TextField
-            variant="filled"
-            required
-            fullWidth
-            id="username"
-            label="Username"
-            name="username"
-            autoComplete="username"
-            autoFocus
-            onChange={(e) => writeToLogin(e)}
+    <MuiThemeProvider theme2={theme2}>
+      <Container maxWidth="xs">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <img
+            className={classes.avatar}
+            src="https://elasticbeanstalk-us-east-2-603157185647.s3.us-east-2.amazonaws.com/Selous.png"
+            alt="Selous Logo"
           />
-          <TextField
-            variant="filled"
-            margin="normal"
-            required
-            fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
-            onChange={(e) => writeToLogin(e)}
+          <Typography component="h1" variant="h5">
+            Sign in
+          </Typography>
+          <form className={classes.form}>
+            <TextField
+              variant="filled"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoComplete="username"
+              autoFocus
+              onChange={(e) => writeToLogin(e)}
+            />
+            <TextField
+              variant="filled"
+              margin="normal"
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="current-password"
+              onChange={(e) => writeToLogin(e)}
+            />
+            <FormControlLabel
+              control={<Checkbox value="remember" />}
+              label="Remember me"
+            />
+            <Button
+              onClick={(e) => handleLogin(e)}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Sign In
+            </Button>
 
-          />
-          <FormControlLabel
-            control={<Checkbox value="remember" />}
-            label="Remember me"
-          />
-          <Button
-            onClick={(e) => handleLogin(e)}
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Sign In
-          </Button>
-          <Grid container>
-            <Grid item xs>
-              {/* <Link href="#" variant="body2">
+            <Grid container>
+              <Grid item xs>
+                {/* <Link href="#" variant="body2">
                 Forgot password?
               </Link> */}
+              </Grid>
+              <Grid item>
+                <Link href="/SignUp" variant="body2">
+                  Don&apos;t have an account? Sign Up
+                </Link>
+              </Grid>
+
             </Grid>
-            <Grid item>
-              <Link href="/SignUp" variant="body2">
-                Don&apos;t have an account? Sign Up
-              </Link>
-            </Grid>
-          </Grid>
-        </form>
-      </div>
-      <Box mt={8} />
-    </Container>
+          </form>
+        </div>
+        <Box mt={8} />
+      </Container>
+    </MuiThemeProvider>
   );
 }
 

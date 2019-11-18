@@ -81,9 +81,8 @@ const handleClick = (e) => {
 
 function SignUp() {
   const classes = useStyles();
-
   return (
-    <Container maxWidth="xs">
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <img
