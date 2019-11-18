@@ -1,25 +1,23 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 import App from './App.jsx';
-import Header from './components/header/Header.jsx';
+import JobSearch from './components/JobSearch/JobSearch.jsx';
+import Login from './components/Login/Login.jsx';
+import Signup from './components/SignUp/SignUp.jsx';
+import Dashboard from './components/dashboard/dashboard.jsx';
+import Details from './components/DetailsPage/DetailsPage.jsx';
 
 export default function Root({ store }) {
   return (
     <Provider store={store}>
       <Router>
-        <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/header">Header</Link>
-            </li>
-          </ul>
-          <Route exact path="/" component={App} />
-          <Route path="/header" component={Header} />
-        </div>
+        <Route path="/" component={App} />
+        <Route path="/home" component={JobSearch} />
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/dashboard" component={Dashboard} />
+        <Route path="/details" component={Details} />
       </Router>
     </Provider>
   );
