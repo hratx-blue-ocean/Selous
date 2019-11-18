@@ -21,7 +21,7 @@ const theme = createMuiTheme({
 });
 
 // eslint-disable-next-line
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((themes) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,

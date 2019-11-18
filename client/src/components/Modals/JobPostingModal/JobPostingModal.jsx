@@ -6,6 +6,9 @@ import {
   Box,
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
+import Modal from '@material-ui/core/Modal';
+import { connect } from 'react-redux';
+import { showJobAction } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   bigContainer: {
@@ -13,6 +16,9 @@ const useStyles = makeStyles(({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
   },
   container: {
     display: 'flex',
@@ -20,7 +26,7 @@ const useStyles = makeStyles(({
     alignItems: 'center',
     justifyContent: 'space-evenly',
     padding: 10,
-    width: '60%',
+    width: '50%',
     height: '90%',
     borderRadius: '8px',
     fontFamily: 'Arial',
@@ -29,6 +35,7 @@ const useStyles = makeStyles(({
     border: 2,
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
+    opacity: '100%',
   },
   header: {
     display: 'flex',
@@ -98,29 +105,41 @@ const useStyles = makeStyles(({
   },
   titleTer: {
     fontSize: 20,
-  }
+  },
 }));
 
-export default function JobPostingModal() {
+const mapStateToProps = (state) => ({ show: state.jobPostingModal });
+
+function JobPostingModal({ show, dispatch }) {
   const classes = useStyles();
+
   return (
     <div>
-      <div className={classes.container}>
-        <div className={classes.header}>
-          <h1 className={classes.title}>title</h1>
-          <Box className={classes.buttons}>
-            <Fab className={classes.buttonBoi}>
-              <AddCircleIcon className={classes.doNot} />
-            </Fab>
-          </Box>
+      <Modal
+        className={classes.bigContainer}
+        aria-labelledby="simple-modal-title"
+        aria-describedby="simple-modal-description"
+        open={show}
+      >
+        <div className={classes.container}>
+          <div className={classes.header}>
+            <h1 className={classes.title}>title</h1>
+            <Box className={classes.buttons}>
+              <Fab className={classes.buttonBoi}>
+                <AddCircleIcon className={classes.doNot} onClick={() => dispatch(showJobAction())} />
+              </Fab>
+            </Box>
+          </div>
+          <div className={classes.titlesContainer}>
+            <h3 className={classes.titleSec}>Company Name</h3>
+            <h5 className={classes.titleTer}>City Name</h5>
+          </div>
+          <div className={classes.description} />
+          <button type="button" className={classes.apply}>Apply</button>
         </div>
-        <div className={classes.titlesContainer}>
-          <h3 className={classes.titleSec}>Company Name</h3>
-          <h5 className={classes.titleTer}>City Name</h5>
-        </div>
-        <div className={classes.description} />
-        <button className={classes.apply}>Apply</button>
-      </div>
+      </Modal>
     </div>
   );
 }
+
+export default connect(mapStateToProps)(JobPostingModal);
