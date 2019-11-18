@@ -17,7 +17,7 @@ export default function Root({ store }) {
               <Link to="/header">Header</Link>
             </li>
           </ul>
-          <Route exact path="/" component={App} />
+          {/* <Route exact path="/" component={App} /> */}
           <Route path="/header" component={Header} />
         </div>
       </Router>

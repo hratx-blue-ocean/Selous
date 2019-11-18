@@ -8,7 +8,7 @@ import {
   Grid,
 } from '@material-ui/core/';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
 const useStyles = makeStyles({
   root: {

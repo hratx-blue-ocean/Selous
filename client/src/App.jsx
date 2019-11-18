@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import fetch from 'node-fetch';
+// import React, { useState, useEffect } from 'react';
+import React from 'react';
+// import fetch from 'node-fetch';
 // import './App.css';
 import {
   Grid,
@@ -9,7 +10,7 @@ import JobSearch from './components/JobSearch.jsx';
 import Goals from './components/goals.jsx';
 
 // Imported for render testing
-import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
+// import DetailsPage from './components/DetailsPage/DetailsPage.jsx';
 import Headerbar from './components/headerbar/Headerbar.jsx';
 import WhatsNext from './components/WhatsNext.jsx';
 import EditModal from './components/EditModal.jsx';

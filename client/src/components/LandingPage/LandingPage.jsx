@@ -3,12 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
   Button,
-  Typography,
 } from '@material-ui/core/';
 import SearchIcon from '@material-ui/icons/Search';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
 
-import { combineReducers } from 'redux';
+// import { combineReducers } from 'redux';
 
 const useStyles = makeStyles({
   root: {
