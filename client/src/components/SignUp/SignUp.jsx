@@ -20,7 +20,8 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-const useStyles = makeStyles((themes) => ({
+// eslint-disable-next-line
+const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: themes.palette.common.white,
