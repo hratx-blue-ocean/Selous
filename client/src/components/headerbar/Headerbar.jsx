@@ -168,7 +168,7 @@ export default function Headerbar() {
               component={Link}
               to="/"
             >
-            Dashboard
+              Dashboard
             </Button>
           </ButtonGroup>
         </div>
