@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import styles from './DetailsPage.css';
 import CompanyNotes from './CompanyNotes/CompanyNotes.jsx';
 import ProgressTabs from './ProgressTabs/ProgressTabs.jsx';
@@ -13,4 +12,4 @@ const DetailsPage = () => (
   </div>
 );
 
-export default connect()(DetailsPage);
+export default DetailsPage;

@@ -6,16 +6,16 @@ import WhatsNext from '../../../Modals/WhatsNext.jsx';
 
 const mapStateToProps = (state) => ({ show: state.whatsNextModal });
 
-function Tab({ dispatch }) {
+function Tab({ tab, dispatch }) {
   return (
     <>
       <WhatsNext />
       <div className={styles.tab_wrapper_three}>
         <div className={styles.tab}>
-          <div className={styles.tab_header} />
-          <div className={styles.tab_body}>Whats next?</div>
+          <div className={styles.tab_header}>{tab ? tab.tabName : null}</div>
+          <div className={styles.tab_body}>{tab ? tab.tabBody : null}</div>
           <div className={styles.tab_edit}>
-            <button type="button" onClick={() => dispatch(whatsNextAction())} className={styles.edit}>Next Step</button>
+            <button type="button" onClick={() => dispatch(whatsNextAction())} className={styles.edit}>{tab ? tab.tabEditText : null}</button>
           </div>
         </div>
       </div>
