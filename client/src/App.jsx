@@ -1,14 +1,4 @@
 import React from 'react';
-<<<<<<< HEAD
-import Headerbar from './components/headerbar/Headerbar.jsx';
-
-
-export default function App() {
-  return (
-    <div>
-      <Headerbar />
-    </div>
-=======
 import Goals from './components/goals.jsx';
 
 // Imported for render testing
@@ -24,6 +14,5 @@ export default function App() {
       <Goals />
       <DetailsPage />
     </>
->>>>>>> dashboard
   );
 }
