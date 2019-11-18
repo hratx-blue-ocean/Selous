@@ -126,7 +126,10 @@ function JobPostingModal({ show, dispatch }) {
             <h1 className={classes.title}>title</h1>
             <Box className={classes.buttons}>
               <Fab className={classes.buttonBoi}>
-                <AddCircleIcon className={classes.doNot} onClick={() => dispatch(showJobAction())} />
+                <AddCircleIcon
+                  className={classes.doNot}
+                  onClick={() => dispatch(showJobAction())}
+                />
               </Fab>
             </Box>
           </div>
