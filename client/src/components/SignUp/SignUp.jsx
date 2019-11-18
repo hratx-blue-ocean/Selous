@@ -25,6 +25,7 @@ const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
+      margin: '8px',
     },
 
   },
@@ -48,9 +49,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#9f6cb7',
     borderRadius: '15px',
-  },
-  input: {
-    backgroundColor: 'lightgrey',
   },
 }));
 
@@ -83,9 +81,8 @@ const handleClick = (e) => {
 
 function SignUp() {
   const classes = useStyles();
-
   return (
-    <Container maxWidth="xs">
+    <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <img
@@ -97,10 +94,11 @@ function SignUp() {
           Sign up
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             <Grid item xs={12} sm={6}>
               <MuiThemeProvider theme={theme}>
                 <TextField
+                  // className={classes.input}
                   autoComplete="fname"
                   name="firstName"
                   variant="filled"
