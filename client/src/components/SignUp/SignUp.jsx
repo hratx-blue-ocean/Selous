@@ -11,6 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
+import axios from 'axios';
 
 const theme = createMuiTheme({
   palette: {
@@ -49,19 +50,11 @@ const useStyles = makeStyles((themes) => ({
     borderRadius: '15px',
   },
   input: {
-    // '&.MuiInput-underline.Mui-focused:after':{
-    //   borderBottom:'2px #9f6cb7 solid',
-    //   fontSize:'50px'
-    // },
     backgroundColor: 'lightgrey',
-    // '&.Mui-focused':{
-    //   backgroundColor:'green',
-    //   color:'#9f6cb7'
-    // },
-
-
   },
 }));
+
+// Pseudostate
 const signupObj = {
 
 };
@@ -70,18 +63,29 @@ const writeToObj = (event) => {
   signupObj[event.target.name] = event.target.value;
 };
 
+// Submit
 const handleClick = (e) => {
   e.preventDefault();
-  if (signupObj.password === signupObj.passwordConfirm) {
-    // Write data to the database
-  }
+  // Check auth
+  axios.post('/signup', {
+    data: signupObj,
+    // If correct, pull data from DB for user
+  }).then((response) => {
+    if (response) {
+      // Update state with response data
+      console.log(response);
+    } else {
+      console.log('Username taken! Try another');
+    }
+  });
+  // Write data to the database
 };
 
 function SignUp() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <img
