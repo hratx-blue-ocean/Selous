@@ -18,7 +18,7 @@ module.exports = {
     "react/no-array-index-key": 1,
     "react/destructuring-assignment": 1,
     "import/extensions": 0,
-    "react/prop-types": 0
-    
-  },
-};
+    "react/prop-types": 0,
+    "linebreak-style": 0,
+}
+}

@@ -20,6 +20,7 @@ const theme2 = createMuiTheme({
   palette: {
     primary: purple,
   },
+
   typography: { useNextVariants: true },
 });
 
