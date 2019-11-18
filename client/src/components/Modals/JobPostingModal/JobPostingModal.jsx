@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-// import styles from './JobPostingModal.css'
 
 import {
   Fab,
@@ -9,7 +8,7 @@ import {
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import editAction from '../../../redux/actions/editAction.js';
+import addJobAction from '../../../redux/actions/addJobAction.js';
 
 const useStyles = makeStyles(({
   bigContainer: {
@@ -106,29 +105,16 @@ const useStyles = makeStyles(({
   },
   titleTer: {
     fontSize: 20,
-  }
+  },
 }));
 
-const mapStateToProps = (state) => ({ show: state.editModal });
+const mapStateToProps = (state) => ({ show: state.addJobModal });
 
 function JobPostingModal({ show, dispatch }) {
   const classes = useStyles();
 
-  // const [open, setOpen] = React.useState(true);
-
-  // const handleOpen = () => {
-  //   setOpen(true);
-  // };
-
-  // const handleClose = () => {
-  //   setOpen(false);
-  // };
-
   return (
     <div>
-      {/* <button type="button" onClick={handleOpen}>
-        Open Modal
-      </button> */}
       <Modal
         className={classes.bigContainer}
         aria-labelledby="simple-modal-title"
@@ -140,7 +126,7 @@ function JobPostingModal({ show, dispatch }) {
             <h1 className={classes.title}>title</h1>
             <Box className={classes.buttons}>
               <Fab className={classes.buttonBoi}>
-                <AddCircleIcon className={classes.doNot} onClick={() => dispatch(editAction())} />
+                <AddCircleIcon className={classes.doNot} onClick={() => dispatch(addJobAction())} />
               </Fab>
             </Box>
           </div>

@@ -16,8 +16,9 @@ const useStyles = makeStyles({
     borderColor: 'purple',
     borderStyle: 'solid',
     alignContent: 'center',
-    width: '80%',
-
+    width: '60%',
+    maxHeight: '75%',
+    overflow: 'scroll',
   },
 });
 
@@ -27,7 +28,6 @@ export default function PaperSheet() {
   return (
     <Paper container className={classes.root}>
       <Grid container justify="center" alignItems="center">
-        <JobComponent />
         <JobComponent />
         <JobComponent />
         <JobComponent />
