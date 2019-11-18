@@ -23,8 +23,6 @@ const theme2 = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-console.log(theme2);
-
 const useStyles = makeStyles((theme) => ({
 
   '@global': {
@@ -34,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
 
   },
   paper: {
-    marginTop: theme.spacing(8),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
