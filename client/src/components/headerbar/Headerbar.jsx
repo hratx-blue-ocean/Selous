@@ -152,7 +152,7 @@ export default function Headerbar() {
               className={classes.button}
               variant="text"
               component={Link}
-              to="/detail"
+              to="/home"
             >
               Home
             </Button>
