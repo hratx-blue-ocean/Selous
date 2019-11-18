@@ -9,8 +9,8 @@ import {
 } from '@material-ui/core/';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import { connect } from 'react-redux';
-import JobPostingModal from './Modals/JobPostingModal/JobPostingModal.jsx';
-import addJobAction from '../redux/actions/addJobAction';
+import JobPostingModal from '../Modals/JobPostingModal/JobPostingModal.jsx';
+import addJobAction from '../../redux/actions/addJobAction';
 
 const useStyles = makeStyles({
   root: {

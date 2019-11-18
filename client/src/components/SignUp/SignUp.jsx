@@ -19,7 +19,7 @@ const theme = createMuiTheme({
   typography: { useNextVariants: true },
 });
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
