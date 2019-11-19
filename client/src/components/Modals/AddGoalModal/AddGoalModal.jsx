@@ -18,7 +18,7 @@ const useStyles = makeStyles(({
     flexDirection: 'row',
     padding: 10,
     width: '390px',
-    height: '150px',
+    height: '160px',
     borderRadius: '8px',
     fontFamily: 'Arial',
     fontSize: '18px',
@@ -100,12 +100,11 @@ const useStyles = makeStyles(({
 
 const mapStateToProps = (state) => ({ show: state.addGoalModal });
 
-function addGoalModal({ show, dispatch }) {
+function AddGoalModal({ show, dispatch }) {
   const classes = useStyles();
 
   return (
     <Modal
-      className={classes.bigContainer}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
       open={show}
@@ -138,4 +137,4 @@ function addGoalModal({ show, dispatch }) {
   );
 }
 
-export default connect(mapStateToProps)(addGoalModal);
+export default connect(mapStateToProps)(AddGoalModal);

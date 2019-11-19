@@ -6,7 +6,7 @@ test('true is true', () => {
   expect(true).toBe(true);
 });
 
-describe('Headerbar', () => {
+describe('Login', () => {
   it('should render without crashing', () => {
     const { container } = render(<Login />);
     expect(container).toBeTruthy();
