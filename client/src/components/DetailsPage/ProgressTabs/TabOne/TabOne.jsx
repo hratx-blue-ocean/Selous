@@ -11,6 +11,8 @@ import { editAction } from '../../../../redux/actions/actions.js';
 const stylesArr = ['card_one', 'card_two', 'card_three', 'card_four', 'card_five', 'card_six', 'card_seven', 'card_eight'];
 const cardDepth = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
 
+// Add edit onClick
+
 const Tab = ({ tab, companyTabs, dispatch }) => (
   <>
     <EditDetailsModal />
