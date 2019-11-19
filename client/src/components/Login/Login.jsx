@@ -92,6 +92,7 @@ const handleLogin = (e) => {
     // Check auth
     if (response) {
       // Update state with response data
+      // TODO Add redux state redirection -> dashboard
       console.log(response);
     } else {
       console.log('invalid login');

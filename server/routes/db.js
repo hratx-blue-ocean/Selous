@@ -21,8 +21,32 @@ router.post('/login', (req, res) => {
   });
 });
 
-router.get('/', (req, res) => {
-  res.json({ data: ['dolphins', 'manatees', 'sea turles'] });
+router.post('/dashboard/job', (req, res) => {
+  db.addJob(req.body.userId, req.body.jobData, (err, job) => {
+    if (err) {
+      res.status(400).send();
+    } else {
+      res.status(201).send(job);
+    }
+  });
+});
+router.post('/goals', (req, res) => {
+  db.addGoal(req.body.userId, req.body.goalData, (err, goal) => {
+    if (err) {
+      res.status(400).send();
+    } else {
+      res.status(201).send(goal);
+    }
+  });
+});
+router.post('/dashboard/job/progress', (req, res) => {
+  db.addJobProgress(req.body.userId, req.body.jobId, req.body.progressData, (err, progress) => {
+    if (err) {
+      res.status(400).send();
+    } else {
+      res.status(201).send(progress);
+    }
+  });
 });
 
 module.exports = router;

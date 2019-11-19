@@ -117,9 +117,9 @@ export default function Headerbar() {
           <Typography variant="h6" className={classes.title}>
             Selous
           </Typography>
-          {/* <Button color="inherit" className={classes.signup}
+          <Button color="inherit" className={classes.signup}
           component={Link} to="/signup">Signup</Button>
-          <Button color="inherit" component={Link} to="/login">Login</Button> */}
+          <Button color="inherit" component={Link} to="/login">Login</Button>
           {/* <Button color="inherit">Logout</Button> */}
           <div className={classes.search}>
             <div className={classes.searchIcon}>
