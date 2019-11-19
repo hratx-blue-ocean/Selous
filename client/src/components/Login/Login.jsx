@@ -91,7 +91,7 @@ function SignIn({ dispatch }) {
   const classes = useStyles();
   const handleLogin = () => {
     dispatch(loginAction());
-    axios.post('/login', {
+    axios.post('/db/login', {
       userName: loginObj.username,
       password: loginObj.password,
     // If correct, pull data from DB for user
