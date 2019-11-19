@@ -92,31 +92,103 @@
 }
 
 .card_one{
-    position: absolute;
-    top: 12px;
-    left: 12px;
     width: 100%;
     height: 91%;
     border: solid 1px black;
     border-radius: 10px;
     box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: rgba(236, 132, 73, 0.85);
+    background-color: rgba(236, 73, 73, 0.85);
     opacity: 1;
     z-index: -2;
 }
 
 .card_two{
-    position: absolute;
-    top: 18px;
-    left: 18px;
     width: 100%;
     height: 91%;
     border: solid 2px black;
     border-radius: 10px;
     box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: rgba(236, 73, 73, 0.85);
+    background-color: rgba(236, 132, 73, 0.85);
     opacity: .8;
     z-index: -3;
+}
+
+.card_three{
+    width: 100%;
+    height: 91%;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgba(236, 220, 73, 0.85);
+    opacity: .8;
+    z-index: -4;
+}
+
+.card_four{
+    width: 100%;
+    height: 91%;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgba(155, 236, 73, 0.85);
+    opacity: .8;
+    z-index: -5;
+}
+
+.card_five{
+    width: 100%;
+    height: 91%;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgba(0, 215, 243, 0.85);
+    opacity: .8;
+    z-index: -6;
+}
+
+.card_six{
+    width: 100%;
+    height: 91%;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgba(243, 150, 255, 0.85);
+    opacity: .8;
+    z-index: -7;
+}
+
+.card_seven{
+    width: 100%;
+    height: 91%;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgba(206, 53, 211, 0.85);
+    opacity: .8;
+    z-index: -8;
+}
+
+.card_eight{
+    width: 100%;
+    height: 91%;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgba(160, 160, 160, 0.85);
+    opacity: .8;
+    z-index: -9;
+}
+
+.two{
+    position: absolute;
+    top: 12px;
+    left: 12px;
+}
+
+.three{
+    position: absolute;
+    top: 18px;
+    left: 18px;
 }
 
 .tab{

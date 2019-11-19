@@ -5,14 +5,15 @@ import styles from './TabOne.css';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 import { editAction } from '../../../../redux/actions/actions.js';
 
-const stylesArr = ['card_one', 'card_two'];
+const stylesArr = ['card_one', 'card_two', 'card_three', 'card_four', 'card_five', 'card_six', 'card_seven', 'card_eight'];
+const cardDepth = ['one', 'two', 'three'];
 
 const Tab = ({ tab, companyTabs, dispatch }) => (
   <>
     <EditDetailsModal />
     <div className={styles.tab_wrapper_one}>
       <div className={styles.card_holder}>
-        {companyTabs.slice(0, companyTabs.indexOf(tab)).map((el, i) => (<span key={i} className={styles[stylesArr[i]]} />))}
+        {companyTabs.slice(0, companyTabs.indexOf(tab)).map((el, i) => (<span key={i} className={[styles[cardDepth[i]], styles[stylesArr[i]]].join(' ')} />))}
         <div className={tab ? (styles[tab.color ? tab.color : 'tab']) : null}>
           <div className={styles.tab_header}>{tab ? tab.tabName : null}</div>
           <div className={styles.tab_body}>{tab ? tab.tabBody : null}</div>
