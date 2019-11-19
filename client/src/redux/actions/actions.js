@@ -16,25 +16,25 @@ export const whatsNextAction = () => ({ type: 'WHATS_NEXT' });
 
 export const showJobAction = () => ({ type: 'SHOW_JOB_POSTING' });
 
-export const getTabsCompanyTabsTEST = () => ({ type: 'GET_TABS' });
+export const getTabsCompanyTabsTEST = () => ({ type: 'GET_COMPANY_TABS' });
 
 export const moveLeftDisplayedTabs = (payload) => ({ type: 'MOVE_LEFT', payload });
 
 export const moveRightDisplayedTabs = (payload) => ({ type: 'MOVE_RIGHT', payload });
 
-export const setDisplayedTabs = (payload) => ({ type: 'SET', payload });
+export const setDisplayedTabs = (payload) => ({ type: 'SET_DISPLAYED_TABS', payload });
 
-export const whatsNextGetTab = () => ({ type: 'GET_TAB' });
+export const whatsNextGetTab = () => ({ type: 'GET_WHATS_NEXT_TAB' });
 
-export const getTabColors = () => ({ type: 'GET' });
+export const getTabColors = () => ({ type: 'GET_TAB_COLORS' });
 
-export const setSearchInput = (payload) => ({ type: 'SET', payload });
+export const setSearchInput = (payload) => ({ type: 'SET_SEARCH', payload });
 
-export const getSearchInput = () => ({ type: 'GET' });
+export const getSearchInput = () => ({ type: 'GET_SEARCH' });
 
-export const setApiSearchData = (payload) => ({ type: 'GET', payload });
+export const setApiSearchData = (payload) => ({ type: 'SET_API_DATA', payload });
 
-export const getApiSearchData = () => ({ type: 'SET' });
+export const getApiSearchData = () => ({ type: 'GET_API_DATA' });
 
 export const loginAction = () => ({ type: 'LOG_IN' });
 
