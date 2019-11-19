@@ -15,6 +15,7 @@ import {
   addJobModalReducer,
   whatsNextModalReducer,
   editModalReducer,
+  showAboutReducer,
 } from './ModalReducers.js';
 import searchInputReducer from './searchInputReducer.js';
 import apiDataReducer from './apiDataReducer.js';
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   searchInput: searchInputReducer,
   apiData: apiDataReducer,
   isLoggedIn: loggedInReducer,
+  showAbout: showAboutReducer,
   haveLanding: haveLandingReducer,
 });
 
