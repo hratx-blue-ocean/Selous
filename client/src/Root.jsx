@@ -19,7 +19,6 @@ export default function Root({ store }) {
         <Route path="/dashboard" component={Dashboard} />
         <Route path="/details" component={Details} />
       </Router>
-      <JobSearch />
     </Provider>
   );
 }
