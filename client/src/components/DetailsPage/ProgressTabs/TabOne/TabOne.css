@@ -68,6 +68,43 @@
     place-self: center;
 }
 
+.card_holder{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    width: 100%;
+    height: 97%;
+    position: relative;
+}
+
+.card_one{
+    position: absolute;
+    top: 6px;
+    left: -6px;
+    width: 100%;
+    height: 99%;
+    border: solid 1px black;
+    border-radius: 10px;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgba(236, 132, 73, 0.85);
+    opacity: 1;
+    z-index: -1;
+}
+
+.card_two{
+    position: absolute;
+    top: 12px;
+    left: -12px;
+    width: 100%;
+    height: 99%;
+    border: solid 2px black;
+    border-radius: 10px;
+    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgba(236, 73, 73, 0.85);
+    opacity: .8;
+    z-index: -3;
+}
+
 .tab{
     margin: 0;
     padding: 0;
@@ -84,6 +121,7 @@
         'tab_header'
         'tab_body'
         'tab_edit';
+    position: relative;
 }
 
 .tab_red{
