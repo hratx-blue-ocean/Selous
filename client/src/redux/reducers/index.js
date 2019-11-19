@@ -1,5 +1,4 @@
 import { combineReducers } from 'redux';
-
 // Reducers
 import whatsNextReducer from './whatsNextReducer';
 import displayedTabsReducer from './displayedTabsReducer.js';
@@ -9,6 +8,7 @@ import goalsHandlerReducer from './goalsHandlerReducer.js';
 import userJobsReducer from './userJobsReducer.js';
 import tabColorsReducer from './tabColorsReducer.js';
 import loggedInReducer from './loggedInReducer.js';
+import haveLandingReducer from './haveLandingReducer.js';
 import {
   jobPostingModalReducer,
   addGoalModalReducer,
@@ -16,6 +16,8 @@ import {
   whatsNextModalReducer,
   editModalReducer,
 } from './ModalReducers.js';
+import searchInputReducer from './searchInputReducer.js';
+import apiDataReducer from './apiDataReducer.js';
 
 const rootReducer = combineReducers({
   addGoal: addGoalReducer,
@@ -30,7 +32,10 @@ const rootReducer = combineReducers({
   addJobModal: addJobModalReducer,
   whatsNextModal: whatsNextModalReducer,
   editModal: editModalReducer,
+  searchInput: searchInputReducer,
+  apiData: apiDataReducer,
   isLoggedIn: loggedInReducer,
+  haveLanding: haveLandingReducer,
 });
 
 export default rootReducer;

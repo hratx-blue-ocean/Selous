@@ -4,18 +4,13 @@ import { connect } from 'react-redux';
 import Headerbar from './components/headerbar/Headerbar.jsx';
 import Landing from './components/landing/Landing.jsx';
 
-const mapStateToProps = (state) => ({ show: state.isLoggedIn });
+const mapStateToProps = (state) => ({ show: state.haveLanding });
 
 function App({ show }) {
-  if (show) {
-    return (
-      <Headerbar />
-    );
-  }
   return (
     <>
       <Headerbar />
-      <Landing />
+      {show ? <Landing /> : null}
     </>
   );
 }

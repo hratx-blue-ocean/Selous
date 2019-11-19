@@ -9,7 +9,7 @@ const jobs = [
     tiles: ['send resume', 'applied', 'got phone call', 'got phone screen'],
   },
   {
-    companyName: 'Googke',
+    companyName: 'Google',
     id: 2,
     position: 'Engineer',
     tiles: ['send resume', 'applied'],
