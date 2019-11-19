@@ -10,7 +10,7 @@ function App({ show }) {
   return (
     <>
       <Headerbar />
-      {show ? <Landing /> : null}
+      {show ? null : <Landing />}
     </>
   );
 }
