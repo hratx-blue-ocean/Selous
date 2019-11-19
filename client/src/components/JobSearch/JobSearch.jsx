@@ -10,6 +10,7 @@ import {
 import JobComponent from './JobComponent.jsx';
 import Goals from '../Goals/Goals.jsx';
 import { setApiSearchData } from '../../redux/actions/actions.js';
+import Headerbar from '../headerbar/Headerbar.jsx';
 
 const useStyles = makeStyles({
   jobSearchGoalsContainer: {
@@ -64,28 +65,31 @@ const JobSearch = ({ dispatch, jobSearchData }) => {
   });
 
   return (
-    <div className={classes.jobSearchGoalsContainer}>
-      <div className={classes.adSpace} />
-      <Paper container className={classes.root}>
-        <Grid container justify="center" alignItems="center">
-          <SearchBar
-            onChange={() => console.log('onChange')}
-            onRequestSearch={() => console.log('onRequestSearch')}
-            style={{
-              margin: '0 auto',
-              maxWidth: 800,
-            }}
-          />
-          <JobComponent />
-          <JobComponent />
-          <JobComponent />
-          <JobComponent />
-          <JobComponent />
-          <JobComponent />
-        </Grid>
-      </Paper>
-      <Goals />
-    </div>
+    <>
+      <Headerbar />
+      <div className={classes.jobSearchGoalsContainer}>
+        <div className={classes.adSpace} />
+        <Paper container className={classes.root}>
+          <Grid container justify="center" alignItems="center">
+            <SearchBar
+              onChange={() => console.log('onChange')}
+              onRequestSearch={() => console.log('onRequestSearch')}
+              style={{
+                margin: '0 auto',
+                maxWidth: 800,
+              }}
+            />
+            <JobComponent />
+            <JobComponent />
+            <JobComponent />
+            <JobComponent />
+            <JobComponent />
+            <JobComponent />
+          </Grid>
+        </Paper>
+        <Goals />
+      </div>
+    </>
   );
 };
 
