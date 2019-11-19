@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -6,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
+import { setSearchInput, setApiSearchData } from '../../redux/actions/actions.js';
 
 function Copyright() {
   return (
@@ -115,8 +118,24 @@ const footers = [
   },
 ];
 
-export default function Pricing() {
+const Pricing = ({ searchInput, dispatch }) => {
   const classes = useStyles();
+  console.log(searchInput);
+
+  const apiGetRequest = (keyword) => {
+    const locationTemp = 'chicago';
+    const descriptionTemp = keyword;
+
+    axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
+    // https://jobs.github.com/positions.json?description=python&location=new+york
+      .then((results) => {
+        dispatch(setApiSearchData(results));
+        console.log(results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -147,6 +166,12 @@ export default function Pricing() {
         alt="icon Logo"
       />
       <SearchBar className={classes.search} />
+      <SearchBar
+        className={classes.search}
+        value={searchInput}
+        onChange={(newValue) => dispatch(setSearchInput(newValue))}
+        onRequestSearch={(keyword) => apiGetRequest(keyword)}
+      />
       {/* Footer */}
       <Container component="footer" className={classes.footer}>
         <Grid container spacing={4} justify="space-evenly">
@@ -174,4 +199,8 @@ export default function Pricing() {
       {/* End footer */}
     </>
   );
-}
+};
+
+const mapStatesToProps = (state) => ({ searchInput: state.searchInput, apiData: state.apiData });
+
+export default connect(mapStatesToProps)(Pricing);

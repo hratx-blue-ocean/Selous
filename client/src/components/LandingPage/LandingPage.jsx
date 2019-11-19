@@ -1,11 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Card,
   Button,
 } from '@material-ui/core/';
-import SearchIcon from '@material-ui/icons/Search';
+import SearchBar from 'material-ui-search-bar';
 import RoomOutlinedIcon from '@material-ui/icons/RoomOutlined';
+import { setSearchInput } from '../../redux/actions/actions.js';
 
 // import { combineReducers } from 'redux';
 
@@ -26,17 +28,24 @@ const useStyles = makeStyles({
   },
 });
 
-export default function PaperSheet() {
+const PaperSheet = ({ searchInput, dispatch }) => {
   const classes = useStyles();
+  console.log(searchInput);
 
   return (
     <div>
       <Card container className={classes.root}>
         <Button item m={2}>
-          <SearchIcon style={{
-            position: 'start',
-          }}
+          <SearchBar
+            value={searchInput}
+            onChange={(newValue) => dispatch(setSearchInput(newValue))}
+            onRequestSearch={() => console.log('onRequestSearch')}
+            style={{
+              margin: '0 auto',
+              maxWidth: 800,
+            }}
           />
+          <SearchBar />
         </Button>
         <input item type="search" className={classes.next} alignContent="flex-start" position="absolute" />
       </Card>
@@ -54,4 +63,8 @@ export default function PaperSheet() {
       <img src="/learning.jpg" alt="Learning" />
     </div>
   );
-}
+};
+
+const mapStatesToProps = (state) => ({ searchInput: state.searchInput });
+
+export default connect(mapStatesToProps)(PaperSheet);

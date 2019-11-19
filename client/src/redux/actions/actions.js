@@ -27,3 +27,11 @@ export const setDisplayedTabs = (payload) => ({ type: 'SET', payload });
 export const whatsNextGetTab = () => ({ type: 'GET_TAB' });
 
 export const getTabColors = () => ({ type: 'GET' });
+
+export const setSearchInput = (payload) => ({ type: 'SET', payload });
+
+export const getSearchInput = () => ({ type: 'GET' });
+
+export const setApiSearchData = (payload) => ({ type: 'GET', payload });
+
+export const getApiSearchData = () => ({ type: 'SET' });
