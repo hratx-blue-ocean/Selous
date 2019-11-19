@@ -165,7 +165,6 @@ const Pricing = ({ searchInput, dispatch }) => {
         src="https://selious.s3.amazonaws.com/ProfessionalLearningCommunity.jpg"
         alt="icon Logo"
       />
-      <SearchBar className={classes.search} />
       <SearchBar
         className={classes.search}
         value={searchInput}
