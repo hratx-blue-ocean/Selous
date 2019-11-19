@@ -7,6 +7,15 @@ import companyTabsReducerTEST from './companyTabsReducerTEST.js';
 import addGoalReducer from './addGoalReducer.js';
 import goalsHandlerReducer from './goalsHandlerReducer.js';
 import userJobsReducer from './userJobsReducer.js';
+import tabColorsReducer from './tabColorsReducer.js';
+import loggedInReducer from './loggedInReducer.js';
+import {
+  jobPostingModalReducer,
+  addGoalModalReducer,
+  addJobModalReducer,
+  whatsNextModalReducer,
+  editModalReducer,
+} from './ModalReducers.js';
 
 const rootReducer = combineReducers({
   addGoal: addGoalReducer,
@@ -15,6 +24,13 @@ const rootReducer = combineReducers({
   displayedTabs: displayedTabsReducer,
   companyTabsTEST: companyTabsReducerTEST,
   userJobs: userJobsReducer,
+  tabColors: tabColorsReducer,
+  jobPostingModal: jobPostingModalReducer,
+  addGoalModal: addGoalModalReducer,
+  addJobModal: addJobModalReducer,
+  whatsNextModal: whatsNextModalReducer,
+  editModal: editModalReducer,
+  isLoggedIn: loggedInReducer,
 });
 
 export default rootReducer;
