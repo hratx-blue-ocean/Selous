@@ -123,7 +123,6 @@ function AboutModal({ show, dispatch }) {
       >
         <div className={classes.container}>
           <div className={classes.header}>
-            <h1 className={classes.title}>Why the name Selous?</h1>
             <Box className={classes.buttons}>
               <Fab className={classes.buttonBoi}>
                 <AddCircleIcon
@@ -134,13 +133,16 @@ function AboutModal({ show, dispatch }) {
             </Box>
           </div>
           <div className={classes.titlesContainer}>
-            <h3 className={classes.titleSec}>Selous</h3>
+            <h3 className={classes.titleSec}>Why the name Selous?</h3>
           </div>
           <div className={classes.description}>
-            Frederick Selous was a famous big game hunter, tracker, and inspiration for the
-            fictional character Allan Quartermainand we wish you luck in yourown job hunting
-            and tracking.  For more information on Frederick Selous click
+            {
+              'Frederick Selous was a famous big game hunter, tracker, and the inspiration for '
+              + 'fictional character Allan Quartermain.  We wish you luck in your own big job hunting '
+              + 'and tracking.  For more information on Frederick Selous click '
+            }
             <a href="https://en.wikipedia.org/wiki/Frederick_Selous">here</a>
+            .
           </div>
         </div>
       </Modal>

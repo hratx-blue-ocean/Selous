@@ -97,6 +97,9 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '400px',
     marginLeft: '17%',
   },
+  about: {
+    cursor: 'pointer',
+  },
 }));
 
 const footers = [
@@ -164,14 +167,15 @@ function Landing({ dispatch }) {
                   if (item === 'About') {
                     return (
                       <li key={item}>
-                        <Link
-                          href="/"
+                        <Typography
+                          className={classes.about}
+                          type="button"
                           variant="subtitle1"
                           color="textSecondary"
                           onClick={() => dispatch(showAboutAction())}
                         >
                           {item}
-                        </Link>
+                        </Typography>
                       </li>
                     );
                   }
