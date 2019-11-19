@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable arrow-body-style */
 /* eslint-disable array-callback-return */
 /* eslint-disable max-len */
@@ -29,7 +30,9 @@ const Tab = ({ tab, companyTabs, dispatch }) => (
           </div>
         </div>
       </div>
-      <div className={styles.check} />
+      <div className={styles.check}>
+        {tab ? (tab.completed ? (<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.875 14.1486L4.22625 10.4999L2.98375 11.7336L7.875 16.6249L18.375 6.12486L17.1412 4.89111L7.875 14.1486Z" fill="black" /></svg>) : '') : ''}
+      </div>
     </div>
   </>
 );

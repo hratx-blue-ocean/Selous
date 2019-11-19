@@ -4,24 +4,28 @@ const defaultState = [
     tabName: 'Title Page',
     tabBody: '',
     tabEditText: 'Edit',
+    completed: true,
   },
   {
     whatsNextTab: false,
     tabName: 'Resume',
     tabBody: '',
     tabEditText: 'Edit',
+    completed: true,
   },
   {
     whatsNextTab: false,
     tabName: 'Phone Interview',
     tabBody: '',
     tabEditText: 'Edit',
+    completed: true,
   },
   {
     whatsNextTab: false,
     tabName: 'Onsite Interview',
     tabBody: '',
     tabEditText: 'Edit',
+    completed: true,
   },
   {
     whatsNextTab: false,
