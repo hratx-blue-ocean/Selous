@@ -100,7 +100,7 @@ const useStyles = makeStyles(({
 
 const mapStateToProps = (state) => ({ show: state.addGoalModal });
 
-function addGoalModal({ show, dispatch }) {
+function AddGoalModal({ show, dispatch }) {
   const classes = useStyles();
 
   return (
@@ -137,4 +137,4 @@ function addGoalModal({ show, dispatch }) {
   );
 }
 
-export default connect(mapStateToProps)(addGoalModal);
+export default connect(mapStateToProps)(AddGoalModal);
