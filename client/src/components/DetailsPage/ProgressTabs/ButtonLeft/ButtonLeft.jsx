@@ -1,5 +1,4 @@
-/* eslint-disable prefer-const */
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import styles from './ButtonLeft.css';
 import { moveLeftDisplayedTabs } from '../../../../redux/actions/actions.js';
@@ -22,17 +21,7 @@ const ButtonLeft = ({
     }
   };
 
-  let [showButton, toggleShowButton] = useState(false);
-
-  useEffect(() => {
-    if (JSON.stringify(displayedTabs[0]) !== JSON.stringify(companyTabsTEST[0])) {
-      toggleShowButton(true);
-      return;
-    }
-    toggleShowButton(false);
-  }, [displayedTabs]);
-
-  return (showButton ? (
+  return (
     <div className={styles.left_button}>
       <button type="button" className={styles.button} onClick={handleOnClick}>
         <svg width="13" height="18" viewBox="5 3 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -40,7 +29,6 @@ const ButtonLeft = ({
         </svg>
       </button>
     </div>
-  ) : <div />
   );
 };
 
