@@ -8,7 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
-import { setSearchInput, setApiSearchData } from '../../redux/actions/actions.js';
+import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
+import { setSearchInput, setApiSearchData, showAboutAction } from '../../redux/actions/actions.js';
 
 function Copyright() {
   return (
@@ -97,12 +98,15 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '400px',
     marginLeft: '17%',
   },
+  about: {
+    cursor: 'pointer',
+  },
 }));
 
 const footers = [
   {
     title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
+    description: ['About', 'History', 'Contact us', 'Locations'],
   },
   {
     title: 'Features',
@@ -118,7 +122,7 @@ const footers = [
   },
 ];
 
-const Pricing = ({ searchInput, dispatch }) => {
+const Landing = ({ searchInput, dispatch }) => {
   const classes = useStyles();
   console.log(searchInput);
 
@@ -127,7 +131,7 @@ const Pricing = ({ searchInput, dispatch }) => {
     const descriptionTemp = keyword;
 
     axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
-    // https://jobs.github.com/positions.json?description=python&location=new+york
+      // https://jobs.github.com/positions.json?description=python&location=new+york
       .then((results) => {
         dispatch(setApiSearchData(results));
         console.log(results);
@@ -139,6 +143,7 @@ const Pricing = ({ searchInput, dispatch }) => {
 
   return (
     <>
+      <AboutModal />
       <img
         className={classes.avatar}
         src="https://selious.s3.amazonaws.com/Selous.png"
@@ -182,13 +187,30 @@ const Pricing = ({ searchInput, dispatch }) => {
                 {footer.title}
               </Typography>
               <ul>
-                {footer.description.map((item) => (
-                  <li key={item}>
-                    <Link href="/" variant="subtitle1" color="textSecondary">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
+                {footer.description.map((item) => {
+                  if (item === 'About') {
+                    return (
+                      <li key={item}>
+                        <Typography
+                          className={classes.about}
+                          type="button"
+                          variant="subtitle1"
+                          color="textSecondary"
+                          onClick={() => dispatch(showAboutAction())}
+                        >
+                          {item}
+                        </Typography>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={item}>
+                      <Link href="/" variant="subtitle1" color="textSecondary">
+                        {item}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </Grid>
           ))}
@@ -204,4 +226,4 @@ const Pricing = ({ searchInput, dispatch }) => {
 
 const mapStatesToProps = (state) => ({ searchInput: state.searchInput, apiData: state.apiData });
 
-export default connect(mapStatesToProps)(Pricing);
+export default connect(mapStatesToProps)(Landing);

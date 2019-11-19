@@ -207,4 +207,4 @@ function SignUp() {
   );
 }
 
-export default connect(null, mapDispatchToProps)(SignUp)
+export default connect()(SignUp);
