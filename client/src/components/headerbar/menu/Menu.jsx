@@ -2,9 +2,11 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { loginAction, landingAction } from '../../../redux/actions/actions.js';
 
 const ITEM_HEIGHT = 48;
 
@@ -18,7 +20,9 @@ const useStyles = makeStyles({
   },
 });
 
-export default function Menud() {
+const mapStateToProps = (state) => ({ show: state.isLoggedIn });
+
+function Menud({ dispatch }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const classes = useStyles();
@@ -29,6 +33,12 @@ export default function Menud() {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const handleLog = () => {
+    setAnchorEl(null);
+    dispatch(landingAction());
+    dispatch(loginAction());
   };
 
   return (
@@ -74,7 +84,7 @@ export default function Menud() {
             About
         </MenuItem>
         <MenuItem
-          onClick={handleClose}
+          onClick={handleLog}
           component={Link}
           to="/"
         >
@@ -84,3 +94,5 @@ export default function Menud() {
     </div>
   );
 }
+
+export default connect(mapStateToProps)(Menud);
