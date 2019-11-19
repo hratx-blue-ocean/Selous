@@ -18,6 +18,8 @@ export const showJobAction = () => ({ type: 'SHOW_JOB_POSTING' });
 
 export const getTabsCompanyTabsTEST = () => ({ type: 'GET_TABS' });
 
+export const setTabsCompanyTabsTEST = (payload) => ({ type: 'GET_TABS', payload });
+
 export const moveLeftDisplayedTabs = (payload) => ({ type: 'MOVE_LEFT', payload });
 
 export const moveRightDisplayedTabs = (payload) => ({ type: 'MOVE_RIGHT', payload });

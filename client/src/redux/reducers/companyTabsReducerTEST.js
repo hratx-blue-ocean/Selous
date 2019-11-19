@@ -39,6 +39,8 @@ export default function companyTabsReducerTEST(state = defaultState, action) {
   switch (action.type) {
     case 'GET_TABS':
       return state;
+    case 'SET':
+      return action.payload;
     default:
       return state;
   }
