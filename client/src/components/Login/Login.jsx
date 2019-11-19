@@ -13,14 +13,9 @@ import Container from '@material-ui/core/Container';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
-<<<<<<< HEAD
-import { actionLogin } from '../../redux/actions/actions';
-import { connect } from 'react-redux';
-=======
 import { connect } from 'react-redux';
 import { loginAction } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
->>>>>>> dev
 
 
 // eslint-disable-next-line
@@ -83,30 +78,7 @@ const writeToLogin = (event) => {
   loginObj[event.target.name] = event.target.value;
 };
 
-<<<<<<< HEAD
-const handleLogin = (e) => {
-  e.preventDefault();
-  axios.post('/db/login', {
-    userName: loginObj.username,
-    password: loginObj.password,
-    // If correct, pull data from DB for user
-  }).then((response) => {
-    // Check auth
-    if (response.userName) {
-      // Update state with response data
-      alert(`Welcome ${response.userName}`);
-      dispatch(actionLogin(response));
-      // UserLoggedIn = true
-      console.log(response);
-    } else {
-      alert('Invalid Login');
-      console.log('invalid login');
-    }
-  });
-};
-=======
 const mapStateToProps = (state) => ({ show: state.isLoggedIn });
->>>>>>> dev
 
 function SignIn({ dispatch }) {
   const classes = useStyles();
@@ -128,14 +100,9 @@ function SignIn({ dispatch }) {
     });
   };
   return (
-<<<<<<< HEAD
-    <MuiThemeProvider theme2={theme2}>
-      <Container maxWidth="xs">
-=======
     <>
       <Headerbar />
       <Container component="main" maxWidth="xs">
->>>>>>> dev
         <CssBaseline />
         <div className={classes.paper}>
           <img
@@ -207,8 +174,4 @@ function SignIn({ dispatch }) {
   );
 }
 
-<<<<<<< HEAD
-export default connect(null, mapDispatchToProps)(SignIn)
-=======
 export default connect(mapStateToProps)(SignIn);
->>>>>>> dev

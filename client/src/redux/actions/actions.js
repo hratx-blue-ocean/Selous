@@ -28,10 +28,6 @@ export const whatsNextGetTab = () => ({ type: 'GET_TAB' });
 
 export const getTabColors = () => ({ type: 'GET' });
 
-<<<<<<< HEAD
-export const actionLogin = (data) => ({ type: 'USER_LOGIN', data });
-=======
 export const loginAction = () => ({ type: 'LOG_IN' });
 
 export const landingAction = () => ({ type: 'HAVE_LAND' });
->>>>>>> dev

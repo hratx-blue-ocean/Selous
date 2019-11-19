@@ -17,40 +17,6 @@ router.post('/login', (req, res) => {
       res.status(401).send(false);
     } else {
       res.status(200).send(user);
-<<<<<<< HEAD
-    }
-  });
-});
-
-router.post('/dashboard/job', (req, res) => {
-  db.addJob(req.body.jobData, (err, job) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.status(200).send(job);
-    }
-  });
-});
-
-router.post('/goals', (req, res) => {
-  db.addGoal(req.body, (err, goal) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(req.body);
-      res.status(200).send(goal);
-    }
-  });
-});
-
-router.post('/dashboard/job/progress', (req, res) => {
-  db.addJobProgress(req.body, (err, progress) => {
-    if (err) {
-      console.log(err);
-    } else {
-      res.status(200).send(progress);
-=======
->>>>>>> dev
     }
   });
 });

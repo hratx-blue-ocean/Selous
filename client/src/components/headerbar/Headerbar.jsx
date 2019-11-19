@@ -76,39 +76,6 @@ function Headerbar({ show, tell, dispatch }) {
           <Typography variant="h6" className={classes.title}>
             Selous
           </Typography>
-<<<<<<< HEAD
-          <Button color="inherit" className={classes.signup}
-          component={Link} to="/signup">Signup</Button>
-          <Button color="inherit" component={Link} to="/login">Login</Button>
-           <Button color="inherit">Logout</Button>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Jobs…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <RoomIcon />
-            </div>
-            <InputBase
-              placeholder="Location…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-          <Button color="inherit">Logout</Button>
-=======
           {tell ? <Menu />
             : (
               <>
@@ -125,7 +92,6 @@ function Headerbar({ show, tell, dispatch }) {
               </>
             )
         }
->>>>>>> dev
         </Toolbar>
       </AppBar>
       <div className={classes.break}>
