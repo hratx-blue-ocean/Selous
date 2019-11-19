@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
-  AppBar, Toolbar, Typography, Button, ButtonGroup, InputBase
+  AppBar, Toolbar, Typography, Button, ButtonGroup, InputBase,
 } from '@material-ui/core';
 
 import SearchIcon from '@material-ui/icons/Search';
