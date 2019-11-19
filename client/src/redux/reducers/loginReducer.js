@@ -1,6 +1,6 @@
-export default function loginReducer(state = {}, action) {
+export default function userToState(state = {}, action) {
   switch (action.type) {
-    case 'USER_LOGIN':
+    case 'GET_USER':
       return action.data;
     default:
       return state;

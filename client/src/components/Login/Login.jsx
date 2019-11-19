@@ -14,7 +14,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { loginAction } from '../../redux/actions/actions.js';
+import { loginAction, userToState } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
 
@@ -68,8 +68,6 @@ const useStyles = makeStyles((theme) => ({
 //   }
 // });
 
-
-
 const loginObj = {
 
 };
@@ -86,19 +84,19 @@ function SignIn({ dispatch }) {
     e.preventDefault();
     // Check auth
     axios.post('/db/login', {
-      data: signupObj,
+      data: loginObj,
       // If correct, pull data from DB for user
-    }).then((data) => {
-      if (data.userName) {
+    }).then((response) => {
+      if (response.data.userName) {
         // Update state with response data
         // UserIsLoggedIn = true
-        alert(`Welcome ${response.userName}`);
-        dispatch(actionLogin(data));
-        console.log(response);
+        alert(`Welcome ${response.data.userName}`);
+        dispatch(loginAction());
+        dispatch(userToState(response.data));
       } else {
         alert('Invalid Login');
       }
-    });
+    }).catch((err) => { console.log(err); });
     // Write data to the database
   };
   return (

@@ -13,6 +13,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { loginAction, userToState } from '../../redux/actions/actions.js';
 
 const theme = createMuiTheme({
   formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
@@ -57,7 +58,7 @@ const useStyles = makeStyles((themes) => ({
 }));
 
 // Pseudostate
-const signupObj = {
+let signupObj = {
 
 };
 
@@ -65,31 +66,28 @@ const writeToObj = (event) => {
   signupObj[event.target.name] = event.target.value;
 };
 
-const message = {
-}
-// Submit
-const handleClick = (e) => {
-  e.preventDefault();
-  // Check auth
-  axios.post('/db/signup', {
-    data: signupObj,
-    // If correct, pull data from DB for user
-  }).then((data) => {
-    if (data.userName) {
-      // Update state with response data
-      // UserIsLoggedIn = true
-      alert(`Welcome ${response.userName}`);
-      dispatch(actionLogin(data));
-      console.log(response);
-    } else {
-      alert('Username already exists, try another');
-    }
-  });
-  // Write data to the database
-};
-
-function SignUp() {
+function SignUp({ dispatch }) {
   const classes = useStyles();
+  // Submit
+  const handleClick = (e) => {
+    e.preventDefault();
+    // Check auth
+    axios.post('/db/signup', {
+      data: signupObj,
+    }).then((res) => {
+      signupObj = {};
+      if (res.data.userName) {
+        // Update state with response data
+        // UserIsLoggedIn = true
+        alert(`Welcome ${res.data.userName}`);
+        dispatch(loginAction());
+        dispatch(userToState(res.data));
+      } else {
+        alert('Username already exists, try another');
+      }
+    });
+    // Write data to the database
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -207,4 +205,4 @@ function SignUp() {
   );
 }
 
-export default connect(null, mapDispatchToProps)(SignUp)
+export default connect()(SignUp);
