@@ -1,3 +1,4 @@
+// miles & tyler
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://FriendMiles:Igala1rele@cluster0-4q3ra.gcp.mongodb.net/Selous', { useNewUrlParser: true, useUnifiedTopology: true });
