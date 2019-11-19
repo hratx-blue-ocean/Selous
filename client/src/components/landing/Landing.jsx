@@ -10,13 +10,13 @@ import SearchBar from 'material-ui-search-bar';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
+      Copyright ©&nbsp;
       <Link color="inherit" href="/">
         Selous
       </Link>
-        {' '}
-        {new Date().getFullYear()}
-        {'.'}
+      {' '}
+      {new Date().getFullYear()}
+      {'.'}
     </Typography>
   );
 }
