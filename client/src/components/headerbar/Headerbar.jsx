@@ -3,11 +3,11 @@ import { Link, BrowserRouter } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
-  AppBar, Toolbar, Typography, Button, ButtonGroup,
+  AppBar, Toolbar, Typography, Button, ButtonGroup, InputBase
 } from '@material-ui/core';
 
-// import SearchIcon from '@material-ui/icons/Search';
-// import RoomIcon from '@material-ui/icons/Room';
+import SearchIcon from '@material-ui/icons/Search';
+import RoomIcon from '@material-ui/icons/Room';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -117,12 +117,10 @@ export default function Headerbar() {
           <Typography variant="h6" className={classes.title}>
             Selous
           </Typography>
-          <BrowserRouter>
-            <Button color="inherit" className={classes.signup} component={Link} to="/signup">Signup</Button>
-            <Button color="inherit" component={Link} to="/login">Login</Button>
-          </BrowserRouter>
+          {/* <Button color="inherit" className={classes.signup} component={Link} to="/signup">Signup</Button>
+          <Button color="inherit" component={Link} to="/login">Login</Button> */}
           {/* <Button color="inherit">Logout</Button> */}
-          {/* <div className={classes.search}>
+          <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -148,33 +146,31 @@ export default function Headerbar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <Button color="inherit">Logout</Button> */}
+          <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
       <div className={classes.break}>
         <div className={classes.leftGroup}>
           <ButtonGroup>
-            <BrowserRouter>
-              <Button
-                className={classes.button}
-                variant="text"
-                component={Link}
-                to="/home"
-              >
-                Home
-              </Button>
-              {/* <Button variant='text' href='#' className={classes.button}>
-                  Search
-              </Button> */}
-              <Button
-                className={classes.button}
-                variant="text"
-                component={Link}
-                to="/dashboard"
-              >
-                Dashboard
-              </Button>
-            </BrowserRouter>
+            <Button
+              className={classes.button}
+              variant="text"
+              component={Link}
+              to="/home"
+            >
+              Home
+            </Button>
+            {/* <Button variant='text' href='#' className={classes.button}>
+                Search
+            </Button> */}
+            <Button
+              className={classes.button}
+              variant="text"
+              component={Link}
+              to="/dashboard"
+            >
+              Dashboard
+            </Button>
           </ButtonGroup>
         </div>
         <div className={classes.rightGroup}>
