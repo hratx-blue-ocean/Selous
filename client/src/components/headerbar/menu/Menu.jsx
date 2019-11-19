@@ -6,13 +6,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
-const options = [
-  'My Dashboard',
-  'Job Search',
-  'About',
-  'Log Out',
-];
-
 const ITEM_HEIGHT = 48;
 
 const useStyles = makeStyles({
