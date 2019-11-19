@@ -1,9 +1,17 @@
 import React from 'react';
 import './App.css';
+import { connect } from 'react-redux';
 import Headerbar from './components/headerbar/Headerbar.jsx';
 import Landing from './components/landing/Landing.jsx';
 
-export default function App() {
+const mapStateToProps = (state) => ({ show: state.isLoggedIn });
+
+function App({ show }) {
+  if (show) {
+    return (
+      <Headerbar />
+    );
+  }
   return (
     <>
       <Headerbar />
@@ -11,3 +19,5 @@ export default function App() {
     </>
   );
 }
+
+export default connect(mapStateToProps)(App);
