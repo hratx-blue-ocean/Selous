@@ -17,7 +17,6 @@ import { connect } from 'react-redux';
 import { loginAction } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
-
 // eslint-disable-next-line
 const theme2 = createMuiTheme({
   formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
