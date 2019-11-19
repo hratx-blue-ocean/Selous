@@ -1,6 +1,6 @@
 export default function displayedTabsReducer(state = [], action) {
   switch (action.type) {
-    case 'SET':
+    case 'SET_DISPLAYED_TABS':
       return action.payload;
     case 'MOVE_LEFT':
       return [action.payload, ...state.slice(0, -1)];

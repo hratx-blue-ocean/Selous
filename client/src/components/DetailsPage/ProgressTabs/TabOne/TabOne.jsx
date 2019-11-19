@@ -11,14 +11,12 @@ import { editAction } from '../../../../redux/actions/actions.js';
 const stylesArr = ['card_one', 'card_two', 'card_three', 'card_four', 'card_five', 'card_six', 'card_seven', 'card_eight'];
 const cardDepth = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
 
-// Add edit onClick
-
-const Tab = ({ tab, companyTabs, dispatch }) => (
+const Tab = ({ tab, companyTabsTEST, dispatch }) => (
   <>
     <EditDetailsModal />
     <div className={styles.tab_wrapper_one}>
       <div className={styles.card_holder}>
-        {companyTabs.slice(0, companyTabs.indexOf(tab)).reduce((acc, cur, i) => {
+        {companyTabsTEST.slice(0, companyTabsTEST.indexOf(tab)).reduce((acc, cur, i) => {
           acc.unshift(styles[stylesArr[i]]);
           return acc;
         }, []).map((el, i) => {
@@ -39,6 +37,6 @@ const Tab = ({ tab, companyTabs, dispatch }) => (
   </>
 );
 
-const mapStateToProps = (state) => ({ show: state.editModal });
+const mapStateToProps = (state) => ({ show: state.editModal, companyTabsTEST: state.companyTabsTEST });
 
 export default connect(mapStateToProps)(Tab);

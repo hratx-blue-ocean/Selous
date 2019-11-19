@@ -37,8 +37,10 @@ const defaultState = [
 
 export default function companyTabsReducerTEST(state = defaultState, action) {
   switch (action.type) {
-    case 'GET_TABS':
+    case 'GET_COMPANY_TABS':
       return state;
+    case 'SET_COMPANY_TABS':
+      return action.payload;
     default:
       return state;
   }
