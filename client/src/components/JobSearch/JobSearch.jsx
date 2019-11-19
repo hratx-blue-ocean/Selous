@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import JobComponent from './JobComponent.jsx';
 import Goals from '../Goals/Goals.jsx';
-import { setApiSearchData } from '../../redux/actions/actions.js';
+import { setSearchInput, setApiSearchData } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
 const useStyles = makeStyles({
@@ -33,36 +33,33 @@ const useStyles = makeStyles({
     flex: 4,
     flexDirection: 'row',
   },
+  search: {
+    width: '80%',
+    margin: '0 auto',
+    maxWidth: 800,
+    marginBottom: 20,
+    marginTop: 20,
+  },
 });
 
-const JobSearch = ({ dispatch, jobSearchData }) => {
+const JobSearch = ({ dispatch, searchInput }) => {
   const classes = useStyles();
+  // console.log(searchInput);
 
-  useEffect(() => {
-    if (jobSearchData.length === 0) {
-      axios.get('https://jobs.github.com/positions.json?description=node')
-        .then((results) => {
-          dispatch(setApiSearchData(results));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
+  const apiGetRequest = (keyword) => {
+    const locationTemp = 'chicago';
+    const descriptionTemp = keyword;
 
-    if (jobSearchData.length === 0 && true === false) {
-      const locationTemp = 'chicago';
-      const descriptionTemp = 'dev';
-
-      axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
-      // https://jobs.github.com/positions.json?description=python&location=new+york
-        .then((results) => {
-          dispatch(setApiSearchData(results));
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  });
+    axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
+    // https://jobs.github.com/positions.json?description=python&location=new+york
+      .then((results) => {
+        dispatch(setApiSearchData(results));
+        console.log(results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
@@ -72,12 +69,12 @@ const JobSearch = ({ dispatch, jobSearchData }) => {
         <Paper container className={classes.root}>
           <Grid container justify="center" alignItems="center">
             <SearchBar
-              onChange={() => console.log('onChange')}
-              onRequestSearch={() => console.log('onRequestSearch')}
-              style={{
-                margin: '0 auto',
-                maxWidth: 800,
-              }}
+              className={classes.search}
+              placeholder="Search Jobs..."
+              value={searchInput}
+              onChange={(newValue) => dispatch(setSearchInput(newValue))}
+              onRequestSearch={(keyword) => apiGetRequest(keyword)}
+              onCancelSearch={() => dispatch(setSearchInput(''))}
             />
             <JobComponent />
             <JobComponent />
@@ -93,6 +90,8 @@ const JobSearch = ({ dispatch, jobSearchData }) => {
   );
 };
 
-const mapStatesToProps = (state) => ({ jobSearchData: state.apiData });
+const mapStatesToProps = (state) => ({
+  searchInput: state.searchInput,
+});
 
 export default connect(mapStatesToProps)(JobSearch);
