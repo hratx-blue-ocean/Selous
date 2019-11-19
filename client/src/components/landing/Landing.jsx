@@ -167,9 +167,11 @@ const Pricing = ({ searchInput, dispatch }) => {
       />
       <SearchBar
         className={classes.search}
+        placeholder="Search Jobs..."
         value={searchInput}
         onChange={(newValue) => dispatch(setSearchInput(newValue))}
         onRequestSearch={(keyword) => apiGetRequest(keyword)}
+        onCancelSearch={() => dispatch(setSearchInput(''))}
       />
       {/* Footer */}
       <Container component="footer" className={classes.footer}>
