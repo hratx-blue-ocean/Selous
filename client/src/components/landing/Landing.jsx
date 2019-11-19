@@ -118,7 +118,7 @@ const footers = [
   },
 ];
 
-const Pricing = ({ searchInput, dispatch }) => {
+const Landing = ({ searchInput, dispatch }) => {
   const classes = useStyles();
   console.log(searchInput);
 
@@ -204,4 +204,4 @@ const Pricing = ({ searchInput, dispatch }) => {
 
 const mapStatesToProps = (state) => ({ searchInput: state.searchInput, apiData: state.apiData });
 
-export default connect(mapStatesToProps)(Pricing);
+export default connect(mapStatesToProps)(Landing);
