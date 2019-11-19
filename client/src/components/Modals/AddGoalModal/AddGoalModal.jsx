@@ -1,9 +1,10 @@
-import React, { useState }  from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+/* eslint-disable prefer-const */
 import {
   Typography,
   Fab,
@@ -104,7 +105,6 @@ const mapStateToProps = (state) => ({ show: state.addGoalModal });
 function AddGoalModal({ show, dispatch }) {
   const classes = useStyles();
   let [objective, setObjective] = useState('');
-  let [frequency, setFrequency] = useState('');
   let [target, setTarget] = useState(0);
 
   const addGoal = () => {
@@ -121,7 +121,7 @@ function AddGoalModal({ show, dispatch }) {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   };
 
   return (

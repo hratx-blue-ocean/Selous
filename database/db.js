@@ -57,14 +57,14 @@ const validateLogin = (login, callback) => {
         callback(null, user);
       }
     })
-    .catch((err) => { callback(err, null); console.log('errrrrr') });
+    .catch((err) => { callback(err, null); });
 };
 
 
 const validateSignup = (userData, callback) => {
   User.findOne({ userName: userData.username })
     .then((user) => {
-      if (user === null){
+      if (user === null) {
         const newUser = new User({
           userName: userData.username,
           password: userData.password,
@@ -83,7 +83,7 @@ const validateSignup = (userData, callback) => {
             if (err) callback(err, null);
           });
       } else {
-        callback(null, `username already taken`);
+        callback(null, 'username already taken');
       }
     })
     .catch((error) => {
