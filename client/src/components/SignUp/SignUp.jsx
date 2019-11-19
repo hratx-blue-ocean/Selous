@@ -191,6 +191,7 @@ function SignUp() {
               className={classes.submit}
               component={Link}
               to="/login"
+              onClick={(e) => handleClick(e)}
             >
               Sign Up
             </Button>
