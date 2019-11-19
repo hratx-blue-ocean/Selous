@@ -8,12 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
-<<<<<<< HEAD
-import { setSearchInput } from '../../redux/actions/actions.js';
-=======
 import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
-import { setSearchInput, setApiSearchData, showAboutAction } from '../../redux/actions/actions.js';
->>>>>>> dev
+import { setSearchInput, showAboutAction } from '../../redux/actions/actions.js';
 
 function Copyright() {
   return (
@@ -132,7 +128,7 @@ const Landing = ({ searchInput, dispatch }) => {
   const apiGetRequest = () => {
     console.log(searchInput);
 
-    axios.get('/apiRequest', {
+    axios.get('/api/apiRequest', {
       params: {
         description: searchInput,
       },

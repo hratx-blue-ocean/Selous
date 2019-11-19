@@ -9,12 +9,8 @@ import {
 } from '@material-ui/core';
 import JobComponent from './JobComponent.jsx';
 import Goals from '../Goals/Goals.jsx';
-<<<<<<< HEAD
 import { setSearchInput } from '../../redux/actions/actions.js';
-=======
-import { setSearchInput, setApiSearchData } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
->>>>>>> dev
 
 const useStyles = makeStyles({
   jobSearchGoalsContainer: {

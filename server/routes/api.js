@@ -3,7 +3,6 @@ const axios = require('axios');
 // const db = require('../../database/db');
 
 router.get('/apiRequest', (req, res) => {
-  console.log('hi devin');
   let descriptionTemp;
   const locationTemp = 'chicago';
 
@@ -17,6 +16,9 @@ router.get('/apiRequest', (req, res) => {
     .then((results) => {
       res.send(results);
       // console.log(results);
+    })
+    .catch((error) => {
+      res.send(error);
     });
 });
 

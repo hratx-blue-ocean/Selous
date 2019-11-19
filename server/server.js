@@ -19,7 +19,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // You can place your routes here, feel free to refactor:
-const { db, api } = require('./routes');
+const { db } = require('./routes');
+const api = require('./routes/api.js');
 
 app.use('/db', db);
 app.use('/api', api);
