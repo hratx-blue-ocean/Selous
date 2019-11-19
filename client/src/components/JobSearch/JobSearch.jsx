@@ -73,7 +73,7 @@ const JobSearch = ({ dispatch, jobSearchData }) => {
             onRequestSearch={() => console.log('onRequestSearch')}
             style={{
               margin: '0 auto',
-              maxWidth: 800,
+              width: 500,
             }}
           />
           <JobComponent />
