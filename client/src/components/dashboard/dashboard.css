@@ -1,7 +1,13 @@
+.flexbox {
+    display: flex;
+}
 .dashboard {
     background: #FFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: solid 2px #9f6cb7;
+    margin: auto;
+    width: 800px;
+    height: 741px;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -35,6 +41,9 @@
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 .dash-red {
+    text-align: center;
+    color: #FFF;
+    line-height: 90px;
     width: 35px;
     height: 90px;
     margin: 0px 10px;
@@ -43,6 +52,9 @@
 }
 
 .dash-orange {
+    text-align: center;
+    color: #FFF;
+    line-height: 90px;
     width: 35px;
     height: 90px;
     margin: 0px 10px;
@@ -51,6 +63,9 @@
 
 }
 .dash-yellow {
+    text-align: center;
+    color: #FFF;
+    line-height: 90px;
     width: 35px;
     height: 90px;
     margin: 0px 10px;
@@ -59,6 +74,9 @@
 
 }
 .dash-green {
+    text-align: center;
+    color: #FFF;
+    line-height: 90px;
     width: 35px;
     height: 90px;
     margin: 0px 10px;
@@ -67,6 +85,9 @@
 
 }
 .dash-gray {
+    text-align: center;
+    color: #FFF;
+    line-height: 90px;
     width: 35px;
     height: 90px;
     margin: 0px 10px;
@@ -74,6 +95,9 @@
     background: rgba(160, 160, 160, 0.85);
 }
 .dash-blue {
+    text-align: center;
+    color: #FFF;
+    line-height: 90px;
     width: 35px;
     height: 90px;
     margin: 0px 10px;
@@ -82,6 +106,9 @@
 
 }
 .dash-pinky {
+    text-align: center;
+    color: #FFF;
+    line-height: 90px;
     width: 35px;
     height: 90px;
     margin: 0px 10px;
@@ -90,6 +117,9 @@
 }
 
 .dash-magenta {
+    text-align: center;
+    color: #FFF;
+    line-height: 90px;
     width: 35px;
     height: 90px;
     margin: 0px 10px;

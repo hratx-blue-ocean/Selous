@@ -6,7 +6,7 @@ export function jobPostingModalReducer(state = false, action) {
       return state;
   }
 }
-export function addGoalModalReducer(state = true, action) {
+export function addGoalModalReducer(state = false, action) {
   switch (action.type) {
     case 'ADD_GOAL':
       return !state;
@@ -16,7 +16,7 @@ export function addGoalModalReducer(state = true, action) {
 }
 export function addJobModalReducer(state = false, action) {
   switch (action.type) {
-    case 'ADD_JOB':
+    case 'ADD_JOB_MODAL':
       return !state;
     default:
       return state;
@@ -33,6 +33,14 @@ export function whatsNextModalReducer(state = false, action) {
 export function editModalReducer(state = false, action) {
   switch (action.type) {
     case 'EDIT':
+      return !state;
+    default:
+      return state;
+  }
+}
+export function showAboutReducer(state = false, action) {
+  switch (action.type) {
+    case 'ABOUT':
       return !state;
     default:
       return state;
