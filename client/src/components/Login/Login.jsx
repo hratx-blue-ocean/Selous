@@ -82,22 +82,24 @@ const mapStateToProps = (state) => ({ show: state.isLoggedIn });
 
 function SignIn({ dispatch }) {
   const classes = useStyles();
-  const handleLogin = () => {
-    dispatch(loginAction());
-    axios.post('/login', {
-      userName: loginObj.username,
-      password: loginObj.password,
-    // If correct, pull data from DB for user
-    }).then((response) => {
-      // Check auth
-      if (response) {
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Check auth
+    axios.post('/db/login', {
+      data: signupObj,
+      // If correct, pull data from DB for user
+    }).then((data) => {
+      if (data.userName) {
         // Update state with response data
+        // UserIsLoggedIn = true
+        alert(`Welcome ${response.userName}`);
+        dispatch(actionLogin(data));
         console.log(response);
-        dispatch(loginAction());
       } else {
-        console.log('invalid login');
+        alert('Invalid Login');
       }
     });
+    // Write data to the database
   };
   return (
     <>

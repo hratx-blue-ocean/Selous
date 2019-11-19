@@ -82,7 +82,7 @@ const handleClick = (e) => {
       dispatch(actionLogin(data));
       console.log(response);
     } else {
-      alert('Invalid Login');
+      alert('Username already exists, try another');
     }
   });
   // Write data to the database
