@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import {
   Typography,
@@ -13,9 +14,6 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { addJobModalAction } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
-  bigContainer: {
-
-  },
   container: {
     display: 'flex',
     flexDirection: 'row',
@@ -107,6 +105,36 @@ const mapStateToProps = (state) => ({ show: state.addJobModal });
 
 function AddJobModal({ show, dispatch }) {
   const classes = useStyles();
+  let [company, setCompany] = useState('');
+  let [position, setPosition] = useState('');
+  let [contact, setContact] = useState('');
+  let [email, setEmail] = useState('');
+  let [notes, setNotes] = useState('');
+
+  // const postJob = () => {
+  //   axios.post()
+  // }
+
+  const addJob = () => {
+    const jobData = {};
+
+    jobData.company = company;
+    jobData.completed = false;
+    jobData.contactEmail = email;
+    jobData.contactName = contact;
+    jobData.notes = notes;
+    jobData.position = position;
+    jobData.progressArray = [];
+
+    axios.post('/db/dashboard/job', '5dd029fe3b8f9e2e8c21d3aa', jobData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Modal
       className={classes.bigContainer}
@@ -120,25 +148,41 @@ function AddJobModal({ show, dispatch }) {
             <Typography>
               Company
             </Typography>
-            <input type="text" className={classes.next} />
+            <input
+              onChange={(event) => { setCompany(company = event.target.value); }}
+              type="text"
+              className={classes.next}
+            />
           </div>
           <div>
             <Typography>
               Roll / Position
             </Typography>
-            <input type="text" className={classes.next} />
+            <input
+              onChange={(event) => { setPosition(position = event.target.value); }}
+              type="text"
+              className={classes.next}
+            />
           </div>
           <div>
             <Typography>
               Contact
             </Typography>
-            <input type="text" className={classes.next} />
+            <input
+              onChange={(event) => { setContact(contact = event.target.value); }}
+              type="text"
+              className={classes.next}
+            />
           </div>
           <div>
             <Typography>
               Contact E-mail
             </Typography>
-            <input type="text" className={classes.next} />
+            <input
+              onChange={(event) => { setEmail(email = event.target.value); }}
+              type="text"
+              className={classes.next}
+            />
           </div>
         </div>
         <div className={classes.rightContainer}>
@@ -146,13 +190,19 @@ function AddJobModal({ show, dispatch }) {
             <Typography>
               Job Details / Notes
             </Typography>
-            <textarea className={classes.notes} />
+            <textarea
+              onChange={(event) => { setNotes(notes = event.target.value); }}
+              className={classes.notes}
+            />
           </div>
           <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
             <Fab onClick={() => dispatch(addJobModalAction())} className={classes.buttonBoi}>
               <AddCircleIcon className={classes.doNot} />
             </Fab>
-            <Fab className={classes.fabStuff}>
+            <Fab
+              onClick={() => { addJob(); dispatch(addJobModalAction()); }}
+              className={classes.fabStuff}
+            >
               <CheckCircleIcon className={classes.do} />
             </Fab>
           </Box>

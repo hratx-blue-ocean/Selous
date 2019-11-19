@@ -1,3 +1,4 @@
+// miles & tyler
 const mongoose = require('mongoose');
 
 mongoose.connect('mongodb+srv://FriendMiles:Igala1rele@cluster0-4q3ra.gcp.mongodb.net/Selous', { useNewUrlParser: true, useUnifiedTopology: true });
@@ -35,7 +36,7 @@ const UserSchema = new mongoose.Schema({
   userJobs: [JobSchema],
   userGoals: [
     {
-      goaldId: Number,
+      goalId: Number,
       goalName: String,
       goalTarget: Number,
       goalProgress: Number,
@@ -61,11 +62,11 @@ const validateLogin = (login, callback) => {
 
 
 const validateSignup = (userData, callback) => {
-  User.findOne({ userName: userData.userName })
+  User.findOne({ userName: userData.username })
     .then((user) => {
       if (user === null) {
         const newUser = new User({
-          userName: userData.userName,
+          userName: userData.username,
           password: userData.password,
           zipcode: userData.zipcode,
           firstName: userData.firstName,
@@ -91,11 +92,13 @@ const validateSignup = (userData, callback) => {
 
 //
 
-const addJob = (userId, jobData) => {
+const addJob = (userId, jobData, callback) => {
+  const date = new Date();
+  const now = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`;
   const job = new Job({
     completed: false,
     notes: jobData.notes,
-    createdAt: jobData.createdAt,
+    createdAt: now,
     company: jobData.company,
     position: jobData.position,
     contactName: jobData.contactName,
@@ -104,32 +107,36 @@ const addJob = (userId, jobData) => {
   });
   User.findOne({ _id: userId }).then((user) => {
     user.userJobs.push(job);
-    console.log(job);
-    user.save((err) => {
-      if (err) console.log(err);
-    });
-  }).catch((err) => { console.log(err); });
-};
-
-const addGoal = (userId, goalData) => {
-  User.findOne({ _id: userId }).then((user) => {
-    user.userGoals.push(goalData);
-    user.save((err) => {
-      if (err) console.log(err);
-    });
-  }).catch((err) => {
-    if (err) console.log(err);
+    callback(null, job);
+    user.save().catch((err) => { callback(err, null); });
   });
 };
 
-const addJobProgress = (userId, jobId, progressData) => {
+const addGoal = (userId, goalData, callback) => {
+  User.findOne({ _id: userId }).then((user) => {
+    user.userGoals.push(goalData);
+    user.save((err) => {
+      if (err) callback(err, null);
+      else {
+        callback(null, goalData);
+      }
+    });
+  }).catch((err) => {
+    if (err) callback(err, null);
+  });
+};
+
+const addJobProgress = (userId, jobId, progressData, callback) => {
   User.findOne({ _id: userId }).then((user) => {
     user.userJobs[jobId].progressArray.push(progressData);
     user.save((err) => {
-      if (err) console.log(err);
+      if (err) callback(err, null);
+      else {
+        callback(null, progressData);
+      }
     });
   }).catch((err) => {
-    if (err) console.log(err);
+    if (err) callback(err, null);
   });
 };
 
@@ -140,7 +147,7 @@ const addJobProgress = (userId, jobId, progressData) => {
 //   goalProgress: 0,
 // };
 
-// const progress = {
+// progress: {
 //   stepName: 'Applied',
 //   stepNotes: 'Something cool',
 //   createdAt: 'yesterday',
@@ -178,14 +185,14 @@ const addJobProgress = (userId, jobId, progressData) => {
 // addJobProgress('5dd029fe3b8f9e2e8c21d3aa', 0, progress);
 // addGoal('5dd029fe3b8f9e2e8c21d3aa', goal)
 // const data = {
-//   completed: false,
-//   notes: 'yadda yadda',
-//   createdAt: 'yadda yadda 1234',
-//   company: 'yadda yadda',
-//   position: 'professional badass',
-//   contactName: 'Marvin',
-//   contactEmail: 'Marvins email',
-//   progressArray: [],
+// completed: false,
+// notes: 'yadda yadda',
+// createdAt: 'yadda yadda 1234',
+// company: 'yadda yadda',
+// position: 'professional badass',
+// contactName: 'Marvin',
+// contactEmail: 'Marvins email',
+// progressArray: [],
 // };
 // addJob('5dd029fe3b8f9e2e8c21d3aa', data);
 

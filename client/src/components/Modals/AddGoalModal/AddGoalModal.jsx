@@ -102,6 +102,14 @@ const mapStateToProps = (state) => ({ show: state.addGoalModal });
 
 function AddGoalModal({ show, dispatch }) {
   const classes = useStyles();
+  let [objective, setObjective] = useState('');
+  let [frequency, setFrequency] = useState('');
+
+  // addGoal() {
+  //   let goal = {};
+
+  //   goal.goalId = 2;
+  // }
 
   return (
     <Modal
@@ -115,20 +123,31 @@ function AddGoalModal({ show, dispatch }) {
             <Typography>
               Objective
             </Typography>
-            <input type="text" className={classes.next} />
+            <input
+              onChange={(event) => { setObjective(objective = event.target.value); }}
+              type="text"
+              className={classes.next}
+            />
           </div>
           <div>
             <Typography>
               Frequency
             </Typography>
-            <input type="text" className={classes.next} />
+            <input
+              onChange={(event) => { setFrequency(frequency = event.target.value); }}
+              type="text"
+              className={classes.next}
+            />
           </div>
         </div>
         <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
           <Fab onClick={() => dispatch(addGoalAction())} className={classes.buttonBoi}>
             <AddCircleIcon className={classes.doNot} />
           </Fab>
-          <Fab className={classes.fabStuff}>
+          <Fab
+            onClick={() => { dispatch(addGoalAction()); }}
+            className={classes.fabStuff}
+          >
             <CheckCircleIcon className={classes.do} />
           </Fab>
         </Box>
