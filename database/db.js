@@ -92,9 +92,8 @@ const validateSignup = (userData, callback) => {
     });
 };
 
-//
-
-const addJob = (userId, jobData) => {
+// Needs userId in jobData
+const addJob = (jobData, callback) => {
   const job = new Job({
     completed: false,
     notes: jobData.notes,
@@ -105,35 +104,33 @@ const addJob = (userId, jobData) => {
     contactEmail: jobData.contactEmail,
     progressArray: [],
   });
-  User.findOne({ _id: userId }).then((user) => {
+  User.findOne({ _id: jobData.userId }).then((user) => {
     user.userJobs.push(job);
     console.log(job);
-    user.save((err) => {
-      if (err) console.log(err);
-    });
-  }).catch((err) => { console.log(err); });
+    user.save().then((data) => {
+      callback(null, data)
+    })
+  }).catch((err) => { callback(err, null) });
 };
 
-const addGoal = (userId, goalData) => {
+// Needs userId in goalData
+const addGoal = (goalData, callback) => {
   User.findOne({ _id: userId }).then((user) => {
     user.userGoals.push(goalData);
-    user.save((err) => {
-      if (err) console.log(err);
-    });
-  }).catch((err) => {
-    if (err) console.log(err);
-  });
+    user.save.then((data) => {
+      callback(null, data);
+    })
+  }).catch((err) => { callback(err, null); });
 };
 
-const addJobProgress = (userId, jobId, progressData) => {
-  User.findOne({ _id: userId }).then((user) => {
-    user.userJobs[jobId].progressArray.push(progressData);
-    user.save((err) => {
-      if (err) console.log(err);
-    });
-  }).catch((err) => {
-    if (err) console.log(err);
-  });
+// Needs userId (long hash) and jobId (array index) in progressData
+const addJobProgress = (progressData, callback) => {
+  User.findOne({ _id: progressData.userId }).then((user) => {
+    user.userJobs[progressData.jobId].progressArray.push(progressData);
+    user.save.then((data) => {
+      callback(null, data)
+    })
+  }).catch((err) => { callback(err, null); });
 };
 
 // const goal = {

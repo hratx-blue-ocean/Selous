@@ -68,12 +68,13 @@ const writeToObj = (event) => {
 const handleClick = (e) => {
   e.preventDefault();
   // Check auth
-  axios.post('/signup', {
+  axios.post('/db/signup', {
     data: signupObj,
     // If correct, pull data from DB for user
   }).then((response) => {
     if (response) {
       // Update state with response data
+      // UserIsLoggedIn = true
       console.log(response);
     } else {
       console.log('Username taken! Try another');

@@ -84,7 +84,7 @@ const writeToLogin = (event) => {
 
 const handleLogin = (e) => {
   e.preventDefault();
-  axios.post('/login', {
+  axios.post('/db/login', {
     userName: loginObj.username,
     password: loginObj.password,
   // If correct, pull data from DB for user
@@ -92,6 +92,7 @@ const handleLogin = (e) => {
     // Check auth
     if (response) {
       // Update state with response data
+      // UserLoggedIn = true
       console.log(response);
     } else {
       console.log('invalid login');
