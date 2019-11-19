@@ -6,9 +6,9 @@ import {
 import {
   addGoalAction, incrementGoalAction, decrementGoalAction, getGoalsAction,
 } from '../../redux/actions/actions.js';
+import addGoalModal from '../Modals/AddGoalModal/AddGoalModal.jsx';
 
 const mapStateToProps = (state) => ({
-  addGoal: state.addGoal,
   currentGoals: state.currentGoals,
 });
 
@@ -57,71 +57,71 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Goals = ({ addGoal, currentGoals, dispatch }) => {
+const Goals = ({ currentGoals, dispatch }) => {
   useEffect(() => {
     dispatch(getGoalsAction());
   }, []);
 
   const classes = useStyles();
 
-  if (addGoal) {
-    return <div>This is a test div</div>;
-  }
   return (currentGoals.length > 0 && (
-    <div className={classes.goalsTrackerContainer}>
-      <CssBaseline />
-      <main>
-        <Container className={classes.goalsContainer} maxWidth="xs">
-          <Card className={classes.titleCard}>
-            <CardContent className={classes.titleCardContent}>
-              <Typography variant="h3" component="h3">
-                Goals
-              </Typography>
-            </CardContent>
-          </Card>
-          <hr style={{ margin: '20px 10px' }} />
-          {currentGoals.map((currentGoal, index) => (
-            <Card key={currentGoal.goalName} className={classes.card}>
-              <CardContent className={classes.cardContent}>
-                <Typography variant="h5" component="h2">
-                  {`${currentGoal.goalProgress} / `}
-                  {currentGoal.goalTarget}
+    <>
+      <addGoalModal />
+      <div className={classes.goalsTrackerContainer}>
+        <CssBaseline />
+        <main>
+          <Container className={classes.goalsContainer} maxWidth="xs">
+            <Card className={classes.titleCard}>
+              <CardContent className={classes.titleCardContent}>
+                <Typography variant="h3" component="h3">
+                  Goals
                 </Typography>
               </CardContent>
-              <CardActions className={classes.cardFooter}>
-                <Button
-                  size="small"
-                  className={classes.button2}
-                  onClick={() => dispatch(decrementGoalAction(index))}
-                >
-                  -
-                </Button>
-                <Typography>
-                  {currentGoal.goalName}
-                </Typography>
-                <Button
-                  size="small"
-                  className={classes.button2}
-                  onClick={() => dispatch(incrementGoalAction(index))}
-                >
-                  +
-                </Button>
-              </CardActions>
             </Card>
-          ))}
-          <CardActions className={classes.buttonContainer}>
-            <Button
-              variant="contained"
-              size="large"
-              className={classes.button1}
-              onClick={() => dispatch(addGoalAction())}
-            >
-              +
-            </Button>
-          </CardActions>
-        </Container>
-      </main>
-    </div>
+            <hr style={{ margin: '20px 10px' }} />
+            {currentGoals.map((currentGoal, index) => (
+              <Card key={currentGoal.goalName} className={classes.card}>
+                <CardContent className={classes.cardContent}>
+                  <Typography variant="h5" component="h2">
+                    {`${currentGoal.goalProgress} / `}
+                    {currentGoal.goalTarget}
+                  </Typography>
+                </CardContent>
+                <CardActions className={classes.cardFooter}>
+                  <Button
+                    size="small"
+                    className={classes.button2}
+                    onClick={() => dispatch(decrementGoalAction(index))}
+                  >
+                    -
+                  </Button>
+                  <Typography>
+                    {currentGoal.goalName}
+                  </Typography>
+                  <Button
+                    size="small"
+                    className={classes.button2}
+                    onClick={() => dispatch(incrementGoalAction(index))}
+                  >
+                    +
+                  </Button>
+                </CardActions>
+              </Card>
+            ))}
+            <CardActions className={classes.buttonContainer}>
+              <Button
+                variant="contained"
+                size="large"
+                className={classes.button1}
+                onClick={() => dispatch(addGoalAction())}
+              >
+                +
+              </Button>
+            </CardActions>
+          </Container>
+        </main>
+      </div>
+    </>
   ));
 };
 

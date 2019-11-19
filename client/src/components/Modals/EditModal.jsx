@@ -10,7 +10,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import editAction from '../../redux/actions/actions.js';
+import { editAction } from '../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   root: {

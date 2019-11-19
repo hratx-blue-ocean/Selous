@@ -13,10 +13,15 @@ import Container from '@material-ui/core/Container';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
+import { actionLogin } from '../../redux/actions/actions';
+import { connect } from 'react-redux';
 
 
 // eslint-disable-next-line
 const theme2 = createMuiTheme({
+  formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
+    '&$formLabelFocused': { color: purple },
+  },
   palette: {
     primary: purple,
   },
@@ -38,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.common.white,
@@ -63,15 +67,7 @@ const useStyles = makeStyles((theme) => ({
 //   }
 // });
 
-//      Redux Reducer
-// const loginReducer = (state = '', action) => {
-//   switch (action.type) {
-//     case 'USER_LOGIN':
-//       return action.payload.user;
-//     default:
-//       return state;
-//   }
-// };
+
 
 const loginObj = {
 
@@ -83,16 +79,20 @@ const writeToLogin = (event) => {
 
 const handleLogin = (e) => {
   e.preventDefault();
-  axios.post('/login', {
+  axios.post('/db/login', {
     userName: loginObj.username,
     password: loginObj.password,
     // If correct, pull data from DB for user
   }).then((response) => {
     // Check auth
-    if (response) {
+    if (response.userName) {
       // Update state with response data
+      alert(`Welcome ${response.userName}`);
+      dispatch(actionLogin(response));
+      // UserLoggedIn = true
       console.log(response);
     } else {
+      alert('Invalid Login');
       console.log('invalid login');
     }
   });
@@ -173,5 +173,4 @@ function SignIn() {
   );
 }
 
-// export default connect(null, mapDispatchToProps)(SignIn)
-export default SignIn;
+export default connect(null, mapDispatchToProps)(SignIn)

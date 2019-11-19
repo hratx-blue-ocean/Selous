@@ -12,8 +12,12 @@ import Container from '@material-ui/core/Container';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 const theme = createMuiTheme({
+  formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
+    '&$formLabelFocused': { color: purple },
+  },
   palette: {
     primary: purple,
   },
@@ -61,19 +65,24 @@ const writeToObj = (event) => {
   signupObj[event.target.name] = event.target.value;
 };
 
+const message = {
+}
 // Submit
 const handleClick = (e) => {
   e.preventDefault();
   // Check auth
-  axios.post('/signup', {
+  axios.post('/db/signup', {
     data: signupObj,
     // If correct, pull data from DB for user
-  }).then((response) => {
-    if (response) {
+  }).then((data) => {
+    if (data.userName) {
       // Update state with response data
+      // UserIsLoggedIn = true
+      alert(`Welcome ${response.userName}`);
+      dispatch(actionLogin(data));
       console.log(response);
     } else {
-      console.log('Username taken! Try another');
+      alert('Username taken, try another!');
     }
   });
   // Write data to the database
@@ -198,5 +207,4 @@ function SignUp() {
   );
 }
 
-// export default connect(null, mapDispatchToProps)(SignUp)
-export default SignUp;
+export default connect(null, mapDispatchToProps)(SignUp)

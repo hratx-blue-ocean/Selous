@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
-  AppBar, Toolbar, Typography, Button, ButtonGroup,
+  AppBar, Toolbar, Typography, Button, ButtonGroup, InputBase,
 } from '@material-ui/core';
-// import SearchIcon from '@material-ui/icons/Search';
-// import RoomIcon from '@material-ui/icons/Room';
+
+import SearchIcon from '@material-ui/icons/Search';
+import RoomIcon from '@material-ui/icons/Room';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 72,
     marginLeft: 'auto',
     marginRight: 'auto',
+    marginTop: '8px',
   },
   logo: {
     overflow: 'hidden',
@@ -115,10 +117,11 @@ export default function Headerbar() {
           <Typography variant="h6" className={classes.title}>
             Selous
           </Typography>
-          <Button color="inherit" className={classes.signup} component={Link} to="/signup">Signup</Button>
+          <Button color="inherit" className={classes.signup}
+          component={Link} to="/signup">Signup</Button>
           <Button color="inherit" component={Link} to="/login">Login</Button>
-          {/* <Button color="inherit">Logout</Button> */}
-          {/* <div className={classes.search}>
+           <Button color="inherit">Logout</Button>
+          <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
@@ -144,7 +147,7 @@ export default function Headerbar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <Button color="inherit">Logout</Button> */}
+          <Button color="inherit">Logout</Button>
         </Toolbar>
       </AppBar>
       <div className={classes.break}>
