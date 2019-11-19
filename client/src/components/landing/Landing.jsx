@@ -131,7 +131,7 @@ const Landing = ({ searchInput, dispatch }) => {
     const descriptionTemp = keyword;
 
     axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
-    // https://jobs.github.com/positions.json?description=python&location=new+york
+      // https://jobs.github.com/positions.json?description=python&location=new+york
       .then((results) => {
         dispatch(setApiSearchData(results));
         console.log(results);
