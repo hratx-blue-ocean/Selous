@@ -4,6 +4,7 @@ import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
+/* eslint-disable prefer-const */
 import {
   Typography,
   Fab,
