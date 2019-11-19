@@ -1,5 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import Modal from '@material-ui/core/Modal';
+import { connect } from 'react-redux';
 
 import {
   Typography,
@@ -8,6 +10,7 @@ import {
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { addJobModalAction } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   container: {
@@ -96,52 +99,64 @@ const useStyles = makeStyles(({
   },
 }));
 
-export default function AddJobModal() {
+const mapStateToProps = (state) => ({ show: state.addJobModal });
+
+function AddJobModal({ show, dispatch }) {
   const classes = useStyles();
   return (
-    <div className={classes.container}>
-      <div className={classes.notesContainer}>
-        <div>
-          <Typography>
-            Company
-          </Typography>
-          <input type="text" className={classes.next} />
-        </div>
-        <div>
-          <Typography>
-            Roll / Position
-          </Typography>
-          <input type="text" className={classes.next} />
-        </div>
-        <div>
-          <Typography>
-            Contact
-          </Typography>
-          <input type="text" className={classes.next} />
-        </div>
-        <div>
-          <Typography>
-            Contact E-mail
-          </Typography>
-          <input type="text" className={classes.next} />
-        </div>
-      </div>
-      <div className={classes.rightContainer}>
+    <Modal
+      className={classes.bigContainer}
+      aria-labelledby="simple-modal-title"
+      aria-describedby="simple-modal-description"
+      open={show}
+    >
+      <div className={classes.container}>
         <div className={classes.notesContainer}>
-          <Typography>
-            Job Details / Notes
-          </Typography>
-          <textarea className={classes.notes} />
+          <div>
+            <Typography>
+              Company
+            </Typography>
+            <input type="text" className={classes.next} />
+          </div>
+          <div>
+            <Typography>
+              Roll / Position
+            </Typography>
+            <input type="text" className={classes.next} />
+          </div>
+          <div>
+            <Typography>
+              Contact
+            </Typography>
+            <input type="text" className={classes.next} />
+          </div>
+          <div>
+            <Typography>
+              Contact E-mail
+            </Typography>
+            <input type="text" className={classes.next} />
+          </div>
         </div>
-        <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
-          <Fab className={classes.buttonBoi}>
-            <AddCircleIcon className={classes.doNot} />
-          </Fab>
-          <Fab className={classes.fabStuff}>
-            <CheckCircleIcon className={classes.do} />
-          </Fab>
-        </Box>
+        <div className={classes.rightContainer}>
+          <div className={classes.notesContainer}>
+            <Typography>
+              Job Details / Notes
+            </Typography>
+            <textarea className={classes.notes} />
+          </div>
+          <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
+            <Fab onClick={() => dispatch(addJobModalAction())} className={classes.buttonBoi}>
+              <AddCircleIcon className={classes.doNot} />
+            </Fab>
+            <Fab className={classes.fabStuff}>
+              <CheckCircleIcon className={classes.do} />
+            </Fab>
+          </Box>
+        </div>
       </div>
-    </div>
+    </Modal>
   );
 }
+
+
+export default connect(mapStateToProps)(AddJobModal);

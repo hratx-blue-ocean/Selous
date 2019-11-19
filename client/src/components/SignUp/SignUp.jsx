@@ -68,17 +68,19 @@ const writeToObj = (event) => {
 const handleClick = (e) => {
   e.preventDefault();
   // Check auth
-  axios.post('/signup', {
-    data: signupObj,
+  axios.post('/db/signup', signupObj)
     // If correct, pull data from DB for user
-  }).then((response) => {
-    if (response) {
-      // Update state with response data
-      console.log(response);
-    } else {
-      console.log('Username taken! Try another');
-    }
-  });
+    .then((response) => {
+      if (response) {
+        // Update state with response data
+        console.log(response);
+      } else {
+        console.log('Username taken! Try another');
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+    });
   // Write data to the database
 };
 

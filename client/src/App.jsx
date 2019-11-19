@@ -7,15 +7,10 @@ import Landing from './components/landing/Landing.jsx';
 const mapStateToProps = (state) => ({ show: state.isLoggedIn });
 
 function App({ show }) {
-  if (show) {
-    return (
-      <Headerbar />
-    );
-  }
   return (
     <>
       <Headerbar />
-      <Landing />
+      {show ? null : <Landing />}
     </>
   );
 }
