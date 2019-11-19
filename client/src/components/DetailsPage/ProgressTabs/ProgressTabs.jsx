@@ -17,14 +17,17 @@ const ProgressTabs = ({
   companyTabsTEST,
   whatsNextTab,
   displayedTabs,
+  tabColors,
   dispatch,
 }) => {
   useEffect(() => {
     if (companyTabsTEST) {
-      dispatch(setDisplayedTabs([...companyTabsTEST.slice(-2), whatsNextTab]));
+      const tempArr = companyTabsTEST.slice(-2);
+      tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
+      tempArr[1].color = tabColors[companyTabsTEST.indexOf(tempArr[1])];
+      dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
     }
   }, [companyTabsTEST]);
-
 
   return (
     <div className={styles.progress_tabs_wrapper}>
@@ -48,6 +51,7 @@ const mapStateToProps = (state) => ({
   companyTabsTEST: state.companyTabsTEST,
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
+  tabColors: state.tabColors,
 });
 
 export default connect(mapStateToProps)(ProgressTabs);
