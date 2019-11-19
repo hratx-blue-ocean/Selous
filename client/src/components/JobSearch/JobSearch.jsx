@@ -9,7 +9,12 @@ import {
 } from '@material-ui/core';
 import JobComponent from './JobComponent.jsx';
 import Goals from '../Goals/Goals.jsx';
+<<<<<<< HEAD
 import { setSearchInput } from '../../redux/actions/actions.js';
+=======
+import { setSearchInput, setApiSearchData } from '../../redux/actions/actions.js';
+import Headerbar from '../headerbar/Headerbar.jsx';
+>>>>>>> dev
 
 const useStyles = makeStyles({
   jobSearchGoalsContainer: {
@@ -70,30 +75,31 @@ const JobSearch = ({ dispatch, searchInput }) => {
   };
 
   return (
-    <div className={classes.jobSearchGoalsContainer}>
-      <div className={classes.adSpace} />
-      <Paper container className={classes.root}>
-        <Grid container justify="center" alignItems="center">
-          <SearchBar
-            item
-            alignItems="flex-start"
-            className={classes.search}
-            placeholder="Search Jobs..."
-            value={searchInput}
-            onChange={(newValue) => dispatch(setSearchInput(newValue))}
-            onRequestSearch={() => apiGetRequest()}
-            onCancelSearch={() => dispatch(setSearchInput(''))}
-          />
-          <JobComponent />
-          <JobComponent />
-          <JobComponent />
-          <JobComponent />
-          <JobComponent />
-          <JobComponent />
-        </Grid>
-      </Paper>
-      <Goals />
-    </div>
+    <>
+      <Headerbar />
+      <div className={classes.jobSearchGoalsContainer}>
+        <div className={classes.adSpace} />
+        <Paper container className={classes.root}>
+          <Grid container justify="center" alignItems="center">
+            <SearchBar
+              className={classes.search}
+              placeholder="Search Jobs..."
+              value={searchInput}
+              onChange={(newValue) => dispatch(setSearchInput(newValue))}
+              onRequestSearch={(keyword) => apiGetRequest(keyword)}
+              onCancelSearch={() => dispatch(setSearchInput(''))}
+            />
+            <JobComponent />
+            <JobComponent />
+            <JobComponent />
+            <JobComponent />
+            <JobComponent />
+            <JobComponent />
+          </Grid>
+        </Paper>
+        <Goals />
+      </div>
+    </>
   );
 };
 
