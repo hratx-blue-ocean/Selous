@@ -6,7 +6,7 @@ import {
 import {
   addGoalAction, incrementGoalAction, decrementGoalAction, getGoalsAction,
 } from '../../redux/actions/actions.js';
-import addGoalModal from '../Modals/AddGoalModal/AddGoalModal.jsx';
+import AddGoalModal from '../Modals/AddGoalModal/AddGoalModal.jsx';
 
 const mapStateToProps = (state) => ({
   currentGoals: state.currentGoals,
@@ -66,7 +66,7 @@ const Goals = ({ currentGoals, dispatch }) => {
 
   return (currentGoals.length > 0 && (
     <>
-      <addGoalModal />
+      <AddGoalModal />
       <div className={classes.goalsTrackerContainer}>
         <CssBaseline />
         <main>
