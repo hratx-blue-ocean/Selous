@@ -18,7 +18,7 @@ const useStyles = makeStyles(({
     flexDirection: 'row',
     padding: 10,
     width: '390px',
-    height: '150px',
+    height: '160px',
     borderRadius: '8px',
     fontFamily: 'Arial',
     fontSize: '18px',
@@ -105,7 +105,6 @@ function AddGoalModal({ show, dispatch }) {
 
   return (
     <Modal
-      className={classes.bigContainer}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
       open={show}
