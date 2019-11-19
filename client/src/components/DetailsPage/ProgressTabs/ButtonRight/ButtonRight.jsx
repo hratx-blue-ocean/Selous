@@ -30,7 +30,11 @@ const ButtonRight = ({
 
   return (
     <div className={styles.right_button}>
-      <button type="button" className={styles.button} onClick={handleOnClick}>{}</button>
+      <button type="button" className={styles.button} onClick={handleOnClick}>
+        <svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1.23603 12.2368L0.883244 12.5904L1.23641 12.9436L2.64641 14.3536L2.99997 14.7071L3.35352 14.3536L9.35352 8.35355L9.70707 8L9.35352 7.64645L3.35352 1.64645L2.99997 1.29289L2.64641 1.64645L1.23641 3.05645L0.883244 3.40961L1.23603 3.76317L5.46363 8L1.23603 12.2368Z" fill="#F2F2F2" stroke="black" />
+        </svg>
+      </button>
     </div>
   );
 };
