@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
-import axios from 'axios';
+// import axios from 'axios';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
 const theme = createMuiTheme({
@@ -65,25 +65,25 @@ const writeToObj = (event) => {
   signupObj[event.target.name] = event.target.value;
 };
 
-// Submit
-const handleClick = (e) => {
-  e.preventDefault();
-  // Check auth
-  axios.post('/db/signup', signupObj)
-    // If correct, pull data from DB for user
-    .then((response) => {
-      if (response) {
-        // Update state with response data
-        console.log(response);
-      } else {
-        console.log('Username taken! Try another');
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  // Write data to the database
-};
+// // Submit
+// const handleClick = (e) => {
+//   e.preventDefault();
+//   // Check auth
+//   axios.post('/db/signup', signupObj)
+//     // If correct, pull data from DB for user
+//     .then((response) => {
+//       if (response) {
+//         // Update state with response data
+//         console.log(response);
+//       } else {
+//         console.log('Username taken! Try another');
+//       }
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//     });
+//   // Write data to the database
+// };
 
 function SignUp() {
   const classes = useStyles();
