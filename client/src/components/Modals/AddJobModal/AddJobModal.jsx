@@ -13,6 +13,9 @@ import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import { addJobModalAction } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
+  bigContainer: {
+
+  },
   container: {
     display: 'flex',
     flexDirection: 'row',
@@ -26,6 +29,7 @@ const useStyles = makeStyles(({
     border: 2,
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
+    position: 'static',
   },
   root: {
     padding: 10,
