@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+import SearchBar from 'material-ui-search-bar';
 import {
   Paper,
   Grid,
@@ -56,6 +57,14 @@ const JobSearch = ({ dispatch, jobSearchData }) => {
   return (
     <Paper container className={classes.root}>
       <Grid container justify="center" alignItems="center">
+        <SearchBar
+          onChange={() => console.log('onChange')}
+          onRequestSearch={() => console.log('onRequestSearch')}
+          style={{
+            margin: '0 auto',
+            maxWidth: 800,
+          }}
+        />
         <JobComponent />
         <JobComponent />
         <JobComponent />
