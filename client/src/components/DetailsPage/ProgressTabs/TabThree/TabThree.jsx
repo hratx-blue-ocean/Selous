@@ -34,6 +34,7 @@ const Tab = ({ tab, companyTabs, dispatch }) => (
           </div>
         </div>
       </div>
+      {tab ? (tab.whatsNextTab ? '' : <div className={styles.check} />) : ''}
     </div>
   </>
 );
