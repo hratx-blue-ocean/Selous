@@ -25,3 +25,7 @@ export const moveRightDisplayedTabs = (payload) => ({ type: 'MOVE_RIGHT', payloa
 export const setDisplayedTabs = (payload) => ({ type: 'SET', payload });
 
 export const whatsNextGetTab = () => ({ type: 'GET_TAB' });
+
+export const getTabColors = () => ({ type: 'GET' });
+
+export const loginAction = () => ({ type: 'LOG_IN' });
