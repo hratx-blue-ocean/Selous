@@ -1,4 +1,4 @@
-export default function loggedInReducer(state = true, action) {
+export default function loggedInReducer(state = false, action) {
   switch (action.type) {
     case 'LOG_IN':
       return !state;

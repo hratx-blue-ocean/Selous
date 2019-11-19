@@ -44,7 +44,7 @@ const useStyles = makeStyles({
   },
 });
 
-function PaperSheet({ dispatch }) {
+const JobComponent = ({ dispatch }) => {
   const classes = useStyles();
 
   return (
@@ -59,7 +59,7 @@ function PaperSheet({ dispatch }) {
               </Avatar>
             </Grid>
             <Grid container item xs direction="column" textAlign="left" className={classes.text}>
-              <Typography variant="h5" component="search_Position">
+              <Typography variant="h5" component="search_position">
                 Senior Software Development Engineer
               </Typography>
               <Typography component="search_company">
@@ -79,6 +79,6 @@ function PaperSheet({ dispatch }) {
       </Button>
     </>
   );
-}
+};
 
-export default connect(mapStateToProps)(PaperSheet);
+export default connect(mapStateToProps)(JobComponent);

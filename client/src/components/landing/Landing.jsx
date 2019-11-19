@@ -1,4 +1,6 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
@@ -6,6 +8,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
+import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
+import { setSearchInput, setApiSearchData, showAboutAction } from '../../redux/actions/actions.js';
 
 function Copyright() {
   return (
@@ -94,12 +98,15 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '400px',
     marginLeft: '17%',
   },
+  about: {
+    cursor: 'pointer',
+  },
 }));
 
 const footers = [
   {
     title: 'Company',
-    description: ['Team', 'History', 'Contact us', 'Locations'],
+    description: ['About', 'History', 'Contact us', 'Locations'],
   },
   {
     title: 'Features',
@@ -115,11 +122,28 @@ const footers = [
   },
 ];
 
-export default function Pricing() {
+const Landing = ({ searchInput, dispatch }) => {
   const classes = useStyles();
+  console.log(searchInput);
+
+  const apiGetRequest = (keyword) => {
+    const locationTemp = 'chicago';
+    const descriptionTemp = keyword;
+
+    axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
+    // https://jobs.github.com/positions.json?description=python&location=new+york
+      .then((results) => {
+        dispatch(setApiSearchData(results));
+        console.log(results);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <>
+      <AboutModal />
       <img
         className={classes.avatar}
         src="https://selious.s3.amazonaws.com/Selous.png"
@@ -146,7 +170,14 @@ export default function Pricing() {
         src="https://selious.s3.amazonaws.com/ProfessionalLearningCommunity.jpg"
         alt="icon Logo"
       />
-      <SearchBar className={classes.search} />
+      <SearchBar
+        className={classes.search}
+        placeholder="Search Jobs..."
+        value={searchInput}
+        onChange={(newValue) => dispatch(setSearchInput(newValue))}
+        onRequestSearch={(keyword) => apiGetRequest(keyword)}
+        onCancelSearch={() => dispatch(setSearchInput(''))}
+      />
       {/* Footer */}
       <Container component="footer" className={classes.footer}>
         <Grid container spacing={4} justify="space-evenly">
@@ -156,13 +187,30 @@ export default function Pricing() {
                 {footer.title}
               </Typography>
               <ul>
-                {footer.description.map((item) => (
-                  <li key={item}>
-                    <Link href="/" variant="subtitle1" color="textSecondary">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
+                {footer.description.map((item) => {
+                  if (item === 'About') {
+                    return (
+                      <li key={item}>
+                        <Typography
+                          className={classes.about}
+                          type="button"
+                          variant="subtitle1"
+                          color="textSecondary"
+                          onClick={() => dispatch(showAboutAction())}
+                        >
+                          {item}
+                        </Typography>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={item}>
+                      <Link href="/" variant="subtitle1" color="textSecondary">
+                        {item}
+                      </Link>
+                    </li>
+                  );
+                })}
               </ul>
             </Grid>
           ))}
@@ -174,4 +222,8 @@ export default function Pricing() {
       {/* End footer */}
     </>
   );
-}
+};
+
+const mapStatesToProps = (state) => ({ searchInput: state.searchInput, apiData: state.apiData });
+
+export default connect(mapStatesToProps)(Landing);
