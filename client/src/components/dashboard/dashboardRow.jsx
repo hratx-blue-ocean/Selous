@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import DashColorTile from './dashcolortile.jsx';
 import styles from './dashboard.css';
+import { addJobModalAction } from '../../redux/actions/actions.js';
+import AddJobModal from '../Modals/AddJobModal/AddJobModal.jsx';
 
 const mapStateToProps = (state) => ({
   show: state.addJobModal,
@@ -25,17 +27,20 @@ const DashboardRow = ({ job, dispatch }) => {
     );
   }
   return (
-    <div className={styles['dashboard-row']}>
-      <div
-        role="button"
-        tabIndex={0}
-        className={styles['dash-companytile']}
-        onClick={() => { dispatch(addJobModalAction()); }}
-        onKeyPress=""
-      >
-        +
+    <>
+      <AddJobModal />
+      <div className={styles['dashboard-row']}>
+        <div
+          role="button"
+          tabIndex={0}
+          className={styles['dash-companytile']}
+          onClick={() => { dispatch(addJobModalAction()); }}
+          onKeyPress=""
+        >
+          +
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

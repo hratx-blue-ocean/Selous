@@ -8,7 +8,7 @@ export const getGoalsAction = () => ({ type: 'GET_GOALS' });
 
 export const AddJobAction = (job) => ({ type: 'ADD_JOB', job });
 
-export const addJobModalAction = () => ({ type: 'ADD_JOB' });
+export const addJobModalAction = () => ({ type: 'ADD_JOB_MODAL' });
 
 export const editAction = () => ({ type: 'EDIT' });
 
