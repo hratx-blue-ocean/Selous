@@ -74,6 +74,7 @@ const handleClick = (e) => {
     .then((response) => {
       if (response) {
         // Update state with response data
+        // TODO Add redux state redirection -> dashboard
         console.log(response);
       } else {
         console.log('Username taken! Try another');
@@ -190,6 +191,7 @@ function SignUp() {
               className={classes.submit}
               component={Link}
               to="/login"
+              onClick={(e) => handleClick(e)}
             >
               Sign Up
             </Button>
