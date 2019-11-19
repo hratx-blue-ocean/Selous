@@ -9,6 +9,7 @@
 }
 
 .button{
+    cursor: pointer;
     display: flex;
     place-self: center;
     margin: 0;
