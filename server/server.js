@@ -5,7 +5,6 @@ const path = require('path');
 
 const app = express();
 
-
 // open up CORS
 app.use((_, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -14,15 +13,16 @@ app.use((_, res, next) => {
 });
 
 app.use(logger('dev'));
-
 app.use(express.static(path.join(__dirname, '../client/public')));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // You can place your routes here, feel free to refactor:
 const { db } = require('./routes');
+const api = require('./routes/api.js');
 
 app.use('/db', db);
+app.use('/apiRequest', api);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

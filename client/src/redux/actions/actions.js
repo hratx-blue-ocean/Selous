@@ -41,3 +41,5 @@ export const loginAction = () => ({ type: 'LOG_IN' });
 export const showAboutAction = () => ({ type: 'ABOUT' });
 
 export const landingAction = () => ({ type: 'HAVE_LAND' });
+
+export const userToState = (data) => ({ type: 'GET_USER', data });

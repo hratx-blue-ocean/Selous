@@ -49,7 +49,7 @@ const User = mongoose.model('User', UserSchema);
 const Job = mongoose.model('Job', JobSchema);
 
 const validateLogin = (login, callback) => {
-  User.findOne({ userName: login.userName })
+  User.findOne({ userName: login.username })
     .then((user) => {
       if (user === null || user.password !== login.password) {
         callback(new Error('incorrect login credentials'), null);
@@ -57,14 +57,14 @@ const validateLogin = (login, callback) => {
         callback(null, user);
       }
     })
-    .catch((err) => { callback(err, null); });
+    .catch((err) => { callback(err, null); console.log('errrrrr') });
 };
 
 
 const validateSignup = (userData, callback) => {
   User.findOne({ userName: userData.username })
     .then((user) => {
-      if (user === null) {
+      if (user === null){
         const newUser = new User({
           userName: userData.username,
           password: userData.password,
@@ -76,13 +76,14 @@ const validateSignup = (userData, callback) => {
         });
         newUser.save()
           .then((data) => {
+            console.log(data);
             callback(null, data);
           })
           .catch((err) => {
             if (err) callback(err, null);
           });
       } else {
-        callback(null, 'username already taken');
+        callback(null, `username already taken`);
       }
     })
     .catch((error) => {
