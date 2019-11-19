@@ -15,6 +15,7 @@ import {
   addJobModalReducer,
   whatsNextModalReducer,
   editModalReducer,
+  showAboutReducer,
 } from './ModalReducers.js';
 
 const rootReducer = combineReducers({
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   whatsNextModal: whatsNextModalReducer,
   editModal: editModalReducer,
   isLoggedIn: loggedInReducer,
+  showAbout: showAboutReducer,
 });
 
 export default rootReducer;

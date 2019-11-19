@@ -38,3 +38,11 @@ export function editModalReducer(state = false, action) {
       return state;
   }
 }
+export function showAboutReducer(state = false, action) {
+  switch (action.type) {
+    case 'ABOUT':
+      return !state;
+    default:
+      return state;
+  }
+}
