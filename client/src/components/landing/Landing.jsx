@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
-import { setSearchInput, setApiSearchData } from '../../redux/actions/actions.js';
+import { setSearchInput } from '../../redux/actions/actions.js';
 
 function Copyright() {
   return (
@@ -120,20 +120,18 @@ const footers = [
 
 const Landing = ({ searchInput, dispatch }) => {
   const classes = useStyles();
-  console.log(searchInput);
 
-  const apiGetRequest = (keyword) => {
-    const locationTemp = 'chicago';
-    const descriptionTemp = keyword;
+  const apiGetRequest = () => {
+    console.log(searchInput);
 
-    axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
-    // https://jobs.github.com/positions.json?description=python&location=new+york
+    axios.get('/apiRequest', {
+      params: {
+        description: searchInput,
+      },
+    })
       .then((results) => {
-        dispatch(setApiSearchData(results));
         console.log(results);
-      })
-      .catch((err) => {
-        console.log(err);
+        // store the results in state
       });
   };
 
@@ -170,7 +168,7 @@ const Landing = ({ searchInput, dispatch }) => {
         placeholder="Search Jobs..."
         value={searchInput}
         onChange={(newValue) => dispatch(setSearchInput(newValue))}
-        onRequestSearch={(keyword) => apiGetRequest(keyword)}
+        onRequestSearch={() => apiGetRequest()}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
       {/* Footer */}

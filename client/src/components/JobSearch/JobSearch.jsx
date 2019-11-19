@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import JobComponent from './JobComponent.jsx';
 import Goals from '../Goals/Goals.jsx';
-import { setSearchInput, setApiSearchData } from '../../redux/actions/actions.js';
+import { setSearchInput } from '../../redux/actions/actions.js';
 
 const useStyles = makeStyles({
   jobSearchGoalsContainer: {
@@ -45,19 +45,28 @@ const JobSearch = ({ dispatch, searchInput }) => {
   const classes = useStyles();
   // console.log(searchInput);
 
-  const apiGetRequest = (keyword) => {
-    const locationTemp = 'chicago';
-    const descriptionTemp = keyword;
+  const apiGetRequest = () => {
+    console.log(searchInput);
 
-    axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
-    // https://jobs.github.com/positions.json?description=python&location=new+york
+    axios.get('/apiRequest', {
+      params: {
+        description: searchInput,
+      },
+    })
       .then((results) => {
-        dispatch(setApiSearchData(results));
         console.log(results);
-      })
-      .catch((err) => {
-        console.log(err);
+        // store the results in state
       });
+
+    // axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
+    // // https://jobs.github.com/positions.json?description=python&location=new+york
+    //   .then((results) => {
+    //     dispatch(setApiSearchData(results));
+    //     console.log(results);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
   };
 
   return (
@@ -72,7 +81,7 @@ const JobSearch = ({ dispatch, searchInput }) => {
             placeholder="Search Jobs..."
             value={searchInput}
             onChange={(newValue) => dispatch(setSearchInput(newValue))}
-            onRequestSearch={(keyword) => apiGetRequest(keyword)}
+            onRequestSearch={() => apiGetRequest()}
             onCancelSearch={() => dispatch(setSearchInput(''))}
           />
           <JobComponent />
