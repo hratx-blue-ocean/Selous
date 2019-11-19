@@ -9,6 +9,7 @@ import goalsHandlerReducer from './goalsHandlerReducer.js';
 import userJobsReducer from './userJobsReducer.js';
 import tabColorsReducer from './tabColorsReducer.js';
 import loggedInReducer from './loggedInReducer.js';
+import haveLandingReducer from './haveLandingReducer.js';
 import {
   jobPostingModalReducer,
   addGoalModalReducer,
@@ -33,6 +34,7 @@ const rootReducer = combineReducers({
   editModal: editModalReducer,
   isLoggedIn: loggedInReducer,
   showAbout: showAboutReducer,
+  haveLanding: haveLandingReducer,
 });
 
 export default rootReducer;

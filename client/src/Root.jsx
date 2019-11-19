@@ -12,7 +12,7 @@ export default function Root({ store }) {
   return (
     <Provider store={store}>
       <Router>
-        <Route path="/" component={App} />
+        <Route exact path="/" component={App} />
         <Route path="/jobs" component={JobSearch} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />

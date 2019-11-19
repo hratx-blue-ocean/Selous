@@ -31,3 +31,5 @@ export const getTabColors = () => ({ type: 'GET' });
 export const loginAction = () => ({ type: 'LOG_IN' });
 
 export const showAboutAction = () => ({ type: 'ABOUT' });
+
+export const landingAction = () => ({ type: 'HAVE_LAND' });
