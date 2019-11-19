@@ -57,14 +57,8 @@ const JobSearch = ({ dispatch, jobSearchData }) => {
   return (
     <Paper container className={classes.root}>
       <Grid container justify="center" alignItems="center">
-        <SearchBar
-          onChange={() => console.log('onChange')}
-          onRequestSearch={() => console.log('onRequestSearch')}
-          style={{
-            margin: '0 auto',
-            maxWidth: 800,
-          }}
-        />
+
+
         <JobComponent />
         <JobComponent />
         <JobComponent />
