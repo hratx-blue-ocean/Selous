@@ -9,6 +9,7 @@ export function jobPostingModalReducer(state = false, action) {
 export function addGoalModalReducer(state = true, action) {
   switch (action.type) {
     case 'ADD_GOAL':
+      console.log(state);
       return !state;
     default:
       return state;
