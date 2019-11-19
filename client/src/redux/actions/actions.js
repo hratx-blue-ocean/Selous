@@ -8,7 +8,7 @@ export const getGoalsAction = () => ({ type: 'GET_GOALS' });
 
 export const AddJobAction = (job) => ({ type: 'ADD_JOB', job });
 
-export const addJobModalAction = () => ({ type: 'ADD_JOB' });
+export const addJobModalAction = () => ({ type: 'ADD_JOB_MODAL' });
 
 export const editAction = () => ({ type: 'EDIT' });
 
@@ -28,4 +28,10 @@ export const whatsNextGetTab = () => ({ type: 'GET_TAB' });
 
 export const getTabColors = () => ({ type: 'GET' });
 
+<<<<<<< HEAD
 export const actionLogin = (data) => ({ type: 'USER_LOGIN', data });
+=======
+export const loginAction = () => ({ type: 'LOG_IN' });
+
+export const landingAction = () => ({ type: 'HAVE_LAND' });
+>>>>>>> dev

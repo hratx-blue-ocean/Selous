@@ -1,13 +1,18 @@
 import React from 'react';
 import './App.css';
+import { connect } from 'react-redux';
 import Headerbar from './components/headerbar/Headerbar.jsx';
 import Landing from './components/landing/Landing.jsx';
 
-export default function App() {
+const mapStateToProps = (state) => ({ show: state.haveLanding });
+
+function App({ show }) {
   return (
     <>
       <Headerbar />
-      <Landing />
+      {show ? <Landing /> : null}
     </>
   );
 }
+
+export default connect(mapStateToProps)(App);

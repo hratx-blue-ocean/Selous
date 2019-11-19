@@ -47,6 +47,7 @@ const UserSchema = new mongoose.Schema({
 const User = mongoose.model('User', UserSchema);
 const Job = mongoose.model('Job', JobSchema);
 
+<<<<<<< HEAD
 const validateLogin = (userData, callback) => {
   User.findOne({ userName: userData.username }).then((user) => {
     if (user === null) {
@@ -55,11 +56,18 @@ const validateLogin = (userData, callback) => {
       if (userData.password === user.password) {
         console.log('Login Valid!');
         return user;
+=======
+const validateLogin = (login, callback) => {
+  User.findOne({ userName: login.userName })
+    .then((user) => {
+      if (user === null || user.password !== login.password) {
+        callback(new Error('incorrect login credentials'), null);
+      } else {
+        callback(null, user);
+>>>>>>> dev
       }
-      console.log('incorrect password');
-      return null;
-    }
-  }).catch((err) => { console.log(err); });
+    })
+    .catch((err) => { callback(err, null); });
 };
 
 

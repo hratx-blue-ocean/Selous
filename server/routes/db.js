@@ -17,6 +17,7 @@ router.post('/login', (req, res) => {
       res.status(401).send(false);
     } else {
       res.status(200).send(user);
+<<<<<<< HEAD
     }
   });
 });
@@ -48,6 +49,8 @@ router.post('/dashboard/job/progress', (req, res) => {
       console.log(err);
     } else {
       res.status(200).send(progress);
+=======
+>>>>>>> dev
     }
   });
 });
