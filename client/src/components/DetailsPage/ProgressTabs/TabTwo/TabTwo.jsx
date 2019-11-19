@@ -1,17 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import styles from './TabTwo.css';
 
-export default function Tab() {
-  return (
+import EditDetailsModal from '../../../Modals/EditModal.jsx';
+import { editAction } from '../../../../redux/actions/actions.js';
+
+const mapStateToProps = (state) => ({ show: state.whatsNextModal });
+
+const Tab = ({ tab, dispatch }) => (
+  <>
+    <EditDetailsModal />
     <div className={styles.tab_wrapper_two}>
-      <div className={styles.tab}>
-        <div className={styles.tab_header}>Title</div>
-        <div className={styles.tab_body}>Body</div>
+      <div className={tab ? (styles[tab.color ? tab.color : 'tab']) : null}>
+        <div className={styles.tab_header}>{tab ? tab.tabName : null}</div>
+        <div className={styles.tab_body}>{tab ? tab.tabBody : null}</div>
         <div className={styles.tab_edit}>
-          <div className={styles.edit}>Edit</div>
+          <button type="button" onClick={() => dispatch(editAction())} className={styles.edit}>{tab ? tab.tabEditText : null}</button>
         </div>
       </div>
       <div className={styles.check} />
     </div>
-  );
-}
+  </>
+);
+
+export default connect(mapStateToProps)(Tab);

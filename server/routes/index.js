@@ -1,3 +1,3 @@
-const example = require('./example');
+const db = require('./db');
 
-module.exports = { example };
+module.exports = { db };

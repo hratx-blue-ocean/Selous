@@ -14,6 +14,9 @@ import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
 
 const theme = createMuiTheme({
+  formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
+    '&$formLabelFocused': { color: purple },
+  },
   palette: {
     primary: purple,
   },
@@ -21,7 +24,7 @@ const theme = createMuiTheme({
 });
 
 // eslint-disable-next-line
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((themes) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,

@@ -17,6 +17,9 @@ import axios from 'axios';
 
 // eslint-disable-next-line
 const theme2 = createMuiTheme({
+  formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
+    '&$formLabelFocused': { color: purple },
+  },
   palette: {
     primary: purple,
   },
@@ -37,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.common.white,
