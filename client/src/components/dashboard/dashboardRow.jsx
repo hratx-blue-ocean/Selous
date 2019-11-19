@@ -8,10 +8,13 @@ const DashboardRow = ({ job }) => (
   <div className={styles['dashboard-row']}>
     <div
       className={styles['dash-companytile']}
-      onMouseEnter={(e) => { e.target.innerHTML = `<b>${job.companyName}</b> \n ${job.position}`; }}
-      onMouseLeave={(e) => { e.target.innerHTML = `<b>${job.companyName}</b>`; }}
+      onMouseLeave={(e) => { e.target.innerHTML = `<b>${job.companyName}</b> \n ${job.position}`; }}
+      onMouseEnter={(e) => { e.target.innerHTML = `<b>${job.companyName}</b>`; }}
     >
-      {job.companyName}
+      <div>
+        <b>{job.companyName}</b>
+      </div>
+      {job.position}
     </div>
     {job.tiles.map((tile, i) => (
       <DashColorTile key={tile} tileName={tile} number={i} />
