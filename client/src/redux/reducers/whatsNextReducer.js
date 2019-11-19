@@ -1,7 +1,7 @@
 const defaultState = {
   whatsNextTab: true,
   tabName: '',
-  tabBody: 'Whats up?',
+  tabBody: 'Whats next?',
   tabEditText: 'Next Step',
 };
 

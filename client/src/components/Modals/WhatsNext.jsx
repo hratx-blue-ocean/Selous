@@ -8,6 +8,9 @@ import {
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import Modal from '@material-ui/core/Modal';
+import { connect } from 'react-redux';
+import { whatsNextAction } from '../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   root: {
@@ -70,26 +73,37 @@ const useStyles = makeStyles(({
   },
 }));
 
-export default function WhatsNext() {
+const mapStateToProps = (state) => ({ show: state.whatsNextModal });
+
+function WhatsNext({ show, dispatch }) {
   const classes = useStyles();
   return (
-    <Box className={classes.root}>
-      <Typography>
-        Next
-      </Typography>
-      <input type="text" className={classes.next} />
-      <Typography>
-        Notes
-      </Typography>
-      <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
-        <Fab className={classes.buttonBoi}>
-          <AddCircleIcon className={classes.doNot} />
-        </Fab>
-        <Fab className={classes.fabStuff}>
-          <CheckCircleIcon className={classes.do} />
-        </Fab>
+    <Modal
+      className={classes.bigContainer}
+      aria-labelledby="simple-modal-title"
+      aria-describedby="simple-modal-description"
+      open={show}
+    >
+      <Box className={classes.root}>
+        <Typography>
+          Next
+        </Typography>
+        <input type="text" className={classes.next} />
+        <Typography>
+          Notes
+        </Typography>
+        <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
+          <Fab onClick={() => dispatch(whatsNextAction())} className={classes.buttonBoi}>
+            <AddCircleIcon className={classes.doNot} />
+          </Fab>
+          <Fab className={classes.fabStuff}>
+            <CheckCircleIcon className={classes.do} />
+          </Fab>
+        </Box>
+        <textarea className={classes.notes} />
       </Box>
-      <textarea className={classes.notes} />
-    </Box>
+    </Modal>
   );
 }
+
+export default connect(mapStateToProps)(WhatsNext);
