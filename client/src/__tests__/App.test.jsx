@@ -8,7 +8,7 @@ test('true is true', () => {
   expect(true).toBe(true);
 });
 
-describe('Login', ({ store }) => {
+describe('Login', () => {
   it('should render without crashing', () => {
     const { container } = render(
       <Provider store={store}>
