@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from 'react-testing-library';
-import Headerbar from '../components/headerbar/Headerbar.jsx';
+import Login from '../components/Login/Login.jsx';
 
 test('true is true', () => {
   expect(true).toBe(true);
 });
 
-describe('Headerbar', () => {
+describe('Login', () => {
   it('should render without crashing', () => {
-    const { container } = render(<Headerbar />);
+    const { container } = render(<Login />);
     expect(container).toBeTruthy();
   });
 });

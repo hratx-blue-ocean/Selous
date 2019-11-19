@@ -8,6 +8,7 @@ const ButtonRight = ({
   companyTabsTEST,
   displayedTabs,
   whatsNextTab,
+  tabColors,
   dispatch,
 }) => {
   const handleOnClick = () => {
@@ -18,7 +19,9 @@ const ButtonRight = ({
       } else {
         for (let i = 0, len = companyTabsTEST.length - 1; i < len; i += 1) {
           if (lastDisplayedTab === JSON.stringify(companyTabsTEST[i])) {
-            dispatch(moveRightDisplayedTabs(companyTabsTEST[i + 1]));
+            const tab = companyTabsTEST[i + 1];
+            tab.color = tabColors[companyTabsTEST.indexOf(tab)];
+            dispatch(moveRightDisplayedTabs(tab));
           }
         }
       }
@@ -36,6 +39,7 @@ const mapStateToProps = (state) => ({
   companyTabsTEST: state.companyTabsTEST,
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
+  tabColors: state.tabColors,
 });
 
 export default connect(mapStateToProps)(ButtonRight);

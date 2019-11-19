@@ -8,7 +8,7 @@ export const getGoalsAction = () => ({ type: 'GET_GOALS' });
 
 export const AddJobAction = (job) => ({ type: 'ADD_JOB', job });
 
-export const addJobModalAction = () => ({ type: 'ADD_JOB' });
+export const addJobModalAction = () => ({ type: 'ADD_JOB_MODAL' });
 
 export const editAction = () => ({ type: 'EDIT' });
 
@@ -25,3 +25,9 @@ export const moveRightDisplayedTabs = (payload) => ({ type: 'MOVE_RIGHT', payloa
 export const setDisplayedTabs = (payload) => ({ type: 'SET', payload });
 
 export const whatsNextGetTab = () => ({ type: 'GET_TAB' });
+
+export const getTabColors = () => ({ type: 'GET' });
+
+export const loginAction = () => ({ type: 'LOG_IN' });
+
+export const landingAction = () => ({ type: 'HAVE_LAND' });

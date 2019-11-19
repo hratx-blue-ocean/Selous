@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import { Link } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -13,10 +13,16 @@ import Container from '@material-ui/core/Container';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { loginAction } from '../../redux/actions/actions.js';
+import Headerbar from '../headerbar/Headerbar.jsx';
 
 
 // eslint-disable-next-line
 const theme2 = createMuiTheme({
+  formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
+    '&$formLabelFocused': { color: purple },
+  },
   palette: {
     primary: purple,
   },
@@ -28,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
+      margin: '8px',
     },
 
   },
@@ -36,7 +43,6 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
-
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.common.white,
@@ -51,8 +57,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#9f6cb7',
     borderRadius: '15px',
-  },
-  input: {
   },
 }));
 //    Redux Action
@@ -81,28 +85,31 @@ const writeToLogin = (event) => {
   loginObj[event.target.name] = event.target.value;
 };
 
-const handleLogin = (e) => {
-  e.preventDefault();
-  axios.post('/login', {
-    userName: loginObj.username,
-    password: loginObj.password,
-    // If correct, pull data from DB for user
-  }).then((response) => {
-    // Check auth
-    if (response) {
-      // Update state with response data
-      console.log(response);
-    } else {
-      console.log('invalid login');
-    }
-  });
-};
+const mapStateToProps = (state) => ({ show: state.isLoggedIn });
 
-function SignIn() {
+function SignIn({ dispatch }) {
   const classes = useStyles();
+  const handleLogin = () => {
+    dispatch(loginAction());
+    axios.post('/login', {
+      userName: loginObj.username,
+      password: loginObj.password,
+    // If correct, pull data from DB for user
+    }).then((response) => {
+      // Check auth
+      if (response) {
+        // Update state with response data
+        console.log(response);
+        dispatch(loginAction());
+      } else {
+        console.log('invalid login');
+      }
+    });
+  };
   return (
-    <MuiThemeProvider theme2={theme2}>
-      <Container maxWidth="xs">
+    <>
+      <Headerbar />
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
           <img
@@ -113,7 +120,8 @@ function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form}>
+          <form className={classes.form} noValidate>
+            <MuiThemeProvider theme={theme2} />
             <TextField
               variant="filled"
               required
@@ -142,36 +150,35 @@ function SignIn() {
               label="Remember me"
             />
             <Button
-              onClick={(e) => handleLogin(e)}
+              onClick={handleLogin}
               type="submit"
               fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
+              component={Link}
+              to="/jobs"
             >
               Sign In
             </Button>
-
             <Grid container>
               <Grid item xs>
                 {/* <Link href="#" variant="body2">
-                Forgot password?
-              </Link> */}
+                  Forgot password?
+                </Link> */}
               </Grid>
               <Grid item>
-                <Link href="/SignUp" variant="body2">
+                <Link to="/signup" variant="body2">
                   Don&apos;t have an account? Sign Up
                 </Link>
               </Grid>
-
             </Grid>
           </form>
         </div>
         <Box mt={8} />
       </Container>
-    </MuiThemeProvider>
+    </>
   );
 }
 
-// export default connect(null, mapDispatchToProps)(SignIn)
-export default SignIn;
+export default connect(mapStateToProps)(SignIn);
