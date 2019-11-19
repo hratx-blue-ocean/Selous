@@ -13,7 +13,7 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  db.validateLogin(req.body, (err, user) => {
+  db.validateLogin(req.body.data, (err, user) => {
     if (err) {
       console.log(err);
       res.status(401).send(false);
