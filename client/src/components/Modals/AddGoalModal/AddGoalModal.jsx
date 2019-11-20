@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
 
 /* eslint-disable prefer-const */
 import {
@@ -28,9 +29,11 @@ const useStyles = makeStyles(({
     border: 2,
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
+    margin: '20% auto',
   },
   root: {
     padding: 10,
+    radius: 'auto',
     width: '549px',
     height: '400px',
     borderRadius: '8px',
@@ -139,23 +142,45 @@ function AddGoalModal({ show, dispatch }) {
             <Typography>
               Objective
             </Typography>
-            <input
+            <TextField
+              variant="filled"
+              required
+              fullWidth
+              id="username"
+              label="ex: 'Conduct 3 phone screens/week'"
+              name="username"
+              autoComplete="username"
+              className={classes.next}
+              onChange={(event) => { setObjective(objective = event.target.value); }}
+            />
+            {/* <input
               onChange={(event) => { setObjective(objective = event.target.value); }}
               type="text"
               className={classes.next}
               placeholder="ex: 'Conduct 3 phone screens/week'"
-            />
+            /> */}
           </div>
           <div>
             <Typography>
               Goal Target
             </Typography>
-            <input
+            <TextField
+              variant="filled"
+              required
+              fullWidth
+              id="username"
+              label="How many?"
+              name="username"
+              autoComplete="username"
+              className={classes.next}
+              onChange={(event) => { setTarget(target = event.target.value); }}
+            />
+            {/* <input
               onChange={(event) => { setTarget(target = event.target.value); }}
               type="text"
               className={classes.next}
               placeholder="How many?"
-            />
+            /> */}
           </div>
         </div>
         <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
