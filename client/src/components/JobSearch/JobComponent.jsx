@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,17 +24,19 @@ const useStyles = makeStyles({
     borderStyle: 'solid',
     boxShadow: 3,
     '&:hover': {
-      background: 'purple',
+      background: '#9f6cb7',
     },
     textTransform: 'none',
     textAlign: 'left',
   },
   logo: {
     margin: 10,
-
+    width: '60px',
+    height: '60px',
+    background: 'rgb(200, 169, 214)',
   },
-  search_daysAgo: {
-    margin: 10,
+  searchDaysAgo: {
+    marginRight: 10,
     alignItems: 'flex-end',
   },
   mainContainer: {
@@ -42,6 +45,17 @@ const useStyles = makeStyles({
   text: {
     width: '800px',
   },
+  companyImage: {
+    width: '60px',
+  },
+  postDate: {
+    'justify-content': 'flex-end',
+  },
+  assignIcon: {
+    width: '45px',
+    height: '45px',
+    color: 'purple',
+  },
 });
 
 const JobComponent = ({ job, dispatch }) => {
@@ -49,32 +63,33 @@ const JobComponent = ({ job, dispatch }) => {
 
   return (
     <>
-      <JobPostingModal currentJob={job} />
+      <JobPostingModal oneJob={job} />
       <Button>
         <Card className={classes.root} onClick={() => dispatch(showJobAction())}>
-          <Grid container item wrap="wrap" spacing={2} className={classes.mainContainer}>
+          <Grid container className={classes.mainContainer}>
             <Grid item alignItems="center">
               <Avatar className={classes.logo}>
                 {
                   job.company_logo
-                    ? <img src={job.company_logo} alt={job.id} /> : <AssignmentIcon />
+                    ? <img className={classes.companyImage} src={job.company_logo} alt={job.id} />
+                    : <AssignmentIcon className={classes.assignIcon} />
                 }
               </Avatar>
             </Grid>
-            <Grid container item xs direction="column" textAlign="left" className={classes.text}>
-              <Typography variant="h5" component="search_position">
+            <Grid container item xs direction="column" className={classes.text}>
+              <Typography variant="h5">
                 {job.title}
               </Typography>
-              <Typography component="search_company">
+              <Typography>
                 {job.company}
               </Typography>
-              <Typography component="search_location">
+              <Typography>
                 {job.location}
               </Typography>
             </Grid>
-            <Grid container item xs={3} display="flex" alignItems="flex-end">
-              <Typography component="search_daysAgo">
-                {`Posted:  ${job.created_at}`}
+            <Grid container item xs={3} className={classes.postDate} display="flex" alignItems="flex-end">
+              <Typography className={classes.searchDaysAgo}>
+                {`Posted: ${job.created_at.slice(0, 10)}`}
               </Typography>
             </Grid>
           </Grid>
