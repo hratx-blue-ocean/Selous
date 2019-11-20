@@ -32,7 +32,7 @@ const ButtonRight = ({
   let [showButton, toggleShowButton] = useState(false);
 
   useEffect(() => {
-    if (JSON.stringify(displayedTabs[2]) !== JSON.stringify(whatsNextTab)) {
+    if (JSON.stringify(displayedTabs[2]) !== JSON.stringify(whatsNextTab) && displayedTabs[2] !== undefined) {
       toggleShowButton(true);
       return;
     }

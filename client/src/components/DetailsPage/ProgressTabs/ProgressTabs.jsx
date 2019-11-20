@@ -20,18 +20,30 @@ const ProgressTabs = ({
   tabColors,
   dispatch,
 }) => {
-  console.log(displayedTabs);
-
   useEffect(() => {
-    if (companyTabsTEST) {
-      const tempArr = companyTabsTEST.slice(-2);
-      tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
-      tempArr[1].color = tabColors[companyTabsTEST.indexOf(tempArr[1])];
-      dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
+    let tempArr;
+    switch (companyTabsTEST.length) {
+      case 0:
+        dispatch(setDisplayedTabs([whatsNextTab]));
+        break;
+      case 1:
+        tempArr = companyTabsTEST.slice();
+        tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
+        dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
+        break;
+      case 2:
+        tempArr = companyTabsTEST.slice();
+        tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[companyTabsTEST.indexOf(tempArr[1])];
+        dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
+        break;
+      default:
+        tempArr = companyTabsTEST.slice(-2);
+        tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[companyTabsTEST.indexOf(tempArr[1])];
+        dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
     }
   }, [companyTabsTEST]);
-
-  console.log(displayedTabs);
 
   return (
     <div className={styles.progress_tabs_wrapper}>
@@ -43,8 +55,8 @@ const ProgressTabs = ({
       <div className={styles.progress_tabs}>
         <ButtonLeft />
         <TabOne tab={displayedTabs[0]} />
-        <TabTwo tab={displayedTabs[1]} />
-        <TabThree tab={displayedTabs[2]} />
+        <TabTwo tab={displayedTabs[1] ? displayedTabs[1] : null} />
+        <TabThree tab={displayedTabs[2] ? displayedTabs[2] : null} />
         <ButtonRight />
       </div>
     </div>
