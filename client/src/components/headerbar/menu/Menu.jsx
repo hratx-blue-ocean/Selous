@@ -7,7 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { loginAction, landingAction } from '../../../redux/actions/actions.js';
+import { loginAction, landingAction, resetUserAction } from '../../../redux/actions/actions.js';
 
 const ITEM_HEIGHT = 48;
 
@@ -19,6 +19,9 @@ const useStyles = makeStyles({
     width: 50,
     height: 40,
     color: 'white',
+  },
+  space: {
+    marginLeft: '21%',
   },
 });
 
@@ -41,11 +44,13 @@ function Menud({ dispatch }) {
     setAnchorEl(null);
     dispatch(landingAction());
     dispatch(loginAction());
+    dispatch(resetUserAction());
   };
 
   return (
-    <div>
+    <>
       <IconButton
+        className={classes.space}
         aria-haspopup="true"
         onClick={handleClick}
       >
@@ -91,7 +96,7 @@ function Menud({ dispatch }) {
             Log Out
         </MenuItem>
       </Menu>
-    </div>
+    </>
   );
 }
 
