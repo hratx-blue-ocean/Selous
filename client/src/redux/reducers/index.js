@@ -9,12 +9,9 @@ import userJobsReducer from './userJobsReducer.js';
 import tabColorsReducer from './tabColorsReducer.js';
 import loggedInReducer from './loggedInReducer.js';
 import haveLandingReducer from './haveLandingReducer.js';
-<<<<<<< HEAD
 import currentJobReducer from './currentJobReducer.js';
 import userToState from './userToState.js';
-=======
 import apiLocationSearchDataReducer from './locationSearchDataReducer.js';
->>>>>>> dev
 import {
   jobPostingModalReducer,
   addGoalModalReducer,
