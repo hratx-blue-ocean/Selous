@@ -25,6 +25,7 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/dashboard/job', (req, res) => {
+  console.log(req.body);
   db.addJob(req.body.userId, req.body.jobData, (err, job) => {
     if (err) {
       res.status(400).send();
@@ -34,6 +35,7 @@ router.post('/dashboard/job', (req, res) => {
   });
 });
 router.post('/goals', (req, res) => {
+  console.log(req.body);
   db.addGoal(req.body.userId, req.body.goalData, (err, goal) => {
     if (err) {
       res.status(400).send();
@@ -43,6 +45,7 @@ router.post('/goals', (req, res) => {
   });
 });
 router.post('/dashboard/job/progress', (req, res) => {
+  console.log(req.body);
   db.addJobProgress(req.body.userId, req.body.jobId, req.body.progressData, (err, progress) => {
     if (err) {
       res.status(400).send();

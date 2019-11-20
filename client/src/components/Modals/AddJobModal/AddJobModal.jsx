@@ -127,7 +127,10 @@ function AddJobModal({ show, dispatch }) {
     jobData.position = position;
     jobData.progressArray = [];
 
-    axios.post('/db/dashboard/job', '5dd029fe3b8f9e2e8c21d3aa', jobData)
+    axios.post('/db/dashboard/job', {
+      userId: '5dd029fe3b8f9e2e8c21d3aa',
+      jobData,
+    })
       .then((res) => {
         console.log(res);
       })

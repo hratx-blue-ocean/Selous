@@ -11,7 +11,7 @@ const defaultData = [
 
 export default function tabColorsReducer(state = defaultData, action) {
   switch (action.type) {
-    case 'GET':
+    case 'GET_TAB_COLORS':
       return state;
     default:
       return state;
