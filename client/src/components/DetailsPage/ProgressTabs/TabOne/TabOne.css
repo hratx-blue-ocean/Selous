@@ -1,6 +1,6 @@
 .tab_wrapper_one{
     margin: 0;
-    padding: 20px;
+    padding: 25px;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -59,7 +59,7 @@
 
 .check{
     cursor: pointer;
-    margin: 0;
+    margin: -5px;
     padding: 0;
     box-sizing: border-box;
     width: 25px;
@@ -68,6 +68,7 @@
     border: 1px solid #000000;
     border-radius: 8px;
     place-self: center;
+    animation: fadeIn 1s;
 }
 
 .card_holder{
@@ -79,84 +80,46 @@
     position: relative;
 }
 
-.card_one{
+.card{
     width: 100%;
-    height: 99%;
-    border: solid 1px black;
+    height: 100%;
+    border: solid 2px black;
     border-radius: 10px;
     box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+    opacity: .8;
+    animation: fadeIn 1s;
+}
+
+.bg_red{
     background-color: rgba(236, 73, 73, 0.85);
-    opacity: 1;
 }
 
-.card_two{
-    width: 100%;
-    height: 99%;
-    border: solid 2px black;
-    border-radius: 10px;
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+.bg_orange{
     background-color: rgba(236, 132, 73, 0.85);
-    opacity: .8;
 }
 
-.card_three{
-    width: 100%;
-    height: 99%;
-    border: solid 2px black;
-    border-radius: 10px;
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+.bg_yellow{
     background-color: rgba(236, 220, 73, 0.85);
-    opacity: .8;
 }
 
-.card_four{
-    width: 100%;
-    height: 99%;
-    border: solid 2px black;
-    border-radius: 10px;
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+.bg_green{
     background-color: rgba(155, 236, 73, 0.85);
-    opacity: .8;
 }
 
-.card_five{
-    width: 100%;
-    height: 99%;
-    border: solid 2px black;
-    border-radius: 10px;
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+.bg_blue{
     background-color: rgba(0, 215, 243, 0.85);
-    opacity: .8;
 }
 
-.card_six{
-    width: 100%;
-    height: 99%;
-    border: solid 2px black;
-    border-radius: 10px;
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+.bg_pink{
     background-color: rgba(243, 150, 255, 0.85);
-    opacity: .8;
 }
 
-.card_seven{
-    width: 100%;
-    height: 99%;
-    border: solid 2px black;
-    border-radius: 10px;
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+.bg_purple{
     background-color: rgba(206, 53, 211, 0.85);
-    opacity: .8;
 }
 
-.card_eight{
-    width: 100%;
-    height: 99%;
-    border: solid 2px black;
-    border-radius: 10px;
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+.bg_grey{
     background-color: rgba(160, 160, 160, 0.85);
-    opacity: .8;
 }
 
 .one{
@@ -232,148 +195,42 @@
         'tab_body'
         'tab_edit';
     position: relative;
+    animation: fadeIn 1s;
 }
 
-.tab_red{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 450px;
-    background: #FFFFFF;
+.border_red{
     border: 2px solid rgba(236, 73, 73, 0.85);
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    display: grid;
-    grid-template-rows: 15% 70% 15%;
-    grid-template-areas:
-        'tab_header'
-        'tab_body'
-        'tab_edit';
 }
 
-.tab_orange{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 450px;
-    background: #FFFFFF;
+.border_orange{
     border: 2px solid rgba(236, 132, 73, 0.85);
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    display: grid;
-    grid-template-rows: 15% 70% 15%;
-    grid-template-areas:
-        'tab_header'
-        'tab_body'
-        'tab_edit';
 }
 
-.tab_yellow{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 450px;
-    background: #FFFFFF;
+.border_yellow{
     border: 2px solid rgba(236, 220, 73, 0.85);
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    display: grid;
-    grid-template-rows: 15% 70% 15%;
-    grid-template-areas:
-        'tab_header'
-        'tab_body'
-        'tab_edit';
 }
 
-.tab_green{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 450px;
-    background: #FFFFFF;
+.border_green{
     border: 2px solid rgba(155, 236, 73, 0.85);
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    display: grid;
-    grid-template-rows: 15% 70% 15%;
-    grid-template-areas:
-        'tab_header'
-        'tab_body'
-        'tab_edit';
 }
 
-.tab_blue{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 450px;
-    background: #FFFFFF;
+.border_blue{
     border: 2px solid rgba(0, 215, 243, 0.85);
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    display: grid;
-    grid-template-rows: 15% 70% 15%;
-    grid-template-areas:
-        'tab_header'
-        'tab_body'
-        'tab_edit';
 }
 
-.tab_pinky{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 450px;
-    background: #FFFFFF;
+.border_pinky{
     border: 2px solid rgba(243, 150, 255, 0.85);
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    display: grid;
-    grid-template-rows: 15% 70% 15%;
-    grid-template-areas:
-        'tab_header'
-        'tab_body'
-        'tab_edit';
 }
 
-.tab_magenta{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 450px;
-    background: #FFFFFF;
+.border_magenta{
     border: 2px solid rgba(206, 53, 211, 0.85);
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    display: grid;
-    grid-template-rows: 15% 70% 15%;
-    grid-template-areas:
-        'tab_header'
-        'tab_body'
-        'tab_edit';
 }
 
-.tab_gray{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    width: 100%;
-    height: 450px;
-    background: #FFFFFF;
+.border_gray{
     border: 2px solid rgba(160, 160, 160, 0.85);
-    box-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 8px;
-    display: grid;
-    grid-template-rows: 15% 70% 15%;
-    grid-template-areas:
-        'tab_header'
-        'tab_body'
-        'tab_edit';
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }

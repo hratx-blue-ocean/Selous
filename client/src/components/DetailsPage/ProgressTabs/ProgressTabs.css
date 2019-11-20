@@ -22,6 +22,7 @@
     grid-area: progress_tabs_header;
     display: grid;
     place-items: center;
+    animation: fadeIn 1s;
 }
 
 .progress_tabs{
@@ -36,4 +37,9 @@
     grid-template-columns: 2% repeat(3, 32%) 2%;
     grid-template-areas:
         'left_button tab_wrapper_one tab_wrapper_two tab_wrapper_three right_button';
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
