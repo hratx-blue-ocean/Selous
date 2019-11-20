@@ -123,7 +123,7 @@ const footers = [
   },
 ];
 
-const Landing = ({ searchInput, dispatch, apiData }) => {
+const Landing = ({ searchInput, dispatch }) => {
   const classes = useStyles();
 
   const apiGetRequest = () => {

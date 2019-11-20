@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,9 +29,15 @@ const useStyles = makeStyles({
     textTransform: 'none',
     textAlign: 'left',
   },
+  // logoBox: {
+  //   height: '60px',
+  //   width: '60px',
+  // },
   logo: {
     margin: 10,
-
+    width: '60px',
+    height: '60px',
+    background: 'rgb(200, 169, 214)',
   },
   search_daysAgo: {
     margin: 10,
@@ -42,6 +49,17 @@ const useStyles = makeStyles({
   text: {
     width: '800px',
   },
+  companyImage: {
+    width: '60px',
+  },
+  postDate: {
+    'justify-content': 'flex-end',
+  },
+  assignIcon: {
+    width: '45px',
+    height: '45px',
+    color: 'purple',
+  },
 });
 
 const JobComponent = ({ job, dispatch }) => {
@@ -49,15 +67,16 @@ const JobComponent = ({ job, dispatch }) => {
 
   return (
     <>
-      <JobPostingModal />
+      <JobPostingModal oneJob={job} />
       <Button>
         <Card className={classes.root} onClick={() => dispatch(showJobAction())}>
           <Grid container item wrap="wrap" spacing={2} className={classes.mainContainer}>
-            <Grid item alignItems="center">
+            <Grid item alignItems="center" className={classes.logoBox}>
               <Avatar className={classes.logo}>
                 {
                   job.company_logo
-                    ? <image src={job.company_logo} /> : <AssignmentIcon />
+                    ? <img className={classes.companyImage} src={job.company_logo} alt={job.id} />
+                    : <AssignmentIcon className={classes.assignIcon} />
                 }
               </Avatar>
             </Grid>
@@ -72,9 +91,9 @@ const JobComponent = ({ job, dispatch }) => {
                 {job.location}
               </Typography>
             </Grid>
-            <Grid container item xs={3} display="flex" alignItems="flex-end">
+            <Grid container item xs={3} className={classes.postDate} display="flex" alignItems="flex-end">
               <Typography component="search_daysAgo">
-                {`Posted:  ${job.created_at}`}
+                {`Posted: ${job.created_at.slice(0, 10)}`}
               </Typography>
             </Grid>
           </Grid>
