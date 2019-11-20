@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
 import {
   Fab,
   Box,
@@ -72,6 +71,7 @@ const useStyles = makeStyles(({
     borderColor: 'black',
     marginBottom: 10,
     overflow: 'scroll',
+    fontSize: 10,
   },
   apply: {
     height: '30px',
@@ -88,7 +88,7 @@ const useStyles = makeStyles(({
   },
   title: {
     marginLeft: 20,
-    fontSize: 55,
+    fontSize: 35,
   },
   titlesContainer: {
     display: 'flex',
@@ -100,18 +100,22 @@ const useStyles = makeStyles(({
     height: 50,
   },
   titleSec: {
-    fontSize: 30,
+    fontSize: 25,
     marginRight: 10,
   },
   titleTer: {
     fontSize: 20,
   },
+  descriptionText: {
+    fontSize: 5,
+  },
 }));
 
 const mapStateToProps = (state) => ({ show: state.jobPostingModal });
 
-function JobPostingModal({ show, dispatch }) {
+function JobPostingModal({ oneJob, show, dispatch }) {
   const classes = useStyles();
+  // console.log(oneJob);
 
   return (
     <div>
@@ -123,7 +127,9 @@ function JobPostingModal({ show, dispatch }) {
       >
         <div className={classes.container}>
           <div className={classes.header}>
-            <h1 className={classes.title}>title</h1>
+            <h1 className={classes.title}>
+              {oneJob.title}
+            </h1>
             <Box className={classes.buttons}>
               <Fab className={classes.buttonBoi}>
                 <AddCircleIcon
@@ -134,10 +140,16 @@ function JobPostingModal({ show, dispatch }) {
             </Box>
           </div>
           <div className={classes.titlesContainer}>
-            <h3 className={classes.titleSec}>Company Name</h3>
-            <h5 className={classes.titleTer}>City Name</h5>
+            <h3 className={classes.titleSec}>
+              {oneJob.company}
+            </h3>
+            <h5 className={classes.titleTer}>
+              {oneJob.location}
+            </h5>
           </div>
-          <div className={classes.description} />
+          <div className={classes.description}>
+            {oneJob.description}
+          </div>
           <button type="button" className={classes.apply}>Apply</button>
         </div>
       </Modal>

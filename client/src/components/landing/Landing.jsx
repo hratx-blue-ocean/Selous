@@ -4,12 +4,19 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+// import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
 import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
-import { setSearchInput, setApiSearchData, showAboutAction } from '../../redux/actions/actions.js';
+import {
+  setSearchInput,
+  showAboutAction,
+  setApiSearchData,
+  setSearchLocationInput,
+} from '../../redux/actions/actions.js';
 
 function Copyright() {
   return (
@@ -122,23 +129,28 @@ const footers = [
   },
 ];
 
-const Landing = ({ searchInput, dispatch }) => {
+const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
   const classes = useStyles();
-  console.log(searchInput);
-
-  const apiGetRequest = (keyword) => {
-    const locationTemp = 'chicago';
-    const descriptionTemp = keyword;
-
-    axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
-      // https://jobs.github.com/positions.json?description=python&location=new+york
+  const history = useHistory();
+  const apiGetRequest = () => {
+    axios.get('/apiRequest', {
+      params: {
+        description: searchInput,
+        location: locationSearchInput,
+      },
+    })
       .then((results) => {
-        dispatch(setApiSearchData(results));
-        console.log(results);
+        dispatch(setApiSearchData(results.data));
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
+    // (SEE JOB SEARCH COMPONENT), STATE SET TO ''
+  };
+
+  const handleRequest = () => {
+    apiGetRequest();
+    history.push('/jobs');
   };
 
   return (
@@ -176,6 +188,14 @@ const Landing = ({ searchInput, dispatch }) => {
         value={searchInput}
         onChange={(newValue) => dispatch(setSearchInput(newValue))}
         onRequestSearch={(keyword) => apiGetRequest(keyword)}
+        onCancelSearch={() => dispatch(setSearchInput(''))}
+      />
+      <SearchBar
+        className={classes.search}
+        placeholder="Search Locations..."
+        value={locationSearchInput}
+        onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
+        onRequestSearch={handleRequest}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
       {/* Footer */}
@@ -224,6 +244,10 @@ const Landing = ({ searchInput, dispatch }) => {
   );
 };
 
-const mapStatesToProps = (state) => ({ searchInput: state.searchInput, apiData: state.apiData });
+const mapStatesToProps = (state) => ({
+  searchInput: state.searchInput,
+  locationSearchInput: state.locationSearchInput,
+  apiData: state.apiData,
+});
 
 export default connect(mapStatesToProps)(Landing);

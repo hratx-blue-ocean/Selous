@@ -4,24 +4,28 @@ const defaultState = [
     tabName: 'Title Page',
     tabBody: '',
     tabEditText: 'Edit',
+    completed: true,
   },
   {
     whatsNextTab: false,
     tabName: 'Resume',
     tabBody: '',
     tabEditText: 'Edit',
+    completed: true,
   },
   {
     whatsNextTab: false,
     tabName: 'Phone Interview',
     tabBody: '',
     tabEditText: 'Edit',
+    completed: true,
   },
   {
     whatsNextTab: false,
     tabName: 'Onsite Interview',
     tabBody: '',
     tabEditText: 'Edit',
+    completed: true,
   },
   {
     whatsNextTab: false,
@@ -33,8 +37,10 @@ const defaultState = [
 
 export default function companyTabsReducerTEST(state = defaultState, action) {
   switch (action.type) {
-    case 'GET_TABS':
+    case 'GET_COMPANY_TABS':
       return state;
+    case 'SET_COMPANY_TABS':
+      return action.payload;
     default:
       return state;
   }

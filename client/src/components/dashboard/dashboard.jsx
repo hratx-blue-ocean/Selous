@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import DashboardRow from './dashboardRow.jsx';
 import styles from './dashboard.css';
 import Headerbar from '../headerbar/Headerbar.jsx';
@@ -14,7 +15,7 @@ const Dashboard = ({ jobs }) => (
     <div className={styles.flexbox}>
       <div className={styles.dashboard}>
         {jobs.map((job) => (
-          <DashboardRow key={job.id} job={job} />
+          <DashboardRow component={Link} to="/details" key={job.id} job={job} />
         ))}
         <DashboardRow key="+" job={null} />
       </div>

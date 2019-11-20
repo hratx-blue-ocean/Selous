@@ -2,7 +2,8 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
@@ -17,6 +18,7 @@ const useStyles = makeStyles({
   bigAvatar: {
     width: 50,
     height: 40,
+    color: 'white',
   },
 });
 
@@ -47,7 +49,7 @@ function Menud({ dispatch }) {
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <AccountCircleIcon className={classes.bigAvatar} />
+        <MenuIcon className={classes.bigAvatar} />
       </IconButton>
       <Menu
         id="long-menu"
@@ -78,8 +80,6 @@ function Menud({ dispatch }) {
         </MenuItem>
         <MenuItem
           onClick={handleClose}
-          component={Link}
-          to="/details"
         >
             About
         </MenuItem>

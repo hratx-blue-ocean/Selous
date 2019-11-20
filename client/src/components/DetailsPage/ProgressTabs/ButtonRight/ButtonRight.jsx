@@ -1,5 +1,6 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import styles from './ButtonRight.css';
 import { moveRightDisplayedTabs } from '../../../../redux/actions/actions.js';
@@ -28,7 +29,17 @@ const ButtonRight = ({
     }
   };
 
-  return (
+  let [showButton, toggleShowButton] = useState(false);
+
+  useEffect(() => {
+    if (JSON.stringify(displayedTabs[2]) !== JSON.stringify(whatsNextTab)) {
+      toggleShowButton(true);
+      return;
+    }
+    toggleShowButton(false);
+  }, [displayedTabs]);
+
+  return (showButton ? (
     <div className={styles.right_button}>
       <button type="button" className={styles.button} onClick={handleOnClick}>
         <svg width="11" height="16" viewBox="0 0 11 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -36,8 +47,10 @@ const ButtonRight = ({
         </svg>
       </button>
     </div>
+  ) : <div />
   );
 };
+
 
 const mapStateToProps = (state) => ({
   companyTabsTEST: state.companyTabsTEST,
