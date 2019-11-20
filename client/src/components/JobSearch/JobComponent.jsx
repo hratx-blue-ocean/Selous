@@ -44,34 +44,37 @@ const useStyles = makeStyles({
   },
 });
 
-const JobComponent = ({ dispatch }) => {
+const JobComponent = ({ job, dispatch }) => {
   const classes = useStyles();
 
   return (
     <>
-      <JobPostingModal />
+      <JobPostingModal currentJob={job} />
       <Button>
         <Card className={classes.root} onClick={() => dispatch(showJobAction())}>
           <Grid container item wrap="wrap" spacing={2} className={classes.mainContainer}>
             <Grid item alignItems="center">
               <Avatar className={classes.logo}>
-                <AssignmentIcon />
+                {
+                  job.company_logo
+                    ? <img src={job.company_logo} alt={job.id} /> : <AssignmentIcon />
+                }
               </Avatar>
             </Grid>
             <Grid container item xs direction="column" textAlign="left" className={classes.text}>
               <Typography variant="h5" component="search_position">
-                Senior Software Development Engineer
+                {job.title}
               </Typography>
               <Typography component="search_company">
-                Whole Foods Market
+                {job.company}
               </Typography>
               <Typography component="search_location">
-                Austin, TX
+                {job.location}
               </Typography>
             </Grid>
             <Grid container item xs={3} display="flex" alignItems="flex-end">
               <Typography component="search_daysAgo">
-                30+ days ago
+                {`Posted:  ${job.created_at}`}
               </Typography>
             </Grid>
           </Grid>

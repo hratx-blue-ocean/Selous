@@ -110,7 +110,7 @@ const useStyles = makeStyles(({
 
 const mapStateToProps = (state) => ({ show: state.jobPostingModal });
 
-function JobPostingModal({ show, dispatch }) {
+function JobPostingModal({ show, dispatch, currentJob }) {
   const classes = useStyles();
 
   return (
@@ -134,7 +134,7 @@ function JobPostingModal({ show, dispatch }) {
             </Box>
           </div>
           <div className={classes.titlesContainer}>
-            <h3 className={classes.titleSec}>Company Name</h3>
+            <h3 className={classes.titleSec}>{currentJob.title}</h3>
             <h5 className={classes.titleTer}>City Name</h5>
           </div>
           <div className={classes.description} />
