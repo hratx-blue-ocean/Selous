@@ -49,7 +49,7 @@ const JobComponent = ({ job, dispatch }) => {
 
   return (
     <>
-      <JobPostingModal />
+      <JobPostingModal currentJob={job} />
       <Button>
         <Card className={classes.root} onClick={() => dispatch(showJobAction())}>
           <Grid container item wrap="wrap" spacing={2} className={classes.mainContainer}>
@@ -57,7 +57,7 @@ const JobComponent = ({ job, dispatch }) => {
               <Avatar className={classes.logo}>
                 {
                   job.company_logo
-                    ? <image src={job.company_logo} /> : <AssignmentIcon />
+                    ? <img src={job.company_logo} alt={job.id} /> : <AssignmentIcon />
                 }
               </Avatar>
             </Grid>

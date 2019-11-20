@@ -53,10 +53,9 @@ const JobSearch = ({ jobs, searchInput, dispatch }) => {
     })
       .then((results) => {
         dispatch(setApiSearchData(results.data));
-        console.log('this is client axios results.data', results.data);
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
 
@@ -76,7 +75,7 @@ const JobSearch = ({ jobs, searchInput, dispatch }) => {
           />
           <Grid container justify="center" alignItems="center">
             {
-              jobs.map((job) => <JobComponent job={job} />)
+              jobs.map((job) => <JobComponent key={job.id} job={job} />)
             }
           </Grid>
         </Paper>
