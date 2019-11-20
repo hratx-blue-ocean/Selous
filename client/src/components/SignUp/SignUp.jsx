@@ -3,7 +3,7 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
+import { Link, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -69,6 +69,7 @@ const writeToObj = (event) => {
 
 function SignUp({ dispatch }) {
   const classes = useStyles();
+  const history = useHistory();
   // Submit
   const handleClick = (e) => {
     e.preventDefault();
@@ -80,9 +81,9 @@ function SignUp({ dispatch }) {
       if (res.data.userName) {
         // Update state with response data
         // UserIsLoggedIn = true
-        alert(`Welcome ${res.data.userName}`);
         dispatch(loginAction());
         dispatch(userToState(res.data));
+        history.push('/dashboard');
       } else {
         alert('Username already exists, try another');
       }
@@ -196,8 +197,8 @@ function SignUp({ dispatch }) {
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link href="/Login" variant="body2">
-                  Already have an account? Sign in
+                <Link to="/login" variant="body2">
+                  Already have an account? Log in
                 </Link>
               </Grid>
             </Grid>

@@ -4,7 +4,7 @@ const axios = require('axios');
 
 router.get('/', (req, res) => {
   let descriptionTemp;
-  const locationTemp = 'chicago';
+  let locationTemp;
 
   if (req.query.description === undefined) {
     descriptionTemp = '';
@@ -12,9 +12,14 @@ router.get('/', (req, res) => {
     descriptionTemp = req.query.description;
   }
 
+  if (req.query.description === undefined) {
+    locationTemp = '';
+  } else {
+    locationTemp = req.query.location;
+  }
+
   axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
     .then((results) => {
-      console.log(results.data);
       res.send(JSON.stringify(results.data));
     })
     .catch((err) => res.send(err));
