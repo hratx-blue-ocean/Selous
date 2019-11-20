@@ -5,17 +5,17 @@ import DashboardRow from './dashboardRow.jsx';
 import styles from './dashboard.css';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
+const mapStateToProps = (state) => ({ user: state.userData });
 
-const mapStateToProps = (state) => ({ jobs: state.userData.userJobs });
-
-
-const Dashboard = ({ jobs }) => (
+const Dashboard = ({ user }) => (
   <>
     <Headerbar />
     <div className={styles.flexbox}>
       <div className={styles.dashboard}>
-        {jobs.map((job) => (
-          <DashboardRow component={Link} to="/details" key={job.id} job={job} />
+        {console.log(user)}
+        {user.userJobs.map((job) => (
+          // eslint-disable-next-line
+          <DashboardRow component={Link} to="/details" key={job._id} job={job} />
         ))}
         <DashboardRow key="+" job={null} />
       </div>
