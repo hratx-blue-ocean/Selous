@@ -23,15 +23,29 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     overflow: 'hidden',
-    marginLeft: '15%',
+    marginLeft: '28%',
   },
   title: {
+    color: 'white',
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+    '&:active': {
+      backgroundColor: 'transparent',
+    },
+    maxWidth: '200px',
+    maxHeight: '71px',
     marginLeft: '2%',
     flexGrow: 1,
     fontSize: 42,
     fontFamily: [
       'Cairo',
     ].join(','),
+  },
+  signup: {
+    float: 'right',
+    marginLeft: '28%',
   },
   break: {
     maxWidth: 1240,
@@ -78,10 +92,16 @@ function Headerbar({
     <div className={classes.root}>
       <AppBar position="static" className={classes.app}>
         <Toolbar>
-          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo} />
-          <Typography variant="h6" className={classes.title}>
+          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selous" className={classes.logo} />
+          <Button
+            component={Link}
+            to={user.userName ? '/dashboard' : '/'}
+            disableRipple="true"
+            variant="h6"
+            className={classes.title}
+          >
             Selous
-          </Typography>
+          </Button>
           {tell ? <Menu />
             : (
               <>
@@ -102,7 +122,7 @@ function Headerbar({
       </AppBar>
       <div className={classes.break}>
         <Typography className={classes.hello}>
-          { user.firstName && !tell ? `Hello ${user.firstName}!` : null }
+          { tell ? `Hello ${user.firstName}!` : null }
         </Typography>
       </div>
     </div>

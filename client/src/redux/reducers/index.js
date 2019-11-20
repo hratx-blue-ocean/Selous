@@ -9,6 +9,8 @@ import userJobsReducer from './userJobsReducer.js';
 import tabColorsReducer from './tabColorsReducer.js';
 import loggedInReducer from './loggedInReducer.js';
 import haveLandingReducer from './haveLandingReducer.js';
+import searchInputReducer from './searchInputReducer.js';
+import apiDataReducer from './apiDataReducer.js';
 import currentJobReducer from './currentJobReducer.js';
 import userToState from './userToState.js';
 import apiLocationSearchDataReducer from './locationSearchDataReducer.js';
@@ -20,8 +22,6 @@ import {
   editModalReducer,
   showAboutReducer,
 } from './ModalReducers.js';
-import searchInputReducer from './searchInputReducer.js';
-import apiDataReducer from './apiDataReducer.js';
 
 const rootReducer = combineReducers({
   addGoal: addGoalReducer,
