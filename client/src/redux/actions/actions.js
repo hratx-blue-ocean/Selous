@@ -34,9 +34,9 @@ export const setSearchInput = (payload) => ({ type: 'SET_SEARCH', payload });
 
 export const getSearchInput = () => ({ type: 'GET_SEARCH' });
 
-export const setApiSearchData = (payload) => ({ type: 'GET_API_DATA', payload });
+export const setApiSearchData = (payload) => ({ type: 'SET_API_DATA', payload });
 
-export const getApiSearchData = () => ({ type: 'SET_API_DATA' });
+export const getApiSearchData = () => ({ type: 'GET_API_DATA' });
 
 export const loginAction = () => ({ type: 'LOG_IN' });
 
