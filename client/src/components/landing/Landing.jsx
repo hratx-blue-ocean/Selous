@@ -6,10 +6,11 @@ import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+// import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
 import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
-import { setSearchInput, setApiSearchData, showAboutAction } from '../../redux/actions/actions.js';
+import { setSearchInput, showAboutAction, setApiSearchData } from '../../redux/actions/actions.js';
 
 function Copyright() {
   return (
@@ -122,22 +123,25 @@ const footers = [
   },
 ];
 
-const Landing = ({ searchInput, dispatch }) => {
+const Landing = ({ searchInput, dispatch, apiData }) => {
   const classes = useStyles();
   console.log(searchInput);
 
-  const apiGetRequest = (keyword) => {
-    const locationTemp = 'chicago';
-    const descriptionTemp = keyword;
-
-    axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
-      // https://jobs.github.com/positions.json?description=python&location=new+york
+  const apiGetRequest = () => {
+    console.log(searchInput);
+    axios.get('/apiRequest', {
+      params: {
+        description: searchInput,
+      },
+    })
       .then((results) => {
-        dispatch(setApiSearchData(results));
         console.log(results);
+        dispatch(setApiSearchData(results.data));
+        // store the results in state
+        console.log(apiData);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -177,6 +181,11 @@ const Landing = ({ searchInput, dispatch }) => {
         onChange={(newValue) => dispatch(setSearchInput(newValue))}
         onRequestSearch={(keyword) => apiGetRequest(keyword)}
         onCancelSearch={() => dispatch(setSearchInput(''))}
+      />
+      <img
+        styles={{ width: 100 }}
+        src="https://github-jobs.s3.amazonaws.com/oNGEc9Fozzeu377j63qhiwwZ?response-content-disposition=inline%3B%20filename%3D%22DelphianSystems-Logo%202.jpg%22%3B%20filename%2A%3DUTF-8%27%27DelphianSystems-Logo%25202.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJENXOYUQN2IQEWRA%2F20191119%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20191119T232259Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=c4d987d9c4bf03420d350f217e8c3c89475fcb202c30dea142316a6d498310f9"
+        alt="things"
       />
       {/* Footer */}
       <Container component="footer" className={classes.footer}>
