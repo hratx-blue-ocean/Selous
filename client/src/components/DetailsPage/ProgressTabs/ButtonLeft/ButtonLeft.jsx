@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable prefer-const */
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import styles from './ButtonLeft.css';
 import { moveLeftDisplayedTabs } from '../../../../redux/actions/actions.js';
@@ -21,7 +22,17 @@ const ButtonLeft = ({
     }
   };
 
-  return (
+  let [showButton, toggleShowButton] = useState(false);
+
+  useEffect(() => {
+    if (JSON.stringify(displayedTabs[0]) !== JSON.stringify(companyTabsTEST[0])) {
+      toggleShowButton(true);
+      return;
+    }
+    toggleShowButton(false);
+  }, [displayedTabs]);
+
+  return (showButton ? (
     <div className={styles.left_button}>
       <button type="button" className={styles.button} onClick={handleOnClick}>
         <svg width="13" height="18" viewBox="5 3 13 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -29,12 +40,12 @@ const ButtonLeft = ({
         </svg>
       </button>
     </div>
+  ) : <div />
   );
 };
 
 const mapStateToProps = (state) => ({
   companyTabsTEST: state.companyTabsTEST,
-  whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
 });
