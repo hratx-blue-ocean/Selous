@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
 import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
 import { setSearchInput, setApiSearchData, showAboutAction } from '../../redux/actions/actions.js';
+import { flexbox } from '@material-ui/system';
 
 function Copyright() {
   return (
@@ -68,17 +69,18 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     float: 'left',
-    marginLeft: '17%',
-    maxWidth: '200px',
-    maxHeight: '200px',
+    marginLeft: '10%',
+    maxWidth: '100px',
+    maxHeight: '100px',
   },
   wrapper: {
     maxWidth: '750px',
     maxHeight: '450px',
     marginLeft: '20%',
+    display: flexbox,
   },
   icon: {
-    position: 'absolute',
+    flex: 1,
     top: '32%',
     left: '55%',
     borderRadius: '30%',
@@ -86,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: -2,
   },
   iconOverlay: {
-    position: 'absolute',
+    flex: 1,
     top: '32%',
     left: '55%',
     borderRadius: '30%',
@@ -157,17 +159,17 @@ const Landing = ({ searchInput, dispatch }) => {
         <Typography align="left" color="textPrimary" className={classes.lowText} gutterBottom>
           pays off
         </Typography>
+        <img
+          className={classes.iconOverlay}
+          src="https://selious.s3.amazonaws.com/poverlay.jpg"
+          alt="icon Logo Overlay"
+        />
+        <img
+          className={classes.icon}
+          src="https://selious.s3.amazonaws.com/ProfessionalLearningCommunity.jpg"
+          alt="icon Logo"
+        />
       </Container>
-      <img
-        className={classes.iconOverlay}
-        src="https://selious.s3.amazonaws.com/poverlay.jpg"
-        alt="icon Logo Overlay"
-      />
-      <img
-        className={classes.icon}
-        src="https://selious.s3.amazonaws.com/ProfessionalLearningCommunity.jpg"
-        alt="icon Logo"
-      />
       <SearchBar
         className={classes.search}
         placeholder="Search Jobs..."
