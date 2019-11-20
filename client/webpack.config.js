@@ -1,34 +1,57 @@
 const path = require('path');
+
 const SRC_DIR = path.join(__dirname, '/src');
 const DIST_DIR = path.join(__dirname, '/public');
+
 module.exports = {
-  entry: `${SRC_DIR}/index.js`,
+  entry: [`${SRC_DIR}/index.jsx`],
   output: {
-  filename: 'bundle.js',
-  path: DIST_DIR
+    filename: 'bundle.js',
+    path: DIST_DIR,
   },
-  module : {
-    rules : [
+  module: {
+    rules: [
       {
-        test: /\.(js|mjs|jsx)$/,
+        test: /\.(js|jsx)$/,
         enforce: 'pre',
-        loader: 'eslint-loader'
+        loader: 'eslint-loader',
       },
       {
-        test : /\.js?/,
-        include : SRC_DIR,
-        loader : 'babel-loader'
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        include: SRC_DIR,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+            },
+          },
+        ],
       },
       {
         test: /\.css$/,
         include: SRC_DIR,
-        loader: 'css-loader'
-      }
-    ]
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+            },
+          },
+        ],
+      },
+    ],
   },
   devServer: {
+    historyApiFallback: true,
     contentBase: DIST_DIR,
     compress: true,
-    port: 9000
-  }
+    port: 9000,
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+  },
 };
