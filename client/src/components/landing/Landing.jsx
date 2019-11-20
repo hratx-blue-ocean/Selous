@@ -4,6 +4,7 @@ import axios from 'axios';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 // import Avatar from '@material-ui/core/Avatar';
@@ -130,7 +131,7 @@ const footers = [
 
 const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
   const classes = useStyles();
-
+  const history = useHistory();
   const apiGetRequest = () => {
     axios.get('/apiRequest', {
       params: {
@@ -145,6 +146,11 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
         throw err;
       });
     // (SEE JOB SEARCH COMPONENT), STATE SET TO ''
+  };
+
+  const handleRequest = () => {
+    apiGetRequest();
+    history.push('/jobs');
   };
 
   return (
@@ -189,7 +195,7 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
         placeholder="Search Locations..."
         value={locationSearchInput}
         onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
-        onRequestSearch={() => apiGetRequest()}
+        onRequestSearch={handleRequest}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
       {/* Footer */}
