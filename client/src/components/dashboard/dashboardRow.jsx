@@ -1,8 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import DashColorTile from './dashcolortile.jsx';
 import styles from './dashboard.css';
-import { addJobModalAction } from '../../redux/actions/actions.js';
+import { addJobModalAction, currentJobAction } from '../../redux/actions/actions.js';
 import AddJobModal from '../Modals/AddJobModal/AddJobModal.jsx';
 
 const mapStateToProps = (state) => ({
@@ -10,19 +11,23 @@ const mapStateToProps = (state) => ({
 });
 
 const DashboardRow = ({ job, dispatch }) => {
+  const history = useHistory();
+  const handleRoute = () => {
+    dispatch(currentJobAction(job));
+    history.push('/details');
+  };
   if (job) {
     return (
       <div className={styles['dashboard-row']}>
-        <div
+        <button
+          type="button"
+          onClick={handleRoute}
           className={styles['dash-companytile']}
-          onMouseLeave={(e) => { e.target.innerHTML = `<b>${job.companyName}</b> \n ${job.position}`; }}
-          onMouseEnter={(e) => { e.target.innerHTML = `<b>${job.companyName}</b>`; }}
         >
-          <div>
-            <b>{job.companyName}</b>
-          </div>
+          {job.companyName}
+          <br />
           {job.position}
-        </div>
+        </button>
         {job.tiles.map((tile, i) => (
           <DashColorTile key={tile} tileName={tile} number={i} />
         ))}
