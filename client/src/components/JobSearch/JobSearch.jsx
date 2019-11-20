@@ -91,7 +91,7 @@ const JobSearch = ({
           />
           <Grid container justify="center" alignItems="center">
             {
-              jobs.map((job) => <JobComponent job={job} />)
+              jobs.map((job) => <JobComponent job={job} key={job.id} />)
             }
           </Grid>
         </Paper>

@@ -10,7 +10,12 @@ import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
 import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
-import { setSearchInput, showAboutAction, setApiSearchData } from '../../redux/actions/actions.js';
+import {
+  setSearchInput,
+  showAboutAction,
+  setApiSearchData,
+  setSearchLocationInput,
+} from '../../redux/actions/actions.js';
 
 function Copyright() {
   return (
@@ -123,13 +128,14 @@ const footers = [
   },
 ];
 
-const Landing = ({ searchInput, dispatch }) => {
+const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
   const classes = useStyles();
 
   const apiGetRequest = () => {
     axios.get('/apiRequest', {
       params: {
         description: searchInput,
+        location: locationSearchInput,
       },
     })
       .then((results) => {
@@ -138,6 +144,7 @@ const Landing = ({ searchInput, dispatch }) => {
       .catch((err) => {
         throw err;
       });
+    // (SEE JOB SEARCH COMPONENT), STATE SET TO ''
   };
 
   return (
@@ -175,6 +182,14 @@ const Landing = ({ searchInput, dispatch }) => {
         value={searchInput}
         onChange={(newValue) => dispatch(setSearchInput(newValue))}
         onRequestSearch={(keyword) => apiGetRequest(keyword)}
+        onCancelSearch={() => dispatch(setSearchInput(''))}
+      />
+      <SearchBar
+        className={classes.search}
+        placeholder="Search Locations..."
+        value={locationSearchInput}
+        onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
+        onRequestSearch={() => apiGetRequest()}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
       {/* Footer */}
@@ -223,6 +238,10 @@ const Landing = ({ searchInput, dispatch }) => {
   );
 };
 
-const mapStatesToProps = (state) => ({ searchInput: state.searchInput, apiData: state.apiData });
+const mapStatesToProps = (state) => ({ 
+  searchInput: state.searchInput,
+  locationSearchInput: state.locationSearchInput,
+  apiData: state.apiData,
+});
 
 export default connect(mapStatesToProps)(Landing);

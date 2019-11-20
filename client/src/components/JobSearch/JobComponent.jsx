@@ -29,18 +29,14 @@ const useStyles = makeStyles({
     textTransform: 'none',
     textAlign: 'left',
   },
-  // logoBox: {
-  //   height: '60px',
-  //   width: '60px',
-  // },
   logo: {
     margin: 10,
     width: '60px',
     height: '60px',
     background: 'rgb(200, 169, 214)',
   },
-  search_daysAgo: {
-    margin: 10,
+  searchDaysAgo: {
+    marginRight: 10,
     alignItems: 'flex-end',
   },
   mainContainer: {
@@ -70,8 +66,8 @@ const JobComponent = ({ job, dispatch }) => {
       <JobPostingModal oneJob={job} />
       <Button>
         <Card className={classes.root} onClick={() => dispatch(showJobAction())}>
-          <Grid container item wrap="wrap" spacing={2} className={classes.mainContainer}>
-            <Grid item alignItems="center" className={classes.logoBox}>
+          <Grid container alignItems="center" className={classes.mainContainer}>
+            <Grid item container alignItems="center">
               <Avatar className={classes.logo}>
                 {
                   job.company_logo
@@ -80,19 +76,19 @@ const JobComponent = ({ job, dispatch }) => {
                 }
               </Avatar>
             </Grid>
-            <Grid container item xs direction="column" textAlign="left" className={classes.text}>
-              <Typography variant="h5" component="search_position">
+            <Grid container item xs direction="column" className={classes.text}>
+              <Typography variant="h5">
                 {job.title}
               </Typography>
-              <Typography component="search_company">
+              <Typography>
                 {job.company}
               </Typography>
-              <Typography component="search_location">
+              <Typography>
                 {job.location}
               </Typography>
             </Grid>
             <Grid container item xs={3} className={classes.postDate} display="flex" alignItems="flex-end">
-              <Typography component="search_daysAgo">
+              <Typography className={classes.searchDaysAgo}>
                 {`Posted: ${job.created_at.slice(0, 10)}`}
               </Typography>
             </Grid>

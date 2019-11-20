@@ -115,7 +115,7 @@ const mapStateToProps = (state) => ({ show: state.jobPostingModal });
 
 function JobPostingModal({ oneJob, show, dispatch }) {
   const classes = useStyles();
-  console.log(oneJob);
+  // console.log(oneJob);
 
   return (
     <div>
