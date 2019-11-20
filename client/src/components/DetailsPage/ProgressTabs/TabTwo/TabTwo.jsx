@@ -3,9 +3,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styles from './TabTwo.css';
-
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
-import { editAction, setTabsCompanyTabsTEST } from '../../../../redux/actions/actions.js';
+import WhatsNext from '../../../Modals/WhatsNext.jsx';
+import { editAction, setTabsCompanyTabsTEST, whatsNextAction } from '../../../../redux/actions/actions.js';
 
 
 const Tab = ({ tab, companyTabsTEST, dispatch }) => {
@@ -17,14 +17,14 @@ const Tab = ({ tab, companyTabsTEST, dispatch }) => {
 
   return (
     <>
-      <EditDetailsModal />
+      {tab ? (tab.whatsNextTab ? <WhatsNext /> : <EditDetailsModal />) : ''}
       <div className={styles.tab_wrapper_two}>
         <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : styles.border_gray, styles.tab].join(' ')}>
           <div className={styles.tab_header}>{tab ? tab.tabName : null}</div>
           <div className={styles.tab_body}>{tab ? tab.tabBody : null}</div>
           {tab ? (
             <div className={styles.tab_edit}>
-              <button type="button" onClick={() => dispatch(editAction())} className={styles.edit}>{tab.tabEditText}</button>
+              <button type="button" onClick={() => dispatch(tab.whatsNextTab ? whatsNextAction() : editAction())} className={styles.edit}>{tab.tabEditText}</button>
             </div>
           ) : ''}
         </div>

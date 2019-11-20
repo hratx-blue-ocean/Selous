@@ -6,7 +6,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styles from './TabOne.css';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
-import { editAction, setTabsCompanyTabsTEST } from '../../../../redux/actions/actions.js';
+import WhatsNext from '../../../Modals/WhatsNext.jsx';
+import { editAction, setTabsCompanyTabsTEST, whatsNextAction } from '../../../../redux/actions/actions.js';
 
 const stylesArr = ['bg_red', 'bg_orange', 'bg_yellow', 'bg_green', 'bg_blue', 'bg_pink', 'bg_purple', 'bg_grey'];
 const cardDepth = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
@@ -20,20 +21,23 @@ const Tab = ({ tab, companyTabsTEST, dispatch }) => {
 
   return (
     <>
-      <EditDetailsModal />
+      {tab ? (tab.whatsNextTab ? <WhatsNext /> : <EditDetailsModal />) : ''}
       <div className={styles.tab_wrapper_one}>
         <div className={styles.card_holder}>
           {companyTabsTEST.slice(0, companyTabsTEST.indexOf(tab)).reduce((acc, cur, i) => {
             acc.unshift(styles[stylesArr[i]]);
             return acc;
           }, []).map((el, i) => {
-            return <span className={[styles[cardDepth[i]], el, styles.card].join(' ')} />;
+            if (i <= 2) {
+              return <span className={[styles[cardDepth[i]], el, styles.card].join(' ')} />;
+            }
+            return '';
           })}
           <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : null, styles.tab].join(' ')}>
             <div className={styles.tab_header}>{tab ? tab.tabName : null}</div>
             <div className={styles.tab_body}>{tab ? tab.tabBody : null}</div>
             <div className={styles.tab_edit}>
-              <button type="button" onClick={() => dispatch(editAction())} className={styles.edit}>{tab ? tab.tabEditText : null}</button>
+              <button type="button" onClick={() => dispatch(tab.whatsNextTab ? whatsNextAction() : editAction())} className={styles.edit}>{tab ? tab.tabEditText : null}</button>
             </div>
           </div>
         </div>
