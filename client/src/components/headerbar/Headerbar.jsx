@@ -102,7 +102,7 @@ function Headerbar({
       </AppBar>
       <div className={classes.break}>
         <Typography className={classes.hello}>
-          {`Hello ${user.firstName}!`}
+          { user.firstName && !tell ? `Hello ${user.firstName}!` : null }
         </Typography>
       </div>
     </div>
