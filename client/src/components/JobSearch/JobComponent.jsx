@@ -44,7 +44,7 @@ const useStyles = makeStyles({
   },
 });
 
-const JobComponent = ({ dispatch }) => {
+const JobComponent = ({ job, dispatch }) => {
   const classes = useStyles();
 
   return (
@@ -60,18 +60,18 @@ const JobComponent = ({ dispatch }) => {
             </Grid>
             <Grid container item xs direction="column" textAlign="left" className={classes.text}>
               <Typography variant="h5" component="search_position">
-                Senior Software Development Engineer
+                {job.title}
               </Typography>
               <Typography component="search_company">
-                Whole Foods Market
+                {job.company}
               </Typography>
               <Typography component="search_location">
-                Austin, TX
+                {job.location}
               </Typography>
             </Grid>
             <Grid container item xs={3} display="flex" alignItems="flex-end">
               <Typography component="search_daysAgo">
-                30+ days ago
+                {`Posted:  ${job.created_at}`}
               </Typography>
             </Grid>
           </Grid>

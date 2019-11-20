@@ -42,7 +42,7 @@ const useStyles = makeStyles({
   },
 });
 
-const JobSearch = ({ dispatch, searchInput }) => {
+const JobSearch = ({ jobs, searchInput, dispatch }) => {
   const classes = useStyles();
   // console.log(searchInput);
 
@@ -76,12 +76,9 @@ const JobSearch = ({ dispatch, searchInput }) => {
               onRequestSearch={(keyword) => apiGetRequest(keyword)}
               onCancelSearch={() => dispatch(setSearchInput(''))}
             />
-            <JobComponent />
-            <JobComponent />
-            <JobComponent />
-            <JobComponent />
-            <JobComponent />
-            <JobComponent />
+            {
+              jobs.map((job) => <JobComponent job={job} />)
+            }
           </Grid>
         </Paper>
         <Goals />
@@ -92,6 +89,7 @@ const JobSearch = ({ dispatch, searchInput }) => {
 
 const mapStatesToProps = (state) => ({
   searchInput: state.searchInput,
+  jobs: state.apiData,
 });
 
 export default connect(mapStatesToProps)(JobSearch);

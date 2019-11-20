@@ -122,7 +122,7 @@ const footers = [
   },
 ];
 
-const Landing = ({ searchInput, apiData, dispatch }) => {
+const Landing = ({ searchInput, dispatch }) => {
   const classes = useStyles();
 
   const apiGetRequest = () => {
@@ -177,11 +177,6 @@ const Landing = ({ searchInput, apiData, dispatch }) => {
         onRequestSearch={(keyword) => apiGetRequest(keyword)}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
-      {
-        apiData.map((job) => {
-          return <div>{job.title}</div>;
-        })
-      }
       {/* Footer */}
       <Container component="footer" className={classes.footer}>
         <Grid container spacing={4} justify="space-evenly">
