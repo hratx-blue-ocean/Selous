@@ -14,7 +14,7 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { loginAction } from '../../redux/actions/actions.js';
+import { loginAction, userToState } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
 // eslint-disable-next-line
@@ -25,6 +25,7 @@ const theme2 = createMuiTheme({
   palette: {
     primary: purple,
   },
+
   typography: { useNextVariants: true },
 });
 
@@ -66,16 +67,6 @@ const useStyles = makeStyles((theme) => ({
 //   }
 // });
 
-//      Redux Reducer
-// const loginReducer = (state = '', action) => {
-//   switch (action.type) {
-//     case 'USER_LOGIN':
-//       return action.payload.user;
-//     default:
-//       return state;
-//   }
-// };
-
 const loginObj = {
 
 };
@@ -88,22 +79,24 @@ const mapStateToProps = (state) => ({ show: state.isLoggedIn });
 
 function SignIn({ dispatch }) {
   const classes = useStyles();
-  const handleLogin = () => {
-    dispatch(loginAction());
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Check auth
     axios.post('/db/login', {
-      userName: loginObj.username,
-      password: loginObj.password,
-    // If correct, pull data from DB for user
+      data: loginObj,
+      // If correct, pull data from DB for user
     }).then((response) => {
-      // Check auth
-      if (response) {
+      if (response.data.userName) {
         // Update state with response data
-        console.log(response);
+        // UserIsLoggedIn = true
+        alert(`Welcome ${response.data.userName}`);
         dispatch(loginAction());
+        dispatch(userToState(response.data));
       } else {
-        console.log('invalid login');
+        alert('Invalid Login');
       }
-    });
+    }).catch((err) => { console.log(err); });
+    // Write data to the database
   };
   return (
     <>
@@ -143,7 +136,6 @@ function SignIn({ dispatch }) {
               id="password"
               autoComplete="current-password"
               onChange={(e) => writeToLogin(e)}
-
             />
             <FormControlLabel
               control={<Checkbox value="remember" />}

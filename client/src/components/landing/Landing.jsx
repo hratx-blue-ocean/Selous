@@ -125,23 +125,18 @@ const footers = [
 
 const Landing = ({ searchInput, dispatch, apiData }) => {
   const classes = useStyles();
-  console.log(searchInput);
 
   const apiGetRequest = () => {
-    console.log(searchInput);
     axios.get('/apiRequest', {
       params: {
         description: searchInput,
       },
     })
       .then((results) => {
-        console.log(results);
         dispatch(setApiSearchData(results.data));
-        // store the results in state
-        console.log(apiData);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch((err) => {
+        throw err;
       });
   };
 
