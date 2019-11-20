@@ -32,7 +32,10 @@ const useStyles = makeStyles(({
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
     position: 'static',
-    margin: '10% auto',
+    margin: '7% auto 50px auto',
+    backgroundImage: 'url("https://selious.s3.amazonaws.com/selousSplice.PNG")',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 15%',
   },
   root: {
     padding: 10,
@@ -62,11 +65,11 @@ const useStyles = makeStyles(({
     // padding: 10,
     background: '#FFFFFF',
     width: '400px',
-    borderWidth: 1,
+    // borderWidth: 1,
     // marginRight: 25,
     // marginBottom: 20,
-    borderColor: 'purple',
-    borderStyle: 'solid',
+    // borderColor: 'purple',
+    // borderStyle: 'solid',
     boxShadow: 5,
     margin: '8px',
   },
@@ -106,7 +109,8 @@ const useStyles = makeStyles(({
     flexDirection: 'column',
   },
   h2: {
-    marginLeft: '8px',
+    marginLeft: '10px',
+    color: 'white',
   },
 }));
 
@@ -165,6 +169,7 @@ function AddJobModal({ show, dispatch }) {
               required
               id="company"
               label="Company"
+              fullWidth
               name="company"
               autoComplete="company"
               className={classes.next}
@@ -184,6 +189,7 @@ function AddJobModal({ show, dispatch }) {
               required
               id="position"
               label="Position"
+              fullWidth
               name="position"
               autoComplete="position"
               className={classes.next}
@@ -203,6 +209,7 @@ function AddJobModal({ show, dispatch }) {
               required
               id="contact"
               label="Contact"
+              fullWidth
               name="contact"
               autoComplete="contact"
               className={classes.next}

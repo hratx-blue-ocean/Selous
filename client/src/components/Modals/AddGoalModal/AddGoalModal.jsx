@@ -32,7 +32,7 @@ const useStyles = makeStyles(({
     backgroundSize: '100% 20%',
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
-    margin: '20% auto',
+    margin: '10% auto auto auto',
     // fontFamily: "'Michroma', sans-serif !important",
   },
   root: {
@@ -65,11 +65,11 @@ const useStyles = makeStyles(({
     // padding: 10,
     background: '#FFFFFF',
     width: '300px',
-    borderWidth: 1,
+    // borderWidth: 1,
     marginRight: 10,
     marginBottom: 20,
-    borderColor: '#9f6cb7',
-    borderStyle: 'solid',
+    // borderColor: '#9f6cb7',
+    // borderStyle: 'solid',
     boxShadow: 5,
   },
   do: {
@@ -108,6 +108,10 @@ const useStyles = makeStyles(({
     display: 'flex',
     flexDirection: 'column',
   },
+  h2: {
+    // marginLeft: '10px',
+    color: 'white',
+  },
 }));
 
 const mapStateToProps = (state) => ({ show: state.addGoalModal });
@@ -145,7 +149,7 @@ function AddGoalModal({ show, dispatch }) {
     >
       <div className={classes.container}>
         <div className={classes.notesContainer}>
-          <h2 textAlign="center">Set a New Goal</h2>
+          <h2 className={classes.h2}>Set a New Goal</h2>
           <div>
             <Typography>
               Objective
