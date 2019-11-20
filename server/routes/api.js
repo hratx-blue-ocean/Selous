@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
 
   axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
     .then((results) => {
-      console.log(results.data);
       res.send(JSON.stringify(results.data));
     })
     .catch((err) => res.send(err));

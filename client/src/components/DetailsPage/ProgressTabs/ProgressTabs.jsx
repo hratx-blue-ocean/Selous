@@ -38,9 +38,9 @@ const ProgressTabs = ({
 
       <div className={styles.progress_tabs}>
         <ButtonLeft />
-        <TabOne tab={displayedTabs[0]} companyTabs={companyTabsTEST} />
+        <TabOne tab={displayedTabs[0]} />
         <TabTwo tab={displayedTabs[1]} />
-        <TabThree tab={displayedTabs[2]} companyTabs={companyTabsTEST} />
+        <TabThree tab={displayedTabs[2]} />
         <ButtonRight />
       </div>
     </div>

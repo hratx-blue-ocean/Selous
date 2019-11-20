@@ -124,20 +124,18 @@ const footers = [
 
 const Landing = ({ searchInput, dispatch }) => {
   const classes = useStyles();
-  console.log(searchInput);
 
-  const apiGetRequest = (keyword) => {
-    const locationTemp = 'chicago';
-    const descriptionTemp = keyword;
-
-    axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
-      // https://jobs.github.com/positions.json?description=python&location=new+york
+  const apiGetRequest = () => {
+    axios.get('/apiRequest', {
+      params: {
+        description: searchInput,
+      },
+    })
       .then((results) => {
-        dispatch(setApiSearchData(results));
-        console.log(results);
+        dispatch(setApiSearchData(results.data));
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
 
