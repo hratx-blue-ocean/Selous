@@ -25,17 +25,21 @@ const useStyles = makeStyles(({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    padding: 10,
+    padding: 25,
     width: '50%',
-    height: '90%',
+    height: '400px',
     borderRadius: '8px',
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
     opacity: '100%',
+    margin: '5% auto 30px auto',
+    backgroundImage: 'url("https://selious.s3.amazonaws.com/selousSplice.PNG")',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 20%',
   },
   header: {
     display: 'flex',
@@ -43,7 +47,7 @@ const useStyles = makeStyles(({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: 50,
+    height: 40,
   },
   doNot: {
     color: '#DB5C5C',
@@ -53,25 +57,29 @@ const useStyles = makeStyles(({
     strokeWidth: '.5px',
   },
   buttons: {
-    marginRight: 20,
+    // marginRight: 20,
     float: 'right',
-    marginBottom: 10,
-    marginTop: 20,
+    // marginBottom: 10,
+    // marginTop: 20,
+    height: '50px',
   },
   buttonBoi: {
     borderRadius: 40,
   },
   description: {
-    height: '550px',
-    width: '90%',
-    borderTop: 1,
-    borderLeft: 0,
-    borderRight: 0,
-    borderBottom: 0,
+    height: '50%',
+    width: 'fit-content',
+    border: '1px solid #9F6CB7',
+    padding: '25px',
     borderStyle: 'solid',
     borderColor: 'black',
+    borderRadius: '6px',
     marginBottom: 10,
-    overflow: 'scroll',
+    lineHeight: '1.2em',
+    // overflow: 'scroll',
+    margin: '10px 0',
+    backgroundColor: 'lightgrey',
+
   },
   apply: {
     height: '30px',
@@ -87,7 +95,7 @@ const useStyles = makeStyles(({
     fontSize: 18,
   },
   title: {
-    marginLeft: 20,
+    // marginLeft: 20,
     fontSize: 55,
   },
   titlesContainer: {
@@ -96,12 +104,13 @@ const useStyles = makeStyles(({
     justifyContent: 'flex-start',
     alignItems: 'center',
     alignSelf: 'flex-start',
-    marginLeft: 20,
+    // marginLeft: 20,
     height: 50,
   },
   titleSec: {
     fontSize: 30,
     marginRight: 10,
+    color: 'white',
   },
   titleTer: {
     fontSize: 20,
@@ -123,17 +132,9 @@ function AboutModal({ show, dispatch }) {
       >
         <div className={classes.container}>
           <div className={classes.header}>
-            <Box className={classes.buttons}>
-              <Fab className={classes.buttonBoi}>
-                <AddCircleIcon
-                  className={classes.doNot}
-                  onClick={() => dispatch(showAboutAction())}
-                />
-              </Fab>
-            </Box>
-          </div>
-          <div className={classes.titlesContainer}>
-            <h3 className={classes.titleSec}>Why the name Selous?</h3>
+            <div className={classes.titlesContainer}>
+              <h3 className={classes.titleSec}>Why the name Selous?</h3>
+            </div>
           </div>
           <div className={classes.description}>
             {
@@ -144,6 +145,14 @@ function AboutModal({ show, dispatch }) {
             <a href="https://en.wikipedia.org/wiki/Frederick_Selous">here</a>
             .
           </div>
+          <Box className={classes.buttons}>
+            <Fab className={classes.buttonBoi}>
+              <AddCircleIcon
+                className={classes.doNot}
+                onClick={() => dispatch(showAboutAction())}
+              />
+            </Fab>
+          </Box>
         </div>
       </Modal>
     </div>
