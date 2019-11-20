@@ -64,7 +64,7 @@ const validateLogin = (login, callback) => {
 const validateSignup = (userData, callback) => {
   User.findOne({ userName: userData.username })
     .then((user) => {
-      if (user === null) {
+      if (user === null && userData.username.length > 1) {
         const newUser = new User({
           userName: userData.username,
           password: userData.password,
@@ -141,6 +141,31 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
   });
 };
 
+const changeProgress = (userId, jobId, progId, completed, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      // eslint-disable-next-line
+      user.userJobs[jobId].progressArray[progId].isCompleted = completed;
+      user.save((err) => {
+        if (err) callback(err, null);
+        else callback(null, completed);
+      });
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+};
+
+const editProgress = (userId, jobId, progressId, progressData, callback) => {
+  User.findOne({ _id: userId }).then((user) => {
+    user.userJobs[jobId].progressArray[progressId] = progressData;
+    user.save((data) => {
+      callback(null, data);
+    }).catch((err) => {
+      callback(err, null);
+    });
+  });
+
 // Goal Schema
 // const goal = {
 //   goaldId: 3,
@@ -203,5 +228,5 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
 // All exported functions work!
 
 module.exports = {
-  addJob, addGoal, addJobProgress, validateLogin, validateSignup,
+  addJob, addGoal, addJobProgress, validateLogin, validateSignup, changeProgress, editProgress
 };

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable prefer-const */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
@@ -32,7 +33,7 @@ const ButtonRight = ({
   let [showButton, toggleShowButton] = useState(false);
 
   useEffect(() => {
-    if (JSON.stringify(displayedTabs[2]) !== JSON.stringify(whatsNextTab)) {
+    if (JSON.stringify(displayedTabs[2]) !== JSON.stringify(whatsNextTab) && displayedTabs[2] !== undefined) {
       toggleShowButton(true);
       return;
     }

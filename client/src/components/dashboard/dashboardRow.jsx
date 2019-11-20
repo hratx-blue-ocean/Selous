@@ -24,12 +24,12 @@ const DashboardRow = ({ job, dispatch }) => {
           onClick={handleRoute}
           className={styles['dash-companytile']}
         >
-          {job.companyName}
+          {job.company}
           <br />
           {job.position}
         </button>
-        {job.tiles.map((tile, i) => (
-          <DashColorTile key={tile} tileName={tile} number={i} />
+        {job.progressArray.map((tile, i) => (
+          <DashColorTile key={tile} tile={tile} number={i} />
         ))}
       </div>
     );
