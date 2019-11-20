@@ -1,8 +1,12 @@
 {
-  "name": "blue-ocean-rewrite",
+  "name": "selous",
   "version": "1.0.0",
   "description": "Congratulations and welcome to your first day at Blue Ocean! We are literally an underwater agile software development company.",
-  "main": "index.js",
+  "main": "./server/bin/www.js",
+  "private": false,
+  "engines": {
+    "node": "10.*"
+  },
   "scripts": {
     "setup": "npm install && cd ./client && npm install && cd ../server && npm install",
     "start": "node ./server/bin/www",
