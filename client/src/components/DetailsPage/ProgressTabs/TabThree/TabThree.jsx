@@ -33,7 +33,7 @@ const Tab = ({ tab, companyTabsTEST, dispatch }) => {
           }, []).map((el, i) => {
             return <span className={[el, styles[cardDepth[i]], styles.card].join(' ')} />;
           }) : <span className={[styles.whats_next_card, styles[cardDepth[0]]].join(' ')} />) : ''}
-          <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : null, styles.tab].join(' ')}>
+          <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : styles.border_gray, styles.tab].join(' ')}>
             <div className={styles.tab_header}>{tab ? tab.tabName : null}</div>
             <div className={styles.tab_body}>{tab ? tab.tabBody : null}</div>
             <div className={styles.tab_edit}>
