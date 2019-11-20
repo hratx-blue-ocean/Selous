@@ -8,7 +8,7 @@ import styles from './TabOne.css';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 import { editAction, setTabsCompanyTabsTEST } from '../../../../redux/actions/actions.js';
 
-const stylesArr = ['card_one', 'card_two', 'card_three', 'card_four', 'card_five', 'card_six', 'card_seven', 'card_eight'];
+const stylesArr = ['bg_red', 'bg_orange', 'bg_yellow', 'bg_green', 'bg_blue', 'bg_pink', 'bg_purple', 'bg_grey'];
 const cardDepth = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
 
 const Tab = ({ tab, companyTabsTEST, dispatch }) => {
@@ -27,9 +27,9 @@ const Tab = ({ tab, companyTabsTEST, dispatch }) => {
             acc.unshift(styles[stylesArr[i]]);
             return acc;
           }, []).map((el, i) => {
-            return <span className={[styles[cardDepth[i]], el].join(' ')} />;
+            return <span className={[styles[cardDepth[i]], el, styles.card].join(' ')} />;
           })}
-          <div className={tab ? (styles[tab.color ? tab.color : 'tab']) : null}>
+          <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : null, styles.tab].join(' ')}>
             <div className={styles.tab_header}>{tab ? tab.tabName : null}</div>
             <div className={styles.tab_body}>{tab ? tab.tabBody : null}</div>
             <div className={styles.tab_edit}>

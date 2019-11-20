@@ -19,7 +19,7 @@ const Tab = ({ tab, companyTabsTEST, dispatch }) => {
     <>
       <EditDetailsModal />
       <div className={styles.tab_wrapper_two}>
-        <div className={tab ? (styles[tab.color ? tab.color : 'tab']) : null}>
+        <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : null, styles.tab].join(' ')}>
           <div className={styles.tab_header}>{tab ? tab.tabName : null}</div>
           <div className={styles.tab_body}>{tab ? tab.tabBody : null}</div>
           <div className={styles.tab_edit}>
