@@ -10,6 +10,7 @@ import tabColorsReducer from './tabColorsReducer.js';
 import loggedInReducer from './loggedInReducer.js';
 import haveLandingReducer from './haveLandingReducer.js';
 import currentJobReducer from './currentJobReducer.js';
+import userToState from './userToState.js';
 import {
   jobPostingModalReducer,
   addGoalModalReducer,
@@ -40,6 +41,7 @@ const rootReducer = combineReducers({
   showAbout: showAboutReducer,
   haveLanding: haveLandingReducer,
   currentJob: currentJobReducer,
+  userData: userToState,
 });
 
 export default rootReducer;

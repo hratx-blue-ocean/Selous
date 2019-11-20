@@ -59,9 +59,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const mapStateToProps = (state) => ({ show: state.haveLanding, tell: state.isLoggedIn });
+const mapStateToProps = (state) => ({
+  show: state.haveLanding,
+  tell: state.isLoggedIn,
+  user: state.userData,
+});
 
-function Headerbar({ show, tell, dispatch }) {
+function Headerbar({
+  show, tell, user, dispatch,
+}) {
   const classes = useStyles();
   const handleDir = () => {
     if (show) {
@@ -96,8 +102,7 @@ function Headerbar({ show, tell, dispatch }) {
       </AppBar>
       <div className={classes.break}>
         <Typography className={classes.hello}>
-          Hello Mario!
-          {/* needs state name */}
+          {`Hello ${user.firstName}!`}
         </Typography>
       </div>
     </div>
