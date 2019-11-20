@@ -78,8 +78,6 @@ function Menud({ dispatch }) {
         </MenuItem>
         <MenuItem
           onClick={handleClose}
-          component={Link}
-          to="/details"
         >
             About
         </MenuItem>
