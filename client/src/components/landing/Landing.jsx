@@ -177,11 +177,6 @@ const Landing = ({ searchInput, dispatch, apiData }) => {
         onRequestSearch={(keyword) => apiGetRequest(keyword)}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
-      <img
-        styles={{ width: 100 }}
-        src="https://github-jobs.s3.amazonaws.com/oNGEc9Fozzeu377j63qhiwwZ?response-content-disposition=inline%3B%20filename%3D%22DelphianSystems-Logo%202.jpg%22%3B%20filename%2A%3DUTF-8%27%27DelphianSystems-Logo%25202.jpg&response-content-type=image%2Fjpeg&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJENXOYUQN2IQEWRA%2F20191119%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20191119T232259Z&X-Amz-Expires=300&X-Amz-SignedHeaders=host&X-Amz-Signature=c4d987d9c4bf03420d350f217e8c3c89475fcb202c30dea142316a6d498310f9"
-        alt="things"
-      />
       {/* Footer */}
       <Container component="footer" className={classes.footer}>
         <Grid container spacing={4} justify="space-evenly">

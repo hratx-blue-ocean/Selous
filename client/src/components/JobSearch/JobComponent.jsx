@@ -23,7 +23,7 @@ const useStyles = makeStyles({
     borderStyle: 'solid',
     boxShadow: 3,
     '&:hover': {
-      background: 'purple',
+      background: '#9f6cb7',
     },
     textTransform: 'none',
     textAlign: 'left',
