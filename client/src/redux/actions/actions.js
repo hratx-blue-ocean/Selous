@@ -32,6 +32,8 @@ export const getTabColors = () => ({ type: 'GET_TAB_COLORS' });
 
 export const setSearchInput = (payload) => ({ type: 'SET_SEARCH', payload });
 
+export const setSearchLocationInput = (payload) => ({ type: 'SET_LOCATION_SEARCH', payload });
+
 export const getSearchInput = () => ({ type: 'GET_SEARCH' });
 
 export const setApiSearchData = (payload) => ({ type: 'SET_API_DATA', payload });
@@ -45,3 +47,5 @@ export const showAboutAction = () => ({ type: 'ABOUT' });
 export const landingAction = () => ({ type: 'HAVE_LAND' });
 
 export const userToState = (data) => ({ type: 'GET_USER', data });
+
+export const currentJobAction = (job) => ({ type: 'CLICKED_JOB', job });

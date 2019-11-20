@@ -11,7 +11,9 @@ import loggedInReducer from './loggedInReducer.js';
 import haveLandingReducer from './haveLandingReducer.js';
 import searchInputReducer from './searchInputReducer.js';
 import apiDataReducer from './apiDataReducer.js';
+import currentJobReducer from './currentJobReducer.js';
 import userToState from './userToState.js';
+import apiLocationSearchDataReducer from './locationSearchDataReducer.js';
 import {
   jobPostingModalReducer,
   addGoalModalReducer,
@@ -39,7 +41,9 @@ const rootReducer = combineReducers({
   isLoggedIn: loggedInReducer,
   showAbout: showAboutReducer,
   haveLanding: haveLandingReducer,
+  currentJob: currentJobReducer,
   userData: userToState,
+  locationSearchInput: apiLocationSearchDataReducer,
 });
 
 export default rootReducer;
