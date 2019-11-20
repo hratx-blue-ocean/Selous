@@ -114,9 +114,9 @@ const useStyles = makeStyles(({
   },
 }));
 
-const mapStateToProps = (state) => ({ show: state.addJobModal });
+const mapStateToProps = (state) => ({ show: state.addJobModal, user: state.userData });
 
-function AddJobModal({ show, dispatch }) {
+function AddJobModal({ user, show, dispatch }) {
   const classes = useStyles();
   let [company, setCompany] = useState('');
   let [position, setPosition] = useState('');
@@ -140,10 +140,11 @@ function AddJobModal({ show, dispatch }) {
     jobData.progressArray = [];
 
     axios.post('/db/dashboard/job', {
-      userId: '5dd029fe3b8f9e2e8c21d3aa',
+      userId: user.userId,
       jobData,
     })
       .then((res) => {
+        console.log(user);
         console.log(res);
       })
       .catch((err) => {
