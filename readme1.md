@@ -3,7 +3,7 @@
 
 # <h1> Selous </h1> 
 
-*Selous* (say-lou) is a job search tracking tool. *Selous* enables job seekers to organize potential positions and track their progress with each job application.
+*Selous* (say-lou) is a job search tracking tool. *Selous* enables job seekers to organize potential positions and track their progress with each job application. 
 
 ## Cool graphic / DEMO
 
@@ -48,27 +48,46 @@
 
 ## Back-End
 
+Mongo Atlas, Nodejs, Express.
+
 ## Deployment
+
+We deployed using Docker and IBM cloud foundry.
 
 ## APIs
 
+For jobs data we utilized the github jobs API.
+
 ## Workflow
+
+We used the git feature branch workflow for this project.  To visualize the git workflow, we also used Git Graph.  In addition to git, we also used Trello to manage pending tasks, bugs and feedback.
 
 ## Challenges & Learnings
 
-Lorem Ipsum
+This is a web app created to aid job seekers in staying organized throughout the job hunt. It is meant to replace the cumbersome excel sheets, hand-written notes, and emails spread across multiple platforms.  It is a consolidation of all information related to the job search in one easy to use format.  Below are some of the challenges we faced and things we learned:
 
 ### Challenges
 
-*
+* Implementing unfamiliar technologies like Material UI and Redux.
+* Implementing Travis CI and ES lint and maintaining Airbnb style guide.
+* Finding an API that had the appropriate data for populating our application.
+* Integrating server routes while using React router.
+* Solving CORS errors with server middleware.
 
 ### Learnings
 
-*
+* Styling with Material UI.
+* Designing wire frames with Figma.
+* Testing integration.
+* Developing in a time constrained environment and prioritizing functionality.
+* Creating an application based on user requirements.
 
 ### Potential Improvements
 
-*
+* Adding gamefication of the job search tracking. 
+* More responsive styling to accommodate a wider range of displays.
+* Adding more dynamically styled components.
+* Adding more robust security and authentication features.
 
 ## Contributors
 
