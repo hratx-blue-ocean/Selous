@@ -238,7 +238,7 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
   );
 };
 
-const mapStatesToProps = (state) => ({ 
+const mapStatesToProps = (state) => ({
   searchInput: state.searchInput,
   locationSearchInput: state.locationSearchInput,
   apiData: state.apiData,
