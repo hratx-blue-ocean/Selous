@@ -91,7 +91,6 @@ function SignIn({ dispatch }) {
         // UserIsLoggedIn = true
         alert(`Welcome ${response.data.userName}`);
         dispatch(loginAction());
-        console.log(response.data);
         dispatch(userToState(response.data));
       } else {
         alert('Invalid Login');
