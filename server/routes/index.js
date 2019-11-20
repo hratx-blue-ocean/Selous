@@ -1,3 +1,4 @@
 const db = require('./db');
+const api = require('./api');
 
-module.exports = { db };
+module.exports = { db, api };
