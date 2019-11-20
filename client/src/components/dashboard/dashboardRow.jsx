@@ -13,16 +13,14 @@ const DashboardRow = ({ job, dispatch }) => {
   if (job) {
     return (
       <div className={styles['dashboard-row']}>
-        <div
+        <button
+          type="button"
           className={styles['dash-companytile']}
-          onMouseLeave={(e) => { e.target.innerHTML = `<b>${job.companyName}</b> \n ${job.position}`; }}
-          onMouseEnter={(e) => { e.target.innerHTML = `<b>${job.companyName}</b>`; }}
         >
-          <div>
-            <b>{job.companyName}</b>
-          </div>
+          {job.companyName}
+          <br />
           {job.position}
-        </div>
+        </button>
         {job.tiles.map((tile, i) => (
           <DashColorTile key={tile} tileName={tile} number={i} />
         ))}
