@@ -47,3 +47,5 @@ export const showAboutAction = () => ({ type: 'ABOUT' });
 export const landingAction = () => ({ type: 'HAVE_LAND' });
 
 export const userToState = (data) => ({ type: 'GET_USER', data });
+
+export const currentJobAction = (job) => ({ type: 'CLICKED_JOB', job });
