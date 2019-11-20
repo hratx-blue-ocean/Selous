@@ -36,7 +36,7 @@ const UserSchema = new mongoose.Schema({
   userJobs: [JobSchema],
   userGoals: [
     {
-      goaldId: Number,
+      goalId: Number,
       goalName: String,
       goalTarget: Number,
       goalProgress: Number,
@@ -49,7 +49,7 @@ const User = mongoose.model('User', UserSchema);
 const Job = mongoose.model('Job', JobSchema);
 
 const validateLogin = (login, callback) => {
-  User.findOne({ userName: login.userName })
+  User.findOne({ userName: login.username })
     .then((user) => {
       if (user === null || user.password !== login.password) {
         callback(new Error('incorrect login credentials'), null);
@@ -76,6 +76,7 @@ const validateSignup = (userData, callback) => {
         });
         newUser.save()
           .then((data) => {
+            console.log(data);
             callback(null, data);
           })
           .catch((err) => {

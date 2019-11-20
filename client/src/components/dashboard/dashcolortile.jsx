@@ -36,6 +36,8 @@ const DashColorTile = ({ tileName, number }) => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
   const squareStyle = `dash-${squares[number].color}`;
+  const popperStyle = `dash-modal-elipse-${squares[number].color}`;
+  const triangleStyle = `dash-modal-triangle-${squares[number].color}`;
   const { icon } = squares[number];
   return (
     <>
@@ -58,8 +60,8 @@ const DashColorTile = ({ tileName, number }) => {
           }}
         >
           <div>
-            <div className={styles['dash-modal-triangle']}> </div>
-            <div className={styles['dash-modal-elipse']}>
+            <div className={styles[triangleStyle]}> </div>
+            <div className={styles[popperStyle]}>
               {tileName}
             </div>
           </div>
