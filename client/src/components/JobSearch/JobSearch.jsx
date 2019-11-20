@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import JobComponent from './JobComponent.jsx';
 import Goals from '../Goals/Goals.jsx';
-import { setSearchInput, setApiSearchData } from '../../redux/actions/actions.js';
+import { setSearchInput, setApiSearchData, setSearchLocationInput } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
 const useStyles = makeStyles({
@@ -42,13 +42,19 @@ const useStyles = makeStyles({
   },
 });
 
-const JobSearch = ({ jobs, searchInput, dispatch }) => {
+const JobSearch = ({
+  jobs,
+  searchInput,
+  dispatch,
+  locationSearchInput,
+}) => {
   const classes = useStyles();
 
   const apiGetRequest = () => {
     axios.get('/apiRequest', {
       params: {
         description: searchInput,
+        location: locationSearchInput,
       },
     })
       .then((results) => {
@@ -57,6 +63,8 @@ const JobSearch = ({ jobs, searchInput, dispatch }) => {
       .catch((err) => {
         throw err;
       });
+    dispatch(setSearchInput(''));
+    dispatch(setSearchLocationInput(''));
   };
 
   return (
@@ -70,12 +78,20 @@ const JobSearch = ({ jobs, searchInput, dispatch }) => {
             placeholder="Search Jobs..."
             value={searchInput}
             onChange={(newValue) => dispatch(setSearchInput(newValue))}
-            onRequestSearch={(keyword) => apiGetRequest(keyword)}
+            onRequestSearch={() => apiGetRequest()}
+            onCancelSearch={() => dispatch(setSearchInput(''))}
+          />
+          <SearchBar
+            className={classes.search}
+            placeholder="Search Locations..."
+            value={locationSearchInput}
+            onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
+            onRequestSearch={() => apiGetRequest()}
             onCancelSearch={() => dispatch(setSearchInput(''))}
           />
           <Grid container justify="center" alignItems="center">
             {
-              jobs.map((job) => <JobComponent key={job.id} job={job} />)
+              jobs.map((job) => <JobComponent job={job} key={job.id} />)
             }
           </Grid>
         </Paper>
@@ -87,6 +103,7 @@ const JobSearch = ({ jobs, searchInput, dispatch }) => {
 
 const mapStatesToProps = (state) => ({
   searchInput: state.searchInput,
+  locationSearchInput: state.locationSearchInput,
   jobs: state.apiData,
 });
 

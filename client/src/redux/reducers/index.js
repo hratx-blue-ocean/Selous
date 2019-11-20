@@ -9,6 +9,7 @@ import userJobsReducer from './userJobsReducer.js';
 import tabColorsReducer from './tabColorsReducer.js';
 import loggedInReducer from './loggedInReducer.js';
 import haveLandingReducer from './haveLandingReducer.js';
+import apiLocationSearchDataReducer from './locationSearchDataReducer.js';
 import {
   jobPostingModalReducer,
   addGoalModalReducer,
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
   isLoggedIn: loggedInReducer,
   showAbout: showAboutReducer,
   haveLanding: haveLandingReducer,
+  locationSearchInput: apiLocationSearchDataReducer,
 });
 
 export default rootReducer;
