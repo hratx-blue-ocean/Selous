@@ -95,7 +95,7 @@ function Headerbar({
           <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selous" className={classes.logo} />
           <Button
             component={Link}
-            to={user.userName ? '/dashboard' : '/login'}
+            to={user.userName ? '/dashboard' : '/'}
             disableRipple="true"
             variant="h6"
             className={classes.title}
