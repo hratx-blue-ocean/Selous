@@ -42,6 +42,8 @@ export const getApiSearchData = () => ({ type: 'GET_API_DATA' });
 
 export const loginAction = () => ({ type: 'LOG_IN' });
 
+export const resetUserAction = () => ({ type: 'RESET_USER' });
+
 export const showAboutAction = () => ({ type: 'ABOUT' });
 
 export const landingAction = () => ({ type: 'HAVE_LAND' });

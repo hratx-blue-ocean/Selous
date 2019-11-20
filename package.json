@@ -1,13 +1,18 @@
 {
-  "name": "blue-ocean-rewrite",
+  "name": "selous",
   "version": "1.0.0",
   "description": "Congratulations and welcome to your first day at Blue Ocean! We are literally an underwater agile software development company.",
-  "main": "index.js",
+  "main": "./server/bin/www.js",
+  "private": false,
+  "engines": {
+    "node": "10.*"
+  },
   "scripts": {
     "setup": "npm install && cd ./client && npm install && cd ../server && npm install",
+    "start": "node ./server/bin/www",
     "test": "cd ./client && npm test",
-    "build": "cd ./client && npm run build",
-    "deploy": "npm run setup && npm run build",
+    "build": "cd ./client && npm run build-dev",
+    "deploy": "npm run setup && cd ./client && npm run build-prod",
     "launch": "cd ./client && npm run-script build && cd ../server && node bin/www && cd ../client webpack-dev-server &",
     "lint:client": "cd ./client && ./node_modules/.bin/eslint \"src/**/*.{js,jsx}\" && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'",
     "lint:server": "cd ./server && ../node_modules/.bin/eslint \"routes/**/*.js\" 2>/dev/null && echo 'Your code has passed the linting guidelines' || echo 'Please fix the errors listed above'"
@@ -24,6 +29,7 @@
   "homepage": "https://github.com/selder18/blue-ocean-rewrite#readme",
   "dependencies": {
     "@material-ui/system": "^4.5.2",
+    "debug": "^4.1.1",
     "dotenv": "^8.2.0",
     "material-ui-search-bar": "^1.0.0-beta.14",
     "mongoose": "^5.7.11",
