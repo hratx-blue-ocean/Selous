@@ -19,17 +19,21 @@ const useStyles = makeStyles(({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    padding: 10,
-    width: '390px',
-    height: '170px',
+    padding: 25,
+    width: 'fit-content',
+    height: 'fit-content',
     borderRadius: '8px',
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
+    backgroundImage: 'url("https://selious.s3.amazonaws.com/selousSplice.PNG")',
     border: 2,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 20%',
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
     margin: '20% auto',
+    // fontFamily: "'Michroma', sans-serif !important",
   },
   root: {
     padding: 10,
@@ -37,18 +41,19 @@ const useStyles = makeStyles(({
     width: '549px',
     height: '400px',
     borderRadius: '8px',
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
+    // fontFamily: "'Michroma', sans-serif !important",
   },
   notes: {
     borderRadius: '8px',
     padding: 10,
     background: '#FFFFFF',
-    width: '350px',
+    width: '25%',
     height: '250px',
     borderWidth: 1,
     borderColor: 'purple',
@@ -56,14 +61,14 @@ const useStyles = makeStyles(({
     boxShadow: 5,
   },
   next: {
-    borderRadius: '8px',
-    padding: 10,
+    borderRadius: '6px',
+    // padding: 10,
     background: '#FFFFFF',
     width: '300px',
     borderWidth: 1,
     marginRight: 10,
     marginBottom: 20,
-    borderColor: 'purple',
+    borderColor: '#9f6cb7',
     borderStyle: 'solid',
     boxShadow: 5,
   },
@@ -82,8 +87,9 @@ const useStyles = makeStyles(({
   },
   buttons: {
     marginRight: 6,
-    float: 'right',
-    alignSelf: 'flex-end',
+    // float: 'right',
+    // alignSelf: 'flex-end',
+    textAlign: 'center',
     marginBottom: 10,
   },
   fabStuff: {
@@ -94,8 +100,9 @@ const useStyles = makeStyles(({
     borderRadius: 40,
   },
   rightContainer: {
-    display: 'flex',
-    flexDirection: 'row',
+    // display: 'flex',
+    // flexDirection: 'column',
+    // flexDirection: 'row',
   },
   notesContainer: {
     display: 'flex',
@@ -138,6 +145,7 @@ function AddGoalModal({ show, dispatch }) {
     >
       <div className={classes.container}>
         <div className={classes.notesContainer}>
+          <h2 textAlign="center">Set a New Goal</h2>
           <div>
             <Typography>
               Objective
@@ -182,18 +190,18 @@ function AddGoalModal({ show, dispatch }) {
               placeholder="How many?"
             /> */}
           </div>
+          <Box className={classes.buttons}>
+            <Fab onClick={() => dispatch(addGoalAction())} className={classes.buttonBoi}>
+              <AddCircleIcon className={classes.doNot} />
+            </Fab>
+            <Fab
+              onClick={() => { addGoal(); dispatch(addGoalAction()); }}
+              className={classes.fabStuff}
+            >
+              <CheckCircleIcon className={classes.do} />
+            </Fab>
+          </Box>
         </div>
-        <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
-          <Fab onClick={() => dispatch(addGoalAction())} className={classes.buttonBoi}>
-            <AddCircleIcon className={classes.doNot} />
-          </Fab>
-          <Fab
-            onClick={() => { addGoal(); dispatch(addGoalAction()); }}
-            className={classes.fabStuff}
-          >
-            <CheckCircleIcon className={classes.do} />
-          </Fab>
-        </Box>
       </div>
     </Modal>
   );
