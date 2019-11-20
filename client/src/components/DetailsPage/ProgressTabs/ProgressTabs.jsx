@@ -20,6 +20,8 @@ const ProgressTabs = ({
   tabColors,
   dispatch,
 }) => {
+  console.log(displayedTabs);
+
   useEffect(() => {
     if (companyTabsTEST) {
       const tempArr = companyTabsTEST.slice(-2);
@@ -28,6 +30,8 @@ const ProgressTabs = ({
       dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
     }
   }, [companyTabsTEST]);
+
+  console.log(displayedTabs);
 
   return (
     <div className={styles.progress_tabs_wrapper}>

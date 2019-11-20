@@ -68,6 +68,7 @@
     border: 1px solid #000000;
     border-radius: 8px;
     place-self: center;
+    animation: fadeIn 1s;
 }
 
 .tab{
@@ -87,6 +88,7 @@
         'tab_body'
         'tab_edit';
     position: relative;
+    animation: fadeIn 1s;
 }
 
 .border_red{
@@ -119,4 +121,9 @@
 
 .border_gray{
     border: 2px solid rgba(160, 160, 160, 0.85);
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
 }
