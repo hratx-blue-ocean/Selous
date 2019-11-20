@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -147,10 +148,11 @@ function JobPostingModal({ oneJob, show, dispatch }) {
               {oneJob.location}
             </h5>
           </div>
-          <div className={classes.description}>
-            {oneJob.description}
-          </div>
-          <button type="button" className={classes.apply}>Apply</button>
+          <div
+            className={classes.description}
+            dangerouslySetInnerHTML={{ __html: oneJob.description }}
+          />
+          <button type="button" className={classes.apply}>APpLy</button>
         </div>
       </Modal>
     </div>
