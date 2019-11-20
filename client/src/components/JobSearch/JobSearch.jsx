@@ -44,17 +44,16 @@ const useStyles = makeStyles({
 
 const JobSearch = ({ jobs, searchInput, dispatch }) => {
   const classes = useStyles();
-  // console.log(searchInput);
 
-  const apiGetRequest = (keyword) => {
-    const locationTemp = 'chicago';
-    const descriptionTemp = keyword;
-
-    axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
-    // https://jobs.github.com/positions.json?description=python&location=new+york
+  const apiGetRequest = () => {
+    axios.get('/apiRequest', {
+      params: {
+        description: searchInput,
+      },
+    })
       .then((results) => {
-        dispatch(setApiSearchData(results));
-        console.log(results);
+        dispatch(setApiSearchData(results.data));
+        console.log('this is client axios results.data', results.data);
       })
       .catch((err) => {
         console.log(err);
@@ -67,15 +66,15 @@ const JobSearch = ({ jobs, searchInput, dispatch }) => {
       <div className={classes.jobSearchGoalsContainer}>
         <div className={classes.adSpace} />
         <Paper container className={classes.root}>
+          <SearchBar
+            className={classes.search}
+            placeholder="Search Jobs..."
+            value={searchInput}
+            onChange={(newValue) => dispatch(setSearchInput(newValue))}
+            onRequestSearch={(keyword) => apiGetRequest(keyword)}
+            onCancelSearch={() => dispatch(setSearchInput(''))}
+          />
           <Grid container justify="center" alignItems="center">
-            <SearchBar
-              className={classes.search}
-              placeholder="Search Jobs..."
-              value={searchInput}
-              onChange={(newValue) => dispatch(setSearchInput(newValue))}
-              onRequestSearch={(keyword) => apiGetRequest(keyword)}
-              onCancelSearch={() => dispatch(setSearchInput(''))}
-            />
             {
               jobs.map((job) => <JobComponent job={job} />)
             }

@@ -55,7 +55,10 @@ const JobComponent = ({ job, dispatch }) => {
           <Grid container item wrap="wrap" spacing={2} className={classes.mainContainer}>
             <Grid item alignItems="center">
               <Avatar className={classes.logo}>
-                <AssignmentIcon />
+                {
+                  job.company_logo
+                    ? <image src={job.company_logo} /> : <AssignmentIcon />
+                }
               </Avatar>
             </Grid>
             <Grid container item xs direction="column" textAlign="left" className={classes.text}>

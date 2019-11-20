@@ -133,10 +133,9 @@ const Landing = ({ searchInput, dispatch }) => {
     })
       .then((results) => {
         dispatch(setApiSearchData(results.data));
-        console.log('this is client axios results.data', results.data);
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
 
