@@ -6,7 +6,7 @@ import styles from './dashboard.css';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
 
-const mapStateToProps = (state) => ({ jobs: state.userJobs });
+const mapStateToProps = (state) => ({ jobs: state.userData.userJobs });
 
 
 const Dashboard = ({ jobs }) => (

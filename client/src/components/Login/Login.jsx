@@ -75,9 +75,9 @@ const writeToLogin = (event) => {
   loginObj[event.target.name] = event.target.value;
 };
 
-const mapStateToProps = (state) => ({ show: state.isLoggedIn });
+const mapStateToProps = (state) => ({ show: state.isLoggedIn, dstate: state });
 
-function SignIn({ dispatch }) {
+function SignIn({ dispatch, dstate }) {
   const classes = useStyles();
   const history = useHistory();
   const handleLogin = (e) => {
@@ -91,6 +91,7 @@ function SignIn({ dispatch }) {
         // Update state with response data
         // UserIsLoggedIn = true
         dispatch(loginAction());
+        console.log(dstate);
         dispatch(userToState(response.data));
         history.push('/dashboard');
       } else {

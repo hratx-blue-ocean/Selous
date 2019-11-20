@@ -76,7 +76,6 @@ const validateSignup = (userData, callback) => {
         });
         newUser.save()
           .then((data) => {
-            console.log(data);
             callback(null, data);
           })
           .catch((err) => {
