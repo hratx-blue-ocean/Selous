@@ -112,10 +112,13 @@ function AddGoalModal({ show, dispatch }) {
 
     goal.goalId = 2;
     goal.goalName = objective;
-    goal.Target = target;
+    goal.Target = parseInt(target, 0);
     goal.goalProgress = 0;
 
-    axios.post('/db/goals', '5dd029fe3b8f9e2e8c21d3aa', goal)
+    axios.post('/db/goals', {
+      userId: '5dd029fe3b8f9e2e8c21d3aa',
+      goalData: goal,
+    })
       .then((res) => {
         console.log(res);
       })

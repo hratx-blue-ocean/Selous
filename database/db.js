@@ -141,6 +141,7 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
   });
 };
 
+// Goal Schema
 // const goal = {
 //   goaldId: 3,
 //   goalName: 'Get rekt',
@@ -153,6 +154,8 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
 //   stepNotes: 'Something cool',
 //   createdAt: 'yesterday',
 //   isCompleted: false,
+//   tabEditText: 'Edit'
+//   whatsNextTab: false
 // };
 
 // validateLogin('FriendMile', 'password');
