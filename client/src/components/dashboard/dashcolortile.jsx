@@ -14,7 +14,7 @@ import GotJob from '@material-ui/icons/BusinessCenter';
 import styles from './dashboard.css';
 
 
-const DashColorTile = ({ tileName, number }) => {
+const DashColorTile = ({ tile, number }) => {
   const squares = {
     0: { color: 'red', icon: <Resume /> },
     1: { color: 'orange', icon: <Apply /> },
@@ -42,7 +42,7 @@ const DashColorTile = ({ tileName, number }) => {
   return (
     <>
       <div
-        id={tileName}
+        id={tile.stepName}
         className = {styles[squareStyle]}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -62,7 +62,7 @@ const DashColorTile = ({ tileName, number }) => {
           <div>
             <div className={styles[triangleStyle]}> </div>
             <div className={styles[popperStyle]}>
-              {tileName}
+              {tile.stepName}
             </div>
           </div>
         </Popper>

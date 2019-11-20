@@ -141,19 +141,19 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
   });
 };
 
-const completeProgress = (userId, jobId, progressId, callback) => {
-  User.findOne({ _id: userId }).then((user) => {
-    if (user.userJobs[jobId].progressArray[progressId].completed) {
-      user.userJobs[jobId].progressArray[progressId].completed = false;
-    } else {
-      user.userJobs[jobId].progressArray[progressId].completed = true;
-    }
-    user.save((data) => {
-      callback(null, data);
-    }).catch((err) => {
+const changeProgress = (userId, jobId, progId, completed, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      // eslint-disable-next-line
+      user.userJobs[jobId].progressArray[progId].isCompleted = completed;
+      user.save((err) => {
+        if (err) callback(err, null);
+        else callback(null, completed);
+      });
+    })
+    .catch((err) => {
       callback(err, null);
     });
-  });
 };
 
 const editProgress = (userId, jobId, progressId, progressData, callback) => {
@@ -165,7 +165,6 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
       callback(err, null);
     });
   });
-};
 
 // Goal Schema
 // const goal = {
@@ -229,6 +228,5 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
 // All exported functions work!
 
 module.exports = {
-  addJob, addGoal, addJobProgress, validateLogin, validateSignup,
-  completeProgress, editProgress
+  addJob, addGoal, addJobProgress, validateLogin, validateSignup, changeProgress, editProgress
 };
