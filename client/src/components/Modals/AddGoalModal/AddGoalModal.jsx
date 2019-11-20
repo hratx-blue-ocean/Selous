@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
+/* eslint-disable prefer-const */
 import {
   Typography,
   Fab,
@@ -18,7 +20,7 @@ const useStyles = makeStyles(({
     flexDirection: 'row',
     padding: 10,
     width: '390px',
-    height: '160px',
+    height: '170px',
     borderRadius: '8px',
     fontFamily: 'Arial',
     fontSize: '18px',
@@ -102,6 +104,28 @@ const mapStateToProps = (state) => ({ show: state.addGoalModal });
 
 function AddGoalModal({ show, dispatch }) {
   const classes = useStyles();
+  let [objective, setObjective] = useState('');
+  let [target, setTarget] = useState(0);
+
+  const addGoal = () => {
+    let goal = {};
+
+    goal.goalId = 2;
+    goal.goalName = objective;
+    goal.Target = parseInt(target, 0);
+    goal.goalProgress = 0;
+
+    axios.post('/db/goals', {
+      userId: '5dd029fe3b8f9e2e8c21d3aa',
+      goalData: goal,
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <Modal
@@ -115,20 +139,33 @@ function AddGoalModal({ show, dispatch }) {
             <Typography>
               Objective
             </Typography>
-            <input type="text" className={classes.next} />
+            <input
+              onChange={(event) => { setObjective(objective = event.target.value); }}
+              type="text"
+              className={classes.next}
+              placeholder="ex: 'Conduct 3 phone screens/week'"
+            />
           </div>
           <div>
             <Typography>
-              Frequency
+              Goal Target
             </Typography>
-            <input type="text" className={classes.next} />
+            <input
+              onChange={(event) => { setTarget(target = event.target.value); }}
+              type="text"
+              className={classes.next}
+              placeholder="How many?"
+            />
           </div>
         </div>
         <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
           <Fab onClick={() => dispatch(addGoalAction())} className={classes.buttonBoi}>
             <AddCircleIcon className={classes.doNot} />
           </Fab>
-          <Fab className={classes.fabStuff}>
+          <Fab
+            onClick={() => { addGoal(); dispatch(addGoalAction()); }}
+            className={classes.fabStuff}
+          >
             <CheckCircleIcon className={classes.do} />
           </Fab>
         </Box>

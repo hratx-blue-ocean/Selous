@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 // import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -12,6 +12,8 @@ import Container from '@material-ui/core/Container';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { loginAction, userToState } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
 const theme = createMuiTheme({
@@ -57,7 +59,7 @@ const useStyles = makeStyles((themes) => ({
 }));
 
 // Pseudostate
-const signupObj = {
+let signupObj = {
 
 };
 
@@ -65,34 +67,32 @@ const writeToObj = (event) => {
   signupObj[event.target.name] = event.target.value;
 };
 
-// Submit
-const handleClick = (e) => {
-  e.preventDefault();
-  // Check auth
-  axios.post('/db/signup', signupObj)
-    // If correct, pull data from DB for user
-    .then((response) => {
-      if (response) {
-        // Update state with response data
-        // TODO Add redux state redirection -> dashboard
-        console.log(response);
-      } else {
-        console.log('Username taken! Try another');
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-  // Write data to the database
-};
-
-function SignUp() {
+function SignUp({ dispatch }) {
   const classes = useStyles();
-
+  // Submit
+  const handleClick = (e) => {
+    e.preventDefault();
+    // Check auth
+    axios.post('/db/signup', {
+      data: signupObj,
+    }).then((res) => {
+      signupObj = {};
+      if (res.data.userName) {
+        // Update state with response data
+        // UserIsLoggedIn = true
+        alert(`Welcome ${res.data.userName}`);
+        dispatch(loginAction());
+        dispatch(userToState(res.data));
+      } else {
+        alert('Username already exists, try another');
+      }
+    });
+    // Write data to the database
+  };
   return (
     <>
       <Headerbar />
-      <Container maxWidth="xs">
+      <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
           <img
@@ -189,15 +189,14 @@ function SignUp() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              component={Link}
-              to="/login"
+              // onClick={dispatch(saveUser())}
               onClick={(e) => handleClick(e)}
             >
               Sign Up
             </Button>
             <Grid container justify="flex-end">
               <Grid item>
-                <Link to="/login" variant="body2">
+                <Link href="/Login" variant="body2">
                   Already have an account? Sign in
                 </Link>
               </Grid>
@@ -210,5 +209,4 @@ function SignUp() {
   );
 }
 
-// export default connect(null, mapDispatchToProps)(SignUp)
-export default SignUp;
+export default connect()(SignUp);

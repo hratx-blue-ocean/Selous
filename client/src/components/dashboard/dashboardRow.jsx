@@ -31,7 +31,9 @@ const DashboardRow = ({ job, dispatch }) => {
   }
   return (
     <>
-      <AddJobModal />
+      <div className={styles['modal-container']}>
+        <AddJobModal />
+      </div>
       <div className={styles['dashboard-row']}>
         <div
           role="button"

@@ -18,6 +18,8 @@ export const showJobAction = () => ({ type: 'SHOW_JOB_POSTING' });
 
 export const getTabsCompanyTabsTEST = () => ({ type: 'GET_COMPANY_TABS' });
 
+export const setTabsCompanyTabsTEST = (payload) => ({ type: 'SET_COMPANY_TABS', payload });
+
 export const moveLeftDisplayedTabs = (payload) => ({ type: 'MOVE_LEFT', payload });
 
 export const moveRightDisplayedTabs = (payload) => ({ type: 'MOVE_RIGHT', payload });
@@ -41,3 +43,5 @@ export const loginAction = () => ({ type: 'LOG_IN' });
 export const showAboutAction = () => ({ type: 'ABOUT' });
 
 export const landingAction = () => ({ type: 'HAVE_LAND' });
+
+export const userToState = (data) => ({ type: 'GET_USER', data });
