@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -79,6 +79,7 @@ const mapStateToProps = (state) => ({ show: state.isLoggedIn });
 
 function SignIn({ dispatch }) {
   const classes = useStyles();
+  const history = useHistory();
   const handleLogin = (e) => {
     e.preventDefault();
     // Check auth
@@ -89,9 +90,9 @@ function SignIn({ dispatch }) {
       if (response.data.userName) {
         // Update state with response data
         // UserIsLoggedIn = true
-        alert(`Welcome ${response.data.userName}`);
         dispatch(loginAction());
         dispatch(userToState(response.data));
+        history.push('/dashboard');
       } else {
         alert('Invalid Login');
       }
@@ -110,7 +111,7 @@ function SignIn({ dispatch }) {
             alt="Selous Logo"
           />
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in
           </Typography>
           <form className={classes.form} noValidate>
             <MuiThemeProvider theme={theme2} />
@@ -148,17 +149,10 @@ function SignIn({ dispatch }) {
               variant="contained"
               color="primary"
               className={classes.submit}
-              component={Link}
-              to="/jobs"
             >
-              Sign In
+              Log In
             </Button>
             <Grid container>
-              <Grid item xs>
-                {/* <Link href="#" variant="body2">
-                  Forgot password?
-                </Link> */}
-              </Grid>
               <Grid item>
                 <Link to="/signup" variant="body2">
                   Don&apos;t have an account? Sign Up
