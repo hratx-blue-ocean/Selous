@@ -20,6 +20,9 @@ const useStyles = makeStyles({
     height: 40,
     color: 'white',
   },
+  space: {
+    marginLeft: '21%',
+  },
 });
 
 const mapStateToProps = (state) => ({ show: state.isLoggedIn });
@@ -44,8 +47,9 @@ function Menud({ dispatch }) {
   };
 
   return (
-    <div>
+    <>
       <IconButton
+        className={classes.space}
         aria-haspopup="true"
         onClick={handleClick}
       >
@@ -91,7 +95,7 @@ function Menud({ dispatch }) {
             Log Out
         </MenuItem>
       </Menu>
-    </div>
+    </>
   );
 }
 
