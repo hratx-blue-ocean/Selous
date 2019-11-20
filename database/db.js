@@ -64,7 +64,7 @@ const validateLogin = (login, callback) => {
 const validateSignup = (userData, callback) => {
   User.findOne({ userName: userData.username })
     .then((user) => {
-      if (user === null) {
+      if (user === null && userData.username.length > 1) {
         const newUser = new User({
           userName: userData.username,
           password: userData.password,
@@ -141,6 +141,32 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
   });
 };
 
+const completeProgress = (userId, jobId, progressId, callback) => {
+  User.findOne({ _id: userId }).then((user) => {
+    if (user.userJobs[jobId].progressArray[progressId].completed) {
+      user.userJobs[jobId].progressArray[progressId].completed = false;
+    } else {
+      user.userJobs[jobId].progressArray[progressId].completed = true;
+    }
+    user.save((data) => {
+      callback(null, data);
+    }).catch((err) => {
+      callback(err, null);
+    });
+  });
+};
+
+const editProgress = (userId, jobId, progressId, progressData, callback) => {
+  User.findOne({ _id: userId }).then((user) => {
+    user.userJobs[jobId].progressArray[progressId] = progressData;
+    user.save((data) => {
+      callback(null, data);
+    }).catch((err) => {
+      callback(err, null);
+    });
+  });
+};
+
 // Goal Schema
 // const goal = {
 //   goaldId: 3,
@@ -204,4 +230,5 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
 
 module.exports = {
   addJob, addGoal, addJobProgress, validateLogin, validateSignup,
+  completeProgress, editProgress
 };
