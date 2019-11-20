@@ -89,7 +89,7 @@ const JobComponent = ({ job, dispatch }) => {
             </Grid>
             <Grid container item xs={3} className={classes.postDate} display="flex" alignItems="flex-end">
               <Typography className={classes.searchDaysAgo}>
-                {`Posted: ${job.created_at.slice(0, 10)}`}
+                {`Roasted: ${job.created_at.slice(0, 10)}`}
               </Typography>
             </Grid>
           </Grid>
