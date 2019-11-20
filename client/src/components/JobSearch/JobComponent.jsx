@@ -57,7 +57,7 @@ const JobComponent = ({ job, dispatch }) => {
               <Avatar className={classes.logo}>
                 {
                   job.company_logo
-                    ? <image src={job.company_logo} /> : <AssignmentIcon />
+                    ? <img src={job.company_logo} alt={job.id} /> : <AssignmentIcon />
                 }
               </Avatar>
             </Grid>
