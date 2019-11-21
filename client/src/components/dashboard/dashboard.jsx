@@ -8,8 +8,8 @@ import Headerbar from '../headerbar/Headerbar.jsx';
 import Footer from '../footer/Footer.jsx';
 import Goals from '../Goals/Goals.jsx';
 
-const mapStateToProps = (state) => ({ user: state.userData });
 
+const mapStateToProps = (state) => ({ user: state.userData });
 const Dashboard = ({ user }) => (
   <>
     <Headerbar />
