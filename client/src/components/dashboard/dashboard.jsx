@@ -7,8 +7,6 @@ import Headerbar from '../headerbar/Headerbar.jsx';
 
 
 const mapStateToProps = (state) => ({ user: state.userData });
-
-
 const Dashboard = ({ user }) => (
   <>
     <Headerbar />
