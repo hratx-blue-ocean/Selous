@@ -1,7 +1,6 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import styles from './CompanyNotes.css';
 import EditDetailsModal from '../../Modals/EditModal.jsx';
 import { editAction } from '../../../redux/actions/actions.js';
@@ -27,8 +26,9 @@ const CompanyNotes = ({ currentJob, dispatch }) => (
   </>
 );
 
-const mapStateToProps = (state) => ({ currentJob: state.currentJob, showEdit: state.editModal });
+const mapStateToProps = (state) => ({
+  currentJob: state.currentJob.jobData,
+  showEdit: state.editModal,
+});
 
-const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
-
-export default connect(mapStateToProps)(React.memo(CompanyNotes, isEqual));
+export default connect(mapStateToProps)(React.memo(CompanyNotes));
