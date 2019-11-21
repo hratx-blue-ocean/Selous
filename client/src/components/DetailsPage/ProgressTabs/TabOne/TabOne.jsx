@@ -11,7 +11,12 @@ import axios from 'axios';
 import styles from './TabOne.css';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
-import { editAction, currentJobAction, whatsNextAction, userToState } from '../../../../redux/actions/actions.js';
+import {
+  editAction,
+  currentJobAction,
+  whatsNextAction,
+  userToState,
+} from '../../../../redux/actions/actions.js';
 
 const stylesArr = ['bg_red', 'bg_orange', 'bg_yellow', 'bg_green', 'bg_blue', 'bg_pink', 'bg_purple', 'bg_grey'];
 const cardDepth = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
@@ -46,7 +51,6 @@ const Tab = ({
       .catch((err) => {
         console.log(err);
       });
-
     dispatch(currentJobAction(copyOfCurrentJob));
   };
 

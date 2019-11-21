@@ -5,9 +5,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-// import axios from 'axios';
+import axios from 'axios';
 import styles from './TabThree.css';
-import { whatsNextAction, currentJobAction, editAction } from '../../../../redux/actions/actions.js';
+import {
+  whatsNextAction,
+  currentJobAction,
+  editAction,
+  userToState,
+} from '../../../../redux/actions/actions.js';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 
@@ -18,18 +23,36 @@ const Tab = ({
   tab,
   currentJob,
   whatsNextTab,
+  userData,
   dispatch,
 }) => {
-  const [isWhatsNextTab, toggle] = useState(false);
-
   const handleOnClick = () => {
-    console.log(currentJob);
     const copyOfCurrentJob = _.clone(currentJob);
     const index = copyOfCurrentJob.progressArray.indexOf(tab);
     copyOfCurrentJob.progressArray[index].isCompleted = !copyOfCurrentJob.progressArray[index].isCompleted;
-    // axios.post('/db/dashboard/job/progress/check');
+    axios.put('/db/dashboard/job/progress/check', {
+      userId: userData._id,
+      jobId: userData.userJobs.indexOf(currentJob),
+      progId: index,
+      completed: copyOfCurrentJob.progressArray[index].isCompleted,
+    })
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: userData._id,
+          },
+        })
+          .then((result) => {
+            dispatch(userToState(result.data));
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     dispatch(currentJobAction(copyOfCurrentJob));
   };
+
+  const [isWhatsNextTab, toggle] = useState(false);
 
   useEffect(() => {
     if (JSON.stringify(tab) === JSON.stringify(whatsNextTab)) {
@@ -76,6 +99,7 @@ const mapStateToProps = (state) => ({
   showWhatsNext: state.whatsNextModal,
   currentJob: state.currentJob,
   whatsNextTab: state.whatsNextTab,
+  userData: state.userData,
 });
 
 export default connect(mapStateToProps)(Tab);
