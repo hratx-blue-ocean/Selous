@@ -15,6 +15,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { loginAction, userToState } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
+import Footer from '../footer/Footer.jsx';
 
 const theme = createMuiTheme({
   formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
@@ -43,7 +44,7 @@ const useStyles = makeStyles((themes) => ({
 
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: 'transparent',
     maxWidth: '150px',
     maxHeight: '150px',
   },
@@ -206,6 +207,7 @@ function SignUp({ dispatch }) {
         </div>
         <Box mt={5} />
       </Container>
+      <Footer />
     </>
   );
 }
