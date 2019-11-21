@@ -112,9 +112,9 @@ const useStyles = makeStyles(({
   },
 }));
 
-const mapStateToProps = (state) => ({ show: state.jobPostingModal });
+// const mapStateToProps = (state) => ({ show: state.jobPostingModal });
 
-function JobPostingModal({ oneJob, show, dispatch }) {
+function JobPostingModal({ oneJob, show, setShow, dispatch }) {
   const classes = useStyles();
   // console.log(oneJob);
 
@@ -135,7 +135,7 @@ function JobPostingModal({ oneJob, show, dispatch }) {
               <Fab className={classes.buttonBoi}>
                 <AddCircleIcon
                   className={classes.doNot}
-                  onClick={() => dispatch(showJobAction())}
+                  onClick={() => setShow(show = !show)}
                 />
               </Fab>
             </Box>
@@ -159,4 +159,4 @@ function JobPostingModal({ oneJob, show, dispatch }) {
   );
 }
 
-export default connect(mapStateToProps)(JobPostingModal);
+export default connect()(JobPostingModal);
