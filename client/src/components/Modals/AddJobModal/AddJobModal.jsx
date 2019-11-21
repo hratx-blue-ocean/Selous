@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { addJobModalAction } from '../../../redux/actions/actions.js';
+import { addJobModalAction, userToState } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   container: {
@@ -124,10 +124,6 @@ function AddJobModal({ user, show, dispatch }) {
   let [email, setEmail] = useState('');
   let [notes, setNotes] = useState('');
 
-  // const postJob = () => {
-  //   axios.post()
-  // }
-
   const addJob = () => {
     const jobData = {};
 
@@ -140,12 +136,21 @@ function AddJobModal({ user, show, dispatch }) {
     jobData.progressArray = [];
 
     axios.post('/db/dashboard/job', {
-      userId: user.userId,
+      userId: user._id,
       jobData,
     })
-      .then((res) => {
-        console.log(user);
-        console.log(res);
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: user._id,
+          },
+        })
+          .then((results) => {
+            dispatch(userToState(results.data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         console.log(err);

@@ -1,11 +1,12 @@
 // miles & tyler
 const mongoose = require('mongoose');
+const debug = require('debug')('mongoDB');
 
 mongoose.connect('mongodb+srv://FriendMiles:Igala1rele@cluster0-4q3ra.gcp.mongodb.net/Selous', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', debug.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('Mongo is Connected');
+  debug('Mongo is Connected');
 });
 
 
@@ -60,6 +61,16 @@ const validateLogin = (login, callback) => {
     .catch((err) => { callback(err, null); });
 };
 
+const getUser = (userId, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      callback(null, user);
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+};
+
 
 const validateSignup = (userData, callback) => {
   User.findOne({ userName: userData.username })
@@ -76,7 +87,6 @@ const validateSignup = (userData, callback) => {
         });
         newUser.save()
           .then((data) => {
-            console.log(data);
             callback(null, data);
           })
           .catch((err) => {
@@ -236,5 +246,6 @@ module.exports = {
   validateLogin,
   validateSignup,
   changeProgress,
+  getUser,
   editProgress,
 };

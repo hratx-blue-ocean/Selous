@@ -10,6 +10,7 @@ import Container from '@material-ui/core/Container';
 // import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
+// import { flexbox } from '@material-ui/system';
 import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
 import {
   setSearchInput,
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
+      fontFamily: 'Cairo',
     },
     ul: {
       margin: 0,
@@ -48,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     borderTop: '1px solid darkgrey',
     maxWidth: 1240,
-    marginTop: '500px',
+    marginTop: '100px',
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
     [theme.breakpoints.up('sm')]: {
@@ -56,54 +58,55 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(6),
     },
   },
-  topText: {
-    marginTop: '17%',
-    marginBottom: '0%',
-    paddingLeft: '20%',
+  titleText: {
+    flex: 1,
+    display: 'flex',
+    'box-sizing': 'border-box',
+    justifyContent: 'flex-end',
     fontSize: '72px',
-  },
-  midText: {
-    marginTop: '0%',
-    marginBottom: '0%',
-    paddingLeft: '60%',
-    fontSize: '72px',
-  },
-  lowText: {
-    marginTop: '0%',
-    paddingLeft: '39%',
-    fontSize: '72px',
+    'text-align': 'right',
+    fontWeight: 'bolder',
   },
   avatar: {
-    float: 'left',
-    marginLeft: '17%',
-    maxWidth: '200px',
-    maxHeight: '200px',
+    marginLeft: '10%',
+    maxWidth: '100px',
+    maxHeight: '100px',
   },
   wrapper: {
-    maxWidth: '750px',
-    maxHeight: '450px',
-    marginLeft: '20%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing(3),
+    display: 'flex',
+    'box-sizing': 'border-box',
+    'flex-wrap': 'nowrap',
+  },
+  imageWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing(3),
+    display: 'flex',
+    'box-sizing': 'border-box',
+    'flex-wrap': 'nowrap',
   },
   icon: {
+    'box-sizing': 'border-box',
     position: 'absolute',
-    top: '32%',
-    left: '55%',
     borderRadius: '30%',
-    transform: 'scale(1.25)',
     zIndex: -2,
   },
   iconOverlay: {
-    position: 'absolute',
-    top: '32%',
-    left: '55%',
+    'box-sizing': 'border-box',
     borderRadius: '30%',
-    transform: 'scale(1.25)',
     zIndex: -1,
     opacity: 0.15,
   },
   search: {
     maxWidth: '400px',
     marginLeft: '17%',
+    marginTop: 10,
   },
   about: {
     cursor: 'pointer',
@@ -117,7 +120,7 @@ const footers = [
   },
   {
     title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
+    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff'],
   },
   {
     title: 'Resources',
@@ -145,7 +148,6 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
       .catch((err) => {
         throw err;
       });
-    // (SEE JOB SEARCH COMPONENT), STATE SET TO ''
   };
 
   const handleRequest = () => {
@@ -156,38 +158,34 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
   return (
     <>
       <AboutModal />
-      <img
-        className={classes.avatar}
-        src="https://selious.s3.amazonaws.com/Selous.png"
-        alt="Selous Logo"
-      />
-      <Container maxWidth="sm" className={classes.wrapper}>
-        <Typography align="left" color="textPrimary" className={classes.topText} gutterBottom>
-          Where having
-        </Typography>
-        <Typography align="left" color="textPrimary" className={classes.midText} gutterBottom>
-          zeal
-        </Typography>
-        <Typography align="left" color="textPrimary" className={classes.lowText} gutterBottom>
-          pays off
-        </Typography>
-      </Container>
-      <img
-        className={classes.iconOverlay}
-        src="https://selious.s3.amazonaws.com/poverlay.jpg"
-        alt="icon Logo Overlay"
-      />
-      <img
-        className={classes.icon}
-        src="https://selious.s3.amazonaws.com/ProfessionalLearningCommunity.jpg"
-        alt="icon Logo"
-      />
+      <div className={classes.wrapper}>
+        {/* <img
+          className={classes.avatar}
+          src="https://selious.s3.amazonaws.com/Selous.png"
+          alt="Selous Logo"
+        /> */}
+        <h1 className={classes.titleText}>
+          Where having zeal pays off
+        </h1>
+        <div className={classes.imageWrapper}>
+          <img
+            className={classes.iconOverlay}
+            src="https://selious.s3.amazonaws.com/poverlay.jpg"
+            alt="icon Logo Overlay"
+          />
+          <img
+            className={classes.icon}
+            src="https://selious.s3.amazonaws.com/ProfessionalLearningCommunity.jpg"
+            alt="icon Logo"
+          />
+        </div>
+      </div>
       <SearchBar
         className={classes.search}
         placeholder="Search Jobs..."
         value={searchInput}
         onChange={(newValue) => dispatch(setSearchInput(newValue))}
-        onRequestSearch={(keyword) => apiGetRequest(keyword)}
+        onRequestSearch={handleRequest}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
       <SearchBar
@@ -196,7 +194,7 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
         value={locationSearchInput}
         onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
         onRequestSearch={handleRequest}
-        onCancelSearch={() => dispatch(setSearchInput(''))}
+        onCancelSearch={() => dispatch(setSearchLocationInput(''))}
       />
       {/* Footer */}
       <Container component="footer" className={classes.footer}>
