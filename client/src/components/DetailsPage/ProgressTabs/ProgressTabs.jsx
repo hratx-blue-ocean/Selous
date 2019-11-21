@@ -14,7 +14,7 @@ import TabThree from './TabThree/TabThree.jsx';
 import { setDisplayedTabs } from '../../../redux/actions/actions.js';
 
 const ProgressTabs = ({
-  companyTabsTEST,
+  currentJob,
   whatsNextTab,
   displayedTabs,
   tabColors,
@@ -22,28 +22,28 @@ const ProgressTabs = ({
 }) => {
   useEffect(() => {
     let tempArr;
-    switch (companyTabsTEST.length) {
+    switch (currentJob.progressArray.length) {
       case 0:
         dispatch(setDisplayedTabs([whatsNextTab]));
         break;
       case 1:
-        tempArr = companyTabsTEST.slice();
-        tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
+        tempArr = currentJob.slice();
+        tempArr[0].color = tabColors[currentJob.indexOf(tempArr[0])];
         dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
         break;
       case 2:
-        tempArr = companyTabsTEST.slice();
-        tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
-        tempArr[1].color = tabColors[companyTabsTEST.indexOf(tempArr[1])];
+        tempArr = currentJob.slice();
+        tempArr[0].color = tabColors[currentJob.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[currentJob.indexOf(tempArr[1])];
         dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
         break;
       default:
-        tempArr = companyTabsTEST.slice(-2);
-        tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
-        tempArr[1].color = tabColors[companyTabsTEST.indexOf(tempArr[1])];
+        tempArr = currentJob.slice(-2);
+        tempArr[0].color = tabColors[currentJob.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[currentJob.indexOf(tempArr[1])];
         dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
     }
-  }, [companyTabsTEST]);
+  }, [currentJob]);
 
   return (
     <div className={styles.progress_tabs_wrapper}>
@@ -64,7 +64,7 @@ const ProgressTabs = ({
 };
 
 const mapStateToProps = (state) => ({
-  companyTabsTEST: state.companyTabsTEST,
+  currentJob: state.currentJob,
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
