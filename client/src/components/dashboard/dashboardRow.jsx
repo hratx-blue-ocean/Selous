@@ -10,10 +10,14 @@ const mapStateToProps = (state) => ({
   show: state.addJobModal,
 });
 
-const DashboardRow = ({ job, dispatch }) => {
+const DashboardRow = ({ jobIndex, job, dispatch }) => {
   const history = useHistory();
   const handleRoute = () => {
-    dispatch(currentJobAction(job));
+    const currentJob = {
+      jobId: jobIndex,
+      jobData: job,
+    };
+    dispatch(currentJobAction(currentJob));
     history.push('/details');
   };
   if (job) {

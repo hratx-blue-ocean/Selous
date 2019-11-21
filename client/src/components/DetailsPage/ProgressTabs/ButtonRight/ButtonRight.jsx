@@ -55,12 +55,10 @@ const ButtonRight = ({
 
 
 const mapStateToProps = (state) => ({
-  currentJob: state.currentJob,
+  currentJob: state.currentJob.jobData,
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
 });
 
-const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
-
-export default connect(mapStateToProps)(React.memo(ButtonRight, isEqual));
+export default connect(mapStateToProps)(ButtonRight);

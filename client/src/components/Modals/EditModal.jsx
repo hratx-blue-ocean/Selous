@@ -73,8 +73,6 @@ const useStyles = makeStyles(({
   },
 }));
 
-// const mapStateToProps = (state) => ({ show: state.editModal });
-
 function EditDetailsModal({ setShow, show }) {
   const classes = useStyles();
   return (

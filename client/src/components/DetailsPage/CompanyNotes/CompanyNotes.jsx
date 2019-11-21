@@ -23,7 +23,10 @@ const CompanyNotes = ({ currentJob, dispatch }) => (
   </>
 );
 
-const mapStateToProps = (state) => ({ currentJob: state.currentJob, showEdit: state.editModal });
+const mapStateToProps = (state) => ({
+  currentJob: state.currentJob.jobData,
+  showEdit: state.editModal,
+});
 
 const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
 

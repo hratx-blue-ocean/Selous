@@ -67,10 +67,8 @@ const Tab = ({
 const mapStateToProps = (state) => ({
   showEdit: state.editModal,
   showWhatsNext: state.whatsNextModal,
-  currentJob: state.currentJob,
+  currentJob: state.currentJob.jobData,
   whatsNextTab: state.whatsNextTab,
 });
 
-const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
-
-export default connect(mapStateToProps)(React.memo(Tab, isEqual));
+export default connect(mapStateToProps)(Tab);

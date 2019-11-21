@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import axios from 'axios';
 
+/* eslint-disable prefer-const */
 import {
   Fab,
   Box,
@@ -10,7 +12,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import { whatsNextAction } from '../../redux/actions/actions.js';
+import { whatsNextAction, userToState } from '../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   root: {
@@ -96,10 +98,53 @@ const useStyles = makeStyles(({
   },
 }));
 
-const mapStateToProps = (state) => ({ show: state.whatsNextModal });
+const mapStateToProps = (state) => ({
+  show: state.whatsNextModal,
+  user: state.userData,
+  job: state.currentJob,
+});
 
-function WhatsNext({ show, dispatch }) {
+function WhatsNext({ job, user, show, dispatch }) {
   const classes = useStyles();
+
+  let [title, setTitle] = useState('');
+  let [notes, setNotes] = useState('');
+
+  const addNextStep = () => {
+    const step = {};
+
+    const date = new Date();
+    const now = `${date.getFullYear()}-${(date.getMonth() + 1)}-${date.getDate()}`;
+
+    step.stepName = title;
+    step.stepNotes = notes;
+    step.createdAt = now;
+    step.isCompleted = false;
+
+    axios.post('/db/dashboard/job/progress', {
+      userId: user._id,
+      jobId: job.jobId,
+      progressData: step,
+    })
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: user._id,
+          },
+        })
+          .then((results) => {
+            console.log(results);
+            dispatch(userToState(results.data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <Modal
       aria-labelledby="simple-modal-title"
@@ -119,6 +164,7 @@ function WhatsNext({ show, dispatch }) {
               name="next"
               autoComplete="What's your next step?"
               className={classes.next}
+              onChange={(event) => { setTitle(title = event.target.value); }}
             />
           </div>
           <div>
@@ -131,13 +177,14 @@ function WhatsNext({ show, dispatch }) {
               rows="6"
               className={classes.next}
               margin="normal"
+              onChange={(event) => { setNotes(notes = event.target.value); }}
             />
           </div>
           <Box className={classes.buttons}>
             <Fab onClick={() => dispatch(whatsNextAction())} className={classes.buttonBoi}>
               <AddCircleIcon className={classes.doNot} />
             </Fab>
-            <Fab className={classes.fabStuff}>
+            <Fab onClick={() => { addNextStep(); }} className={classes.fabStuff}>
               <CheckCircleIcon className={classes.do} />
             </Fab>
           </Box>

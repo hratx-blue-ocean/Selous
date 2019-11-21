@@ -2,7 +2,6 @@
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 import styles from './ButtonLeft.css';
 import { moveLeftDisplayedTabs } from '../../../../redux/actions/actions.js';
 
@@ -48,12 +47,10 @@ const ButtonLeft = ({
 };
 
 const mapStateToProps = (state) => ({
-  currentJob: state.currentJob,
+  currentJob: state.currentJob.jobData,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
   whatsNextTab: state.whatsNextTab,
 });
 
-const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
-
-export default connect(mapStateToProps)(React.memo(ButtonLeft, isEqual));
+export default connect(mapStateToProps)(ButtonLeft);
