@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DashboardRow from './dashboardRow.jsx';
@@ -15,8 +14,8 @@ const Dashboard = ({ user }) => (
     <Headerbar />
     <div className={styles.flexbox}>
       <div className={styles.dashboard}>
-        {user.userJobs.map((job) => (
-          <DashboardRow component={Link} to="/details" key={job._id} job={job} />
+        {user.userJobs.map((job, i) => (
+          <DashboardRow component={Link} to="/details" key={job._id} jobIndex={i} job={job} />
         ))}
         <DashboardRow key="+" job={null} />
       </div>
@@ -26,6 +25,4 @@ const Dashboard = ({ user }) => (
   </>
 );
 
-const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
-
-export default connect(mapStateToProps)(React.memo(Dashboard, areEqual));
+export default connect(mapStateToProps)(Dashboard);

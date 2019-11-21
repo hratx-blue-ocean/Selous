@@ -36,6 +36,7 @@ const useStyles = makeStyles({
     flexDirection: 'row',
     height: '590px',
     overflow: 'scroll',
+    backgroundColor: '#a6a2a7',
   },
   search: {
     width: '80%',

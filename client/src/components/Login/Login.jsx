@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
@@ -155,6 +154,4 @@ function SignIn({ dispatch }) {
   );
 }
 
-const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
-
-export default connect(mapStateToProps)(React.memo(SignIn, areEqual));
+export default connect(mapStateToProps)(SignIn);
