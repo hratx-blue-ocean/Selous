@@ -44,11 +44,6 @@ const useStyles = makeStyles({
     marginBottom: 10,
     marginTop: 10,
   },
-  ad: {
-    marginLeft: '10%',
-    height: '600px',
-    width: '500px',
-  },
 });
 
 const JobSearch = ({
