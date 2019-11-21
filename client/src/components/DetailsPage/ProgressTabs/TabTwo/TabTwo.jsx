@@ -8,9 +8,7 @@ import styles from './TabTwo.css';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
 import {
-  editAction,
   currentJobAction,
-  whatsNextAction,
   userToState,
 } from '../../../../redux/actions/actions.js';
 
@@ -21,6 +19,8 @@ const Tab = ({
   whatsNextTab,
   userData,
   dispatch,
+  show,
+  setShow,
 }) => {
   const [isWhatsNextTab, toggle] = useState(false);
 
@@ -67,7 +67,7 @@ const Tab = ({
           <div className={styles.tab_body}>{tab ? tab.stepNotes : null}</div>
           {tab ? (
             <div className={styles.tab_edit}>
-              <button type="button" onClick={() => dispatch(isWhatsNextTab ? whatsNextAction() : editAction())} className={styles.edit}>{isWhatsNextTab ? 'Next Step' : 'Edit'}</button>
+              <button type="button" onClick={() => { setShow(!show); }} className={styles.edit}>{isWhatsNextTab ? 'Next Step' : 'Edit'}</button>
             </div>
           ) : ''}
         </div>
@@ -80,10 +80,9 @@ const Tab = ({
 const mapStateToProps = (state) => ({
   showEdit: state.editModal,
   showWhatsNext: state.whatsNextModal,
-  currentJob: state.currentJob,
+  currentJob: state.currentJob.jobData,
   whatsNextTab: state.whatsNextTab,
   userData: state.userData,
 });
-
 
 export default connect(mapStateToProps)(Tab);
