@@ -60,6 +60,16 @@ const validateLogin = (login, callback) => {
     .catch((err) => { callback(err, null); });
 };
 
+const getUser = (userId, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      callback(null, user);
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+};
+
 
 const validateSignup = (userData, callback) => {
   User.findOne({ userName: userData.username })
@@ -76,7 +86,6 @@ const validateSignup = (userData, callback) => {
         });
         newUser.save()
           .then((data) => {
-            console.log(data);
             callback(null, data);
           })
           .catch((err) => {
@@ -228,4 +237,13 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
 
 // All exported functions work!
 
-module.exports = { addJob, addGoal, addJobProgress, validateLogin, validateSignup, changeProgress, editProgress };
+module.exports = {
+  addJob,
+  addGoal,
+  addJobProgress,
+  validateLogin,
+  validateSignup,
+  changeProgress,
+  getUser,
+  editProgress,
+};

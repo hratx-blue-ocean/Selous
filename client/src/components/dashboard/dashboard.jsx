@@ -8,7 +8,6 @@ import Footer from '../footer/Footer.jsx';
 
 const mapStateToProps = (state) => ({ user: state.userData });
 
-
 const Dashboard = ({ user }) => (
   <>
     <Headerbar />

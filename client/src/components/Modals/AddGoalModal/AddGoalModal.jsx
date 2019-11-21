@@ -130,13 +130,21 @@ function AddGoalModal({ user, show, dispatch }) {
     goal.goalProgress = 0;
 
     axios.post('/db/goals', {
-      userId: user.userId,
+      userId: user._id,
       goalData: goal,
     })
-      .then((res) => {
-        console.log(res);
-        console.log(user);
-        dispatch(userToState(goal));
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: user._id,
+          },
+        })
+          .then((results) => {
+            dispatch(userToState(results.data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         console.log(err);
