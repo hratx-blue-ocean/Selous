@@ -114,7 +114,6 @@ const useStyles = makeStyles(({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
     alignSelf: 'flex-start',
     marginLeft: 20,
     height: 50,
@@ -123,7 +122,8 @@ const useStyles = makeStyles(({
     // fontSize: 25,
     height: 25,
     marginRight: 10,
-    fontSize: 25,
+    // fontSize: 25,
+    fontSize: '1vw',
     marginBottom: 20,
   },
   titleTer: {

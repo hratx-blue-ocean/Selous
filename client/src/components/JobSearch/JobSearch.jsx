@@ -8,7 +8,7 @@ import {
   Grid,
 } from '@material-ui/core';
 import JobComponent from './JobComponent.jsx';
-import Goals from '../Goals/Goals.jsx';
+// import Goals from '../Goals/Goals.jsx';
 import { setSearchInput, setApiSearchData, setSearchLocationInput } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
@@ -97,7 +97,7 @@ const JobSearch = ({
             }
           </Grid>
         </Paper>
-        <Goals />
+        {/* <Goals /> */}
       </div>
     </>
   );
