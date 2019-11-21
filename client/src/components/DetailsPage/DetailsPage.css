@@ -8,6 +8,7 @@
     grid-template-rows: 100%;
     grid-template-areas: 
         'page_body';
+    place-items: center;
 }
 
 .header{
@@ -30,6 +31,5 @@
     grid-template-columns: 25% 75%;
     grid-template-areas: 
         'company_notes progress_tabs_wrapper';
-    padding-right: 165px;
-    padding-left: 165px;
+    max-width: 1240px;
 }

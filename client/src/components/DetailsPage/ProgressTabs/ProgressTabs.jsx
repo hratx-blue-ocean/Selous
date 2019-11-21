@@ -49,7 +49,7 @@ const ProgressTabs = ({
     <div className={styles.progress_tabs_wrapper}>
 
       <div className={styles.progress_tabs_header}>
-        <h1>PLACEHOLDER</h1>
+        <h1>{`Your progress with ${currentJob.company}`}</h1>
       </div>
 
       <div className={styles.progress_tabs}>
