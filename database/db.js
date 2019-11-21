@@ -1,11 +1,12 @@
 // miles & tyler
 const mongoose = require('mongoose');
+const debug = require('debug')('mongoDB');
 
 mongoose.connect('mongodb+srv://FriendMiles:Igala1rele@cluster0-4q3ra.gcp.mongodb.net/Selous', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', debug.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('Mongo is Connected');
+  debug('Mongo is Connected');
 });
 
 
@@ -176,6 +177,7 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
     });
   });
 };
+
 // Goal Schema
 // const goal = {
 //   goaldId: 3,
