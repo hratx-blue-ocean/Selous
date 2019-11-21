@@ -16,10 +16,10 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { loginAction, userToState } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
+import Footer from '../footer/Footer.jsx';
 
-// eslint-disable-next-line
 const theme2 = createMuiTheme({
-  formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
+  formLabelRoot: {
     '&$formLabelFocused': { color: purple },
   },
   palette: {
@@ -59,17 +59,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '15px',
   },
 }));
-//    Redux Action
-// const actionLogin = (userName) => ({
-//   type: 'USER_LOGIN',
-//   payload: {
-//     user: userName,
-//   }
-// });
-
-const loginObj = {
-
-};
+const loginObj = {};
 
 const writeToLogin = (event) => {
   loginObj[event.target.name] = event.target.value;
@@ -85,11 +75,8 @@ function SignIn({ dispatch }) {
     // Check auth
     axios.post('/db/login', {
       data: loginObj,
-      // If correct, pull data from DB for user
     }).then((response) => {
       if (response.data.userName) {
-        // Update state with response data
-        // UserIsLoggedIn = true
         dispatch(loginAction());
         dispatch(userToState(response.data));
         history.push('/dashboard');
@@ -97,7 +84,6 @@ function SignIn({ dispatch }) {
         alert('Invalid Login');
       }
     }).catch((err) => { console.log(err); });
-    // Write data to the database
   };
   return (
     <>
@@ -163,6 +149,7 @@ function SignIn({ dispatch }) {
         </div>
         <Box mt={8} />
       </Container>
+      <Footer />
     </>
   );
 }

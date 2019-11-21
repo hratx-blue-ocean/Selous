@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, HashRouter as Router } from 'react-router-dom';
 import App from './App.jsx';
 import JobSearch from './components/JobSearch/JobSearch.jsx';
 import Login from './components/Login/Login.jsx';
