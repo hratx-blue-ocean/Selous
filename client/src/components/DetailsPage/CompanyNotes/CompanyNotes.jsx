@@ -16,6 +16,8 @@ const CompanyNotes = ({ currentJob }) => (
   </div>
 );
 
+// Implment notes button, add job details from state
+
 const mapStateToProps = (state) => ({ currentJob: state.currentJob });
 
 export default connect(mapStateToProps)(CompanyNotes);

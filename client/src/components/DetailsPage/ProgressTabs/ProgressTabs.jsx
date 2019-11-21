@@ -27,23 +27,23 @@ const ProgressTabs = ({
         dispatch(setDisplayedTabs([whatsNextTab]));
         break;
       case 1:
-        tempArr = currentJob.slice();
-        tempArr[0].color = tabColors[currentJob.indexOf(tempArr[0])];
+        tempArr = currentJob.progressArray.slice();
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
         dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
         break;
       case 2:
-        tempArr = currentJob.slice();
-        tempArr[0].color = tabColors[currentJob.indexOf(tempArr[0])];
-        tempArr[1].color = tabColors[currentJob.indexOf(tempArr[1])];
+        tempArr = currentJob.progressArray.slice();
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
         dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
         break;
       default:
-        tempArr = currentJob.slice(-2);
-        tempArr[0].color = tabColors[currentJob.indexOf(tempArr[0])];
-        tempArr[1].color = tabColors[currentJob.indexOf(tempArr[1])];
+        tempArr = currentJob.progressArray.slice(-2);
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
         dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
     }
-  }, [currentJob]);
+  }, [currentJob.progressArray]);
 
   return (
     <div className={styles.progress_tabs_wrapper}>

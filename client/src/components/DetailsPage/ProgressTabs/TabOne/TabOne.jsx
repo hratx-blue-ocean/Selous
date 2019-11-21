@@ -2,7 +2,7 @@
 /* eslint-disable arrow-body-style */
 /* eslint-disable array-callback-return */
 /* eslint-disable max-len */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import styles from './TabOne.css';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
@@ -21,25 +21,25 @@ const Tab = ({
   const [isWhatsNextTab, toggle] = useState(false);
 
   const handleOnClick = () => {
-    // Variable decleration
     const currentJobCopy = currentJob;
     const tabIndex = currentJobCopy.progressArray.indexOf(tab);
     const completedValue = currentJobCopy.progressArray[tabIndex].isCompleted;
-
     currentJobCopy.progressArray[tabIndex].isCompleted = !completedValue;
     dispatch(userToState(currentJobCopy));
   };
 
-  if (JSON.stringify(tab) === JSON.stringify(whatsNextTab)) {
-    toggle(true);
-  }
+  useEffect(() => {
+    if (JSON.stringify(tab) === JSON.stringify(whatsNextTab)) {
+      toggle(true);
+    }
+  }, [tab]);
 
   return (
     <>
       {tab ? (isWhatsNextTab ? <WhatsNext /> : <EditDetailsModal />) : ''}
       <div className={styles.tab_wrapper_one}>
         <div className={styles.card_holder}>
-          {currentJob.slice(0, currentJob.indexOf(tab)).reduce((acc, cur, i) => {
+          {currentJob.progressArray.slice(0, currentJob.progressArray.indexOf(tab)).reduce((acc, cur, i) => {
             acc.unshift(styles[stylesArr[i]]);
             return acc;
           }, []).map((el, i) => {
@@ -49,8 +49,8 @@ const Tab = ({
             return '';
           })}
           <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : null, styles.tab].join(' ')}>
-            <div className={styles.tab_header}>{tab ? tab.tabName : null}</div>
-            <div className={styles.tab_body}>{tab ? tab.tabBody : null}</div>
+            <div className={styles.tab_header}>{tab ? tab.stepName : null}</div>
+            <div className={styles.tab_body}>{tab ? tab.stepNotes : null}</div>
             <div className={styles.tab_edit}>
               <button type="button" onClick={() => dispatch(isWhatsNextTab ? whatsNextAction() : editAction())} className={styles.edit}>{tab ? (isWhatsNextTab ? 'Next Step' : 'Edit') : null}</button>
             </div>
@@ -63,7 +63,8 @@ const Tab = ({
 };
 
 const mapStateToProps = (state) => ({
-  show: state.editModal,
+  showEdit: state.editModal,
+  showWhatsNext: state.whatsNextModal,
   currentJob: state.currentJob,
   whatsNextTab: state.whatsNextTab,
 });
