@@ -28,7 +28,7 @@ const ButtonLeft = ({
   let [showButton, toggleShowButton] = useState(false);
 
   useEffect(() => {
-    if (!_.isEqual(displayedTabs[0], currentJob.progressArray[0]) && _.isEqual(displayedTabs[0], whatsNextTab)) {
+    if (!_.isEqual(displayedTabs[0], currentJob.progressArray[0]) && !_.isEqual(displayedTabs[0], whatsNextTab)) {
       toggleShowButton(true);
       return;
     }
