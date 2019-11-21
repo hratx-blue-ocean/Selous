@@ -30,7 +30,7 @@ const Tab = ({
     copyOfCurrentJob.progressArray[index].isCompleted = !copyOfCurrentJob.progressArray[index].isCompleted;
     axios.put('/db/dashboard/job/progress/check', {
       userId: userData._id,
-      jobId: userData.userJobs.indexOf(currentJob),
+      jobId: currentJob.jobId,
       progId: index,
       completed: copyOfCurrentJob.progressArray[index].isCompleted,
     })
