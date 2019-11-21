@@ -7,6 +7,7 @@
 
 ## Cool graphic / DEMO
 
+Trello Board: https://trello.com/b/KGOifPLt/blue-ocean
 
 # Stack
 
