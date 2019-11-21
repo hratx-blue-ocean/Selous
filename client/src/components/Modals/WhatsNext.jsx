@@ -43,6 +43,7 @@ const useStyles = makeStyles(({
     backgroundImage: 'url("https://selious.s3.amazonaws.com/selousSplice.PNG")',
     backgroundRepeat: 'no-repeat',
     backgroundSize: '100% 15%',
+    fontFamily: 'Cairo',
   },
   notes: {
     borderRadius: '8px',
