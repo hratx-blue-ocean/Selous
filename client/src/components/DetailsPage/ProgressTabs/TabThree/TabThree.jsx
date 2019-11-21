@@ -54,10 +54,14 @@ const Tab = ({
 
   const [isWhatsNextTab, toggle] = useState(false);
 
+  console.log(isWhatsNextTab);
+
   useEffect(() => {
-    if (JSON.stringify(tab) === JSON.stringify(whatsNextTab)) {
+    if (_.isEqual(tab, whatsNextTab)) {
       toggle(true);
+      return;
     }
+    toggle(false);
   }, [tab]);
 
   return (
