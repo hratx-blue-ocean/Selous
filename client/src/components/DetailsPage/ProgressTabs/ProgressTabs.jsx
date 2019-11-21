@@ -24,54 +24,49 @@ const ProgressTabs = ({
 }) => {
   useEffect(() => {
     let tempArr;
-    if (currentJob) {
-      switch (currentJob.progressArray.length) {
-        case 0:
-          dispatch(setDisplayedTabs([whatsNextTab]));
-          break;
-        case 1:
-          tempArr = currentJob.progressArray.slice();
-          tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
-          dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
-          break;
-        case 2:
-          tempArr = currentJob.progressArray.slice();
-          tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
-          tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
-          dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
-          break;
-        default:
-          tempArr = currentJob.progressArray.slice(-2);
-          tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
-          tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
-          dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
-      }
+    switch (currentJob.progressArray.length) {
+      case 0:
+        dispatch(setDisplayedTabs([whatsNextTab]));
+        break;
+      case 1:
+        tempArr = currentJob.progressArray.slice();
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
+        dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
+        break;
+      case 2:
+        tempArr = currentJob.progressArray.slice();
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
+        dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
+        break;
+      default:
+        tempArr = currentJob.progressArray.slice(-2);
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
+        dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
     }
   }, [currentJob]);
 
-  if (currentJob) {
-    return (
-      <div className={styles.progress_tabs_wrapper}>
+  return (
+    <div className={styles.progress_tabs_wrapper}>
 
-        <div className={styles.progress_tabs_header}>
-          <h1>{`Your progress with ${currentJob.company}`}</h1>
-        </div>
-
-        <div className={styles.progress_tabs}>
-          <ButtonLeft />
-          <TabOne tab={displayedTabs[0]} />
-          <TabTwo tab={displayedTabs[1] ? displayedTabs[1] : null} />
-          <TabThree tab={displayedTabs[2] ? displayedTabs[2] : null} />
-          <ButtonRight />
-        </div>
+      <div className={styles.progress_tabs_header}>
+        <h1>{`Your progress with ${currentJob.company}`}</h1>
       </div>
-    );
-  }
-  return <div>{currentJob}</div>;
+
+      <div className={styles.progress_tabs}>
+        <ButtonLeft />
+        <TabOne tab={displayedTabs[0]} />
+        <TabTwo tab={displayedTabs[1] ? displayedTabs[1] : null} />
+        <TabThree tab={displayedTabs[2] ? displayedTabs[2] : null} />
+        <ButtonRight />
+      </div>
+    </div>
+  );
 };
 
 const mapStateToProps = (state) => ({
-  // currentJob: state.currentJob.jobData,/\
+  // currentJob: state.currentJob.jobData,
   currentJob: state.userData.userJobs[state.currentJob.jobId],
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
