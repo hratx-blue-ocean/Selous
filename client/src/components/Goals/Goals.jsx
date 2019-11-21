@@ -18,14 +18,15 @@ const mapStateToProps = (state) => ({
 const useStyles = makeStyles((theme) => ({
   goalsTrackerContainer: {
     flex: 2,
-    maxHeight: '540px',
-    overflowY: 'auto',
+    height: '540px',
   },
   titleCard: {
     backgroundColor: '#9F6CB7',
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   },
   titleCardContent: {
     textAlign: 'center',
+    color: 'white',
   },
   cardFooter: {
     justifyContent: 'space-between',
@@ -36,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'space-between',
     marginBottom: theme.spacing(2),
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   },
   cardContent: {
     textAlign: 'center',
@@ -46,12 +48,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#9F6CB7',
     minWidth: '100%',
     padding: '0',
+    borderRadius: '15px',
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
   },
   button2: {
     fontSize: '14px',
   },
   goalsContainer: {
     justifyContent: 'center',
+    maxHeight: '398px',
+    overflowY: 'auto',
   },
   titleContainer: {
     backgroundColor: '#9F6CB7',
@@ -59,6 +65,9 @@ const useStyles = makeStyles((theme) => ({
   },
   buttonContainer: {
     padding: '0',
+  },
+  cairo: {
+    fontFamily: 'Cairo',
   },
 }));
 
@@ -96,17 +105,17 @@ const Goals = ({ currentGoals, dispatch, userId }) => {
   return (
     <>
       <AddGoalModal />
-      <div className={classes.goalsTrackerContainer}>
+      <Container className={classes.goalsTrackerContainer} maxWidth="xs">
         <CssBaseline />
+        <Card className={classes.titleCard}>
+          <CardContent className={classes.titleCardContent}>
+            <Typography variant="h3" component="h3" className={classes.cairo}>
+              Goals
+            </Typography>
+          </CardContent>
+        </Card>
         <main>
           <Container className={classes.goalsContainer} maxWidth="xs">
-            <Card className={classes.titleCard}>
-              <CardContent className={classes.titleCardContent}>
-                <Typography variant="h3" component="h3">
-                  Goals
-                </Typography>
-              </CardContent>
-            </Card>
             <hr style={{ margin: '20px 10px' }} />
             {
               currentGoals.length <= 0 ? null
@@ -146,19 +155,19 @@ const Goals = ({ currentGoals, dispatch, userId }) => {
                   </Card>
                 ))
             }
-            <CardActions className={classes.buttonContainer}>
-              <Button
-                variant="contained"
-                size="large"
-                className={classes.button1}
-                onClick={() => dispatch(addGoalAction())}
-              >
-                +
-              </Button>
-            </CardActions>
           </Container>
         </main>
-      </div>
+        <CardActions className={classes.buttonContainer}>
+          <Button
+            variant="contained"
+            size="large"
+            className={classes.button1}
+            onClick={() => dispatch(addGoalAction())}
+          >
+            +
+          </Button>
+        </CardActions>
+      </Container>
     </>
   );
 };
