@@ -23,7 +23,6 @@ const useStyles = makeStyles(({
     width: 'fit-content',
     height: 'fit-content',
     borderRadius: '8px',
-    // fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     backgroundImage: 'url("https://selious.s3.amazonaws.com/selousSplice.PNG")',
@@ -33,7 +32,6 @@ const useStyles = makeStyles(({
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
     margin: '10% auto auto auto',
-    // fontFamily: "'Michroma', sans-serif !important",
   },
   root: {
     padding: 10,
@@ -41,13 +39,11 @@ const useStyles = makeStyles(({
     width: '549px',
     height: '400px',
     borderRadius: '8px',
-    // fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
-    // fontFamily: "'Michroma', sans-serif !important",
   },
   notes: {
     borderRadius: '8px',
@@ -62,14 +58,10 @@ const useStyles = makeStyles(({
   },
   next: {
     borderRadius: '6px',
-    // padding: 10,
     background: '#FFFFFF',
     width: '300px',
-    // borderWidth: 1,
     marginRight: 10,
     marginBottom: 20,
-    // borderColor: '#9f6cb7',
-    // borderStyle: 'solid',
     boxShadow: 5,
   },
   do: {
@@ -87,8 +79,6 @@ const useStyles = makeStyles(({
   },
   buttons: {
     marginRight: 6,
-    // float: 'right',
-    // alignSelf: 'flex-end',
     textAlign: 'center',
     marginBottom: 10,
   },
@@ -100,16 +90,12 @@ const useStyles = makeStyles(({
     borderRadius: 40,
   },
   rightContainer: {
-    // display: 'flex',
-    // flexDirection: 'column',
-    // flexDirection: 'row',
   },
   notesContainer: {
     display: 'flex',
     flexDirection: 'column',
   },
   h2: {
-    // marginLeft: '10px',
     color: 'white',
   },
 }));
@@ -126,7 +112,7 @@ function AddGoalModal({ user, show, dispatch }) {
 
     goal.goalId = 2;
     goal.goalName = objective;
-    goal.Target = parseInt(target, 0);
+    goal.goalTarget = parseInt(target, 0);
     goal.goalProgress = 0;
 
     axios.post('/db/goals', {
@@ -175,12 +161,6 @@ function AddGoalModal({ user, show, dispatch }) {
               className={classes.next}
               onChange={(event) => { setObjective(objective = event.target.value); }}
             />
-            {/* <input
-              onChange={(event) => { setObjective(objective = event.target.value); }}
-              type="text"
-              className={classes.next}
-              placeholder="ex: 'Conduct 3 phone screens/week'"
-            /> */}
           </div>
           <div>
             <Typography>
@@ -197,12 +177,6 @@ function AddGoalModal({ user, show, dispatch }) {
               className={classes.next}
               onChange={(event) => { setTarget(target = event.target.value); }}
             />
-            {/* <input
-              onChange={(event) => { setTarget(target = event.target.value); }}
-              type="text"
-              className={classes.next}
-              placeholder="How many?"
-            /> */}
           </div>
           <Box className={classes.buttons}>
             <Fab onClick={() => dispatch(addGoalAction())} className={classes.buttonBoi}>

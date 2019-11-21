@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -61,11 +61,13 @@ const useStyles = makeStyles({
 const JobComponent = ({ job, dispatch }) => {
   const classes = useStyles();
 
+  let [show, setShow] = useState(false);
+
   return (
     <>
-      <JobPostingModal oneJob={job} />
+      <JobPostingModal setShow={setShow} show={show} oneJob={job} />
       <Button>
-        <Card className={classes.root} onClick={() => dispatch(showJobAction())}>
+        <Card className={classes.root} onClick={() => setShow(show = !show)}>
           <Grid container className={classes.mainContainer}>
             <Grid item alignItems="center">
               <Avatar className={classes.logo}>

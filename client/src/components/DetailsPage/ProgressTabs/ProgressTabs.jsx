@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import styles from './ProgressTabs.css';
 
 // Components
@@ -14,7 +15,7 @@ import TabThree from './TabThree/TabThree.jsx';
 import { setDisplayedTabs } from '../../../redux/actions/actions.js';
 
 const ProgressTabs = ({
-  companyTabsTEST,
+  currentJob,
   whatsNextTab,
   displayedTabs,
   tabColors,
@@ -22,34 +23,34 @@ const ProgressTabs = ({
 }) => {
   useEffect(() => {
     let tempArr;
-    switch (companyTabsTEST.length) {
+    switch (currentJob.progressArray.length) {
       case 0:
         dispatch(setDisplayedTabs([whatsNextTab]));
         break;
       case 1:
-        tempArr = companyTabsTEST.slice();
-        tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
+        tempArr = currentJob.progressArray.slice();
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
         dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
         break;
       case 2:
-        tempArr = companyTabsTEST.slice();
-        tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
-        tempArr[1].color = tabColors[companyTabsTEST.indexOf(tempArr[1])];
+        tempArr = currentJob.progressArray.slice();
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
         dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
         break;
       default:
-        tempArr = companyTabsTEST.slice(-2);
-        tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
-        tempArr[1].color = tabColors[companyTabsTEST.indexOf(tempArr[1])];
+        tempArr = currentJob.progressArray.slice(-2);
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
         dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
     }
-  }, [companyTabsTEST]);
+  }, [currentJob.progressArray]);
 
   return (
     <div className={styles.progress_tabs_wrapper}>
 
       <div className={styles.progress_tabs_header}>
-        <h1>PLACEHOLDER</h1>
+        <h1>{`Your progress with ${currentJob.company}`}</h1>
       </div>
 
       <div className={styles.progress_tabs}>
@@ -64,10 +65,12 @@ const ProgressTabs = ({
 };
 
 const mapStateToProps = (state) => ({
-  companyTabsTEST: state.companyTabsTEST,
+  currentJob: state.currentJob,
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
 });
 
-export default connect(mapStateToProps)(ProgressTabs);
+const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
+
+export default connect(mapStateToProps)(React.memo(ProgressTabs, areEqual));

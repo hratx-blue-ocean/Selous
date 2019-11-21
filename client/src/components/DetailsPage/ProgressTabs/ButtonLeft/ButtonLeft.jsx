@@ -2,22 +2,23 @@
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import styles from './ButtonLeft.css';
 import { moveLeftDisplayedTabs } from '../../../../redux/actions/actions.js';
 
 const ButtonLeft = ({
-  companyTabsTEST,
+  currentJob,
   displayedTabs,
   tabColors,
   whatsNextTab,
   dispatch,
 }) => {
   const handleOnClick = () => {
-    if (JSON.stringify(displayedTabs[0]) !== JSON.stringify(companyTabsTEST[0])) {
-      for (let i = 1, len = companyTabsTEST.length; i < len; i += 1) {
-        if (JSON.stringify(displayedTabs[0]) === JSON.stringify(companyTabsTEST[i])) {
-          const tab = companyTabsTEST[i - 1];
-          tab.color = tabColors[companyTabsTEST.indexOf(tab)];
+    if (JSON.stringify(displayedTabs[0]) !== JSON.stringify(currentJob.progressArray[0])) {
+      for (let i = 1, len = currentJob.progressArray.length; i < len; i += 1) {
+        if (JSON.stringify(displayedTabs[0]) === JSON.stringify(currentJob.progressArray[i])) {
+          const tab = currentJob.progressArray[i - 1];
+          tab.color = tabColors[currentJob.progressArray.indexOf(tab)];
           dispatch(moveLeftDisplayedTabs(tab));
         }
       }
@@ -27,7 +28,7 @@ const ButtonLeft = ({
   let [showButton, toggleShowButton] = useState(false);
 
   useEffect(() => {
-    if (JSON.stringify(displayedTabs[0]) !== JSON.stringify(companyTabsTEST[0]) && JSON.stringify(displayedTabs[0]) !== JSON.stringify(whatsNextTab)) {
+    if (JSON.stringify(displayedTabs[0]) !== JSON.stringify(currentJob.progressArray[0]) && JSON.stringify(displayedTabs[0]) !== JSON.stringify(whatsNextTab)) {
       toggleShowButton(true);
       return;
     }
@@ -47,10 +48,12 @@ const ButtonLeft = ({
 };
 
 const mapStateToProps = (state) => ({
-  companyTabsTEST: state.companyTabsTEST,
+  currentJob: state.currentJob,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
   whatsNextTab: state.whatsNextTab,
 });
 
-export default connect(mapStateToProps)(ButtonLeft);
+const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
+
+export default connect(mapStateToProps)(React.memo(ButtonLeft, isEqual));

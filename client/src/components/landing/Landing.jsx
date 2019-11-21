@@ -1,37 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 // import Avatar from '@material-ui/core/Avatar';
-import Box from '@material-ui/core/Box';
 import SearchBar from 'material-ui-search-bar';
 // import { flexbox } from '@material-ui/system';
+import Footer from '../footer/Footer.jsx';
 import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
 import {
   setSearchInput,
-  showAboutAction,
   setApiSearchData,
   setSearchLocationInput,
 } from '../../redux/actions/actions.js';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      Copyright ©&nbsp;
-      <Link color="inherit" href="/">
-        Selous
-      </Link>
-      {' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -113,25 +94,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const footers = [
-  {
-    title: 'Company',
-    description: ['About', 'History', 'Contact us', 'Locations'],
-  },
-  {
-    title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff'],
-  },
-  {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-  },
-  {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
-  },
-];
-
 const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
   const classes = useStyles();
   const history = useHistory();
@@ -152,6 +114,7 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
 
   const handleRequest = () => {
     apiGetRequest();
+    // return <Redirect to="/jobs" />;
     history.push('/jobs');
   };
 
@@ -185,7 +148,7 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
         placeholder="Search Jobs..."
         value={searchInput}
         onChange={(newValue) => dispatch(setSearchInput(newValue))}
-        onRequestSearch={(keyword) => apiGetRequest(keyword)}
+        onRequestSearch={handleRequest}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
       <SearchBar
@@ -194,50 +157,9 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
         value={locationSearchInput}
         onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
         onRequestSearch={handleRequest}
-        onCancelSearch={() => dispatch(setSearchInput(''))}
+        onCancelSearch={() => dispatch(setSearchLocationInput(''))}
       />
-      {/* Footer */}
-      <Container component="footer" className={classes.footer}>
-        <Grid container spacing={4} justify="space-evenly">
-          {footers.map((footer) => (
-            <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="textPrimary" gutterBottom>
-                {footer.title}
-              </Typography>
-              <ul>
-                {footer.description.map((item) => {
-                  if (item === 'About') {
-                    return (
-                      <li key={item}>
-                        <Typography
-                          className={classes.about}
-                          type="button"
-                          variant="subtitle1"
-                          color="textSecondary"
-                          onClick={() => dispatch(showAboutAction())}
-                        >
-                          {item}
-                        </Typography>
-                      </li>
-                    );
-                  }
-                  return (
-                    <li key={item}>
-                      <Link href="/" variant="subtitle1" color="textSecondary">
-                        {item}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </Grid>
-          ))}
-        </Grid>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </Container>
-      {/* End footer */}
+      <Footer />
     </>
   );
 };

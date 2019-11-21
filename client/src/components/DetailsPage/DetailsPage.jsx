@@ -3,6 +3,7 @@ import styles from './DetailsPage.css';
 import CompanyNotes from './CompanyNotes/CompanyNotes.jsx';
 import ProgressTabs from './ProgressTabs/ProgressTabs.jsx';
 import Headerbar from '../headerbar/Headerbar.jsx';
+import Footer from '../footer/Footer.jsx';
 
 const DetailsPage = () => (
   <>
@@ -13,6 +14,7 @@ const DetailsPage = () => (
         <ProgressTabs />
       </div>
     </div>
+    <Footer />
   </>
 );
 

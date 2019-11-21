@@ -11,6 +11,8 @@ import JobComponent from './JobComponent.jsx';
 import Goals from '../Goals/Goals.jsx';
 import { setSearchInput, setApiSearchData, setSearchLocationInput } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
+import Footer from '../footer/Footer.jsx';
+import Ad from '../advertisment/Advertisment.jsx';
 
 const useStyles = makeStyles({
   jobSearchGoalsContainer: {
@@ -32,13 +34,15 @@ const useStyles = makeStyles({
     alignContent: 'center',
     flex: 4,
     flexDirection: 'row',
+    height: '590px',
+    overflow: 'scroll',
   },
   search: {
     width: '80%',
     margin: '0 auto',
     maxWidth: 800,
-    marginBottom: 20,
-    marginTop: 20,
+    marginBottom: 10,
+    marginTop: 10,
   },
 });
 
@@ -47,6 +51,7 @@ const JobSearch = ({
   searchInput,
   dispatch,
   locationSearchInput,
+  user,
 }) => {
   const classes = useStyles();
 
@@ -72,7 +77,7 @@ const JobSearch = ({
       <Headerbar />
       <div className={classes.jobSearchGoalsContainer}>
         <div className={classes.adSpace} />
-        <Paper container className={classes.root}>
+        <Paper container item className={classes.root}>
           <SearchBar
             className={classes.search}
             placeholder="Search Jobs..."
@@ -89,14 +94,15 @@ const JobSearch = ({
             onRequestSearch={() => apiGetRequest()}
             onCancelSearch={() => dispatch(setSearchInput(''))}
           />
-          <Grid container justify="center" alignItems="center">
+          <Grid container justify="center" alignItems="center" className={classes.results}>
             {
               jobs.map((job) => <JobComponent job={job} key={job.id} />)
             }
           </Grid>
         </Paper>
-        <Goals />
+        {user.userName ? <Goals /> : <Ad />}
       </div>
+      <Footer />
     </>
   );
 };
@@ -105,6 +111,7 @@ const mapStatesToProps = (state) => ({
   searchInput: state.searchInput,
   locationSearchInput: state.locationSearchInput,
   jobs: state.apiData,
+  user: state.userData,
 });
 
 export default connect(mapStatesToProps)(JobSearch);
