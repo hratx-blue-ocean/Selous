@@ -129,11 +129,11 @@ function AddGoalModal({ user, show, dispatch }) {
             dispatch(userToState(results.data));
           })
           .catch((err) => {
-            console.error(err);
+            throw err;
           });
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
 
