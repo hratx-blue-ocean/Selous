@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import DashboardRow from './dashboardRow.jsx';
 import styles from './dashboard.css';
 import Headerbar from '../headerbar/Headerbar.jsx';
+import Goals from '../Goals/Goals.jsx';
 
 
 const mapStateToProps = (state) => ({ user: state.userData });
@@ -18,6 +19,7 @@ const Dashboard = ({ user }) => (
         ))}
         <DashboardRow key="+" job={null} />
       </div>
+      <Goals />
     </div>
   </>
 );
