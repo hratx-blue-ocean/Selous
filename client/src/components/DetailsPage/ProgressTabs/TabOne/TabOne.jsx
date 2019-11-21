@@ -11,12 +11,16 @@ import axios from 'axios';
 import styles from './TabOne.css';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
+<<<<<<< HEAD
 import {
   editAction,
   currentJobAction,
   whatsNextAction,
   userToState,
 } from '../../../../redux/actions/actions.js';
+=======
+import { currentJobAction } from '../../../../redux/actions/actions.js';
+>>>>>>> dev
 
 const stylesArr = ['bg_red', 'bg_orange', 'bg_yellow', 'bg_green', 'bg_blue', 'bg_pink', 'bg_purple', 'bg_grey'];
 const cardDepth = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
@@ -28,6 +32,12 @@ const Tab = ({
   userData,
   dispatch,
 }) => {
+<<<<<<< HEAD
+=======
+  const [isWhatsNextTab, toggle] = useState(false);
+  const [show, setShow] = useState(false);
+
+>>>>>>> dev
   const handleOnClick = () => {
     const copyOfCurrentJob = _.clone(currentJob);
     const index = copyOfCurrentJob.progressArray.indexOf(tab);
@@ -66,7 +76,7 @@ const Tab = ({
 
   return (
     <>
-      {tab ? (isWhatsNextTab ? <WhatsNext /> : <EditDetailsModal />) : ''}
+      {tab ? (isWhatsNextTab ? <WhatsNext info={tab} setShow={setShow} show={show} /> : <EditDetailsModal info={tab} setShow={setShow} show={show} />) : ''}
       <div className={styles.tab_wrapper_one}>
         <div className={styles.card_holder}>
           {currentJob.progressArray.slice(0, currentJob.progressArray.indexOf(tab)).reduce((acc, cur, i) => {
@@ -82,7 +92,7 @@ const Tab = ({
             <h3 className={styles.tab_header}>{tab ? tab.stepName : null}</h3>
             <div className={styles.tab_body}>{tab ? tab.stepNotes : null}</div>
             <div className={styles.tab_edit}>
-              <button type="button" onClick={() => dispatch(isWhatsNextTab ? whatsNextAction() : editAction())} className={styles.edit}>{tab ? (isWhatsNextTab ? 'Next Step' : 'Edit') : null}</button>
+              <button type="button" onClick={() => { setShow(!show); }} className={styles.edit}>{tab ? (isWhatsNextTab ? 'Next Step' : 'Edit') : null}</button>
             </div>
           </div>
         </div>
