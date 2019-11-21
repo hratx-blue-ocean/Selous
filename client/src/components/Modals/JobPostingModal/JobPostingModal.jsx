@@ -13,7 +13,7 @@ import { connect } from 'react-redux';
 const useStyles = makeStyles(({
   bigContainer: {
     height: '100%',
-    width: '90%',
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
@@ -36,6 +36,7 @@ const useStyles = makeStyles(({
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
     opacity: '100%',
+    margin: '20px auto',
   },
   header: {
     display: 'flex',
@@ -88,7 +89,7 @@ const useStyles = makeStyles(({
     marginBottom: 5,
   },
   apply: {
-    height: '60px',
+    height: '40px',
     width: '150px',
     borderWidth: 1,
     borderStyle: 'solid',
@@ -98,14 +99,13 @@ const useStyles = makeStyles(({
     alignItems: 'center',
     backgroundColor: 'purple',
     color: 'white',
-    fontSize: 18,
+    fontSize: 15,
     '&:hover': {
       cursor: 'pointer',
     },
   },
   title: {
     marginLeft: 20,
-    // fontSize: 35,
     height: 35,
     width: '85%',
     fontSize: '2vw',
@@ -120,22 +120,16 @@ const useStyles = makeStyles(({
     height: 50,
   },
   titleSec: {
-    // fontSize: 25,
     height: 25,
     marginRight: 10,
     width: '300px',
-    // fontSize: 25,
-    // fontSize: '1vw',
     display: 'flex',
     alignSelf: 'flex-end',
     overflow: 'auto',
   },
   titleTer: {
-    // fontSize: 20,
-    // fontSize: '1vw',
     height: 25,
     width: '200px',
-    marginBottom: '4px',
     display: 'flex',
     alignSelf: 'flex-end',
     marginRight: '60px',
@@ -146,8 +140,6 @@ const useStyles = makeStyles(({
     fontSize: 10,
   },
 }));
-
-// const mapStateToProps = (state) => ({ show: state.jobPostingModal });
 
 function JobPostingModal({
   oneJob,
