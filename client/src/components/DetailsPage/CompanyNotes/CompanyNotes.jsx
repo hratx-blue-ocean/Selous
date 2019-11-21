@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
@@ -13,7 +14,10 @@ const CompanyNotes = ({ currentJob, dispatch }) => (
         <h3 className={styles.company_notes_title}>{currentJob.company}</h3>
         <div className={styles.company_notes_body}>
           <h4 className={styles.notes}>Notes</h4>
-          <div className={styles.company_notes}>{currentJob.notes}</div>
+          <div
+            className={styles.company_notes}
+            dangerouslySetInnerHTML={{ __html: currentJob.notes }}
+          />
         </div>
         <div className={styles.button_wrapper}>
           <button type="button" onClick={() => dispatch(editAction())} className={styles.button}>Add Notes</button>
