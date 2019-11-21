@@ -22,6 +22,7 @@ import {
   editModalReducer,
   showAboutReducer,
 } from './ModalReducers.js';
+import companyNotesTESTReducer from './companyNotesTESTReducer.js';
 
 const rootReducer = combineReducers({
   addGoal: addGoalReducer,
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
   currentJob: currentJobReducer,
   userData: userToState,
   locationSearchInput: apiLocationSearchDataReducer,
+  companyNotes: companyNotesTESTReducer,
 });
 
 export default rootReducer;

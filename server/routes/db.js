@@ -60,6 +60,18 @@ router.post('/dashboard/job/progress', (req, res) => {
   });
 });
 
+router.put('/dashboard/job/progress', (req, res) => {
+  console.log(req.body);
+  db.editProgress(req.body.userId, req.body.jobId,
+    req.body.progressId, req.body.progressData, (err, update) => {
+      if (err) {
+        res.status(400).send();
+      } else {
+        res.status(201).send(update);
+      }
+    });
+});
+
 router.put('/dashboard/job/progress/check', (req, res) => {
   db.changeProgress(req.body.userId,
     req.body.jobId,

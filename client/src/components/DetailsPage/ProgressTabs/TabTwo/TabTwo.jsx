@@ -3,9 +3,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styles from './TabTwo.css';
-
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
-import { editAction, setTabsCompanyTabsTEST } from '../../../../redux/actions/actions.js';
+import WhatsNext from '../../../Modals/WhatsNext.jsx';
+import { editAction, setTabsCompanyTabsTEST, whatsNextAction } from '../../../../redux/actions/actions.js';
 
 
 const Tab = ({ tab, companyTabsTEST, dispatch }) => {
@@ -17,18 +17,18 @@ const Tab = ({ tab, companyTabsTEST, dispatch }) => {
 
   return (
     <>
-      <EditDetailsModal />
+      {tab ? (tab.whatsNextTab ? <WhatsNext /> : <EditDetailsModal />) : ''}
       <div className={styles.tab_wrapper_two}>
-        <div className={tab ? (styles[tab.color ? tab.color : 'tab']) : null}>
+        <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : styles.border_gray, styles.tab].join(' ')}>
           <div className={styles.tab_header}>{tab ? tab.tabName : null}</div>
           <div className={styles.tab_body}>{tab ? tab.tabBody : null}</div>
-          <div className={styles.tab_edit}>
-            <button type="button" onClick={() => dispatch(editAction())} className={styles.edit}>{tab ? tab.tabEditText : null}</button>
-          </div>
+          {tab ? (
+            <div className={styles.tab_edit}>
+              <button type="button" onClick={() => dispatch(tab.whatsNextTab ? whatsNextAction() : editAction())} className={styles.edit}>{tab.tabEditText}</button>
+            </div>
+          ) : ''}
         </div>
-        <button type="button" className={styles.check} onClick={handleOnClick}>
-          {tab ? (tab.completed ? (<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.875 14.1486L4.22625 10.4999L2.98375 11.7336L7.875 16.6249L18.375 6.12486L17.1412 4.89111L7.875 14.1486Z" fill="black" /></svg>) : '') : ''}
-        </button>
+        {tab ? (tab.whatsNextTab ? '' : <button type="button" className={styles.check} onClick={handleOnClick}>{tab.completed ? (<svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.875 14.1486L4.22625 10.4999L2.98375 11.7336L7.875 16.6249L18.375 6.12486L17.1412 4.89111L7.875 14.1486Z" fill="black" /></svg>) : ''}</button>) : ''}
       </div>
     </>
   );

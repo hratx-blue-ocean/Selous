@@ -74,7 +74,7 @@ const getUser = (userId, callback) => {
 const validateSignup = (userData, callback) => {
   User.findOne({ userName: userData.username })
     .then((user) => {
-      if (user === null) {
+      if (user === null && userData.username.length > 1) {
         const newUser = new User({
           userName: userData.username,
           password: userData.password,
@@ -166,6 +166,17 @@ const changeProgress = (userId, jobId, progId, completed, callback) => {
     });
 };
 
+const editProgress = (userId, jobId, progressId, progressData, callback) => {
+  User.findOne({ _id: userId }).then((user) => {
+    const thisUser = user;
+    thisUser.userJobs[jobId].progressArray[progressId] = progressData;
+    user.save((data) => {
+      callback(null, data);
+    }).catch((err) => {
+      callback(err, null);
+    });
+  });
+};
 // Goal Schema
 // const goal = {
 //   goaldId: 3,
@@ -228,5 +239,12 @@ const changeProgress = (userId, jobId, progId, completed, callback) => {
 // All exported functions work!
 
 module.exports = {
-  addJob, addGoal, addJobProgress, validateLogin, validateSignup, changeProgress, getUser,
+  addJob,
+  addGoal,
+  addJobProgress,
+  validateLogin,
+  validateSignup,
+  changeProgress,
+  getUser,
+  editProgress,
 };

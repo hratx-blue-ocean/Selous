@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -8,6 +9,7 @@ const ButtonLeft = ({
   companyTabsTEST,
   displayedTabs,
   tabColors,
+  whatsNextTab,
   dispatch,
 }) => {
   const handleOnClick = () => {
@@ -25,7 +27,7 @@ const ButtonLeft = ({
   let [showButton, toggleShowButton] = useState(false);
 
   useEffect(() => {
-    if (JSON.stringify(displayedTabs[0]) !== JSON.stringify(companyTabsTEST[0])) {
+    if (JSON.stringify(displayedTabs[0]) !== JSON.stringify(companyTabsTEST[0]) && JSON.stringify(displayedTabs[0]) !== JSON.stringify(whatsNextTab)) {
       toggleShowButton(true);
       return;
     }
@@ -48,6 +50,7 @@ const mapStateToProps = (state) => ({
   companyTabsTEST: state.companyTabsTEST,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
+  whatsNextTab: state.whatsNextTab,
 });
 
 export default connect(mapStateToProps)(ButtonLeft);
