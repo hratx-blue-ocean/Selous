@@ -114,6 +114,7 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
 
   const handleRequest = () => {
     apiGetRequest();
+    // return <Redirect to="/jobs" />;
     history.push('/jobs');
   };
 
@@ -147,7 +148,7 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
         placeholder="Search Jobs..."
         value={searchInput}
         onChange={(newValue) => dispatch(setSearchInput(newValue))}
-        onRequestSearch={(keyword) => apiGetRequest(keyword)}
+        onRequestSearch={handleRequest}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
       <SearchBar

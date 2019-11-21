@@ -96,7 +96,7 @@ const JobSearch = ({
             }
           </Grid>
         </Paper>
-        <Goals />
+        {/* <Goals /> */}
       </div>
       <Footer />
     </>
