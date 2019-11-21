@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
 /* eslint no-param-reassign: "error" */
 import {
   Fab,
@@ -9,6 +10,7 @@ import {
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
+import { userToState } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   bigContainer: {
@@ -141,12 +143,51 @@ const useStyles = makeStyles(({
   },
 }));
 
+const mapStateToProps = (state) => ({ user: state.userData });
+
 function JobPostingModal({
+  user,
   oneJob,
   show,
   setShow,
+  dispatch,
 }) {
   const classes = useStyles();
+
+  const addJob = () => {
+    const jobData = {};
+
+    jobData.company = oneJob.company;
+    jobData.completed = false;
+    jobData.contactEmail = 'No email address saved';
+    jobData.contactName = 'No contact info saved';
+    jobData.notes = 'No notes';
+    jobData.position = oneJob.title;
+    jobData.progressArray = [];
+    jobData.notes = oneJob.description;
+
+    axios.post('/db/dashboard/job', {
+      userId: user._id,
+      jobData,
+    })
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: user._id,
+          },
+        })
+          .then((results) => {
+            console.log(results.data);
+            dispatch(userToState(results.data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
@@ -165,7 +206,7 @@ function JobPostingModal({
               <Fab className={classes.buttonBoi}>
                 <AddCircleIcon
                   className={classes.doNot}
-                  onClick={() => setShow(show = !show)}
+                  onClick={() => { setShow(!show); }}
                 />
               </Fab>
             </Box>
@@ -186,11 +227,17 @@ function JobPostingModal({
             className={classes.application}
             dangerouslySetInnerHTML={{ __html: oneJob.how_to_apply }}
           />
-          <button type="button" className={classes.apply}>Add to Dashboard</button>
+          <button
+            onClick={() => { addJob(); setShow(!show); }}
+            type="button"
+            className={classes.apply}
+          >
+            Add to Dashboard
+          </button>
         </div>
       </Modal>
     </div>
   );
 }
 
-export default connect()(JobPostingModal);
+export default connect(mapStateToProps)(JobPostingModal);

@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -46,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
   signup: {
     float: 'right',
     marginLeft: '28%',
+  },
+  login: {
   },
   break: {
     maxWidth: 1240,
@@ -109,12 +112,22 @@ function Headerbar({
                   color="inherit"
                   onClick={handleDir}
                   className={classes.signup}
+                  keepMounted
                   component={Link}
                   to="/signup"
                 >
                   Signup
                 </Button>
-                <Button color="inherit" onClick={handleDir} component={Link} to="/login">Login</Button>
+                <Button
+                  color="inherit"
+                  onClick={handleDir}
+                  className={classes.login}
+                  keepMounted
+                  component={Link}
+                  to="/login"
+                >
+                  Login
+                </Button>
               </>
             )
         }
@@ -129,4 +142,6 @@ function Headerbar({
   );
 }
 
-export default connect(mapStateToProps)(Headerbar);
+const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
+
+export default connect(mapStateToProps)(React.memo(Headerbar, areEqual));

@@ -1,16 +1,30 @@
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100% {opacity: 1;}
+  }
+
 .flexbox {
     display: flex;
     justify-content: center;
+    align-items: stretch;
+    margin-left: 32%;
+    margin-right: 32%;
+   
+
 }
 .dashboard {
     background: #FFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: solid 2px #9f6cb7;
     margin: auto;
-    width: 100%;
+    animation: fadeIn 1s;
+    overflow: 'scroll';
+    overflow-y: scroll;
+    min-width: 800px;
     max-width: 1140px;
-    margin-left: 20px;
-    margin-right: 20px;
+    max-height: 540px;
+    scrollbar-width: thin;
+    flex-grow: 3;
 }
 .dashboard-row {
     border-bottom: 1px solid #000;
@@ -26,10 +40,10 @@
     height: 90px;
     color: #FFF;
     justify-content: center;
-    flex-direction: column;
     font-weight: 300;
     font-size: 16px;
     text-align: center;
+    font-family: "Roboto", "Helvetica", "Arial";
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     margin-right: 10px;
     background: #9f6cb7;

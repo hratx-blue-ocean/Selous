@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
@@ -129,11 +130,11 @@ function AddGoalModal({ user, show, dispatch }) {
             dispatch(userToState(results.data));
           })
           .catch((err) => {
-            throw err;
+            throw new Error(err);
           });
       })
       .catch((err) => {
-        throw err;
+        throw new Error(err);
       });
   };
 
@@ -195,4 +196,6 @@ function AddGoalModal({ user, show, dispatch }) {
   );
 }
 
-export default connect(mapStateToProps)(AddGoalModal);
+const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
+
+export default connect(mapStateToProps)(React.memo(AddGoalModal, areEqual));

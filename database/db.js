@@ -13,6 +13,7 @@ db.once('open', () => {
 const JobSchema = new mongoose.Schema({
   completed: Boolean,
   notes: String,
+  description: String,
   createdAt: String,
   company: String,
   position: String,
@@ -137,6 +138,31 @@ const addGoal = (userId, goalData, callback) => {
   });
 };
 
+const editGoalProgress = (userId, goalId, increment, callback) => {
+  User.findOne({ _id: userId }).then((user) => {
+    // eslint-disable-next-line
+    user.userGoals[goalId].goalProgress += increment;    
+    const progress = user.userGoals[goalId].goalProgress;
+    const target = user.userGoals[goalId].goalTarget;
+    if (progress < 0) {
+      // eslint-disable-next-line
+      user.userGoals[goalId].goalProgress = 0;    
+    }
+    if (progress > target) {
+      // eslint-disable-next-line
+      user.userGoals[goalId].goalProgress = target;        
+    }
+    user.save((err) => {
+      if (err) callback(err, null);
+      else {
+        callback(null, user.userGoals[goalId]);
+      }
+    });
+  }).catch((err) => {
+    if (err) callback(err, null);
+  });
+};
+
 const addJobProgress = (userId, jobId, progressData, callback) => {
   User.findOne({ _id: userId }).then((user) => {
     user.userJobs[jobId].progressArray.push(progressData);
@@ -154,7 +180,7 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
 const changeProgress = (userId, jobId, progId, completed, callback) => {
   User.findOne({ _id: userId })
     .then((user) => {
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-param-reassign
       user.userJobs[jobId].progressArray[progId].isCompleted = completed;
       user.save((err) => {
         if (err) callback(err, null);
@@ -176,6 +202,23 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
       callback(err, null);
     });
   });
+};
+
+const editNotes = (userId, jobId, notes, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      // eslint-disable-next-line no-param-reassign
+      user.userJobs[jobId].notes = notes;
+      user.save((err) => {
+        if (err) callback(err, null);
+        else {
+          callback(null, notes);
+        }
+      });
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
 };
 
 // Goal Schema
@@ -248,4 +291,6 @@ module.exports = {
   changeProgress,
   getUser,
   editProgress,
+  editNotes,
+  editGoalProgress,
 };
