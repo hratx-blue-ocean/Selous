@@ -32,4 +32,5 @@
     grid-template-areas: 
         'company_notes progress_tabs_wrapper';
     max-width: 1240px;
+    max-height: 625px;
 }

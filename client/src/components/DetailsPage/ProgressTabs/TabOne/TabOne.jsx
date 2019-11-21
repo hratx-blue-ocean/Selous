@@ -50,7 +50,7 @@ const Tab = ({
             return '';
           })}
           <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : null, styles.tab].join(' ')}>
-            <div className={styles.tab_header}>{tab ? tab.stepName : null}</div>
+            <h3 className={styles.tab_header}>{tab ? tab.stepName : null}</h3>
             <div className={styles.tab_body}>{tab ? tab.stepNotes : null}</div>
             <div className={styles.tab_edit}>
               <button type="button" onClick={() => dispatch(isWhatsNextTab ? whatsNextAction() : editAction())} className={styles.edit}>{tab ? (isWhatsNextTab ? 'Next Step' : 'Edit') : null}</button>

@@ -6,6 +6,7 @@
     height: 100%;
     grid-area: tab_wrapper_three;
     display: grid;
+    min-width: 295px;
 }
 
 .tab_header{
@@ -28,6 +29,9 @@
     grid-area: tab_body;
     display: grid;
     place-items: center;
+    overflow-y: auto;
+    max-height: 357px;
+    scrollbar-width: thin;
 }
 
 .tab_edit{
@@ -199,7 +203,7 @@
     border: 2px solid #9F6CB7;
     border-radius: 8px;
     display: grid;
-    grid-template-rows: 15% 70% 15%;
+    grid-template-rows: 10% 80% 10%;
     grid-template-areas:
         'tab_header'
         'tab_body'
