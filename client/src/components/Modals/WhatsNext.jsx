@@ -1,8 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 import {
-  Typography,
+  // Typography,
   Fab,
   Box,
 } from '@material-ui/core';
@@ -18,32 +19,54 @@ const useStyles = makeStyles(({
     width: '549px',
     height: '400px',
     borderRadius: '8px',
-    fontFamily: 'Arial',
+    // fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
   },
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    padding: 30,
+    // width: '790px',
+    // height: '300px',
+    width: 'fit-content',
+    height: 'fit-content',
+    borderRadius: '8px',
+    // fontFamily: 'Arial',
+    fontSize: '18px',
+    background: '#F2F2F2',
+    border: 2,
+    borderColor: '#9F6CB7',
+    borderStyle: 'solid',
+    margin: '7% auto 50px auto',
+    backgroundImage: 'url("https://selious.s3.amazonaws.com/selousSplice.PNG")',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 15%',
+  },
   notes: {
     borderRadius: '8px',
     padding: 10,
     background: '#FFFFFF',
-    width: '447px',
-    height: '293px',
+    width: '25%',
+    height: '250px',
     borderWidth: 1,
     borderColor: 'purple',
     borderStyle: 'solid',
     boxShadow: 5,
   },
   next: {
-    borderRadius: '8px',
-    padding: 10,
+    borderRadius: '6px',
+    // padding: 10,
     background: '#FFFFFF',
-    width: '447px',
-    borderWidth: 1,
-    borderColor: 'purple',
-    borderStyle: 'solid',
+    width: '300px',
+    // borderWidth: 1,
+    marginRight: 10,
+    marginBottom: 20,
+    // borderColor: '#9f6cb7',
+    // borderStyle: 'solid',
     boxShadow: 5,
   },
   do: {
@@ -61,8 +84,10 @@ const useStyles = makeStyles(({
   },
   buttons: {
     marginRight: 6,
-    float: 'right',
-    marginTop: '33%',
+    // float: 'right',
+    // alignSelf: 'flex-end',
+    textAlign: 'center',
+    marginBottom: 10,
   },
   fabStuff: {
     size: 'small',
@@ -70,6 +95,14 @@ const useStyles = makeStyles(({
   },
   buttonBoi: {
     borderRadius: 40,
+  },
+  h2: {
+    marginLeft: '10px',
+    color: 'white',
+  },
+  notesContainer: {
+    display: 'flex',
+    flexDirection: 'column',
   },
 }));
 
@@ -79,29 +112,56 @@ function WhatsNext({ show, dispatch }) {
   const classes = useStyles();
   return (
     <Modal
-      className={classes.bigContainer}
+      // className={classes.bigContainer}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
       open={show}
     >
-      <Box className={classes.root}>
-        <Typography>
+      <div className={classes.container}>
+        <div className={classes.notesContainer}>
+          <h2 className={classes.h2}>Tell us about the next step</h2>
+          {/* <Box className={classes.root}> */}
+          {/* <Typography>
           Next
-        </Typography>
-        <input type="text" className={classes.next} />
-        <Typography>
-          Notes
-        </Typography>
-        <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
-          <Fab onClick={() => dispatch(whatsNextAction())} className={classes.buttonBoi}>
-            <AddCircleIcon className={classes.doNot} />
-          </Fab>
-          <Fab className={classes.fabStuff}>
-            <CheckCircleIcon className={classes.do} />
-          </Fab>
-        </Box>
-        <textarea className={classes.notes} />
-      </Box>
+        </Typography> */}
+          <div>
+            <TextField
+              variant="filled"
+              required
+              fullWidth
+              id="next"
+              label="What's your next step?"
+              name="next"
+              autoComplete="What's your next step?"
+              className={classes.next}
+            />
+          </div>
+          {/* <Typography>
+            Notes
+        </Typography> */}
+          <div>
+            <TextField
+              variant="filled"
+              id="next-step-notes"
+              label="Notes and details"
+              placeholder="Details"
+              multiline
+              rows="6"
+              className={classes.next}
+              margin="normal"
+            />
+          </div>
+          <Box className={classes.buttons}>
+            <Fab onClick={() => dispatch(whatsNextAction())} className={classes.buttonBoi}>
+              <AddCircleIcon className={classes.doNot} />
+            </Fab>
+            <Fab className={classes.fabStuff}>
+              <CheckCircleIcon className={classes.do} />
+            </Fab>
+          </Box>
+          {/* </Box> */}
+        </div>
+      </div>
     </Modal>
   );
 }
