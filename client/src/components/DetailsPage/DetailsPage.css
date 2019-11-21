@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: border-box;
     width: 100vw;
-    height: 82vh;
+    height: 81vh;
     display: grid;
     grid-template-rows: 100%;
     grid-template-areas: 
