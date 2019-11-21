@@ -17,7 +17,7 @@ const useStyles = makeStyles(({
   root: {
     padding: 10,
     width: '549px',
-    height: '400px',
+    height: '500px',
     borderRadius: '8px',
     // fontFamily: 'Arial',
     fontSize: '18px',
@@ -61,10 +61,11 @@ const useStyles = makeStyles(({
     borderRadius: '6px',
     // padding: 10,
     background: '#FFFFFF',
-    width: '300px',
+    width: '400px',
     // borderWidth: 1,
     marginRight: 10,
     marginBottom: 20,
+    marginTop: '10px',
     // borderColor: '#9f6cb7',
     // borderStyle: 'solid',
     boxShadow: 5,
@@ -97,7 +98,8 @@ const useStyles = makeStyles(({
     borderRadius: 40,
   },
   h2: {
-    marginLeft: '10px',
+    // marginLeft: '10px',
+    marginTop: '-10px',
     color: 'white',
   },
   notesContainer: {

@@ -165,7 +165,7 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
       callback(err, null);
     });
   });
-
+}
 // Goal Schema
 // const goal = {
 //   goaldId: 3,

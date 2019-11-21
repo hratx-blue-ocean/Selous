@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { addGoalAction, userToState } from '../../../redux/actions/actions.js';
+import { addGoalAction } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   container: {
@@ -114,9 +114,9 @@ const useStyles = makeStyles(({
   },
 }));
 
-const mapStateToProps = (state) => ({ show: state.addGoalModal, user: state.userData });
+const mapStateToProps = (state) => ({ show: state.addGoalModal });
 
-function AddGoalModal({ user, show, dispatch }) {
+function AddGoalModal({ show, dispatch }) {
   const classes = useStyles();
   let [objective, setObjective] = useState('');
   let [target, setTarget] = useState(0);
@@ -130,13 +130,11 @@ function AddGoalModal({ user, show, dispatch }) {
     goal.goalProgress = 0;
 
     axios.post('/db/goals', {
-      userId: user.userId,
+      userId: '5dd029fe3b8f9e2e8c21d3aa',
       goalData: goal,
     })
       .then((res) => {
         console.log(res);
-        console.log(user);
-        dispatch(userToState(goal));
       })
       .catch((err) => {
         console.log(err);
