@@ -33,6 +33,7 @@ const useStyles = makeStyles((themes) => ({
     body: {
       backgroundColor: theme.palette.common.white,
       margin: '8px',
+      fontFamily: 'Cairo',
     },
 
   },
@@ -56,6 +57,9 @@ const useStyles = makeStyles((themes) => ({
     margin: theme.spacing(3, 0, 2),
     backgroundColor: '#9f6cb7',
     borderRadius: '15px',
+  },
+  cairo: {
+    fontFamily: 'Cairo',
   },
 }));
 
@@ -102,7 +106,7 @@ function SignUp({ dispatch }) {
             src="https://elasticbeanstalk-us-east-2-603157185647.s3.us-east-2.amazonaws.com/Selous.png"
             alt="Selous Logo"
           />
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" className={classes.cairo}>
             Sign up
           </Typography>
           <form className={classes.form} noValidate>

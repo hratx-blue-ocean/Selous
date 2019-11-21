@@ -19,10 +19,9 @@ const Tab = ({
   whatsNextTab,
   userData,
   dispatch,
-  show,
-  setShow,
 }) => {
   const [isWhatsNextTab, toggle] = useState(false);
+  const [show, setShow] = useState(false);
 
   const handleOnClick = () => {
     const copyOfCurrentJob = _.clone(currentJob);
@@ -60,7 +59,7 @@ const Tab = ({
 
   return (
     <>
-      {tab ? (isWhatsNextTab ? <WhatsNext /> : <EditDetailsModal />) : ''}
+      {tab ? (isWhatsNextTab ? <WhatsNext info={tab} show={show} setShow={setShow} /> : <EditDetailsModal info={tab} show={show} setShow={setShow} />) : ''}
       <div className={styles.tab_wrapper_two}>
         <div className={[tab ? (tab.isCompleted ? styles.gray : (styles[tab.color ? tab.color : 'default'])) : styles.border_gray, styles.tab].join(' ')}>
           <h3 className={styles.tab_header}>{tab ? tab.stepName : null}</h3>
@@ -78,9 +77,9 @@ const Tab = ({
 };
 
 const mapStateToProps = (state) => ({
-  showEdit: state.editModal,
   showWhatsNext: state.whatsNextModal,
-  currentJob: state.currentJob.jobData,
+  // currentJob: state.currentJob.jobData,
+  currentJob: state.userData.userJobs[state.currentJob.jobId],
   whatsNextTab: state.whatsNextTab,
   userData: state.userData,
 });

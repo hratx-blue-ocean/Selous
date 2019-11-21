@@ -31,7 +31,6 @@ const useStyles = makeStyles(({
     width: '50%',
     height: '90%',
     borderRadius: '8px',
-    fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
@@ -39,6 +38,7 @@ const useStyles = makeStyles(({
     borderStyle: 'solid',
     opacity: '100%',
     margin: '20px auto',
+    fontFamily: 'Cairo',
   },
   header: {
     display: 'flex',

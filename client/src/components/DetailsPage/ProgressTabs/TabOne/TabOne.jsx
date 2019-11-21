@@ -92,7 +92,8 @@ const Tab = ({
 const mapStateToProps = (state) => ({
   showEdit: state.editModal,
   showWhatsNext: state.whatsNextModal,
-  currentJob: state.currentJob.jobData,
+  // currentJob: state.currentJob.jobData,
+  currentJob: state.userData.userJobs[state.currentJob.jobId],
   whatsNextTab: state.whatsNextTab,
   userData: state.userData,
 });
