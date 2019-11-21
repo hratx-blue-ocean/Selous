@@ -1,6 +1,7 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+/* eslint no-param-reassign: "error" */
 import {
   Fab,
   Box,
@@ -8,12 +9,11 @@ import {
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-// import { showJobAction } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   bigContainer: {
     height: '100%',
-    width: '100%',
+    width: '90%',
     alignItems: 'center',
     justifyContent: 'center',
     position: 'absolute',
@@ -40,7 +40,7 @@ const useStyles = makeStyles(({
   header: {
     display: 'flex',
     flexDirection: 'row',
-    width: '100%',
+    width: '95%',
     alignItems: 'center',
     justifyContent: 'space-between',
     height: '50px',
@@ -75,7 +75,7 @@ const useStyles = makeStyles(({
     fontSize: 10,
   },
   application: {
-    height: '100px',
+    height: '80px',
     width: '90%',
     fontSize: 10,
     borderTop: 1,
@@ -85,7 +85,7 @@ const useStyles = makeStyles(({
     borderStyle: 'solid',
     borderColor: 'black',
     overflow: 'scroll',
-    marginBottom: 10,
+    marginBottom: 5,
   },
   apply: {
     height: '60px',
@@ -109,28 +109,38 @@ const useStyles = makeStyles(({
     height: 35,
     width: '85%',
     fontSize: '2vw',
+    overflow: 'auto',
   },
   titlesContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
     alignSelf: 'flex-start',
-    marginLeft: 20,
+    marginLeft: 40,
     height: 50,
   },
   titleSec: {
     // fontSize: 25,
     height: 25,
     marginRight: 10,
+    width: '300px',
     // fontSize: 25,
-    fontSize: '1vw',
-    marginBottom: 20,
+    // fontSize: '1vw',
+    display: 'flex',
+    alignSelf: 'flex-end',
+    overflow: 'auto',
   },
   titleTer: {
     // fontSize: 20,
-    fontSize: '1vw',
-    width: 500,
-    marginBottom: 0,
+    // fontSize: '1vw',
+    height: 25,
+    width: '200px',
+    marginBottom: '4px',
+    display: 'flex',
+    alignSelf: 'flex-end',
+    marginRight: '60px',
+    justifyContent: 'flex-end',
+    overflow: 'auto',
   },
   descriptionText: {
     fontSize: 10,
@@ -156,9 +166,9 @@ function JobPostingModal({
       >
         <div className={classes.container}>
           <div className={classes.header}>
-            <h1 className={classes.title}>
+            <div className={classes.title}>
               {oneJob.title}
-            </h1>
+            </div>
             <Box className={classes.buttons}>
               <Fab className={classes.buttonBoi}>
                 <AddCircleIcon
@@ -169,12 +179,12 @@ function JobPostingModal({
             </Box>
           </div>
           <div className={classes.titlesContainer}>
-            <h3 className={classes.titleSec}>
+            <div className={classes.titleSec}>
               {oneJob.company}
-            </h3>
-            <h5 className={classes.titleTer}>
+            </div>
+            <div className={classes.titleTer}>
               {oneJob.location}
-            </h5>
+            </div>
           </div>
           <div
             className={classes.description}
