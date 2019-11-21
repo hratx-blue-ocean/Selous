@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import {
   Button, Card, CardActions, CardContent, CssBaseline, Typography, makeStyles, Container,
@@ -128,4 +129,6 @@ const Goals = ({ currentGoals, dispatch }) => {
   );
 };
 
-export default connect(mapStateToProps)(Goals);
+const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
+
+export default connect(mapStateToProps)(React.memo(Goals, areEqual));
