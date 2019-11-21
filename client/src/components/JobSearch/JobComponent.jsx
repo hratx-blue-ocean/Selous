@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
+/* eslint-disable prefer-const */
 import {
   Avatar,
   Card,
@@ -12,7 +13,6 @@ import {
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import JobPostingModal from '../Modals/JobPostingModal/JobPostingModal.jsx';
-import { showJobAction } from '../../redux/actions/actions.js';
 
 const mapStateToProps = (state) => ({ show: state.jobPostingModal });
 
@@ -58,7 +58,7 @@ const useStyles = makeStyles({
   },
 });
 
-const JobComponent = ({ job, dispatch }) => {
+const JobComponent = ({ job }) => {
   const classes = useStyles();
 
   let [show, setShow] = useState(false);
@@ -67,7 +67,10 @@ const JobComponent = ({ job, dispatch }) => {
     <>
       <JobPostingModal setShow={setShow} show={show} oneJob={job} />
       <Button>
-        <Card className={classes.root} onClick={() => setShow(show = !show)}>
+        <Card
+          className={classes.root}
+          onClick={() => { setShow(show = !show); }}
+        >
           <Grid container className={classes.mainContainer}>
             <Grid item alignItems="center">
               <Avatar className={classes.logo}>
