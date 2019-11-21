@@ -65,12 +65,10 @@ const ProgressTabs = ({
 };
 
 const mapStateToProps = (state) => ({
-  currentJob: state.currentJob,
+  currentJob: state.currentJob.jobData,
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
 });
 
-const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
-
-export default connect(mapStateToProps)(React.memo(ProgressTabs, areEqual));
+export default connect(mapStateToProps)(ProgressTabs);

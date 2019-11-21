@@ -7,12 +7,6 @@ import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import {
-  loginAction,
-  landingAction,
-  resetUserAction,
-  showAboutAction,
-} from '../../../redux/actions/actions.js';
 
 const ITEM_HEIGHT = 48;
 
@@ -32,7 +26,7 @@ const useStyles = makeStyles({
 
 const mapStateToProps = (state) => ({ show: state.isLoggedIn });
 
-function Menud({ dispatch }) {
+function MenuMob() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const classes = useStyles();
@@ -43,18 +37,6 @@ function Menud({ dispatch }) {
 
   const handleClose = () => {
     setAnchorEl(null);
-  };
-
-  const handleCloseAbout = () => {
-    setAnchorEl(null);
-    dispatch(showAboutAction());
-  };
-
-  const handleLog = () => {
-    setAnchorEl(null);
-    dispatch(landingAction());
-    dispatch(loginAction());
-    dispatch(resetUserAction());
   };
 
   return (
@@ -82,32 +64,20 @@ function Menud({ dispatch }) {
         <MenuItem
           onClick={handleClose}
           component={Link}
-          to="/dashboard"
+          to="/signup"
         >
-            My Dashboard
+            SIGNUP
         </MenuItem>
         <MenuItem
           onClick={handleClose}
           component={Link}
-          to="/jobs"
+          to="/login"
         >
-            Job Search
-        </MenuItem>
-        <MenuItem
-          onClick={handleCloseAbout}
-        >
-            About
-        </MenuItem>
-        <MenuItem
-          onClick={handleLog}
-          component={Link}
-          to="/"
-        >
-            Log Out
+            LOGIN
         </MenuItem>
       </Menu>
     </>
   );
 }
 
-export default connect(mapStateToProps)(Menud);
+export default connect(mapStateToProps)(MenuMob);

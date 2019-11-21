@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import _ from 'lodash';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import {
@@ -162,6 +161,4 @@ const Goals = ({ currentGoals, dispatch, userId }) => {
   );
 };
 
-const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
-
-export default connect(mapStateToProps)(React.memo(Goals, areEqual));
+export default connect(mapStateToProps)(Goals);

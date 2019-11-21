@@ -51,3 +51,5 @@ export const landingAction = () => ({ type: 'HAVE_LAND' });
 export const userToState = (data) => ({ type: 'GET_USER', data });
 
 export const currentJobAction = (job) => ({ type: 'CLICKED_JOB', job });
+
+export const sizeWindowAction = (win) => ({ type: 'WINDOW_SIZE', win });

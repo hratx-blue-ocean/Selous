@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import DashColorTile from './dashcolortile.jsx';
@@ -11,10 +10,14 @@ const mapStateToProps = (state) => ({
   show: state.addJobModal,
 });
 
-const DashboardRow = ({ job, dispatch }) => {
+const DashboardRow = ({ jobIndex, job, dispatch }) => {
   const history = useHistory();
   const handleRoute = () => {
-    dispatch(currentJobAction(job));
+    const currentJob = {
+      jobId: jobIndex,
+      jobData: job,
+    };
+    dispatch(currentJobAction(currentJob));
     history.push('/details');
   };
   if (job) {
@@ -55,6 +58,4 @@ const DashboardRow = ({ job, dispatch }) => {
   );
 };
 
-const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
-
-export default connect(mapStateToProps)(React.memo(DashboardRow, areEqual));
+export default connect(mapStateToProps)(DashboardRow);

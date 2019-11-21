@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -171,6 +170,4 @@ const mapStatesToProps = (state) => ({
   apiData: state.apiData,
 });
 
-const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
-
-export default connect(mapStatesToProps)(React.memo(Landing, areEqual));
+export default connect(mapStatesToProps)(Landing);

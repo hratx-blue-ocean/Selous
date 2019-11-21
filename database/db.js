@@ -141,16 +141,16 @@ const addGoal = (userId, goalData, callback) => {
 const editGoalProgress = (userId, goalId, increment, callback) => {
   User.findOne({ _id: userId }).then((user) => {
     // eslint-disable-next-line
-    user.userGoals[goalId].goalProgress += increment;    
+    user.userGoals[goalId].goalProgress += increment;
     const progress = user.userGoals[goalId].goalProgress;
     const target = user.userGoals[goalId].goalTarget;
     if (progress < 0) {
       // eslint-disable-next-line
-      user.userGoals[goalId].goalProgress = 0;    
+      user.userGoals[goalId].goalProgress = 0;
     }
     if (progress > target) {
       // eslint-disable-next-line
-      user.userGoals[goalId].goalProgress = target;        
+      user.userGoals[goalId].goalProgress = target;
     }
     user.save((err) => {
       if (err) callback(err, null);
@@ -180,6 +180,8 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
 const changeProgress = (userId, jobId, progId, completed, callback) => {
   User.findOne({ _id: userId })
     .then((user) => {
+      debug('jobId', jobId);
+      // eslint-disable-next-line
       // eslint-disable-next-line no-param-reassign
       user.userJobs[jobId].progressArray[progId].isCompleted = completed;
       user.save((err) => {
