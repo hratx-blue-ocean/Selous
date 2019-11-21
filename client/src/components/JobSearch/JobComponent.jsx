@@ -56,6 +56,9 @@ const useStyles = makeStyles({
     height: '45px',
     color: 'purple',
   },
+  cairo: {
+    fontFamily: 'Cairo',
+  },
 });
 
 const JobComponent = ({ job }) => {
@@ -82,13 +85,13 @@ const JobComponent = ({ job }) => {
               </Avatar>
             </Grid>
             <Grid container item xs direction="column" className={classes.text}>
-              <Typography variant="h5">
+              <Typography variant="h5" className={classes.cairo}>
                 {job.title}
               </Typography>
-              <Typography>
+              <Typography className={classes.cairo}>
                 {job.company}
               </Typography>
-              <Typography>
+              <Typography className={classes.cairo}>
                 {job.location}
               </Typography>
             </Grid>

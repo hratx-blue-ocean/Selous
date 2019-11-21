@@ -19,6 +19,7 @@ const useStyles = makeStyles({
     display: 'flex',
     width: '100%',
     flexDirection: 'row',
+    justifyContent: 'center',
   },
   adSpace: {
     flex: 2,
@@ -33,8 +34,7 @@ const useStyles = makeStyles({
     borderRadius: '6px',
     alignContent: 'center',
     flex: 4,
-    flexDirection: 'row',
-    height: '590px',
+    height: '545px',
     overflow: 'scroll',
   },
   search: {

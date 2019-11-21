@@ -58,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#9f6cb7',
     borderRadius: '15px',
   },
+  cairo: {
+    fontFamily: 'Cairo',
+  },
 }));
 const loginObj = {};
 
@@ -96,7 +99,7 @@ function SignIn({ dispatch }) {
             src="https://elasticbeanstalk-us-east-2-603157185647.s3.us-east-2.amazonaws.com/Selous.png"
             alt="Selous Logo"
           />
-          <Typography component="h1" variant="h5">
+          <Typography component="h1" variant="h5" className={classes.cairo}>
             Log in
           </Typography>
           <form className={classes.form} noValidate>

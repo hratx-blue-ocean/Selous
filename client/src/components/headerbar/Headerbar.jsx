@@ -46,8 +46,10 @@ const useStyles = makeStyles((theme) => ({
   signup: {
     float: 'right',
     marginLeft: '28%',
+    fontFamily: 'Cairo',
   },
   login: {
+    fontFamily: 'Cairo',
   },
   break: {
     maxWidth: 1240,
@@ -61,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0),
   },
   hello: {
-    fontFamily: '"Roboto","Helvetica","Arial", sans-serif',
+    fontFamily: 'Cairo',
     color: 'rgba(0, 0, 0, 0.87)',
     fontSize: '1rem',
     minWidth: '64px',

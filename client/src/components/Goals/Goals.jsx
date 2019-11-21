@@ -18,7 +18,7 @@ const mapStateToProps = (state) => ({
 const useStyles = makeStyles((theme) => ({
   goalsTrackerContainer: {
     flex: 2,
-    height: '540px',
+    height: '545px',
   },
   titleCard: {
     backgroundColor: '#9F6CB7',
@@ -56,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
   },
   goalsContainer: {
     justifyContent: 'center',
-    maxHeight: '398px',
+    maxHeight: '424px',
     overflowY: 'auto',
   },
   titleContainer: {
