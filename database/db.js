@@ -136,6 +136,31 @@ const addGoal = (userId, goalData, callback) => {
   });
 };
 
+const editGoalProgress = (userId, goalId, increment, callback) => {
+  User.findOne({ _id: userId }).then((user) => {
+    // eslint-disable-next-line
+    user.userGoals[goalId].goalProgress += increment;    
+    const progress = user.userGoals[goalId].goalProgress;
+    const target = user.userGoals[goalId].goalTarget;
+    if (progress < 0) {
+      // eslint-disable-next-line
+      user.userGoals[goalId].goalProgress = 0;    
+    }
+    if (progress > target) {
+      // eslint-disable-next-line
+      user.userGoals[goalId].goalProgress = target;        
+    }
+    user.save((err) => {
+      if (err) callback(err, null);
+      else {
+        callback(null, user.userGoals[goalId]);
+      }
+    });
+  }).catch((err) => {
+    if (err) callback(err, null);
+  });
+};
+
 const addJobProgress = (userId, jobId, progressData, callback) => {
   User.findOne({ _id: userId }).then((user) => {
     user.userJobs[jobId].progressArray.push(progressData);
@@ -246,4 +271,5 @@ module.exports = {
   changeProgress,
   getUser,
   editProgress,
+  editGoalProgress,
 };

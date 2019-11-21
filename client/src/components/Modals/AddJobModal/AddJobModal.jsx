@@ -255,7 +255,7 @@ function AddJobModal({ user, show, dispatch }) {
               variant="filled"
               id="standard-textarea"
               label="Job Notes and Details"
-              placeholder="Enter Notes"
+              placeholder="Enter Job Description and Notes"
               multiline
               rows="6"
               className={classes.next}
