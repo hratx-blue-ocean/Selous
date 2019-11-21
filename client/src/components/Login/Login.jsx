@@ -4,7 +4,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
@@ -14,17 +14,18 @@ import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 import { purple } from '@material-ui/core/colors';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { loginAction } from '../../redux/actions/actions.js';
+import { loginAction, userToState } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
+import Footer from '../footer/Footer.jsx';
 
-// eslint-disable-next-line
 const theme2 = createMuiTheme({
-  formLabelRoot: { // must provide all of formLabelRoot && '&$formLabelFocused' && formLabelFocused
+  formLabelRoot: {
     '&$formLabelFocused': { color: purple },
   },
   palette: {
     primary: purple,
   },
+
   typography: { useNextVariants: true },
 });
 
@@ -44,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: 'transparent',
     maxWidth: '150px',
     maxHeight: '150px',
   },
@@ -58,27 +59,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '15px',
   },
 }));
-//    Redux Action
-// const actionLogin = (userName) => ({
-//   type: 'USER_LOGIN',
-//   payload: {
-//     user: userName,
-//   }
-// });
-
-//      Redux Reducer
-// const loginReducer = (state = '', action) => {
-//   switch (action.type) {
-//     case 'USER_LOGIN':
-//       return action.payload.user;
-//     default:
-//       return state;
-//   }
-// };
-
-const loginObj = {
-
-};
+const loginObj = {};
 
 const writeToLogin = (event) => {
   loginObj[event.target.name] = event.target.value;
@@ -88,22 +69,21 @@ const mapStateToProps = (state) => ({ show: state.isLoggedIn });
 
 function SignIn({ dispatch }) {
   const classes = useStyles();
-  const handleLogin = () => {
-    dispatch(loginAction());
+  const history = useHistory();
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Check auth
     axios.post('/db/login', {
-      userName: loginObj.username,
-      password: loginObj.password,
-    // If correct, pull data from DB for user
+      data: loginObj,
     }).then((response) => {
-      // Check auth
-      if (response) {
-        // Update state with response data
-        console.log(response);
+      if (response.data.userName) {
         dispatch(loginAction());
+        dispatch(userToState(response.data));
+        history.push('/dashboard');
       } else {
-        console.log('invalid login');
+        alert('Invalid Login');
       }
-    });
+    }).catch((err) => { console.log(err); });
   };
   return (
     <>
@@ -117,7 +97,7 @@ function SignIn({ dispatch }) {
             alt="Selous Logo"
           />
           <Typography component="h1" variant="h5">
-            Sign in
+            Log in
           </Typography>
           <form className={classes.form} noValidate>
             <MuiThemeProvider theme={theme2} />
@@ -143,7 +123,6 @@ function SignIn({ dispatch }) {
               id="password"
               autoComplete="current-password"
               onChange={(e) => writeToLogin(e)}
-
             />
             <FormControlLabel
               control={<Checkbox value="remember" />}
@@ -156,17 +135,10 @@ function SignIn({ dispatch }) {
               variant="contained"
               color="primary"
               className={classes.submit}
-              component={Link}
-              to="/jobs"
             >
-              Sign In
+              Log In
             </Button>
             <Grid container>
-              <Grid item xs>
-                {/* <Link href="#" variant="body2">
-                  Forgot password?
-                </Link> */}
-              </Grid>
               <Grid item>
                 <Link to="/signup" variant="body2">
                   Don&apos;t have an account? Sign Up
@@ -177,6 +149,7 @@ function SignIn({ dispatch }) {
         </div>
         <Box mt={8} />
       </Container>
+      <Footer />
     </>
   );
 }

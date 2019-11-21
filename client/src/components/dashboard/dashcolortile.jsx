@@ -14,7 +14,7 @@ import GotJob from '@material-ui/icons/BusinessCenter';
 import styles from './dashboard.css';
 
 
-const DashColorTile = ({ tileName, number }) => {
+const DashColorTile = ({ tile, number }) => {
   const squares = {
     0: { color: 'red', icon: <Resume /> },
     1: { color: 'orange', icon: <Apply /> },
@@ -36,11 +36,13 @@ const DashColorTile = ({ tileName, number }) => {
   const open = Boolean(anchorEl);
   const id = open ? 'simple-popper' : undefined;
   const squareStyle = `dash-${squares[number].color}`;
+  const popperStyle = `dash-modal-elipse-${squares[number].color}`;
+  const triangleStyle = `dash-modal-triangle-${squares[number].color}`;
   const { icon } = squares[number];
   return (
     <>
       <div
-        id={tileName}
+        id={tile.stepName}
         className = {styles[squareStyle]}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
@@ -58,9 +60,9 @@ const DashColorTile = ({ tileName, number }) => {
           }}
         >
           <div>
-            <div className={styles['dash-modal-triangle']}> </div>
-            <div className={styles['dash-modal-elipse']}>
-              {tileName}
+            <div className={styles[triangleStyle]}> </div>
+            <div className={styles[popperStyle]}>
+              {tile.stepName}
             </div>
           </div>
         </Popper>

@@ -1,34 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
+// import Avatar from '@material-ui/core/Avatar';
 import SearchBar from 'material-ui-search-bar';
+// import { flexbox } from '@material-ui/system';
+import Footer from '../footer/Footer.jsx';
 import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
-import { setSearchInput, setApiSearchData, showAboutAction } from '../../redux/actions/actions.js';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      Copyright ©&nbsp;
-      <Link color="inherit" href="/">
-        Selous
-      </Link>
-      {' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import {
+  setSearchInput,
+  setApiSearchData,
+  setSearchLocationInput,
+} from '../../redux/actions/actions.js';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
     body: {
       backgroundColor: theme.palette.common.white,
+      fontFamily: 'Cairo',
     },
     ul: {
       margin: 0,
@@ -41,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   footer: {
     borderTop: '1px solid darkgrey',
     maxWidth: 1240,
-    marginTop: '500px',
+    marginTop: '100px',
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
     [theme.breakpoints.up('sm')]: {
@@ -49,181 +39,135 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(6),
     },
   },
-  topText: {
-    marginTop: '17%',
-    marginBottom: '0%',
-    paddingLeft: '20%',
+  titleText: {
+    flex: 1,
+    display: 'flex',
+    'box-sizing': 'border-box',
+    justifyContent: 'flex-end',
     fontSize: '72px',
-  },
-  midText: {
-    marginTop: '0%',
-    marginBottom: '0%',
-    paddingLeft: '60%',
-    fontSize: '72px',
-  },
-  lowText: {
-    marginTop: '0%',
-    paddingLeft: '39%',
-    fontSize: '72px',
+    'text-align': 'right',
+    fontWeight: 'bolder',
   },
   avatar: {
-    float: 'left',
-    marginLeft: '17%',
-    maxWidth: '200px',
-    maxHeight: '200px',
+    marginLeft: '10%',
+    maxWidth: '100px',
+    maxHeight: '100px',
   },
   wrapper: {
-    maxWidth: '750px',
-    maxHeight: '450px',
-    marginLeft: '20%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing(3),
+    display: 'flex',
+    'box-sizing': 'border-box',
+    'flex-wrap': 'nowrap',
+  },
+  imageWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: theme.spacing(3),
+    display: 'flex',
+    'box-sizing': 'border-box',
+    'flex-wrap': 'nowrap',
   },
   icon: {
+    'box-sizing': 'border-box',
     position: 'absolute',
-    top: '32%',
-    left: '55%',
     borderRadius: '30%',
-    transform: 'scale(1.25)',
     zIndex: -2,
   },
   iconOverlay: {
-    position: 'absolute',
-    top: '32%',
-    left: '55%',
+    'box-sizing': 'border-box',
     borderRadius: '30%',
-    transform: 'scale(1.25)',
     zIndex: -1,
     opacity: 0.15,
   },
   search: {
     maxWidth: '400px',
     marginLeft: '17%',
+    marginTop: 10,
   },
   about: {
     cursor: 'pointer',
   },
 }));
 
-const footers = [
-  {
-    title: 'Company',
-    description: ['About', 'History', 'Contact us', 'Locations'],
-  },
-  {
-    title: 'Features',
-    description: ['Cool stuff', 'Random feature', 'Team feature', 'Developer stuff', 'Another one'],
-  },
-  {
-    title: 'Resources',
-    description: ['Resource', 'Resource name', 'Another resource', 'Final resource'],
-  },
-  {
-    title: 'Legal',
-    description: ['Privacy policy', 'Terms of use'],
-  },
-];
-
-const Landing = ({ searchInput, dispatch }) => {
+const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
   const classes = useStyles();
-  console.log(searchInput);
-
-  const apiGetRequest = (keyword) => {
-    const locationTemp = 'chicago';
-    const descriptionTemp = keyword;
-
-    axios.get(`https://jobs.github.com/positions.json?description=${descriptionTemp}&location=${locationTemp}`)
-    // https://jobs.github.com/positions.json?description=python&location=new+york
+  const history = useHistory();
+  const apiGetRequest = () => {
+    axios.get('/apiRequest', {
+      params: {
+        description: searchInput,
+        location: locationSearchInput,
+      },
+    })
       .then((results) => {
-        dispatch(setApiSearchData(results));
-        console.log(results);
+        dispatch(setApiSearchData(results.data));
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
+  };
+
+  const handleRequest = () => {
+    apiGetRequest();
+    // return <Redirect to="/jobs" />;
+    history.push('/jobs');
   };
 
   return (
     <>
       <AboutModal />
-      <img
-        className={classes.avatar}
-        src="https://selious.s3.amazonaws.com/Selous.png"
-        alt="Selous Logo"
-      />
-      <Container maxWidth="sm" className={classes.wrapper}>
-        <Typography align="left" color="textPrimary" className={classes.topText} gutterBottom>
-          Where having
-        </Typography>
-        <Typography align="left" color="textPrimary" className={classes.midText} gutterBottom>
-          zeal
-        </Typography>
-        <Typography align="left" color="textPrimary" className={classes.lowText} gutterBottom>
-          pays off
-        </Typography>
-      </Container>
-      <img
-        className={classes.iconOverlay}
-        src="https://selious.s3.amazonaws.com/poverlay.jpg"
-        alt="icon Logo Overlay"
-      />
-      <img
-        className={classes.icon}
-        src="https://selious.s3.amazonaws.com/ProfessionalLearningCommunity.jpg"
-        alt="icon Logo"
-      />
+      <div className={classes.wrapper}>
+        {/* <img
+          className={classes.avatar}
+          src="https://selious.s3.amazonaws.com/Selous.png"
+          alt="Selous Logo"
+        /> */}
+        <h1 className={classes.titleText}>
+          Where having zeal pays off
+        </h1>
+        <div className={classes.imageWrapper}>
+          <img
+            className={classes.iconOverlay}
+            src="https://selious.s3.amazonaws.com/poverlay.jpg"
+            alt="icon Logo Overlay"
+          />
+          <img
+            className={classes.icon}
+            src="https://selious.s3.amazonaws.com/ProfessionalLearningCommunity.jpg"
+            alt="icon Logo"
+          />
+        </div>
+      </div>
       <SearchBar
         className={classes.search}
         placeholder="Search Jobs..."
         value={searchInput}
         onChange={(newValue) => dispatch(setSearchInput(newValue))}
-        onRequestSearch={(keyword) => apiGetRequest(keyword)}
+        onRequestSearch={handleRequest}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
-      {/* Footer */}
-      <Container component="footer" className={classes.footer}>
-        <Grid container spacing={4} justify="space-evenly">
-          {footers.map((footer) => (
-            <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="textPrimary" gutterBottom>
-                {footer.title}
-              </Typography>
-              <ul>
-                {footer.description.map((item) => {
-                  if (item === 'About') {
-                    return (
-                      <li key={item}>
-                        <Typography
-                          className={classes.about}
-                          type="button"
-                          variant="subtitle1"
-                          color="textSecondary"
-                          onClick={() => dispatch(showAboutAction())}
-                        >
-                          {item}
-                        </Typography>
-                      </li>
-                    );
-                  }
-                  return (
-                    <li key={item}>
-                      <Link href="/" variant="subtitle1" color="textSecondary">
-                        {item}
-                      </Link>
-                    </li>
-                  );
-                })}
-              </ul>
-            </Grid>
-          ))}
-        </Grid>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </Container>
-      {/* End footer */}
+      <SearchBar
+        className={classes.search}
+        placeholder="Search Locations..."
+        value={locationSearchInput}
+        onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
+        onRequestSearch={handleRequest}
+        onCancelSearch={() => dispatch(setSearchLocationInput(''))}
+      />
+      <Footer />
     </>
   );
 };
 
-const mapStatesToProps = (state) => ({ searchInput: state.searchInput, apiData: state.apiData });
+const mapStatesToProps = (state) => ({
+  searchInput: state.searchInput,
+  locationSearchInput: state.locationSearchInput,
+  apiData: state.apiData,
+});
 
 export default connect(mapStatesToProps)(Landing);

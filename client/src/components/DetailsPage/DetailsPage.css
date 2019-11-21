@@ -2,12 +2,13 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    width: 100vw;
-    height: 82vh;
+    width: 99vw;
+    height: 81vh;
     display: grid;
     grid-template-rows: 100%;
     grid-template-areas: 
         'page_body';
+    place-items: center;
 }
 
 .header{
@@ -30,6 +31,6 @@
     grid-template-columns: 25% 75%;
     grid-template-areas: 
         'company_notes progress_tabs_wrapper';
-    padding-right: 165px;
-    padding-left: 165px;
+    max-width: 1240px;
+    max-height: 625px;
 }

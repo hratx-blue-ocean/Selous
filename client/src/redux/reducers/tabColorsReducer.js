@@ -1,17 +1,17 @@
 const defaultData = [
-  'tab_red',
-  'tab_orange',
-  'tab_yellow',
-  'tab_green',
-  'tab_blue',
-  'tab_pinky',
-  'tab_magenta',
-  'tab_gray',
+  'border_red',
+  'border_orange',
+  'border_yellow',
+  'border_green',
+  'border_blue',
+  'border_pinky',
+  'border_magenta',
+  'border_gray',
 ];
 
 export default function tabColorsReducer(state = defaultData, action) {
   switch (action.type) {
-    case 'GET':
+    case 'GET_TAB_COLORS':
       return state;
     default:
       return state;

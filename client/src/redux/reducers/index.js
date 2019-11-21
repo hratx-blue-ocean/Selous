@@ -9,6 +9,11 @@ import userJobsReducer from './userJobsReducer.js';
 import tabColorsReducer from './tabColorsReducer.js';
 import loggedInReducer from './loggedInReducer.js';
 import haveLandingReducer from './haveLandingReducer.js';
+import searchInputReducer from './searchInputReducer.js';
+import apiDataReducer from './apiDataReducer.js';
+import currentJobReducer from './currentJobReducer.js';
+import userToState from './userToState.js';
+import apiLocationSearchDataReducer from './locationSearchDataReducer.js';
 import {
   jobPostingModalReducer,
   addGoalModalReducer,
@@ -17,8 +22,7 @@ import {
   editModalReducer,
   showAboutReducer,
 } from './ModalReducers.js';
-import searchInputReducer from './searchInputReducer.js';
-import apiDataReducer from './apiDataReducer.js';
+import companyNotesTESTReducer from './companyNotesTESTReducer.js';
 
 const rootReducer = combineReducers({
   addGoal: addGoalReducer,
@@ -38,6 +42,10 @@ const rootReducer = combineReducers({
   isLoggedIn: loggedInReducer,
   showAbout: showAboutReducer,
   haveLanding: haveLandingReducer,
+  currentJob: currentJobReducer,
+  userData: userToState,
+  locationSearchInput: apiLocationSearchDataReducer,
+  companyNotes: companyNotesTESTReducer,
 });
 
 export default rootReducer;

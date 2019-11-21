@@ -1,47 +1,58 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import DashColorTile from './dashcolortile.jsx';
 import styles from './dashboard.css';
-import { addJobModalAction } from '../../redux/actions/actions.js';
+import { addJobModalAction, currentJobAction } from '../../redux/actions/actions.js';
 import AddJobModal from '../Modals/AddJobModal/AddJobModal.jsx';
 
 const mapStateToProps = (state) => ({
   show: state.addJobModal,
 });
 
-const DashboardRow = ({ job, dispatch }) => {
+const DashboardRow = ({ jobIndex, job, dispatch }) => {
+  const history = useHistory();
+  const handleRoute = () => {
+    const currentJob = {
+      jobId: jobIndex,
+      jobData: job,
+    };
+    dispatch(currentJobAction(currentJob));
+    history.push('/details');
+  };
   if (job) {
     return (
       <div className={styles['dashboard-row']}>
-        <div
+        <button
+          type="button"
+          onClick={handleRoute}
           className={styles['dash-companytile']}
-          onMouseLeave={(e) => { e.target.innerHTML = `<b>${job.companyName}</b> \n ${job.position}`; }}
-          onMouseEnter={(e) => { e.target.innerHTML = `<b>${job.companyName}</b>`; }}
         >
-          <div>
-            <b>{job.companyName}</b>
-          </div>
+          {job.company}
+          <br />
           {job.position}
-        </div>
-        {job.tiles.map((tile, i) => (
-          <DashColorTile key={tile} tileName={tile} number={i} />
+        </button>
+        {job.progressArray.map((tile, i) => (
+          <DashColorTile key={tile} tile={tile} number={i} />
         ))}
       </div>
     );
   }
   return (
     <>
-      <AddJobModal />
+      <div className={styles['modal-container']}>
+        <AddJobModal />
+      </div>
       <div className={styles['dashboard-row']}>
-        <div
-          role="button"
+        <button
+          type="button"
           tabIndex={0}
           className={styles['dash-companytile']}
           onClick={() => { dispatch(addJobModalAction()); }}
           onKeyPress=""
         >
           +
-        </div>
+        </button>
       </div>
     </>
   );

@@ -1,24 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import DashboardRow from './dashboardRow.jsx';
 import styles from './dashboard.css';
 import Headerbar from '../headerbar/Headerbar.jsx';
+import Footer from '../footer/Footer.jsx';
+import Goals from '../Goals/Goals.jsx';
 
 
-const mapStateToProps = (state) => ({ jobs: state.userJobs });
-
-
-const Dashboard = ({ jobs }) => (
+const mapStateToProps = (state) => ({ user: state.userData });
+const Dashboard = ({ user }) => (
   <>
     <Headerbar />
     <div className={styles.flexbox}>
       <div className={styles.dashboard}>
-        {jobs.map((job) => (
-          <DashboardRow key={job.id} job={job} />
+        {user.userJobs.map((job, i) => (
+          <DashboardRow component={Link} to="/details" key={job._id} jobIndex={i} job={job} />
         ))}
         <DashboardRow key="+" job={null} />
       </div>
+      <Goals />
     </div>
+    <Footer />
   </>
 );
 

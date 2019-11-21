@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
+import axios from 'axios';
+import TextField from '@material-ui/core/TextField';
 
+/* eslint-disable prefer-const */
 import {
   Typography,
   Fab,
@@ -10,29 +13,32 @@ import {
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { addGoalAction } from '../../../redux/actions/actions.js';
+import { addGoalAction, userToState } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   container: {
     display: 'flex',
     flexDirection: 'row',
-    padding: 10,
-    width: '390px',
-    height: '160px',
+    padding: 25,
+    width: 'fit-content',
+    height: 'fit-content',
     borderRadius: '8px',
-    fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
+    backgroundImage: 'url("https://selious.s3.amazonaws.com/selousSplice.PNG")',
     border: 2,
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: '100% 20%',
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
+    margin: '10% auto auto auto',
   },
   root: {
     padding: 10,
+    radius: 'auto',
     width: '549px',
     height: '400px',
     borderRadius: '8px',
-    fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
@@ -43,7 +49,7 @@ const useStyles = makeStyles(({
     borderRadius: '8px',
     padding: 10,
     background: '#FFFFFF',
-    width: '350px',
+    width: '25%',
     height: '250px',
     borderWidth: 1,
     borderColor: 'purple',
@@ -51,15 +57,11 @@ const useStyles = makeStyles(({
     boxShadow: 5,
   },
   next: {
-    borderRadius: '8px',
-    padding: 10,
+    borderRadius: '6px',
     background: '#FFFFFF',
     width: '300px',
-    borderWidth: 1,
     marginRight: 10,
     marginBottom: 20,
-    borderColor: 'purple',
-    borderStyle: 'solid',
     boxShadow: 5,
   },
   do: {
@@ -77,8 +79,7 @@ const useStyles = makeStyles(({
   },
   buttons: {
     marginRight: 6,
-    float: 'right',
-    alignSelf: 'flex-end',
+    textAlign: 'center',
     marginBottom: 10,
   },
   fabStuff: {
@@ -89,19 +90,52 @@ const useStyles = makeStyles(({
     borderRadius: 40,
   },
   rightContainer: {
-    display: 'flex',
-    flexDirection: 'row',
   },
   notesContainer: {
     display: 'flex',
     flexDirection: 'column',
   },
+  h2: {
+    color: 'white',
+  },
 }));
 
-const mapStateToProps = (state) => ({ show: state.addGoalModal });
+const mapStateToProps = (state) => ({ show: state.addGoalModal, user: state.userData });
 
-function AddGoalModal({ show, dispatch }) {
+function AddGoalModal({ user, show, dispatch }) {
   const classes = useStyles();
+  let [objective, setObjective] = useState('');
+  let [target, setTarget] = useState(0);
+
+  const addGoal = () => {
+    let goal = {};
+
+    goal.goalId = 2;
+    goal.goalName = objective;
+    goal.goalTarget = parseInt(target, 0);
+    goal.goalProgress = 0;
+
+    axios.post('/db/goals', {
+      userId: user._id,
+      goalData: goal,
+    })
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: user._id,
+          },
+        })
+          .then((results) => {
+            dispatch(userToState(results.data));
+          })
+          .catch((err) => {
+            throw new Error(err);
+          });
+      })
+      .catch((err) => {
+        throw new Error(err);
+      });
+  };
 
   return (
     <Modal
@@ -111,27 +145,51 @@ function AddGoalModal({ show, dispatch }) {
     >
       <div className={classes.container}>
         <div className={classes.notesContainer}>
+          <h2 className={classes.h2}>Set a New Goal</h2>
           <div>
             <Typography>
               Objective
             </Typography>
-            <input type="text" className={classes.next} />
+            <TextField
+              variant="filled"
+              required
+              fullWidth
+              id="username"
+              label="ex: 'Conduct 3 phone screens/week'"
+              name="username"
+              autoComplete="username"
+              className={classes.next}
+              onChange={(event) => { setObjective(objective = event.target.value); }}
+            />
           </div>
           <div>
             <Typography>
-              Frequency
+              Goal Target
             </Typography>
-            <input type="text" className={classes.next} />
+            <TextField
+              variant="filled"
+              required
+              fullWidth
+              id="username"
+              label="How many?"
+              name="username"
+              autoComplete="username"
+              className={classes.next}
+              onChange={(event) => { setTarget(target = event.target.value); }}
+            />
           </div>
+          <Box className={classes.buttons}>
+            <Fab onClick={() => dispatch(addGoalAction())} className={classes.buttonBoi}>
+              <AddCircleIcon className={classes.doNot} />
+            </Fab>
+            <Fab
+              onClick={() => { addGoal(); dispatch(addGoalAction()); }}
+              className={classes.fabStuff}
+            >
+              <CheckCircleIcon className={classes.do} />
+            </Fab>
+          </Box>
         </div>
-        <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
-          <Fab onClick={() => dispatch(addGoalAction())} className={classes.buttonBoi}>
-            <AddCircleIcon className={classes.doNot} />
-          </Fab>
-          <Fab className={classes.fabStuff}>
-            <CheckCircleIcon className={classes.do} />
-          </Fab>
-        </Box>
       </div>
     </Modal>
   );

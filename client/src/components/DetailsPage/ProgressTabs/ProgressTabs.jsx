@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import styles from './ProgressTabs.css';
 
 // Components
@@ -14,33 +15,49 @@ import TabThree from './TabThree/TabThree.jsx';
 import { setDisplayedTabs } from '../../../redux/actions/actions.js';
 
 const ProgressTabs = ({
-  companyTabsTEST,
+  currentJob,
   whatsNextTab,
   displayedTabs,
   tabColors,
   dispatch,
 }) => {
   useEffect(() => {
-    if (companyTabsTEST) {
-      const tempArr = companyTabsTEST.slice(-2);
-      tempArr[0].color = tabColors[companyTabsTEST.indexOf(tempArr[0])];
-      tempArr[1].color = tabColors[companyTabsTEST.indexOf(tempArr[1])];
-      dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
+    let tempArr;
+    switch (currentJob.progressArray.length) {
+      case 0:
+        dispatch(setDisplayedTabs([whatsNextTab]));
+        break;
+      case 1:
+        tempArr = currentJob.progressArray.slice();
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
+        dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
+        break;
+      case 2:
+        tempArr = currentJob.progressArray.slice();
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
+        dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
+        break;
+      default:
+        tempArr = currentJob.progressArray.slice(-2);
+        tempArr[0].color = tabColors[currentJob.progressArray.indexOf(tempArr[0])];
+        tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
+        dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
     }
-  }, [companyTabsTEST]);
+  }, [currentJob.progressArray]);
 
   return (
     <div className={styles.progress_tabs_wrapper}>
 
       <div className={styles.progress_tabs_header}>
-        <h1>PLACEHOLDER</h1>
+        <h1>{`Your progress with ${currentJob.company}`}</h1>
       </div>
 
       <div className={styles.progress_tabs}>
         <ButtonLeft />
         <TabOne tab={displayedTabs[0]} />
-        <TabTwo tab={displayedTabs[1]} />
-        <TabThree tab={displayedTabs[2]} />
+        <TabTwo tab={displayedTabs[1] ? displayedTabs[1] : null} />
+        <TabThree tab={displayedTabs[2] ? displayedTabs[2] : null} />
         <ButtonRight />
       </div>
     </div>
@@ -48,7 +65,7 @@ const ProgressTabs = ({
 };
 
 const mapStateToProps = (state) => ({
-  companyTabsTEST: state.companyTabsTEST,
+  currentJob: state.currentJob.jobData,
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,

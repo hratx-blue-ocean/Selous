@@ -1,11 +1,34 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
+import { connect } from 'react-redux';
 import styles from './CompanyNotes.css';
+import EditDetailsModal from '../../Modals/EditModal.jsx';
+import { editAction } from '../../../redux/actions/actions.js';
 
-export default function CompanyNotes({ companyName, notes }) {
-  return (
-    <div className={styles.company_notes}>
-      <div className={styles.company_notes_box}>{companyName}</div>
-      <div>{notes}</div>
+const CompanyNotes = ({ currentJob, dispatch }) => (
+  <>
+    <EditDetailsModal />
+    <div className={styles.company_tab}>
+      <div className={styles.company_tab_wrapper}>
+        <h3 className={styles.company_notes_title}>{currentJob.company}</h3>
+        <div className={styles.company_notes_body}>
+          <h4 className={styles.notes}>Notes</h4>
+          <div
+            className={styles.company_notes}
+            dangerouslySetInnerHTML={{ __html: currentJob.notes }}
+          />
+        </div>
+        <div className={styles.button_wrapper}>
+          <button type="button" onClick={() => dispatch(editAction())} className={styles.button}>Edit Notes</button>
+        </div>
+      </div>
     </div>
-  );
-}
+  </>
+);
+
+const mapStateToProps = (state) => ({
+  currentJob: state.currentJob.jobData,
+  showEdit: state.editModal,
+});
+
+export default connect(mapStateToProps)(React.memo(CompanyNotes));

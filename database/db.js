@@ -1,17 +1,19 @@
 // miles & tyler
 const mongoose = require('mongoose');
+const debug = require('debug')('mongoDB');
 
 mongoose.connect('mongodb+srv://FriendMiles:Igala1rele@cluster0-4q3ra.gcp.mongodb.net/Selous', { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+db.on('error', debug.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('Mongo is Connected');
+  debug('Mongo is Connected');
 });
 
 
 const JobSchema = new mongoose.Schema({
   completed: Boolean,
   notes: String,
+  description: String,
   createdAt: String,
   company: String,
   position: String,
@@ -36,7 +38,7 @@ const UserSchema = new mongoose.Schema({
   userJobs: [JobSchema],
   userGoals: [
     {
-      goaldId: Number,
+      goalId: Number,
       goalName: String,
       goalTarget: Number,
       goalProgress: Number,
@@ -49,7 +51,7 @@ const User = mongoose.model('User', UserSchema);
 const Job = mongoose.model('Job', JobSchema);
 
 const validateLogin = (login, callback) => {
-  User.findOne({ userName: login.userName })
+  User.findOne({ userName: login.username })
     .then((user) => {
       if (user === null || user.password !== login.password) {
         callback(new Error('incorrect login credentials'), null);
@@ -60,11 +62,21 @@ const validateLogin = (login, callback) => {
     .catch((err) => { callback(err, null); });
 };
 
+const getUser = (userId, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      callback(null, user);
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+};
+
 
 const validateSignup = (userData, callback) => {
   User.findOne({ userName: userData.username })
     .then((user) => {
-      if (user === null) {
+      if (user === null && userData.username.length > 1) {
         const newUser = new User({
           userName: userData.username,
           password: userData.password,
@@ -126,6 +138,31 @@ const addGoal = (userId, goalData, callback) => {
   });
 };
 
+const editGoalProgress = (userId, goalId, increment, callback) => {
+  User.findOne({ _id: userId }).then((user) => {
+    // eslint-disable-next-line
+    user.userGoals[goalId].goalProgress += increment;
+    const progress = user.userGoals[goalId].goalProgress;
+    const target = user.userGoals[goalId].goalTarget;
+    if (progress < 0) {
+      // eslint-disable-next-line
+      user.userGoals[goalId].goalProgress = 0;
+    }
+    if (progress > target) {
+      // eslint-disable-next-line
+      user.userGoals[goalId].goalProgress = target;
+    }
+    user.save((err) => {
+      if (err) callback(err, null);
+      else {
+        callback(null, user.userGoals[goalId]);
+      }
+    });
+  }).catch((err) => {
+    if (err) callback(err, null);
+  });
+};
+
 const addJobProgress = (userId, jobId, progressData, callback) => {
   User.findOne({ _id: userId }).then((user) => {
     user.userJobs[jobId].progressArray.push(progressData);
@@ -140,6 +177,53 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
   });
 };
 
+const changeProgress = (userId, jobId, progId, completed, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      debug('jobId', jobId);
+      // eslint-disable-next-line
+      // eslint-disable-next-line no-param-reassign
+      user.userJobs[jobId].progressArray[progId].isCompleted = completed;
+      user.save((err) => {
+        if (err) callback(err, null);
+        else callback(null, completed);
+      });
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+};
+
+const editProgress = (userId, jobId, progressId, progressData, callback) => {
+  User.findOne({ _id: userId }).then((user) => {
+    const thisUser = user;
+    thisUser.userJobs[jobId].progressArray[progressId] = progressData;
+    user.save((data) => {
+      callback(null, data);
+    }).catch((err) => {
+      callback(err, null);
+    });
+  });
+};
+
+const editNotes = (userId, jobId, notes, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      // eslint-disable-next-line no-param-reassign
+      user.userJobs[jobId].notes = notes;
+      user.save((err) => {
+        if (err) callback(err, null);
+        else {
+          callback(null, notes);
+        }
+      });
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+};
+
+// Goal Schema
 // const goal = {
 //   goaldId: 3,
 //   goalName: 'Get rekt',
@@ -152,6 +236,8 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
 //   stepNotes: 'Something cool',
 //   createdAt: 'yesterday',
 //   isCompleted: false,
+//   tabEditText: 'Edit'
+//   whatsNextTab: false
 // };
 
 // validateLogin('FriendMile', 'password');
@@ -199,5 +285,14 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
 // All exported functions work!
 
 module.exports = {
-  addJob, addGoal, addJobProgress, validateLogin, validateSignup,
+  addJob,
+  addGoal,
+  addJobProgress,
+  validateLogin,
+  validateSignup,
+  changeProgress,
+  getUser,
+  editProgress,
+  editNotes,
+  editGoalProgress,
 };

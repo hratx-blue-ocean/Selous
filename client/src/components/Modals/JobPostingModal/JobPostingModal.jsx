@@ -1,6 +1,8 @@
+/* eslint-disable react/no-danger */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-
+import axios from 'axios';
+/* eslint no-param-reassign: "error" */
 import {
   Fab,
   Box,
@@ -8,7 +10,7 @@ import {
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import { showJobAction } from '../../../redux/actions/actions.js';
+import { userToState } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   bigContainer: {
@@ -36,14 +38,15 @@ const useStyles = makeStyles(({
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
     opacity: '100%',
+    margin: '20px auto',
   },
   header: {
     display: 'flex',
     flexDirection: 'row',
-    width: '100%',
+    width: '95%',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: 50,
+    height: '50px',
   },
   doNot: {
     color: '#DB5C5C',
@@ -67,15 +70,29 @@ const useStyles = makeStyles(({
     borderTop: 1,
     borderLeft: 0,
     borderRight: 0,
-    borderBottom: 0,
+    borderBottom: 1,
     borderStyle: 'solid',
     borderColor: 'black',
     marginBottom: 10,
     overflow: 'scroll',
+    fontSize: 10,
+  },
+  application: {
+    height: '80px',
+    width: '90%',
+    fontSize: 10,
+    borderTop: 1,
+    borderLeft: 0,
+    borderRight: 0,
+    borderBottom: 1,
+    borderStyle: 'solid',
+    borderColor: 'black',
+    overflow: 'scroll',
+    marginBottom: 5,
   },
   apply: {
-    height: '30px',
-    width: '80px',
+    height: '40px',
+    width: '150px',
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: 'black',
@@ -84,34 +101,93 @@ const useStyles = makeStyles(({
     alignItems: 'center',
     backgroundColor: 'purple',
     color: 'white',
-    fontSize: 18,
+    fontSize: 15,
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   title: {
     marginLeft: 20,
-    fontSize: 55,
+    height: 35,
+    width: '85%',
+    fontSize: '2vw',
+    overflow: 'auto',
   },
   titlesContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
     alignSelf: 'flex-start',
-    marginLeft: 20,
+    marginLeft: 40,
     height: 50,
   },
   titleSec: {
-    fontSize: 30,
+    height: 25,
     marginRight: 10,
+    width: '300px',
+    display: 'flex',
+    alignSelf: 'flex-end',
+    overflow: 'auto',
   },
   titleTer: {
-    fontSize: 20,
+    height: 25,
+    width: '200px',
+    display: 'flex',
+    alignSelf: 'flex-end',
+    marginRight: '60px',
+    justifyContent: 'flex-end',
+    overflow: 'auto',
+  },
+  descriptionText: {
+    fontSize: 10,
   },
 }));
 
-const mapStateToProps = (state) => ({ show: state.jobPostingModal });
+const mapStateToProps = (state) => ({ user: state.userData });
 
-function JobPostingModal({ show, dispatch }) {
+function JobPostingModal({
+  user,
+  oneJob,
+  show,
+  setShow,
+  dispatch,
+}) {
   const classes = useStyles();
+
+  const addJob = () => {
+    const jobData = {};
+
+    jobData.company = oneJob.company;
+    jobData.completed = false;
+    jobData.contactEmail = 'No email address saved';
+    jobData.contactName = 'No contact info saved';
+    jobData.notes = 'No notes';
+    jobData.position = oneJob.title;
+    jobData.progressArray = [];
+    jobData.notes = oneJob.description;
+
+    axios.post('/db/dashboard/job', {
+      userId: user._id,
+      jobData,
+    })
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: user._id,
+          },
+        })
+          .then((results) => {
+            console.log(results.data);
+            dispatch(userToState(results.data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
@@ -123,22 +199,41 @@ function JobPostingModal({ show, dispatch }) {
       >
         <div className={classes.container}>
           <div className={classes.header}>
-            <h1 className={classes.title}>title</h1>
+            <div className={classes.title}>
+              {oneJob.title}
+            </div>
             <Box className={classes.buttons}>
               <Fab className={classes.buttonBoi}>
                 <AddCircleIcon
                   className={classes.doNot}
-                  onClick={() => dispatch(showJobAction())}
+                  onClick={() => { setShow(!show); }}
                 />
               </Fab>
             </Box>
           </div>
           <div className={classes.titlesContainer}>
-            <h3 className={classes.titleSec}>Company Name</h3>
-            <h5 className={classes.titleTer}>City Name</h5>
+            <div className={classes.titleSec}>
+              {oneJob.company}
+            </div>
+            <div className={classes.titleTer}>
+              {oneJob.location}
+            </div>
           </div>
-          <div className={classes.description} />
-          <button type="button" className={classes.apply}>Apply</button>
+          <div
+            className={classes.description}
+            dangerouslySetInnerHTML={{ __html: oneJob.description }}
+          />
+          <div
+            className={classes.application}
+            dangerouslySetInnerHTML={{ __html: oneJob.how_to_apply }}
+          />
+          <button
+            onClick={() => { addJob(); setShow(!show); }}
+            type="button"
+            className={classes.apply}
+          >
+            Add to Dashboard
+          </button>
         </div>
       </Modal>
     </div>

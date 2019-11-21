@@ -19,5 +19,7 @@ module.exports = {
     "react/destructuring-assignment": 1,
     "import/extensions": 0,
     "react/prop-types": 0,
-  },
-};
+    "linebreak-style": 0,
+    "no-underscore-dangle": 0,
+  }
+}

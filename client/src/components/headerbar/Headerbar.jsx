@@ -23,15 +23,31 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     overflow: 'hidden',
-    marginLeft: '15%',
+    marginLeft: '28%',
   },
   title: {
+    color: 'white',
+    backgroundColor: 'transparent',
+    '&:hover': {
+      backgroundColor: 'transparent',
+    },
+    '&:active': {
+      backgroundColor: 'transparent',
+    },
+    maxWidth: '200px',
+    maxHeight: '71px',
     marginLeft: '2%',
     flexGrow: 1,
     fontSize: 42,
     fontFamily: [
       'Cairo',
     ].join(','),
+  },
+  signup: {
+    float: 'right',
+    marginLeft: '28%',
+  },
+  login: {
   },
   break: {
     maxWidth: 1240,
@@ -59,9 +75,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const mapStateToProps = (state) => ({ show: state.haveLanding, tell: state.isLoggedIn });
+const mapStateToProps = (state) => ({
+  show: state.haveLanding,
+  tell: state.isLoggedIn,
+  user: state.userData,
+});
 
-function Headerbar({ show, tell, dispatch }) {
+function Headerbar({
+  show, tell, user, dispatch,
+}) {
   const classes = useStyles();
   const handleDir = () => {
     if (show) {
@@ -72,10 +94,16 @@ function Headerbar({ show, tell, dispatch }) {
     <div className={classes.root}>
       <AppBar position="static" className={classes.app}>
         <Toolbar>
-          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selious" className={classes.logo} />
-          <Typography variant="h6" className={classes.title}>
+          <img src="https://selious.s3.amazonaws.com/selousSplice.PNG" alt="selous" className={classes.logo} />
+          <Button
+            component={Link}
+            to={user.userName ? '/dashboard' : '/'}
+            disableRipple="true"
+            variant="h6"
+            className={classes.title}
+          >
             Selous
-          </Typography>
+          </Button>
           {tell ? <Menu />
             : (
               <>
@@ -83,12 +111,22 @@ function Headerbar({ show, tell, dispatch }) {
                   color="inherit"
                   onClick={handleDir}
                   className={classes.signup}
+                  keepMounted
                   component={Link}
                   to="/signup"
                 >
                   Signup
                 </Button>
-                <Button color="inherit" onClick={handleDir} component={Link} to="/login">Login</Button>
+                <Button
+                  color="inherit"
+                  onClick={handleDir}
+                  className={classes.login}
+                  keepMounted
+                  component={Link}
+                  to="/login"
+                >
+                  Login
+                </Button>
               </>
             )
         }
@@ -96,8 +134,7 @@ function Headerbar({ show, tell, dispatch }) {
       </AppBar>
       <div className={classes.break}>
         <Typography className={classes.hello}>
-          Hello Mario!
-          {/* needs state name */}
+          { tell ? `Hello ${user.firstName}!` : null }
         </Typography>
       </div>
     </div>

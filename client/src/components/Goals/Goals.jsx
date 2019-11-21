@@ -1,15 +1,18 @@
 import React, { useEffect } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import {
   Button, Card, CardActions, CardContent, CssBaseline, Typography, makeStyles, Container,
 } from '@material-ui/core';
 import {
-  addGoalAction, incrementGoalAction, decrementGoalAction, getGoalsAction,
+  addGoalAction, getGoalsAction, userToState,
+  // incrementGoalAction, decrementGoalAction,
 } from '../../redux/actions/actions.js';
 import AddGoalModal from '../Modals/AddGoalModal/AddGoalModal.jsx';
 
 const mapStateToProps = (state) => ({
-  currentGoals: state.currentGoals,
+  currentGoals: state.userData.userGoals,
+  userId: state.userData._id,
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -57,14 +60,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Goals = ({ currentGoals, dispatch }) => {
+const Goals = ({ currentGoals, dispatch, userId }) => {
   useEffect(() => {
     dispatch(getGoalsAction());
   }, []);
 
+  const changeGoalProgress = (goalId, increment) => {
+    axios.post('/db/goals/progress', {
+      userId,
+      goalId,
+      increment,
+    })
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId,
+          },
+        })
+          .then((results) => {
+            dispatch(userToState(results.data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const classes = useStyles();
 
-  return (currentGoals.length > 0 && (
+  return (
     <>
       <AddGoalModal />
       <div className={classes.goalsTrackerContainer}>
@@ -79,35 +106,44 @@ const Goals = ({ currentGoals, dispatch }) => {
               </CardContent>
             </Card>
             <hr style={{ margin: '20px 10px' }} />
-            {currentGoals.map((currentGoal, index) => (
-              <Card key={currentGoal.goalName} className={classes.card}>
-                <CardContent className={classes.cardContent}>
-                  <Typography variant="h5" component="h2">
-                    {`${currentGoal.goalProgress} / `}
-                    {currentGoal.goalTarget}
-                  </Typography>
-                </CardContent>
-                <CardActions className={classes.cardFooter}>
-                  <Button
-                    size="small"
-                    className={classes.button2}
-                    onClick={() => dispatch(decrementGoalAction(index))}
-                  >
-                    -
-                  </Button>
-                  <Typography>
-                    {currentGoal.goalName}
-                  </Typography>
-                  <Button
-                    size="small"
-                    className={classes.button2}
-                    onClick={() => dispatch(incrementGoalAction(index))}
-                  >
-                    +
-                  </Button>
-                </CardActions>
-              </Card>
-            ))}
+            {
+              currentGoals.length <= 0 ? null
+                : currentGoals.map((currentGoal, index) => (
+                  <Card key={currentGoal.goalName} className={classes.card}>
+                    <CardContent className={classes.cardContent}>
+                      <Typography variant="h5" component="h2">
+                        {`${currentGoal.goalProgress} / `}
+                        {currentGoal.goalTarget}
+                      </Typography>
+                    </CardContent>
+                    <CardActions className={classes.cardFooter}>
+                      <Button
+                        size="small"
+                        className={classes.button2}
+                        onClick={() => {
+                          // dispatch(decrementGoalAction(index))
+                          changeGoalProgress(index, -1);
+                        }}
+                      >
+                        -
+                      </Button>
+                      <Typography>
+                        {currentGoal.goalName}
+                      </Typography>
+                      <Button
+                        size="small"
+                        className={classes.button2}
+                        onClick={() => {
+                          // dispatch(decrementGoalAction(index))
+                          changeGoalProgress(index, 1);
+                        }}
+                      >
+                            +
+                      </Button>
+                    </CardActions>
+                  </Card>
+                ))
+            }
             <CardActions className={classes.buttonContainer}>
               <Button
                 variant="contained"
@@ -122,7 +158,7 @@ const Goals = ({ currentGoals, dispatch }) => {
         </main>
       </div>
     </>
-  ));
+  );
 };
 
 export default connect(mapStateToProps)(Goals);

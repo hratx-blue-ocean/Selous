@@ -10,7 +10,6 @@ import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import { editAction } from '../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   root: {
@@ -74,9 +73,7 @@ const useStyles = makeStyles(({
   },
 }));
 
-const mapStateToProps = (state) => ({ show: state.editModal });
-
-function EditDetailsModal({ show, dispatch }) {
+function EditDetailsModal({ setShow, show }) {
   const classes = useStyles();
   return (
     <Modal
@@ -90,7 +87,7 @@ function EditDetailsModal({ show, dispatch }) {
           Notes
         </Typography>
         <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
-          <Fab onClick={() => dispatch(editAction())} className={classes.buttonBoi}>
+          <Fab onClick={() => { setShow(!show); }} className={classes.buttonBoi}>
             <AddCircleIcon className={classes.doNot} />
           </Fab>
           <Fab className={classes.fabStuff}>
@@ -103,4 +100,4 @@ function EditDetailsModal({ show, dispatch }) {
   );
 }
 
-export default connect(mapStateToProps)(EditDetailsModal);
+export default connect()(EditDetailsModal);

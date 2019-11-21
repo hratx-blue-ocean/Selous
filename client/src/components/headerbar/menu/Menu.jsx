@@ -2,11 +2,17 @@ import React from 'react';
 import IconButton from '@material-ui/core/IconButton';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import MenuIcon from '@material-ui/icons/Menu';
 import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import { loginAction, landingAction } from '../../../redux/actions/actions.js';
+import {
+  loginAction,
+  landingAction,
+  resetUserAction,
+  showAboutAction,
+} from '../../../redux/actions/actions.js';
 
 const ITEM_HEIGHT = 48;
 
@@ -17,6 +23,10 @@ const useStyles = makeStyles({
   bigAvatar: {
     width: 50,
     height: 40,
+    color: 'white',
+  },
+  space: {
+    marginLeft: '21%',
   },
 });
 
@@ -35,19 +45,26 @@ function Menud({ dispatch }) {
     setAnchorEl(null);
   };
 
+  const handleCloseAbout = () => {
+    setAnchorEl(null);
+    dispatch(showAboutAction());
+  };
+
   const handleLog = () => {
     setAnchorEl(null);
     dispatch(landingAction());
     dispatch(loginAction());
+    dispatch(resetUserAction());
   };
 
   return (
-    <div>
+    <>
       <IconButton
+        className={classes.space}
         aria-haspopup="true"
         onClick={handleClick}
       >
-        <AccountCircleIcon className={classes.bigAvatar} />
+        <MenuIcon className={classes.bigAvatar} />
       </IconButton>
       <Menu
         id="long-menu"
@@ -77,9 +94,7 @@ function Menud({ dispatch }) {
             Job Search
         </MenuItem>
         <MenuItem
-          onClick={handleClose}
-          component={Link}
-          to="/details"
+          onClick={handleCloseAbout}
         >
             About
         </MenuItem>
@@ -91,7 +106,7 @@ function Menud({ dispatch }) {
             Log Out
         </MenuItem>
       </Menu>
-    </div>
+    </>
   );
 }
 
