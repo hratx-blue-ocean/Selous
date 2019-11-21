@@ -64,7 +64,7 @@ const Goals = ({ currentGoals, dispatch }) => {
 
   const classes = useStyles();
 
-  return (currentGoals.length > 0 && (
+  return (
     <>
       <AddGoalModal />
       <div className={classes.goalsTrackerContainer}>
@@ -79,35 +79,38 @@ const Goals = ({ currentGoals, dispatch }) => {
               </CardContent>
             </Card>
             <hr style={{ margin: '20px 10px' }} />
-            {currentGoals.map((currentGoal, index) => (
-              <Card key={currentGoal.goalName} className={classes.card}>
-                <CardContent className={classes.cardContent}>
-                  <Typography variant="h5" component="h2">
-                    {`${currentGoal.goalProgress} / `}
-                    {currentGoal.goalTarget}
-                  </Typography>
-                </CardContent>
-                <CardActions className={classes.cardFooter}>
-                  <Button
-                    size="small"
-                    className={classes.button2}
-                    onClick={() => dispatch(decrementGoalAction(index))}
-                  >
-                    -
-                  </Button>
-                  <Typography>
-                    {currentGoal.goalName}
-                  </Typography>
-                  <Button
-                    size="small"
-                    className={classes.button2}
-                    onClick={() => dispatch(incrementGoalAction(index))}
-                  >
-                    +
-                  </Button>
-                </CardActions>
-              </Card>
-            ))}
+            {
+              currentGoals.length <= 0 ? null
+                : currentGoals.map((currentGoal, index) => (
+                  <Card key={currentGoal.goalName} className={classes.card}>
+                    <CardContent className={classes.cardContent}>
+                      <Typography variant="h5" component="h2">
+                        {`${currentGoal.goalProgress} / `}
+                        {currentGoal.goalTarget}
+                      </Typography>
+                    </CardContent>
+                    <CardActions className={classes.cardFooter}>
+                      <Button
+                        size="small"
+                        className={classes.button2}
+                        onClick={() => dispatch(decrementGoalAction(index))}
+                      >
+                        -
+                      </Button>
+                      <Typography>
+                        {currentGoal.goalName}
+                      </Typography>
+                      <Button
+                        size="small"
+                        className={classes.button2}
+                        onClick={() => dispatch(incrementGoalAction(index))}
+                      >
+                        +
+                      </Button>
+                    </CardActions>
+                  </Card>
+                ))
+            }
             <CardActions className={classes.buttonContainer}>
               <Button
                 variant="contained"
@@ -122,7 +125,7 @@ const Goals = ({ currentGoals, dispatch }) => {
         </main>
       </div>
     </>
-  ));
+  );
 };
 
 export default connect(mapStateToProps)(Goals);

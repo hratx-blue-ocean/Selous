@@ -11,6 +11,7 @@ import JobComponent from './JobComponent.jsx';
 // import Goals from '../Goals/Goals.jsx';
 import { setSearchInput, setApiSearchData, setSearchLocationInput } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
+import Footer from '../footer/Footer.jsx';
 
 const useStyles = makeStyles({
   jobSearchGoalsContainer: {
@@ -49,6 +50,7 @@ const JobSearch = ({
   searchInput,
   dispatch,
   locationSearchInput,
+  user,
 }) => {
   const classes = useStyles();
 
@@ -97,8 +99,13 @@ const JobSearch = ({
             }
           </Grid>
         </Paper>
+<<<<<<< HEAD
         {/* <Goals /> */}
+=======
+        {user.userName ? <Goals /> : null}
+>>>>>>> dev
       </div>
+      <Footer />
     </>
   );
 };
@@ -107,6 +114,7 @@ const mapStatesToProps = (state) => ({
   searchInput: state.searchInput,
   locationSearchInput: state.locationSearchInput,
   jobs: state.apiData,
+  user: state.userData,
 });
 
 export default connect(mapStatesToProps)(JobSearch);
