@@ -13,6 +13,7 @@ db.once('open', () => {
 const JobSchema = new mongoose.Schema({
   completed: Boolean,
   notes: String,
+  description: String,
   createdAt: String,
   company: String,
   position: String,
@@ -178,6 +179,23 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
   });
 };
 
+const editNotes = (userId, jobId, notes, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      // eslint-disable-next-line no-param-reassign
+      user.userJobs[jobId].notes = notes;
+      user.save((err) => {
+        if (err) callback(err, null);
+        else {
+          callback(null, notes);
+        }
+      });
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+};
+
 // Goal Schema
 // const goal = {
 //   goaldId: 3,
@@ -248,4 +266,5 @@ module.exports = {
   changeProgress,
   getUser,
   editProgress,
+  editNotes,
 };
