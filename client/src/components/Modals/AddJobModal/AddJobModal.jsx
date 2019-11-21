@@ -36,7 +36,7 @@ const useStyles = makeStyles(({
     margin: '7% auto 50px auto',
     backgroundImage: 'url("https://selious.s3.amazonaws.com/selousSplice.PNG")',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 15%',
+    backgroundSize: '100% 20%',
   },
   root: {
     padding: 10,
@@ -124,6 +124,7 @@ function AddJobModal({ user, show, dispatch }) {
   let [contact, setContact] = useState('');
   let [email, setEmail] = useState('');
   let [notes, setNotes] = useState('');
+  let [description, setDescription] = useState('');
 
   const addJob = () => {
     const jobData = {};
@@ -133,6 +134,7 @@ function AddJobModal({ user, show, dispatch }) {
     jobData.contactEmail = email;
     jobData.contactName = contact;
     jobData.notes = notes;
+    jobData.description = description;
     jobData.position = position;
     jobData.progressArray = [];
 
@@ -182,15 +184,6 @@ function AddJobModal({ user, show, dispatch }) {
               className={classes.next}
               onChange={(event) => { setCompany(company = event.target.value); }}
             />
-            {/* <input
-              onChange={(event) => { setCompany(company = event.target.value); }}
-              type="text"
-              className={classes.next}
-            /> */}
-          </div>
-          <div>
-            {/* <Typography>
-            </Typography> */}
             <TextField
               variant="filled"
               required
@@ -203,11 +196,21 @@ function AddJobModal({ user, show, dispatch }) {
               onChange={(event) => { setPosition(position = event.target.value); }}
             />
             {/* <input
-              onChange={(event) => { setPosition(position = event.target.value); }}
+              onChange={(event) => { setCompany(company = event.target.value); }}
               type="text"
               className={classes.next}
             /> */}
           </div>
+          {/* <div>
+            <Typography>
+            </Typography>
+
+            <input
+              onChange={(event) => { setPosition(position = event.target.value); }}
+              type="text"
+              className={classes.next}
+            />
+          </div> */}
           <div>
             {/* <Typography>
             </Typography> */}
@@ -222,15 +225,6 @@ function AddJobModal({ user, show, dispatch }) {
               className={classes.next}
               onChange={(event) => { setContact(contact = event.target.value); }}
             />
-            {/* <input
-              onChange={(event) => { setContact(contact = event.target.value); }}
-              type="text"
-              className={classes.next}
-            /> */}
-          </div>
-          <div>
-            {/* <Typography>
-            </Typography> */}
             <TextField
               variant="filled"
               required
@@ -242,11 +236,21 @@ function AddJobModal({ user, show, dispatch }) {
               onChange={(event) => { setEmail(email = event.target.value); }}
             />
             {/* <input
-              onChange={(event) => { setEmail(email = event.target.value); }}
+              onChange={(event) => { setContact(contact = event.target.value); }}
               type="text"
               className={classes.next}
             /> */}
           </div>
+          {/* <div>
+            <Typography>
+            </Typography>
+
+            <input
+              onChange={(event) => { setEmail(email = event.target.value); }}
+              type="text"
+              className={classes.next}
+            />
+          </div> */}
         </div>
         <div className={classes.rightContainer}>
           <div className={classes.notesContainer}>
@@ -255,13 +259,32 @@ function AddJobModal({ user, show, dispatch }) {
             <TextField
               variant="filled"
               id="standard-textarea"
-              label="Job Notes and Details"
+              label="Job Notes"
               placeholder="Enter Notes"
               multiline
               rows="6"
               className={classes.next}
               margin="normal"
               onChange={(event) => { setNotes(notes = event.target.value); }}
+            />
+            {/* <textarea
+              onChange={(event) => { setNotes(notes = event.target.value); }}
+              className={classes.notes}
+            /> */}
+          </div>
+          <div className={classes.notesContainer}>
+            {/* <Typography>
+            </Typography> */}
+            <TextField
+              variant="filled"
+              id="standard-textarea"
+              label="Job Description"
+              placeholder="Enter Notes"
+              multiline
+              rows="6"
+              className={classes.next}
+              margin="normal"
+              onChange={(event) => { setDescription(description = event.target.value); }}
             />
             {/* <textarea
               onChange={(event) => { setNotes(notes = event.target.value); }}

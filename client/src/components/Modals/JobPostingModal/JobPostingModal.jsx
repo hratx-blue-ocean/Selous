@@ -1,6 +1,8 @@
 /* eslint-disable react/no-danger */
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+/* eslint no-param-reassign: "error" */
 import {
   Fab,
   Box,
@@ -8,7 +10,7 @@ import {
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import { showJobAction } from '../../../redux/actions/actions.js';
+import { userToState } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   bigContainer: {
@@ -36,11 +38,12 @@ const useStyles = makeStyles(({
     borderColor: '#9F6CB7',
     borderStyle: 'solid',
     opacity: '100%',
+    margin: '20px auto',
   },
   header: {
     display: 'flex',
     flexDirection: 'row',
-    width: '100%',
+    width: '95%',
     alignItems: 'center',
     justifyContent: 'space-between',
     height: '50px',
@@ -75,7 +78,7 @@ const useStyles = makeStyles(({
     fontSize: 10,
   },
   application: {
-    height: '100px',
+    height: '80px',
     width: '90%',
     fontSize: 10,
     borderTop: 1,
@@ -85,10 +88,10 @@ const useStyles = makeStyles(({
     borderStyle: 'solid',
     borderColor: 'black',
     overflow: 'scroll',
-    marginBottom: 10,
+    marginBottom: 5,
   },
   apply: {
-    height: '60px',
+    height: '40px',
     width: '150px',
     borderWidth: 1,
     borderStyle: 'solid',
@@ -98,50 +101,93 @@ const useStyles = makeStyles(({
     alignItems: 'center',
     backgroundColor: 'purple',
     color: 'white',
-    fontSize: 18,
+    fontSize: 15,
     '&:hover': {
       cursor: 'pointer',
     },
   },
   title: {
     marginLeft: 20,
-    // fontSize: 35,
     height: 35,
     width: '85%',
     fontSize: '2vw',
+    overflow: 'auto',
   },
   titlesContainer: {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    alignItems: 'center',
     alignSelf: 'flex-start',
-    marginLeft: 20,
+    marginLeft: 40,
     height: 50,
   },
   titleSec: {
-    // fontSize: 25,
     height: 25,
     marginRight: 10,
-    fontSize: 25,
-    marginBottom: 20,
+    width: '300px',
+    display: 'flex',
+    alignSelf: 'flex-end',
+    overflow: 'auto',
   },
   titleTer: {
-    // fontSize: 20,
-    fontSize: '1vw',
-    width: 500,
-    marginBottom: 0,
+    height: 25,
+    width: '200px',
+    display: 'flex',
+    alignSelf: 'flex-end',
+    marginRight: '60px',
+    justifyContent: 'flex-end',
+    overflow: 'auto',
   },
   descriptionText: {
     fontSize: 10,
   },
 }));
 
-// const mapStateToProps = (state) => ({ show: state.jobPostingModal });
+const mapStateToProps = (state) => ({ user: state.userData });
 
-function JobPostingModal({ oneJob, show, setShow, dispatch }) {
+function JobPostingModal({
+  user,
+  oneJob,
+  show,
+  setShow,
+  dispatch,
+}) {
   const classes = useStyles();
-  // console.log(oneJob);
+
+  const addJob = () => {
+    const jobData = {};
+
+    jobData.company = oneJob.company;
+    jobData.completed = false;
+    jobData.contactEmail = 'No email address saved';
+    jobData.contactName = 'No contact info saved';
+    jobData.notes = 'No notes';
+    jobData.position = oneJob.title;
+    jobData.progressArray = [];
+    jobData.notes = oneJob.description;
+
+    axios.post('/db/dashboard/job', {
+      userId: user._id,
+      jobData,
+    })
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: user._id,
+          },
+        })
+          .then((results) => {
+            console.log(results.data);
+            dispatch(userToState(results.data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
@@ -153,25 +199,25 @@ function JobPostingModal({ oneJob, show, setShow, dispatch }) {
       >
         <div className={classes.container}>
           <div className={classes.header}>
-            <h1 className={classes.title}>
+            <div className={classes.title}>
               {oneJob.title}
-            </h1>
+            </div>
             <Box className={classes.buttons}>
               <Fab className={classes.buttonBoi}>
                 <AddCircleIcon
                   className={classes.doNot}
-                  onClick={() => setShow(show = !show)}
+                  onClick={() => { setShow(!show); }}
                 />
               </Fab>
             </Box>
           </div>
           <div className={classes.titlesContainer}>
-            <h3 className={classes.titleSec}>
+            <div className={classes.titleSec}>
               {oneJob.company}
-            </h3>
-            <h5 className={classes.titleTer}>
+            </div>
+            <div className={classes.titleTer}>
               {oneJob.location}
-            </h5>
+            </div>
           </div>
           <div
             className={classes.description}
@@ -181,11 +227,17 @@ function JobPostingModal({ oneJob, show, setShow, dispatch }) {
             className={classes.application}
             dangerouslySetInnerHTML={{ __html: oneJob.how_to_apply }}
           />
-          <button type="button" className={classes.apply}>Add to Dashboard</button>
+          <button
+            onClick={() => { addJob(); setShow(!show); }}
+            type="button"
+            className={classes.apply}
+          >
+            Add to Dashboard
+          </button>
         </div>
       </Modal>
     </div>
   );
 }
 
-export default connect()(JobPostingModal);
+export default connect(mapStateToProps)(JobPostingModal);
