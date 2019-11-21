@@ -49,6 +49,8 @@ const useStyles = makeStyles((theme) => ({
     float: 'right',
     marginLeft: '28%',
   },
+  login: {
+  },
   break: {
     maxWidth: 1240,
     marginTop: 20,

@@ -5,8 +5,14 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import axios from 'axios';
 import styles from './TabThree.css';
-import { whatsNextAction, currentJobAction, editAction } from '../../../../redux/actions/actions.js';
+import {
+  whatsNextAction,
+  currentJobAction,
+  editAction,
+  userToState,
+} from '../../../../redux/actions/actions.js';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 
@@ -17,21 +23,45 @@ const Tab = ({
   tab,
   currentJob,
   whatsNextTab,
+  userData,
   dispatch,
 }) => {
-  const [isWhatsNextTab, toggle] = useState(false);
-
   const handleOnClick = () => {
     const copyOfCurrentJob = _.clone(currentJob);
     const index = copyOfCurrentJob.progressArray.indexOf(tab);
     copyOfCurrentJob.progressArray[index].isCompleted = !copyOfCurrentJob.progressArray[index].isCompleted;
+    axios.put('/db/dashboard/job/progress/check', {
+      userId: userData._id,
+      jobId: userData.userJobs.indexOf(currentJob),
+      progId: index,
+      completed: copyOfCurrentJob.progressArray[index].isCompleted,
+    })
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: userData._id,
+          },
+        })
+          .then((result) => {
+            dispatch(userToState(result.data));
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     dispatch(currentJobAction(copyOfCurrentJob));
   };
 
+  const [isWhatsNextTab, toggle] = useState(false);
+
+  console.log(isWhatsNextTab);
+
   useEffect(() => {
-    if (JSON.stringify(tab) === JSON.stringify(whatsNextTab)) {
+    if (_.isEqual(tab, whatsNextTab)) {
       toggle(true);
+      return;
     }
+    toggle(false);
   }, [tab]);
 
   return (
@@ -52,7 +82,7 @@ const Tab = ({
             }
             return '';
           }) : <span className={[styles.whats_next_card, styles[cardDepth[0]]].join(' ')} />) : ''}
-          <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : styles.border_gray, styles.tab].join(' ')}>
+          <div className={[tab ? (tab.isCompleted ? styles.gray : (styles[tab.color ? tab.color : 'default'])) : styles.border_gray, styles.tab].join(' ')}>
             <h3 className={styles.tab_header}>{tab ? tab.stepName : null}</h3>
             <div className={styles.tab_body}>{tab ? tab.stepNotes : null}</div>
             {tab ? (
@@ -71,10 +101,9 @@ const Tab = ({
 const mapStateToProps = (state) => ({
   showEdit: state.editModal,
   showWhatsNext: state.whatsNextModal,
-  currentJob: state.currentJob,
+  currentJob: state.currentJob.jobData,
   whatsNextTab: state.whatsNextTab,
+  userData: state.userData,
 });
 
-const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
-
-export default connect(mapStateToProps)(React.memo(Tab, isEqual));
+export default connect(mapStateToProps)(Tab);

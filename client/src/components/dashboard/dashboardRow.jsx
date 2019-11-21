@@ -10,10 +10,14 @@ const mapStateToProps = (state) => ({
   show: state.addJobModal,
 });
 
-const DashboardRow = ({ job, dispatch }) => {
+const DashboardRow = ({ jobIndex, job, dispatch }) => {
   const history = useHistory();
   const handleRoute = () => {
-    dispatch(currentJobAction(job));
+    const currentJob = {
+      jobId: jobIndex,
+      jobData: job,
+    };
+    dispatch(currentJobAction(currentJob));
     history.push('/details');
   };
   if (job) {
@@ -40,15 +44,15 @@ const DashboardRow = ({ job, dispatch }) => {
         <AddJobModal />
       </div>
       <div className={styles['dashboard-row']}>
-        <div
-          role="button"
+        <button
+          type="button"
           tabIndex={0}
           className={styles['dash-companytile']}
           onClick={() => { dispatch(addJobModalAction()); }}
           onKeyPress=""
         >
           +
-        </div>
+        </button>
       </div>
     </>
   );
