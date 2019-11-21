@@ -34,7 +34,7 @@ const Tab = ({
     <>
       {tab ? (isWhatsNextTab ? <WhatsNext /> : <EditDetailsModal />) : ''}
       <div className={styles.tab_wrapper_two}>
-        <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : styles.border_gray, styles.tab].join(' ')}>
+        <div className={[tab ? (tab.isCompleted ? styles.gray : (styles[tab.color ? tab.color : 'default'])) : styles.border_gray, styles.tab].join(' ')}>
           <h3 className={styles.tab_header}>{tab ? tab.stepName : null}</h3>
           <div className={styles.tab_body}>{tab ? tab.stepNotes : null}</div>
           {tab ? (
@@ -56,6 +56,5 @@ const mapStateToProps = (state) => ({
   whatsNextTab: state.whatsNextTab,
 });
 
-const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
 
-export default connect(mapStateToProps)(React.memo(Tab, isEqual));
+export default connect(mapStateToProps)(Tab);

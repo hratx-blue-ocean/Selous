@@ -20,14 +20,14 @@ const Tab = ({
   whatsNextTab,
   dispatch,
 }) => {
-  const [isWhatsNextTab, toggle] = useState(false);
-
   const handleOnClick = () => {
     const copyOfCurrentJob = _.clone(currentJob);
     const index = copyOfCurrentJob.progressArray.indexOf(tab);
     copyOfCurrentJob.progressArray[index].isCompleted = !copyOfCurrentJob.progressArray[index].isCompleted;
     dispatch(currentJobAction(copyOfCurrentJob));
   };
+
+  const [isWhatsNextTab, toggle] = useState(false);
 
   useEffect(() => {
     if (JSON.stringify(tab) === JSON.stringify(whatsNextTab)) {
@@ -49,7 +49,7 @@ const Tab = ({
             }
             return '';
           })}
-          <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : null, styles.tab].join(' ')}>
+          <div className={[tab ? (tab.isCompleted ? styles.gray : (styles[tab.color ? tab.color : 'default'])) : null, styles.tab].join(' ')}>
             <h3 className={styles.tab_header}>{tab ? tab.stepName : null}</h3>
             <div className={styles.tab_body}>{tab ? tab.stepNotes : null}</div>
             <div className={styles.tab_edit}>
@@ -70,6 +70,4 @@ const mapStateToProps = (state) => ({
   whatsNextTab: state.whatsNextTab,
 });
 
-const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
-
-export default connect(mapStateToProps)(React.memo(Tab, isEqual));
+export default connect(mapStateToProps)(Tab);
