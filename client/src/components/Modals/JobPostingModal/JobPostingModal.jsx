@@ -6,8 +6,10 @@ import axios from 'axios';
 import {
   Fab,
   Box,
+  Avatar,
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
+import AssignmentIcon from '@material-ui/icons/Assignment';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
 import { userToState } from '../../../redux/actions/actions.js';
@@ -141,6 +143,15 @@ const useStyles = makeStyles(({
   descriptionText: {
     fontSize: 10,
   },
+  logo: {
+    margin: 10,
+    width: '60px',
+    height: '60px',
+    background: 'rgb(200, 169, 214)',
+  },
+  companyImage: {
+    width: '60px',
+  },
 }));
 
 const mapStateToProps = (state) => ({ user: state.userData });
@@ -177,15 +188,15 @@ function JobPostingModal({
           },
         })
           .then((results) => {
-            console.log(results.data);
+            // console.log(results.data);
             dispatch(userToState(results.data));
           })
           .catch((err) => {
-            console.error(err);
+            throw (err);
           });
       })
       .catch((err) => {
-        console.log(err);
+        throw (err);
       });
   };
 
@@ -197,6 +208,13 @@ function JobPostingModal({
         aria-describedby="simple-modal-description"
         open={show}
       >
+        {/* <Avatar className={classes.logo}>
+          {
+            oneJob.company_logo
+              ? <img className={classes.companyImage} src={oneJob.company_logo} alt={oneJob.id} />
+              : <AssignmentIcon className={classes.assignIcon} />
+          }
+        </Avatar> */}
         <div className={classes.container}>
           <div className={classes.header}>
             <div className={classes.title}>
