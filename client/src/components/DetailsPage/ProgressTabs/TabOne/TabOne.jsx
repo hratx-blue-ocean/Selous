@@ -11,16 +11,7 @@ import axios from 'axios';
 import styles from './TabOne.css';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
-<<<<<<< HEAD
-import {
-  editAction,
-  currentJobAction,
-  whatsNextAction,
-  userToState,
-} from '../../../../redux/actions/actions.js';
-=======
-import { currentJobAction } from '../../../../redux/actions/actions.js';
->>>>>>> dev
+import { currentJobAction, userToState } from '../../../../redux/actions/actions.js';
 
 const stylesArr = ['bg_red', 'bg_orange', 'bg_yellow', 'bg_green', 'bg_blue', 'bg_pink', 'bg_purple', 'bg_grey'];
 const cardDepth = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight'];
@@ -32,12 +23,6 @@ const Tab = ({
   userData,
   dispatch,
 }) => {
-<<<<<<< HEAD
-=======
-  const [isWhatsNextTab, toggle] = useState(false);
-  const [show, setShow] = useState(false);
-
->>>>>>> dev
   const handleOnClick = () => {
     const copyOfCurrentJob = _.clone(currentJob);
     const index = copyOfCurrentJob.progressArray.indexOf(tab);
@@ -64,6 +49,7 @@ const Tab = ({
     dispatch(currentJobAction(copyOfCurrentJob));
   };
 
+  const [show, setShow] = useState(false);
   const [isWhatsNextTab, toggle] = useState(false);
 
   useEffect(() => {
