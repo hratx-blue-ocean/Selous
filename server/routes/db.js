@@ -89,6 +89,17 @@ router.put('/dashboard/job/progress', (req, res) => {
     });
 });
 
+router.put('/dashboard/job/notes', (req, res) => {
+  console.log(req.body);
+  db.editNotes(req.body.userId, req.body.jobId, req.body.notes, (err, update) => {
+    if (err) {
+      res.status(400).send();
+    } else {
+      res.status(201).send(update);
+    }
+  });
+});
+
 router.put('/dashboard/job/progress/check', (req, res) => {
   db.changeProgress(req.body.userId,
     req.body.jobId,

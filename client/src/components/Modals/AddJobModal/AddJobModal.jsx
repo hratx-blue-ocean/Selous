@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import _ from 'lodash';
 import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
@@ -151,11 +152,11 @@ function AddJobModal({ user, show, dispatch }) {
             dispatch(userToState(results.data));
           })
           .catch((err) => {
-            console.error(err);
+            throw new Error(err);
           });
       })
       .catch((err) => {
-        console.log(err);
+        throw new Error(err);
       });
   };
 
@@ -307,5 +308,6 @@ function AddJobModal({ user, show, dispatch }) {
   );
 }
 
+const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
 
-export default connect(mapStateToProps)(AddJobModal);
+export default connect(mapStateToProps)(React.memo(AddJobModal, areEqual));

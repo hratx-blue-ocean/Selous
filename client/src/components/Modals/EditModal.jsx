@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import { makeStyles } from '@material-ui/core/styles';
 
 import {
@@ -73,8 +74,6 @@ const useStyles = makeStyles(({
   },
 }));
 
-// const mapStateToProps = (state) => ({ show: state.editModal });
-
 function EditDetailsModal({ setShow, show }) {
   const classes = useStyles();
   return (
@@ -102,4 +101,6 @@ function EditDetailsModal({ setShow, show }) {
   );
 }
 
-export default connect()(EditDetailsModal);
+const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
+
+export default connect()(React.memo(EditDetailsModal, areEqual));

@@ -13,6 +13,7 @@ db.once('open', () => {
 const JobSchema = new mongoose.Schema({
   completed: Boolean,
   notes: String,
+  description: String,
   createdAt: String,
   company: String,
   position: String,
@@ -179,7 +180,7 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
 const changeProgress = (userId, jobId, progId, completed, callback) => {
   User.findOne({ _id: userId })
     .then((user) => {
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-param-reassign
       user.userJobs[jobId].progressArray[progId].isCompleted = completed;
       user.save((err) => {
         if (err) callback(err, null);
@@ -201,6 +202,23 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
       callback(err, null);
     });
   });
+};
+
+const editNotes = (userId, jobId, notes, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      // eslint-disable-next-line no-param-reassign
+      user.userJobs[jobId].notes = notes;
+      user.save((err) => {
+        if (err) callback(err, null);
+        else {
+          callback(null, notes);
+        }
+      });
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
 };
 
 // Goal Schema
@@ -273,5 +291,6 @@ module.exports = {
   changeProgress,
   getUser,
   editProgress,
+  editNotes,
   editGoalProgress,
 };
