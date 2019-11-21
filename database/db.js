@@ -60,6 +60,16 @@ const validateLogin = (login, callback) => {
     .catch((err) => { callback(err, null); });
 };
 
+const getUser = (userId, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      callback(null, user);
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+};
+
 
 const validateSignup = (userData, callback) => {
   User.findOne({ userName: userData.username })
@@ -234,5 +244,9 @@ module.exports = {
   validateLogin,
   validateSignup,
   changeProgress,
+<<<<<<< HEAD
+=======
+  getUser,
+>>>>>>> dev
   editProgress,
 };

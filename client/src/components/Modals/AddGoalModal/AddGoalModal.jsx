@@ -13,7 +13,7 @@ import {
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
-import { addGoalAction } from '../../../redux/actions/actions.js';
+import { addGoalAction, userToState } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   container: {
@@ -114,9 +114,9 @@ const useStyles = makeStyles(({
   },
 }));
 
-const mapStateToProps = (state) => ({ show: state.addGoalModal });
+const mapStateToProps = (state) => ({ show: state.addGoalModal, user: state.userData });
 
-function AddGoalModal({ show, dispatch }) {
+function AddGoalModal({ user, show, dispatch }) {
   const classes = useStyles();
   let [objective, setObjective] = useState('');
   let [target, setTarget] = useState(0);
@@ -130,11 +130,21 @@ function AddGoalModal({ show, dispatch }) {
     goal.goalProgress = 0;
 
     axios.post('/db/goals', {
-      userId: '5dd029fe3b8f9e2e8c21d3aa',
+      userId: user._id,
       goalData: goal,
     })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: user._id,
+          },
+        })
+          .then((results) => {
+            dispatch(userToState(results.data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
       })
       .catch((err) => {
         console.log(err);
