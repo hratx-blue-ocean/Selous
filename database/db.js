@@ -227,7 +227,7 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
 
 // All exported functions work!
 
-module.exports = { 
+module.exports = {
   addJob,
   addGoal,
   addJobProgress,
