@@ -1,14 +1,22 @@
-import React from 'react';
+/* eslint-disable no-undef */
+import { cleanup } from '@testing-library/react';
 import * as actions from '../redux/actions/actions.js';
-// import * as types from '../../constants/ActionTypes'
+
+test('true is true', () => {
+  expect(true).toBe(true);
+});
 
 describe('actions', () => {
-  it('should create an action to add a todo', () => {
-    const text = 'Finish docs'
+  afterEach(() => {
+    cleanup();
+  });
+
+  it('should create an action to add a job', () => {
+    const job = 'Cloud Developer';
     const expectedAction = {
-      type: types.ADD_TODO,
-      text
-    }
-    expect(actions.addTodo(text)).toEqual(expectedAction)
-  })
-})
+      type: 'ADD_JOB',
+      job,
+    };
+    expect(actions.AddJobAction(job)).toEqual(expectedAction);
+  });
+});
