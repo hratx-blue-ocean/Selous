@@ -6,10 +6,8 @@ import axios from 'axios';
 import {
   Fab,
   Box,
-  Avatar,
 } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
-import AssignmentIcon from '@material-ui/icons/Assignment';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
 import { userToState } from '../../../redux/actions/actions.js';
@@ -208,13 +206,6 @@ function JobPostingModal({
         aria-describedby="simple-modal-description"
         open={show}
       >
-        {/* <Avatar className={classes.logo}>
-          {
-            oneJob.company_logo
-              ? <img className={classes.companyImage} src={oneJob.company_logo} alt={oneJob.id} />
-              : <AssignmentIcon className={classes.assignIcon} />
-          }
-        </Avatar> */}
         <div className={classes.container}>
           <div className={classes.header}>
             <div className={classes.title}>
