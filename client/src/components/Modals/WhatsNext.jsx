@@ -12,7 +12,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import { userToState } from '../../redux/actions/actions.js';
+import { userToState, updateCurrentJobAction } from '../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   root: {
@@ -139,6 +139,7 @@ function WhatsNext({
         })
           .then((results) => {
             dispatch(userToState(results.data));
+            dispatch(updateCurrentJobAction(results.data.userJobs[job.jobId]));
           })
           .catch((err) => {
             console.error(err);

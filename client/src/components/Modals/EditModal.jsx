@@ -90,7 +90,7 @@ function EditDetailsModal({ setShow, show }) {
           <Fab onClick={() => { setShow(!show); }} className={classes.buttonBoi}>
             <AddCircleIcon className={classes.doNot} />
           </Fab>
-          <Fab className={classes.fabStuff}>
+          <Fab onClick={() => { setShow(!show); }} className={classes.fabStuff}>
             <CheckCircleIcon className={classes.do} />
           </Fab>
         </Box>
