@@ -104,6 +104,7 @@ const useStyles = makeStyles((theme) => ({
   search: {
     maxWidth: '400px',
     marginLeft: '17%',
+    marginTop: 10,
   },
   about: {
     cursor: 'pointer',
@@ -187,7 +188,7 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
         placeholder="Search Jobs..."
         value={searchInput}
         onChange={(newValue) => dispatch(setSearchInput(newValue))}
-        onRequestSearch={(keyword) => apiGetRequest(keyword)}
+        onRequestSearch={handleRequest}
         onCancelSearch={() => dispatch(setSearchInput(''))}
       />
       <SearchBar
@@ -196,7 +197,7 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
         value={locationSearchInput}
         onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
         onRequestSearch={handleRequest}
-        onCancelSearch={() => dispatch(setSearchInput(''))}
+        onCancelSearch={() => dispatch(setSearchLocationInput(''))}
       />
       {/* Footer */}
       <Container component="footer" className={classes.footer}>
