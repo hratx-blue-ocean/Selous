@@ -1,23 +1,27 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styles from './CompanyNotes.css';
+import EditDetailsModal from '../../Modals/EditModal.jsx';
+import { editAction } from '../../../redux/actions/actions.js';
 
-const CompanyNotes = ({ currentJob }) => (
-  <div className={styles.company_tab}>
-    <div className={styles.company_tab_wrapper}>
-      <h3 className={styles.company_notes_title}>{currentJob.company}</h3>
-      <div className={styles.company_notes_body}>
-        <h5 className={styles.job_details}>Job Details</h5>
-        <div className={styles.company_notes_job_details}>ADD_TO_CURRENT_JOB_STATE</div>
-        <h5 className={styles.notes}>Notes</h5>
-        <div className={styles.company_notes}>{currentJob.notes}</div>
+const CompanyNotes = ({ currentJob, dispatch }) => (
+  <>
+    <EditDetailsModal />
+    <div className={styles.company_tab}>
+      <div className={styles.company_tab_wrapper}>
+        <h3 className={styles.company_notes_title}>{currentJob.company}</h3>
+        <div className={styles.company_notes_body}>
+          <h4 className={styles.notes}>Notes</h4>
+          <div className={styles.company_notes}>{currentJob.notes}</div>
+        </div>
+        <div className={styles.button_wrapper}>
+          <button type="button" onClick={() => dispatch(editAction())} className={styles.button}>Edit</button>
+        </div>
       </div>
     </div>
-  </div>
+  </>
 );
 
-// Implment notes button, add job details from state
-
-const mapStateToProps = (state) => ({ currentJob: state.currentJob });
+const mapStateToProps = (state) => ({ currentJob: state.currentJob, showEdit: state.editModal });
 
 export default connect(mapStateToProps)(CompanyNotes);
