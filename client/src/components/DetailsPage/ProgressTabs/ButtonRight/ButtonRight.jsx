@@ -7,7 +7,7 @@ import styles from './ButtonRight.css';
 import { moveRightDisplayedTabs } from '../../../../redux/actions/actions.js';
 
 const ButtonRight = ({
-  companyTabsTEST,
+  currentJob,
   displayedTabs,
   whatsNextTab,
   tabColors,
@@ -16,13 +16,13 @@ const ButtonRight = ({
   const handleOnClick = () => {
     const lastDisplayedTab = JSON.stringify(displayedTabs[2]);
     if (lastDisplayedTab !== JSON.stringify(whatsNextTab)) {
-      if (lastDisplayedTab === JSON.stringify(companyTabsTEST[companyTabsTEST.length - 1])) {
+      if (lastDisplayedTab === JSON.stringify(currentJob.progressArray[currentJob.progressArray.length - 1])) {
         dispatch(moveRightDisplayedTabs(whatsNextTab));
       } else {
-        for (let i = 0, len = companyTabsTEST.length - 1; i < len; i += 1) {
-          if (lastDisplayedTab === JSON.stringify(companyTabsTEST[i])) {
-            const tab = companyTabsTEST[i + 1];
-            tab.color = tabColors[companyTabsTEST.indexOf(tab)];
+        for (let i = 0, len = currentJob.progressArray.length - 1; i < len; i += 1) {
+          if (lastDisplayedTab === JSON.stringify(currentJob.progressArray[i])) {
+            const tab = currentJob.progressArray[i + 1];
+            tab.color = tabColors[currentJob.progressArray.indexOf(tab)];
             dispatch(moveRightDisplayedTabs(tab));
           }
         }
@@ -54,7 +54,7 @@ const ButtonRight = ({
 
 
 const mapStateToProps = (state) => ({
-  companyTabsTEST: state.companyTabsTEST,
+  currentJob: state.currentJob,
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,

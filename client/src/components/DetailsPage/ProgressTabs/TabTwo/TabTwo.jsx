@@ -2,10 +2,11 @@
 /* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import styles from './TabTwo.css';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
-import { editAction, userToState, whatsNextAction } from '../../../../redux/actions/actions.js';
+import { editAction, currentJobAction, whatsNextAction } from '../../../../redux/actions/actions.js';
 
 
 const Tab = ({
@@ -17,11 +18,10 @@ const Tab = ({
   const [isWhatsNextTab, toggle] = useState(false);
 
   const handleOnClick = () => {
-    const currentJobCopy = currentJob;
-    const tabIndex = currentJobCopy.progressArray.indexOf(tab);
-    const completedValue = currentJobCopy.progressArray[tabIndex].isCompleted;
-    currentJobCopy.progressArray[tabIndex].isCompleted = !completedValue;
-    dispatch(userToState(currentJobCopy));
+    const copyOfCurrentJob = _.clone(currentJob);
+    const index = copyOfCurrentJob.progressArray.indexOf(tab);
+    copyOfCurrentJob.progressArray[index].isCompleted = !copyOfCurrentJob.progressArray[index].isCompleted;
+    dispatch(currentJobAction(copyOfCurrentJob));
   };
 
   useEffect(() => {

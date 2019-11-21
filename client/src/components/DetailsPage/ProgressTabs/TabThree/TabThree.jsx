@@ -4,8 +4,9 @@
 /* eslint-disable max-len */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import styles from './TabThree.css';
-import { whatsNextAction, userToState, editAction } from '../../../../redux/actions/actions.js';
+import { whatsNextAction, currentJobAction, editAction } from '../../../../redux/actions/actions.js';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 
@@ -21,11 +22,10 @@ const Tab = ({
   const [isWhatsNextTab, toggle] = useState(false);
 
   const handleOnClick = () => {
-    const currentJobCopy = currentJob;
-    const tabIndex = currentJobCopy.progressArray.indexOf(tab);
-    const completedValue = currentJobCopy.progressArray[tabIndex].isCompleted;
-    currentJobCopy.progressArray[tabIndex].isCompleted = !completedValue;
-    dispatch(userToState(currentJobCopy));
+    const copyOfCurrentJob = _.clone(currentJob);
+    const index = copyOfCurrentJob.progressArray.indexOf(tab);
+    copyOfCurrentJob.progressArray[index].isCompleted = !copyOfCurrentJob.progressArray[index].isCompleted;
+    dispatch(currentJobAction(copyOfCurrentJob));
   };
 
   useEffect(() => {
