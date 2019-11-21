@@ -244,9 +244,6 @@ module.exports = {
   validateLogin,
   validateSignup,
   changeProgress,
-<<<<<<< HEAD
-=======
   getUser,
->>>>>>> dev
   editProgress,
 };
