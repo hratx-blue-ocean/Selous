@@ -5,9 +5,7 @@ import DashboardRow from './dashboardRow.jsx';
 import styles from './dashboard.css';
 import Headerbar from '../headerbar/Headerbar.jsx';
 
-
 const mapStateToProps = (state) => ({ user: state.userData });
-
 
 const Dashboard = ({ user }) => (
   <>
