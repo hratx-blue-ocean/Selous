@@ -13,7 +13,6 @@ import {
 import AssignmentIcon from '@material-ui/icons/Assignment';
 
 import JobPostingModal from '../Modals/JobPostingModal/JobPostingModal.jsx';
-// import { showJobAction } from '../../redux/actions/actions.js';
 
 const mapStateToProps = (state) => ({ show: state.jobPostingModal });
 
@@ -68,7 +67,10 @@ const JobComponent = ({ job }) => {
     <>
       <JobPostingModal setShow={setShow} show={show} oneJob={job} />
       <Button>
-        <Card className={classes.root} onClick={() => setShow(show = !show)}>
+        <Card
+          className={classes.root}
+          onClick={() => { setShow(show = !show); }}
+        >
           <Grid container className={classes.mainContainer}>
             <Grid item alignItems="center">
               <Avatar className={classes.logo}>
