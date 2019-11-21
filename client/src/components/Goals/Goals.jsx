@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 import _ from 'lodash';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import {
   Button, Card, CardActions, CardContent, CssBaseline, Typography, makeStyles, Container,
 } from '@material-ui/core';
 import {
-  addGoalAction, incrementGoalAction, decrementGoalAction, getGoalsAction,
+  addGoalAction, getGoalsAction, userToState,
+  // incrementGoalAction, decrementGoalAction,
 } from '../../redux/actions/actions.js';
 import AddGoalModal from '../Modals/AddGoalModal/AddGoalModal.jsx';
 
 const mapStateToProps = (state) => ({
   currentGoals: state.userData.userGoals,
+  userId: state.userData._id,
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -58,10 +61,34 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Goals = ({ currentGoals, dispatch }) => {
+const Goals = ({ currentGoals, dispatch, userId }) => {
   useEffect(() => {
     dispatch(getGoalsAction());
   }, []);
+
+  const changeGoalProgress = (goalId, increment) => {
+    axios.post('/db/goals/progress', {
+      userId,
+      goalId,
+      increment,
+    })
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId,
+          },
+        })
+          .then((results) => {
+            dispatch(userToState(results.data));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const classes = useStyles();
 
@@ -94,7 +121,10 @@ const Goals = ({ currentGoals, dispatch }) => {
                       <Button
                         size="small"
                         className={classes.button2}
-                        onClick={() => dispatch(decrementGoalAction(index))}
+                        onClick={() => {
+                          // dispatch(decrementGoalAction(index))
+                          changeGoalProgress(index, -1);
+                        }}
                       >
                         -
                       </Button>
@@ -104,9 +134,12 @@ const Goals = ({ currentGoals, dispatch }) => {
                       <Button
                         size="small"
                         className={classes.button2}
-                        onClick={() => dispatch(incrementGoalAction(index))}
+                        onClick={() => {
+                          // dispatch(decrementGoalAction(index))
+                          changeGoalProgress(index, 1);
+                        }}
                       >
-                        +
+                            +
                       </Button>
                     </CardActions>
                   </Card>

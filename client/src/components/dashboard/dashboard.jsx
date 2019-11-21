@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DashboardRow from './dashboardRow.jsx';
@@ -8,8 +7,8 @@ import Headerbar from '../headerbar/Headerbar.jsx';
 import Footer from '../footer/Footer.jsx';
 import Goals from '../Goals/Goals.jsx';
 
-const mapStateToProps = (state) => ({ user: state.userData });
 
+const mapStateToProps = (state) => ({ user: state.userData });
 const Dashboard = ({ user }) => (
   <>
     <Headerbar />
@@ -26,6 +25,4 @@ const Dashboard = ({ user }) => (
   </>
 );
 
-const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
-
-export default connect(mapStateToProps)(React.memo(Dashboard, areEqual));
+export default connect(mapStateToProps)(Dashboard);

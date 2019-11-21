@@ -5,13 +5,13 @@ import { connect } from 'react-redux';
 import Headerbar from './components/headerbar/Headerbar.jsx';
 import Landing from './components/landing/Landing.jsx';
 
-const mapStateToProps = (state) => ({ show: state.haveLanding });
+const mapStateToProps = (state) => ({ user: state.userData });
 
-function App({ show }) {
+function App({ user }) {
   return (
     <>
       <Headerbar />
-      {show ? <Landing /> : null}
+      {user.userName ? null : <Landing />}
     </>
   );
 }
