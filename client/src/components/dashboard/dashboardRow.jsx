@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import DashColorTile from './dashcolortile.jsx';
@@ -55,6 +54,4 @@ const DashboardRow = ({ job, dispatch }) => {
   );
 };
 
-const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
-
-export default connect(mapStateToProps)(React.memo(DashboardRow, areEqual));
+export default connect(mapStateToProps)(DashboardRow);

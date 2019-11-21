@@ -1,5 +1,4 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import DashboardRow from './dashboardRow.jsx';
@@ -26,6 +25,4 @@ const Dashboard = ({ user }) => (
   </>
 );
 
-const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
-
-export default connect(mapStateToProps)(React.memo(Dashboard, areEqual));
+export default connect(mapStateToProps)(Dashboard);
