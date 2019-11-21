@@ -51,14 +51,30 @@ router.post('/goals', (req, res) => {
     }
   });
 });
+
+router.post('/goals/progress', (req, res) => {
+  console.log(req.body);
+  db.editGoalProgress(req.body.userId, req.body.goalId,
+    req.body.increment, (err, goal) => {
+      if (err) {
+        res.status(400).send();
+      } else {
+        res.status(201).send(goal);
+      }
+    });
+});
+
 router.post('/dashboard/job/progress', (req, res) => {
-  db.addJobProgress(req.body.userId, req.body.jobId, req.body.progressData, (err, progress) => {
-    if (err) {
-      res.status(400).send();
-    } else {
-      res.status(201).send(progress);
-    }
-  });
+  db.addJobProgress(req.body.userId,
+    req.body.jobId,
+    req.body.progressData,
+    (err, progress) => {
+      if (err) {
+        res.status(400).send();
+      } else {
+        res.status(201).send(progress);
+      }
+    });
 });
 
 router.put('/dashboard/job/progress', (req, res) => {
