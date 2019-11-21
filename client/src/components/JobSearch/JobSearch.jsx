@@ -12,6 +12,7 @@ import Goals from '../Goals/Goals.jsx';
 import { setSearchInput, setApiSearchData, setSearchLocationInput } from '../../redux/actions/actions.js';
 import Headerbar from '../headerbar/Headerbar.jsx';
 import Footer from '../footer/Footer.jsx';
+import Ad from '../advertisment/Advertisment.jsx';
 
 const useStyles = makeStyles({
   jobSearchGoalsContainer: {
@@ -99,7 +100,7 @@ const JobSearch = ({
             }
           </Grid>
         </Paper>
-        {user.userName ? <Goals /> : null}
+        {user.userName ? <Goals /> : <Ad />}
       </div>
       <Footer />
     </>
