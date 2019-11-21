@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 /* eslint-disable prefer-const */
 import {
@@ -110,6 +111,7 @@ function WhatsNext({
   setShow,
   dispatch,
 }) {
+  const history = useHistory();
   const classes = useStyles();
 
   let [title, setTitle] = useState('');
@@ -139,6 +141,7 @@ function WhatsNext({
         })
           .then((results) => {
             dispatch(userToState(results.data));
+            history.push('/details');
           })
           .catch((err) => {
             console.error(err);

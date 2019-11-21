@@ -55,7 +55,8 @@ const ButtonRight = ({
 
 
 const mapStateToProps = (state) => ({
-  currentJob: state.currentJob.jobData,
+  // currentJob: state.currentJob.jobData,
+  currentJob: state.userData.userJobs[state.currentJob.jobId],
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
