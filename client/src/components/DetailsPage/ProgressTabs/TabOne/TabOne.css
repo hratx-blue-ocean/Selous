@@ -6,7 +6,6 @@
     height: 100%;
     grid-area: tab_wrapper_one;
     display: grid;
-    min-width: 295px;
 }
 
 .tab_header{
