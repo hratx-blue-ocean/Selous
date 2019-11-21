@@ -8,7 +8,7 @@ import {
 import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import { showJobAction } from '../../../redux/actions/actions.js';
+// import { showJobAction } from '../../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   bigContainer: {
@@ -139,9 +139,12 @@ const useStyles = makeStyles(({
 
 // const mapStateToProps = (state) => ({ show: state.jobPostingModal });
 
-function JobPostingModal({ oneJob, show, setShow, dispatch }) {
+function JobPostingModal({
+  oneJob,
+  show,
+  setShow,
+}) {
   const classes = useStyles();
-  // console.log(oneJob);
 
   return (
     <div>
