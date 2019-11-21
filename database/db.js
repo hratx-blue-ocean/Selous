@@ -154,6 +154,7 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
 const changeProgress = (userId, jobId, progId, completed, callback) => {
   User.findOne({ _id: userId })
     .then((user) => {
+      debug('jobId', jobId);
       // eslint-disable-next-line
       user.userJobs[jobId].progressArray[progId].isCompleted = completed;
       user.save((err) => {

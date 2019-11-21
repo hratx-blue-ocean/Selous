@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+// import axios from 'axios';
 import styles from './TabThree.css';
 import { whatsNextAction, currentJobAction, editAction } from '../../../../redux/actions/actions.js';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
@@ -22,9 +23,11 @@ const Tab = ({
   const [isWhatsNextTab, toggle] = useState(false);
 
   const handleOnClick = () => {
+    console.log(currentJob);
     const copyOfCurrentJob = _.clone(currentJob);
     const index = copyOfCurrentJob.progressArray.indexOf(tab);
     copyOfCurrentJob.progressArray[index].isCompleted = !copyOfCurrentJob.progressArray[index].isCompleted;
+    // axios.post('/db/dashboard/job/progress/check');
     dispatch(currentJobAction(copyOfCurrentJob));
   };
 
