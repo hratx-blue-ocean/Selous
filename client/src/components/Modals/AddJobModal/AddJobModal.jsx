@@ -258,13 +258,8 @@ function AddJobModal({ user, show, dispatch }) {
             <TextField
               variant="filled"
               id="standard-textarea"
-<<<<<<< HEAD
-              label="Job Notes and Details"
-              placeholder="Enter Job Description and Notes"
-=======
               label="Job Notes"
               placeholder="Enter Notes"
->>>>>>> dev
               multiline
               rows="6"
               className={classes.next}
