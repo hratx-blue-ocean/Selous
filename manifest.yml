@@ -1,0 +1,5 @@
+---
+applications:
+ - name: Selous
+   random-route: true
+   memory: 600M
