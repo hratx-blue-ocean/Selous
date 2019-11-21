@@ -3,16 +3,23 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import axios from 'axios';
 import styles from './TabTwo.css';
 import EditDetailsModal from '../../../Modals/EditModal.jsx';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
-import { editAction, currentJobAction, whatsNextAction } from '../../../../redux/actions/actions.js';
+import {
+  editAction,
+  currentJobAction,
+  whatsNextAction,
+  userToState,
+} from '../../../../redux/actions/actions.js';
 
 
 const Tab = ({
   tab,
   currentJob,
   whatsNextTab,
+  userData,
   dispatch,
 }) => {
   const [isWhatsNextTab, toggle] = useState(false);
@@ -21,20 +28,41 @@ const Tab = ({
     const copyOfCurrentJob = _.clone(currentJob);
     const index = copyOfCurrentJob.progressArray.indexOf(tab);
     copyOfCurrentJob.progressArray[index].isCompleted = !copyOfCurrentJob.progressArray[index].isCompleted;
+    axios.put('/db/dashboard/job/progress/check', {
+      userId: userData._id,
+      jobId: userData.userJobs.indexOf(currentJob),
+      progId: index,
+      completed: copyOfCurrentJob.progressArray[index].isCompleted,
+    })
+      .then(() => {
+        axios.get('/db/login', {
+          params: {
+            userId: userData._id,
+          },
+        })
+          .then((result) => {
+            dispatch(userToState(result.data));
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     dispatch(currentJobAction(copyOfCurrentJob));
   };
 
   useEffect(() => {
-    if (JSON.stringify(tab) === JSON.stringify(whatsNextTab)) {
+    if (_.isEqual(tab, whatsNextTab)) {
       toggle(true);
+      return;
     }
+    toggle(false);
   }, [tab]);
 
   return (
     <>
       {tab ? (isWhatsNextTab ? <WhatsNext /> : <EditDetailsModal />) : ''}
       <div className={styles.tab_wrapper_two}>
-        <div className={[tab ? (styles[tab.color ? tab.color : 'tab']) : styles.border_gray, styles.tab].join(' ')}>
+        <div className={[tab ? (tab.isCompleted ? styles.gray : (styles[tab.color ? tab.color : 'default'])) : styles.border_gray, styles.tab].join(' ')}>
           <h3 className={styles.tab_header}>{tab ? tab.stepName : null}</h3>
           <div className={styles.tab_body}>{tab ? tab.stepNotes : null}</div>
           {tab ? (
@@ -54,8 +82,8 @@ const mapStateToProps = (state) => ({
   showWhatsNext: state.whatsNextModal,
   currentJob: state.currentJob,
   whatsNextTab: state.whatsNextTab,
+  userData: state.userData,
 });
 
-const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
 
-export default connect(mapStateToProps)(React.memo(Tab, isEqual));
+export default connect(mapStateToProps)(Tab);

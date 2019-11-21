@@ -108,6 +108,7 @@ router.put('/dashboard/job/progress/check', (req, res) => {
     (err, result) => {
       if (err) {
         res.status(400).send();
+        debug(err);
       } else {
         res.status(201).send(result);
       }

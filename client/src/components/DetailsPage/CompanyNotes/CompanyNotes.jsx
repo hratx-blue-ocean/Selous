@@ -20,7 +20,7 @@ const CompanyNotes = ({ currentJob, dispatch }) => (
           />
         </div>
         <div className={styles.button_wrapper}>
-          <button type="button" onClick={() => dispatch(editAction())} className={styles.button}>Add Notes</button>
+          <button type="button" onClick={() => dispatch(editAction())} className={styles.button}>Edit Notes</button>
         </div>
       </div>
     </div>
