@@ -22,6 +22,16 @@ router.post('/login', (req, res) => {
   });
 });
 
+router.get('/login', (req, res) => {
+  db.getUser(req.query.userId, (err, user) => {
+    if (err) {
+      res.status(401).send(false);
+    } else {
+      res.status(200).send(user);
+    }
+  });
+});
+
 router.post('/dashboard/job', (req, res) => {
   db.addJob(req.body.userId, req.body.jobData, (err, job) => {
     if (err) {
@@ -52,13 +62,13 @@ router.post('/dashboard/job/progress', (req, res) => {
 
 router.put('/dashboard/job/progress', (req, res) => {
   console.log(req.body);
-  db.editProgress(req.body.userId, req.body.jobId, 
+  db.editProgress(req.body.userId, req.body.jobId,
     req.body.progressId, req.body.progressData, (err, update) => {
       if (err) {
         res.status(400).send();
       } else {
         res.status(201).send(update);
-      }      
+      }
     });
 });
 

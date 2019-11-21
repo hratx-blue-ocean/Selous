@@ -60,6 +60,16 @@ const validateLogin = (login, callback) => {
     .catch((err) => { callback(err, null); });
 };
 
+const getUser = (userId, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      callback(null, user);
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
+};
+
 
 const validateSignup = (userData, callback) => {
   User.findOne({ userName: userData.username })
@@ -157,14 +167,15 @@ const changeProgress = (userId, jobId, progId, completed, callback) => {
 
 const editProgress = (userId, jobId, progressId, progressData, callback) => {
   User.findOne({ _id: userId }).then((user) => {
-    user.userJobs[jobId].progressArray[progressId] = progressData;
+    const thisUser = user;
+    thisUser.userJobs[jobId].progressArray[progressId] = progressData;
     user.save((data) => {
       callback(null, data);
     }).catch((err) => {
       callback(err, null);
     });
   });
-
+};
 // Goal Schema
 // const goal = {
 //   goaldId: 3,
@@ -227,5 +238,12 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
 // All exported functions work!
 
 module.exports = {
-  addJob, addGoal, addJobProgress, validateLogin, validateSignup, changeProgress, editProgress
+  addJob,
+  addGoal,
+  addJobProgress,
+  validateLogin,
+  validateSignup,
+  changeProgress,
+  getUser,
+  editProgress,
 };
