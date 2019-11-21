@@ -88,6 +88,7 @@ This is a web app created to aid job seekers in staying organized throughout the
 * More responsive styling to accommodate a wider range of displays.
 * Adding more dynamically styled components.
 * Adding more robust security and authentication features.
+* Add pages for more of the links in the footer bar.
 
 ## Contributors
 
