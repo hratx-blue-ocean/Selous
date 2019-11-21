@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build-dev": "webpack -d -w",
-    "build-prod": "webpack -d",
+    "build-prod": "webpack -p",
     "test": "jest",
     "server": "webpack-dev-server --mode development --open --hot"
   },

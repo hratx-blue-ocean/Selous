@@ -43,7 +43,7 @@ const useStyles = makeStyles(({
     width: '100%',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: 50,
+    height: '50px',
   },
   doNot: {
     color: '#DB5C5C',
@@ -67,16 +67,29 @@ const useStyles = makeStyles(({
     borderTop: 1,
     borderLeft: 0,
     borderRight: 0,
-    borderBottom: 0,
+    borderBottom: 1,
     borderStyle: 'solid',
     borderColor: 'black',
     marginBottom: 10,
     overflow: 'scroll',
     fontSize: 10,
   },
+  application: {
+    height: '100px',
+    width: '90%',
+    fontSize: 10,
+    borderTop: 1,
+    borderLeft: 0,
+    borderRight: 0,
+    borderBottom: 1,
+    borderStyle: 'solid',
+    borderColor: 'black',
+    overflow: 'scroll',
+    marginBottom: 10,
+  },
   apply: {
-    height: '30px',
-    width: '80px',
+    height: '60px',
+    width: '150px',
     borderWidth: 1,
     borderStyle: 'solid',
     borderColor: 'black',
@@ -86,10 +99,16 @@ const useStyles = makeStyles(({
     backgroundColor: 'purple',
     color: 'white',
     fontSize: 18,
+    '&:hover': {
+      cursor: 'pointer',
+    },
   },
   title: {
     marginLeft: 20,
-    fontSize: 35,
+    // fontSize: 35,
+    height: 35,
+    width: '85%',
+    fontSize: '2vw',
   },
   titlesContainer: {
     display: 'flex',
@@ -101,14 +120,20 @@ const useStyles = makeStyles(({
     height: 50,
   },
   titleSec: {
-    fontSize: 25,
+    // fontSize: 25,
+    height: 25,
     marginRight: 10,
+    fontSize: 25,
+    marginBottom: 20,
   },
   titleTer: {
-    fontSize: 20,
+    // fontSize: 20,
+    fontSize: '1vw',
+    width: 500,
+    marginBottom: 0,
   },
   descriptionText: {
-    fontSize: 5,
+    fontSize: 10,
   },
 }));
 
@@ -152,7 +177,11 @@ function JobPostingModal({ oneJob, show, setShow, dispatch }) {
             className={classes.description}
             dangerouslySetInnerHTML={{ __html: oneJob.description }}
           />
-          <button type="button" className={classes.apply}>APpLy</button>
+          <div
+            className={classes.application}
+            dangerouslySetInnerHTML={{ __html: oneJob.how_to_apply }}
+          />
+          <button type="button" className={classes.apply}>Add to Dashboard</button>
         </div>
       </Modal>
     </div>
