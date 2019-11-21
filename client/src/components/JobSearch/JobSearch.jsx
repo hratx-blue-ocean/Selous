@@ -33,13 +33,15 @@ const useStyles = makeStyles({
     alignContent: 'center',
     flex: 4,
     flexDirection: 'row',
+    height: '590px',
+    overflow: 'scroll',
   },
   search: {
     width: '80%',
     margin: '0 auto',
     maxWidth: 800,
-    marginBottom: 20,
-    marginTop: 20,
+    marginBottom: 10,
+    marginTop: 10,
   },
 });
 
@@ -73,7 +75,7 @@ const JobSearch = ({
       <Headerbar />
       <div className={classes.jobSearchGoalsContainer}>
         <div className={classes.adSpace} />
-        <Paper container className={classes.root}>
+        <Paper container item className={classes.root}>
           <SearchBar
             className={classes.search}
             placeholder="Search Jobs..."
@@ -90,7 +92,7 @@ const JobSearch = ({
             onRequestSearch={() => apiGetRequest()}
             onCancelSearch={() => dispatch(setSearchInput(''))}
           />
-          <Grid container justify="center" alignItems="center">
+          <Grid container justify="center" alignItems="center" className={classes.results}>
             {
               jobs.map((job) => <JobComponent job={job} key={job.id} />)
             }

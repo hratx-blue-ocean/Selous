@@ -157,7 +157,7 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
         value={locationSearchInput}
         onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
         onRequestSearch={handleRequest}
-        onCancelSearch={() => dispatch(setSearchInput(''))}
+        onCancelSearch={() => dispatch(setSearchLocationInput(''))}
       />
       <Footer />
     </>
