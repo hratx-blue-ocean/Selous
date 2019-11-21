@@ -1,5 +1,6 @@
 // miles & tyler
 const router = require('express').Router();
+const debug = require('debug')('server');
 const db = require('../../database/db.js');
 
 router.post('/signup', (req, res) => {
@@ -61,7 +62,7 @@ router.post('/dashboard/job/progress', (req, res) => {
 });
 
 router.put('/dashboard/job/progress', (req, res) => {
-  console.log(req.body);
+  debug('%o', req.body);
   db.editProgress(req.body.userId, req.body.jobId,
     req.body.progressId, req.body.progressData, (err, update) => {
       if (err) {
