@@ -9,7 +9,7 @@ import {
 import AddGoalModal from '../Modals/AddGoalModal/AddGoalModal.jsx';
 
 const mapStateToProps = (state) => ({
-  currentGoals: state.currentGoals,
+  currentGoals: state.userData.userGoals,
 });
 
 const useStyles = makeStyles((theme) => ({

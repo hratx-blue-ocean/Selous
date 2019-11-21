@@ -22,6 +22,16 @@ router.post('/login', (req, res) => {
   });
 });
 
+router.get('/login', (req, res) => {
+  db.getUser(req.query.userId, (err, user) => {
+    if (err) {
+      res.status(401).send(false);
+    } else {
+      res.status(200).send(user);
+    }
+  });
+});
+
 router.post('/dashboard/job', (req, res) => {
   db.addJob(req.body.userId, req.body.jobData, (err, job) => {
     if (err) {
