@@ -50,6 +50,7 @@ const JobSearch = ({
   searchInput,
   dispatch,
   locationSearchInput,
+  user,
 }) => {
   const classes = useStyles();
 
@@ -98,7 +99,7 @@ const JobSearch = ({
             }
           </Grid>
         </Paper>
-        {/* <Goals /> */}
+        {user.userName ? <Goals /> : null}
       </div>
       <Footer />
     </>
@@ -109,6 +110,7 @@ const mapStatesToProps = (state) => ({
   searchInput: state.searchInput,
   locationSearchInput: state.locationSearchInput,
   jobs: state.apiData,
+  user: state.userData,
 });
 
 export default connect(mapStatesToProps)(JobSearch);
