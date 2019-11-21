@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import styles from './ButtonRight.css';
 import { moveRightDisplayedTabs } from '../../../../redux/actions/actions.js';
 
@@ -60,4 +61,6 @@ const mapStateToProps = (state) => ({
   tabColors: state.tabColors,
 });
 
-export default connect(mapStateToProps)(ButtonRight);
+const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
+
+export default connect(mapStateToProps)(React.memo(ButtonRight, isEqual));

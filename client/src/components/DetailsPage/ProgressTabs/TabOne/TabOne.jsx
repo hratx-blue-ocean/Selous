@@ -70,4 +70,6 @@ const mapStateToProps = (state) => ({
   whatsNextTab: state.whatsNextTab,
 });
 
-export default connect(mapStateToProps)(Tab);
+const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
+
+export default connect(mapStateToProps)(React.memo(Tab, isEqual));

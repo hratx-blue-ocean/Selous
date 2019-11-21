@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import styles from './ProgressTabs.css';
 
 // Components
@@ -70,4 +71,6 @@ const mapStateToProps = (state) => ({
   tabColors: state.tabColors,
 });
 
-export default connect(mapStateToProps)(ProgressTabs);
+const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
+
+export default connect(mapStateToProps)(React.memo(ProgressTabs, areEqual));

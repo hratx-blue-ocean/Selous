@@ -2,6 +2,7 @@
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import styles from './ButtonLeft.css';
 import { moveLeftDisplayedTabs } from '../../../../redux/actions/actions.js';
 
@@ -53,4 +54,6 @@ const mapStateToProps = (state) => ({
   whatsNextTab: state.whatsNextTab,
 });
 
-export default connect(mapStateToProps)(ButtonLeft);
+const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
+
+export default connect(mapStateToProps)(React.memo(ButtonLeft, isEqual));
