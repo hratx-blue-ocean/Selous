@@ -12,7 +12,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import { whatsNextAction, userToState } from '../../redux/actions/actions.js';
+import { userToState } from '../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   root: {
@@ -99,12 +99,17 @@ const useStyles = makeStyles(({
 }));
 
 const mapStateToProps = (state) => ({
-  show: state.whatsNextModal,
   user: state.userData,
   job: state.currentJob,
 });
 
-function WhatsNext({ job, user, show, dispatch }) {
+function WhatsNext({
+  job,
+  user,
+  show,
+  setShow,
+  dispatch,
+}) {
   const classes = useStyles();
 
   let [title, setTitle] = useState('');
@@ -133,7 +138,6 @@ function WhatsNext({ job, user, show, dispatch }) {
           },
         })
           .then((results) => {
-            console.log(results);
             dispatch(userToState(results.data));
           })
           .catch((err) => {
@@ -181,10 +185,10 @@ function WhatsNext({ job, user, show, dispatch }) {
             />
           </div>
           <Box className={classes.buttons}>
-            <Fab onClick={() => dispatch(whatsNextAction())} className={classes.buttonBoi}>
+            <Fab onClick={() => { setShow(!show); }} className={classes.buttonBoi}>
               <AddCircleIcon className={classes.doNot} />
             </Fab>
-            <Fab onClick={() => { addNextStep(); }} className={classes.fabStuff}>
+            <Fab onClick={() => { addNextStep(); setShow(!show); }} className={classes.fabStuff}>
               <CheckCircleIcon className={classes.do} />
             </Fab>
           </Box>

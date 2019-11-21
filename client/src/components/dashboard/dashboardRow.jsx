@@ -44,15 +44,15 @@ const DashboardRow = ({ jobIndex, job, dispatch }) => {
         <AddJobModal />
       </div>
       <div className={styles['dashboard-row']}>
-        <div
-          role="button"
+        <button
+          type="button"
           tabIndex={0}
           className={styles['dash-companytile']}
           onClick={() => { dispatch(addJobModalAction()); }}
           onKeyPress=""
         >
           +
-        </div>
+        </button>
       </div>
     </>
   );

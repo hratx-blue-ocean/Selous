@@ -47,6 +47,8 @@ const useStyles = makeStyles((theme) => ({
     float: 'right',
     marginLeft: '28%',
   },
+  login: {
+  },
   break: {
     maxWidth: 1240,
     marginTop: 20,
@@ -109,12 +111,22 @@ function Headerbar({
                   color="inherit"
                   onClick={handleDir}
                   className={classes.signup}
+                  keepMounted
                   component={Link}
                   to="/signup"
                 >
                   Signup
                 </Button>
-                <Button color="inherit" onClick={handleDir} component={Link} to="/login">Login</Button>
+                <Button
+                  color="inherit"
+                  onClick={handleDir}
+                  className={classes.login}
+                  keepMounted
+                  component={Link}
+                  to="/login"
+                >
+                  Login
+                </Button>
               </>
             )
         }

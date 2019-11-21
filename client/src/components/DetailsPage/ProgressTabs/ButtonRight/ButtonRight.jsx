@@ -16,12 +16,12 @@ const ButtonRight = ({
 }) => {
   const handleOnClick = () => {
     const lastDisplayedTab = JSON.stringify(displayedTabs[2]);
-    if (lastDisplayedTab !== JSON.stringify(whatsNextTab)) {
-      if (lastDisplayedTab === JSON.stringify(currentJob.progressArray[currentJob.progressArray.length - 1])) {
+    if (!_.isEqual(displayedTabs[2], whatsNextTab)) {
+      if (_.isEqual(displayedTabs[2], currentJob.progressArray[currentJob.progressArray.length - 1])) {
         dispatch(moveRightDisplayedTabs(whatsNextTab));
       } else {
         for (let i = 0, len = currentJob.progressArray.length - 1; i < len; i += 1) {
-          if (lastDisplayedTab === JSON.stringify(currentJob.progressArray[i])) {
+          if (_.isEqual(displayedTabs[2], currentJob.progressArray[i])) {
             const tab = currentJob.progressArray[i + 1];
             tab.color = tabColors[currentJob.progressArray.indexOf(tab)];
             dispatch(moveRightDisplayedTabs(tab));
@@ -34,7 +34,7 @@ const ButtonRight = ({
   let [showButton, toggleShowButton] = useState(false);
 
   useEffect(() => {
-    if (JSON.stringify(displayedTabs[2]) !== JSON.stringify(whatsNextTab) && displayedTabs[2] !== undefined) {
+    if (!_.isEqual(displayedTabs[2], whatsNextTab) && displayedTabs[2] !== undefined) {
       toggleShowButton(true);
       return;
     }
