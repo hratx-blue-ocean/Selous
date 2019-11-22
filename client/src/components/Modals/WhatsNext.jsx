@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
 import {
+  // Typography,
   Fab,
   Box,
 } from '@material-ui/core';
@@ -16,8 +17,9 @@ const useStyles = makeStyles(({
   root: {
     padding: 10,
     width: '549px',
-    height: '500px',
+    height: '400px',
     borderRadius: '8px',
+    // fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
@@ -28,9 +30,12 @@ const useStyles = makeStyles(({
     display: 'flex',
     flexDirection: 'row',
     padding: 30,
+    // width: '790px',
+    // height: '300px',
     width: 'fit-content',
     height: 'fit-content',
     borderRadius: '8px',
+    // fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
@@ -54,11 +59,14 @@ const useStyles = makeStyles(({
   },
   next: {
     borderRadius: '6px',
+    // padding: 10,
     background: '#FFFFFF',
-    width: '400px',
+    width: '300px',
+    // borderWidth: 1,
     marginRight: 10,
     marginBottom: 20,
-    marginTop: '10px',
+    // borderColor: '#9f6cb7',
+    // borderStyle: 'solid',
     boxShadow: 5,
   },
   do: {
@@ -76,6 +84,8 @@ const useStyles = makeStyles(({
   },
   buttons: {
     marginRight: 6,
+    // float: 'right',
+    // alignSelf: 'flex-end',
     textAlign: 'center',
     marginBottom: 10,
   },
@@ -87,7 +97,7 @@ const useStyles = makeStyles(({
     borderRadius: 40,
   },
   h2: {
-    marginTop: '-10px',
+    marginLeft: '10px',
     color: 'white',
   },
   notesContainer: {
@@ -102,6 +112,7 @@ function WhatsNext({ show, dispatch }) {
   const classes = useStyles();
   return (
     <Modal
+      // className={classes.bigContainer}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
       open={show}
@@ -109,6 +120,10 @@ function WhatsNext({ show, dispatch }) {
       <div className={classes.container}>
         <div className={classes.notesContainer}>
           <h2 className={classes.h2}>Tell us about the next step</h2>
+          {/* <Box className={classes.root}> */}
+          {/* <Typography>
+          Next
+        </Typography> */}
           <div>
             <TextField
               variant="filled"
@@ -121,6 +136,9 @@ function WhatsNext({ show, dispatch }) {
               className={classes.next}
             />
           </div>
+          {/* <Typography>
+            Notes
+        </Typography> */}
           <div>
             <TextField
               variant="filled"
@@ -141,6 +159,7 @@ function WhatsNext({ show, dispatch }) {
               <CheckCircleIcon className={classes.do} />
             </Fab>
           </Box>
+          {/* </Box> */}
         </div>
       </div>
     </Modal>
