@@ -1,7 +1,7 @@
 // miles & tyler
 const mongoose = require('mongoose');
 const debug = require('debug')('mongoDB');
-const bcrypt = require('bcryptjs');
+// const bcrypt = require('bcryptjs');
 
 mongoose.connect(`mongodb+srv://FriendMiles:${process.env.MONGO_DB_PASSWORD}@cluster0-4q3ra.gcp.mongodb.net/Selous`, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;

@@ -1,28 +1,7 @@
 /* eslint-disable no-case-declarations */
 import { cloneDeep } from 'lodash';
 
-const jobs = [
-  {
-    companyName: 'IBM',
-    id: 1,
-    position: 'Full Stack Engineer',
-    tiles: ['send resume', 'applied', 'got phone call', 'got phone screen'],
-  },
-  {
-    companyName: 'Google',
-    id: 2,
-    position: 'Engineer',
-    tiles: ['send resume', 'applied'],
-  },
-  {
-    companyName: 'Facebook',
-    id: 3,
-    position: 'Full Stack Engineer',
-    tiles: ['send resume', 'applied', 'got phone call'],
-  },
-];
-
-export default function userJobsReducer(state = jobs, action) {
+export default function userJobsReducer(state = [], action) {
   switch (action.type) {
     case 'ADD_JOB':
       const newJobs = cloneDeep(state);

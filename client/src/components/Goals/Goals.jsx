@@ -92,11 +92,11 @@ const Goals = ({ currentGoals, dispatch, userId }) => {
             dispatch(userToState(results.data));
           })
           .catch((err) => {
-            console.error(err);
+            throw err;
           });
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
 
