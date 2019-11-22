@@ -21,7 +21,7 @@
 
 .tab_body{
     margin: 0;
-    padding: 0;
+    padding: 10px;
     box-sizing: border-box;
     width: 100%;
     height: 100%;
@@ -31,6 +31,7 @@
     overflow-y: auto;
     max-height: 357px;
     scrollbar-width: thin;
+
 }
 
 .tab_edit{
