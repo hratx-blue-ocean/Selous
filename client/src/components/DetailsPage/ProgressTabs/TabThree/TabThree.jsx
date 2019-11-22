@@ -22,6 +22,7 @@ const Tab = ({
   currentJob,
   whatsNextTab,
   userData,
+  currentId,
   dispatch,
 }) => {
   const [show, setShow] = useState(false);

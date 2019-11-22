@@ -18,6 +18,7 @@ const Tab = ({
   currentJob,
   whatsNextTab,
   userData,
+  currentId,
   dispatch,
 }) => {
   const [isWhatsNextTab, toggle] = useState(false);
