@@ -8,9 +8,7 @@ import _ from 'lodash';
 import axios from 'axios';
 import styles from './TabThree.css';
 import {
-  whatsNextAction,
   currentJobAction,
-  editAction,
   userToState,
 } from '../../../../redux/actions/actions.js';
 import WhatsNext from '../../../Modals/WhatsNext.jsx';
@@ -24,15 +22,18 @@ const Tab = ({
   currentJob,
   whatsNextTab,
   userData,
+  currentId,
   dispatch,
 }) => {
+  const [show, setShow] = useState(false);
+
   const handleOnClick = () => {
     const copyOfCurrentJob = _.clone(currentJob);
     const index = copyOfCurrentJob.progressArray.indexOf(tab);
     copyOfCurrentJob.progressArray[index].isCompleted = !copyOfCurrentJob.progressArray[index].isCompleted;
     axios.put('/db/dashboard/job/progress/check', {
       userId: userData._id,
-      jobId: userData.userJobs.indexOf(currentJob),
+      jobId: currentJob.jobId,
       progId: index,
       completed: copyOfCurrentJob.progressArray[index].isCompleted,
     })
@@ -49,12 +50,13 @@ const Tab = ({
       .catch((err) => {
         console.log(err);
       });
-    dispatch(currentJobAction(copyOfCurrentJob));
+    dispatch(currentJobAction({
+      jobId: currentId,
+      jobData: copyOfCurrentJob,
+    }));
   };
 
   const [isWhatsNextTab, toggle] = useState(false);
-
-  console.log(isWhatsNextTab);
 
   useEffect(() => {
     if (_.isEqual(tab, whatsNextTab)) {
@@ -66,7 +68,7 @@ const Tab = ({
 
   return (
     <>
-      {tab ? (isWhatsNextTab ? <WhatsNext /> : <EditDetailsModal />) : ''}
+      {tab ? (isWhatsNextTab ? <WhatsNext info={tab} show={show} setShow={setShow} /> : <EditDetailsModal info={tab} show={show} setShow={setShow} />) : ''}
       <div className={styles.tab_wrapper_three}>
         <div className={styles.card_holder}>
           {currentJob.progressArray.indexOf(tab) !== -1 ? (currentJob.progressArray.slice(currentJob.progressArray.indexOf(tab) + 1).length !== 0 ? currentJob.progressArray.slice(currentJob.progressArray.indexOf(tab) + 1).reduce((acc, cur, i, arr) => {
@@ -87,7 +89,7 @@ const Tab = ({
             <div className={styles.tab_body}>{tab ? tab.stepNotes : null}</div>
             {tab ? (
               <div className={styles.tab_edit}>
-                <button type="button" onClick={() => dispatch(isWhatsNextTab ? whatsNextAction() : editAction())} className={styles.edit}>{isWhatsNextTab ? 'Next Step' : 'Edit'}</button>
+                <button type="button" onClick={() => { setShow(!show); }} className={styles.edit}>{isWhatsNextTab ? 'Next Step' : 'Edit'}</button>
               </div>
             ) : ''}
           </div>
@@ -101,6 +103,7 @@ const Tab = ({
 const mapStateToProps = (state) => ({
   showEdit: state.editModal,
   showWhatsNext: state.whatsNextModal,
+  currentId: state.currentJob.jobId,
   currentJob: state.currentJob.jobData,
   whatsNextTab: state.whatsNextTab,
   userData: state.userData,

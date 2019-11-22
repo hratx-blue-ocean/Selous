@@ -67,3 +67,5 @@ typings/
 bundle.js
 package.json
 /client/public/bundle.js
+
+.env

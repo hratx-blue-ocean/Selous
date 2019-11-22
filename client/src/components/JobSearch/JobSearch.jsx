@@ -17,25 +17,28 @@ import Ad from '../advertisment/Advertisment.jsx';
 const useStyles = makeStyles({
   jobSearchGoalsContainer: {
     display: 'flex',
-    width: '100%',
     flexDirection: 'row',
+    justifyContent: 'center',
+    marginLeft: '10%',
+    paddingRight: '10%',
+    width: '100%',
   },
-  adSpace: {
-    flex: 2,
-  },
+  // adSpace: {
+  //   flex: 2,
+  // },
   root: {
     paddingLeft: 40,
     paddingRight: 40,
     paddingTop: 10,
     paddingBottom: 10,
-    borderWidth: 1,
-    borderColor: 'purple',
-    borderStyle: 'solid',
+    border: 'none',
+    boxShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
+    borderRadius: '6px',
     alignContent: 'center',
     flex: 4,
-    flexDirection: 'row',
-    height: '590px',
+    height: '545px',
     overflow: 'scroll',
+    backgroundColor: '#a6a2a7',
   },
   search: {
     width: '80%',
@@ -76,7 +79,7 @@ const JobSearch = ({
     <>
       <Headerbar />
       <div className={classes.jobSearchGoalsContainer}>
-        <div className={classes.adSpace} />
+        {/* <div className={classes.adSpace} /> */}
         <Paper container item className={classes.root}>
           <SearchBar
             className={classes.search}

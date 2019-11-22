@@ -31,7 +31,6 @@ const useStyles = makeStyles(({
     width: '50%',
     height: '90%',
     borderRadius: '8px',
-    fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
@@ -39,6 +38,7 @@ const useStyles = makeStyles(({
     borderStyle: 'solid',
     opacity: '100%',
     margin: '20px auto',
+    fontFamily: 'Cairo',
   },
   header: {
     display: 'flex',
@@ -75,7 +75,7 @@ const useStyles = makeStyles(({
     borderColor: 'black',
     marginBottom: 10,
     overflow: 'scroll',
-    fontSize: 10,
+    fontSize: 12,
   },
   application: {
     height: '80px',
@@ -108,10 +108,10 @@ const useStyles = makeStyles(({
   },
   title: {
     marginLeft: 20,
-    height: 35,
+    height: 60,
     width: '85%',
     fontSize: '2vw',
-    overflow: 'auto',
+    overflow: 'scroll',
   },
   titlesContainer: {
     display: 'flex',
@@ -122,24 +122,35 @@ const useStyles = makeStyles(({
     height: 50,
   },
   titleSec: {
-    height: 25,
+    height: 30,
     marginRight: 10,
     width: '300px',
     display: 'flex',
     alignSelf: 'flex-end',
-    overflow: 'auto',
+    overflow: 'scroll',
+    marginBottom: '4px',
   },
   titleTer: {
-    height: 25,
+    height: 30,
     width: '200px',
     display: 'flex',
     alignSelf: 'flex-end',
     marginRight: '60px',
     justifyContent: 'flex-end',
-    overflow: 'auto',
+    overflow: 'scroll',
+    marginBottom: '4px',
   },
   descriptionText: {
     fontSize: 10,
+  },
+  logo: {
+    margin: 10,
+    width: '60px',
+    height: '60px',
+    background: 'rgb(200, 169, 214)',
+  },
+  companyImage: {
+    width: '60px',
   },
 }));
 
@@ -177,15 +188,15 @@ function JobPostingModal({
           },
         })
           .then((results) => {
-            console.log(results.data);
+            // console.log(results.data);
             dispatch(userToState(results.data));
           })
           .catch((err) => {
-            console.error(err);
+            throw (err);
           });
       })
       .catch((err) => {
-        console.log(err);
+        throw (err);
       });
   };
 

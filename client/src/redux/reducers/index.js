@@ -12,6 +12,7 @@ import haveLandingReducer from './haveLandingReducer.js';
 import searchInputReducer from './searchInputReducer.js';
 import apiDataReducer from './apiDataReducer.js';
 import currentJobReducer from './currentJobReducer.js';
+import windowSizeReducer from './windowSizeReducer.js';
 import userToState from './userToState.js';
 import apiLocationSearchDataReducer from './locationSearchDataReducer.js';
 import {
@@ -46,6 +47,7 @@ const rootReducer = combineReducers({
   userData: userToState,
   locationSearchInput: apiLocationSearchDataReducer,
   companyNotes: companyNotesTESTReducer,
+  win: windowSizeReducer,
 });
 
 export default rootReducer;
