@@ -30,8 +30,8 @@ const CompanyNotes = ({ currentJob }) => {
 };
 
 const mapStateToProps = (state) => ({
-  // currentJob: state.currentJob.jobData,
-  currentJob: state.userData.userJobs[state.currentJob.jobId],
+  currentJob: state.currentJob.jobData,
+  // currentJob: state.userData.userJobs[state.currentJob.jobId],
   showEdit: state.editModal,
 });
 

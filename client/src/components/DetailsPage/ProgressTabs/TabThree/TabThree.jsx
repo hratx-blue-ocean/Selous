@@ -49,7 +49,10 @@ const Tab = ({
       .catch((err) => {
         console.log(err);
       });
-    dispatch(currentJobAction(copyOfCurrentJob));
+    dispatch(currentJobAction({
+      jobId: currentId,
+      jobData: copyOfCurrentJob,
+    }));
   };
 
   const [isWhatsNextTab, toggle] = useState(false);
@@ -99,8 +102,9 @@ const Tab = ({
 const mapStateToProps = (state) => ({
   showEdit: state.editModal,
   showWhatsNext: state.whatsNextModal,
-  // currentJob: state.currentJob.jobData,
-  currentJob: state.userData.userJobs[state.currentJob.jobId],
+  currentId: state.currentJob.jobId,
+  // currentJob: state.userData.userJobs[state.currentJob.jobId],
+  currentJob: state.currentJob.jobData,
   whatsNextTab: state.whatsNextTab,
   userData: state.userData,
 });

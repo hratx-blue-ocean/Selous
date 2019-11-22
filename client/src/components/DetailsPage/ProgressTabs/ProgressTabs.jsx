@@ -66,8 +66,8 @@ const ProgressTabs = ({
 };
 
 const mapStateToProps = (state) => ({
-  // currentJob: state.currentJob.jobData,
-  currentJob: state.userData.userJobs[state.currentJob.jobId],
+  // currentJob: state.userData.userJobs[state.currentJob.jobId],
+  currentJob: state.currentJob.jobData,
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
