@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+// import LocationOnIcon from '@material-ui/icons/LocationOn';
 import { useHistory } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 // import Avatar from '@material-ui/core/Avatar';
@@ -8,6 +9,7 @@ import SearchBar from 'material-ui-search-bar';
 // import { flexbox } from '@material-ui/system';
 import Footer from '../footer/Footer.jsx';
 import AboutModal from '../Modals/AboutModal/AboutModal.jsx';
+
 import {
   setSearchInput,
   setApiSearchData,
@@ -19,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
     body: {
       backgroundColor: theme.palette.common.white,
       fontFamily: 'Cairo',
+      color: 'black',
     },
     ul: {
       margin: 0,
@@ -44,10 +47,11 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     'box-sizing': 'border-box',
     justifyContent: 'flex-end',
-    fontSize: '72px',
+    fontSize: '36px',
     'text-align': 'right',
     fontWeight: 'bolder',
-    fontFamily: 'Cairo',
+    padding: '1px',
+    margin: '1px',
   },
   avatar: {
     marginLeft: '10%',
@@ -55,20 +59,18 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: '100px',
   },
   wrapper: {
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: theme.spacing(3),
     display: 'flex',
-    'box-sizing': 'border-box',
-    'flex-wrap': 'nowrap',
+    margin: '-15px auto 0 auto',
   },
   imageWrapper: {
     flex: 1,
+    margin: '0',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    padding: theme.spacing(3),
     display: 'flex',
     'box-sizing': 'border-box',
     'flex-wrap': 'nowrap',
@@ -76,22 +78,34 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     'box-sizing': 'border-box',
     position: 'absolute',
-    borderRadius: '30%',
+    borderRadius: '20%',
     zIndex: -2,
   },
   iconOverlay: {
     'box-sizing': 'border-box',
-    borderRadius: '30%',
+    borderRadius: '20%',
     zIndex: -1,
     opacity: 0.15,
   },
   search: {
     maxWidth: '400px',
-    marginLeft: '17%',
-    marginTop: 10,
+    margin: '10px',
+    border: '1px solid purple',
+    currentColor: 'black',
   },
   about: {
     cursor: 'pointer',
+  },
+  searchContainer: {
+    margin: '10px auto',
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  searchRow: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: '#9f6cb7',
   },
 }));
 
@@ -128,9 +142,11 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
           src="https://selious.s3.amazonaws.com/Selous.png"
           alt="Selous Logo"
         /> */}
-        <h1 className={classes.titleText}>
-          Where having zeal pays off
-        </h1>
+        <div>
+          <h1 className={classes.titleText}>
+            Where having zeal
+          </h1>
+        </div>
         <div className={classes.imageWrapper}>
           <img
             className={classes.iconOverlay}
@@ -143,23 +159,32 @@ const Landing = ({ searchInput, dispatch, locationSearchInput }) => {
             alt="icon Logo"
           />
         </div>
+        <div>
+          <h1 className={classes.titleText}>
+            pays off
+          </h1>
+        </div>
+        <div className={classes.searchRow}>
+          <div className={classes.searchContainer}>
+            <SearchBar
+              className={classes.search}
+              placeholder="Search Jobs..."
+              value={searchInput}
+              onChange={(newValue) => dispatch(setSearchInput(newValue))}
+              onRequestSearch={handleRequest}
+              onCancelSearch={() => dispatch(setSearchInput(''))}
+            />
+            <SearchBar
+              className={classes.search}
+              placeholder="Search Locations..."
+              value={locationSearchInput}
+              onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
+              onRequestSearch={handleRequest}
+              onCancelSearch={() => dispatch(setSearchLocationInput(''))}
+            />
+          </div>
+        </div>
       </div>
-      <SearchBar
-        className={classes.search}
-        placeholder="Search Jobs..."
-        value={searchInput}
-        onChange={(newValue) => dispatch(setSearchInput(newValue))}
-        onRequestSearch={handleRequest}
-        onCancelSearch={() => dispatch(setSearchInput(''))}
-      />
-      <SearchBar
-        className={classes.search}
-        placeholder="Search Locations..."
-        value={locationSearchInput}
-        onChange={(newValue) => dispatch(setSearchLocationInput(newValue))}
-        onRequestSearch={handleRequest}
-        onCancelSearch={() => dispatch(setSearchLocationInput(''))}
-      />
       <Footer />
     </>
   );
