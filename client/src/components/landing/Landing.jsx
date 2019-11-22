@@ -47,6 +47,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '72px',
     'text-align': 'right',
     fontWeight: 'bolder',
+    fontFamily: 'Cairo',
   },
   avatar: {
     marginLeft: '10%',

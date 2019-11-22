@@ -71,6 +71,9 @@ const useStyles = makeStyles(({
   buttonBoi: {
     borderRadius: 40,
   },
+  cairo: {
+    fontFamily: 'Cairo',
+  },
 }));
 
 function EditDetailsModal({ setShow, show }) {
@@ -83,14 +86,14 @@ function EditDetailsModal({ setShow, show }) {
       open={show}
     >
       <Box className={classes.root}>
-        <Typography>
+        <Typography className={classes.cairo}>
           Notes
         </Typography>
         <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
           <Fab onClick={() => { setShow(!show); }} className={classes.buttonBoi}>
             <AddCircleIcon className={classes.doNot} />
           </Fab>
-          <Fab className={classes.fabStuff}>
+          <Fab onClick={() => { setShow(!show); }} className={classes.fabStuff}>
             <CheckCircleIcon className={classes.do} />
           </Fab>
         </Box>
