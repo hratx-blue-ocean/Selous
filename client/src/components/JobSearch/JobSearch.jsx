@@ -17,7 +17,6 @@ import Ad from '../advertisment/Advertisment.jsx';
 const useStyles = makeStyles({
   jobSearchGoalsContainer: {
     display: 'flex',
-    // width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
     marginLeft: '10%',
