@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
 
 /* eslint-disable prefer-const */
 import {
@@ -14,7 +13,7 @@ import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import { userToState } from '../../redux/actions/actions.js';
+import { userToState, currentJobAction } from '../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   root: {
@@ -122,7 +121,6 @@ function WhatsNext({
   setShow,
   dispatch,
 }) {
-  const history = useHistory();
   const classes = useStyles();
 
   let [title, setTitle] = useState('');
@@ -152,7 +150,10 @@ function WhatsNext({
         })
           .then((results) => {
             dispatch(userToState(results.data));
-            history.push('/details');
+            dispatch(currentJobAction({
+              jobId: job.jobId,
+              jobData: results.data.userJobs[job.jobId],
+            }));
           })
           .catch((err) => {
             console.error(err);
