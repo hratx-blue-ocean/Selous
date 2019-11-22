@@ -15,6 +15,7 @@ const Dashboard = ({ user }) => (
     <div className={styles.flexbox}>
       <div className={styles.dashboard}>
         {user.userJobs.map((job, i) => (
+          // eslint-disable-next-line no-underscore-dangle
           <DashboardRow component={Link} to="/details" key={job._id} jobIndex={i} job={job} />
         ))}
         <DashboardRow key="+" job={null} />

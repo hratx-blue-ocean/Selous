@@ -21,6 +21,7 @@ const Tab = ({
   currentJob,
   whatsNextTab,
   userData,
+  currentId,
   dispatch,
 }) => {
   const handleOnClick = () => {
@@ -29,7 +30,7 @@ const Tab = ({
     copyOfCurrentJob.progressArray[index].isCompleted = !copyOfCurrentJob.progressArray[index].isCompleted;
     axios.put('/db/dashboard/job/progress/check', {
       userId: userData._id,
-      jobId: userData.userJobs.indexOf(currentJob),
+      jobId: currentId,
       progId: index,
       completed: copyOfCurrentJob.progressArray[index].isCompleted,
     })
@@ -46,7 +47,10 @@ const Tab = ({
       .catch((err) => {
         console.log(err);
       });
-    dispatch(currentJobAction(copyOfCurrentJob));
+    dispatch(currentJobAction({
+      jobId: currentId,
+      jobData: copyOfCurrentJob,
+    }));
   };
 
   const [show, setShow] = useState(false);
@@ -89,6 +93,7 @@ const Tab = ({
 };
 
 const mapStateToProps = (state) => ({
+  currentId: state.currentJob.jobId,
   showEdit: state.editModal,
   showWhatsNext: state.whatsNextModal,
   currentJob: state.currentJob.jobData,

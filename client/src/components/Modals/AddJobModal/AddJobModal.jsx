@@ -111,6 +111,7 @@ const useStyles = makeStyles(({
   h2: {
     marginLeft: '10px',
     color: 'white',
+    fontFamily: 'Cairo',
   },
 }));
 

@@ -31,7 +31,6 @@ const useStyles = makeStyles(({
     width: '50%',
     height: '90%',
     borderRadius: '8px',
-    fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
@@ -39,6 +38,7 @@ const useStyles = makeStyles(({
     borderStyle: 'solid',
     opacity: '100%',
     margin: '20px auto',
+    fontFamily: 'Cairo',
   },
   header: {
     display: 'flex',
@@ -75,7 +75,7 @@ const useStyles = makeStyles(({
     borderColor: 'black',
     marginBottom: 10,
     overflow: 'scroll',
-    fontSize: 10,
+    fontSize: 12,
   },
   application: {
     height: '80px',
@@ -108,7 +108,7 @@ const useStyles = makeStyles(({
   },
   title: {
     marginLeft: 20,
-    height: 35,
+    height: 60,
     width: '85%',
     fontSize: '2vw',
     overflow: 'auto',
@@ -127,7 +127,8 @@ const useStyles = makeStyles(({
     width: '300px',
     display: 'flex',
     alignSelf: 'flex-end',
-    overflow: 'auto',
+    // overflow: 'auto',
+    marginBottom: '4px',
   },
   titleTer: {
     height: 25,
@@ -136,7 +137,8 @@ const useStyles = makeStyles(({
     alignSelf: 'flex-end',
     marginRight: '60px',
     justifyContent: 'flex-end',
-    overflow: 'auto',
+    // overflow: 'auto',
+    marginBottom: '4px',
   },
   descriptionText: {
     fontSize: 10,

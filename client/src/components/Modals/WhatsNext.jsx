@@ -5,6 +5,7 @@ import axios from 'axios';
 
 /* eslint-disable prefer-const */
 import {
+  // Typography,
   Fab,
   Box,
 } from '@material-ui/core';
@@ -12,14 +13,15 @@ import AddCircleIcon from '@material-ui/icons/AddCircleOutlined';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import Modal from '@material-ui/core/Modal';
 import { connect } from 'react-redux';
-import { userToState } from '../../redux/actions/actions.js';
+import { userToState, currentJobAction } from '../../redux/actions/actions.js';
 
 const useStyles = makeStyles(({
   root: {
     padding: 10,
     width: '549px',
-    height: '500px',
+    height: '400px',
     borderRadius: '8px',
+    // fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
@@ -30,9 +32,12 @@ const useStyles = makeStyles(({
     display: 'flex',
     flexDirection: 'row',
     padding: 30,
+    // width: '790px',
+    // height: '300px',
     width: 'fit-content',
     height: 'fit-content',
     borderRadius: '8px',
+    // fontFamily: 'Arial',
     fontSize: '18px',
     background: '#F2F2F2',
     border: 2,
@@ -41,7 +46,8 @@ const useStyles = makeStyles(({
     margin: '7% auto 50px auto',
     backgroundImage: 'url("https://selious.s3.amazonaws.com/selousSplice.PNG")',
     backgroundRepeat: 'no-repeat',
-    backgroundSize: '100% 15%',
+    backgroundSize: '100% 20%',
+    fontFamily: 'Cairo',
   },
   notes: {
     borderRadius: '8px',
@@ -56,11 +62,14 @@ const useStyles = makeStyles(({
   },
   next: {
     borderRadius: '6px',
+    // padding: 10,
     background: '#FFFFFF',
-    width: '400px',
+    width: '300px',
+    // borderWidth: 1,
     marginRight: 10,
     marginBottom: 20,
-    marginTop: '10px',
+    // borderColor: '#9f6cb7',
+    // borderStyle: 'solid',
     boxShadow: 5,
   },
   do: {
@@ -78,6 +87,8 @@ const useStyles = makeStyles(({
   },
   buttons: {
     marginRight: 6,
+    // float: 'right',
+    // alignSelf: 'flex-end',
     textAlign: 'center',
     marginBottom: 10,
   },
@@ -89,7 +100,7 @@ const useStyles = makeStyles(({
     borderRadius: 40,
   },
   h2: {
-    marginTop: '-10px',
+    marginLeft: '10px',
     color: 'white',
   },
   notesContainer: {
@@ -139,18 +150,23 @@ function WhatsNext({
         })
           .then((results) => {
             dispatch(userToState(results.data));
+            dispatch(currentJobAction({
+              jobId: job.jobId,
+              jobData: results.data.userJobs[job.jobId],
+            }));
           })
           .catch((err) => {
-            console.error(err);
+            throw err;
           });
       })
       .catch((err) => {
-        console.log(err);
+        throw err;
       });
   };
 
   return (
     <Modal
+      // className={classes.bigContainer}
       aria-labelledby="simple-modal-title"
       aria-describedby="simple-modal-description"
       open={show}
@@ -158,6 +174,10 @@ function WhatsNext({
       <div className={classes.container}>
         <div className={classes.notesContainer}>
           <h2 className={classes.h2}>Tell us about the next step</h2>
+          {/* <Box className={classes.root}> */}
+          {/* <Typography>
+          Next
+        </Typography> */}
           <div>
             <TextField
               variant="filled"
@@ -171,6 +191,9 @@ function WhatsNext({
               onChange={(event) => { setTitle(title = event.target.value); }}
             />
           </div>
+          {/* <Typography>
+            Notes
+        </Typography> */}
           <div>
             <TextField
               variant="filled"
@@ -192,6 +215,7 @@ function WhatsNext({
               <CheckCircleIcon className={classes.do} />
             </Fab>
           </Box>
+          {/* </Box> */}
         </div>
       </div>
     </Modal>
