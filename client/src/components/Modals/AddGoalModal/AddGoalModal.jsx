@@ -97,6 +97,7 @@ const useStyles = makeStyles(({
   },
   h2: {
     color: 'white',
+    fontFamily: 'Cairo',
   },
 }));
 

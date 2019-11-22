@@ -20,6 +20,7 @@ const ProgressTabs = ({
   displayedTabs,
   tabColors,
   dispatch,
+  userData,
 }) => {
   useEffect(() => {
     let tempArr;
@@ -44,7 +45,7 @@ const ProgressTabs = ({
         tempArr[1].color = tabColors[currentJob.progressArray.indexOf(tempArr[1])];
         dispatch(setDisplayedTabs([...tempArr, whatsNextTab]));
     }
-  }, [currentJob.progressArray]);
+  }, [currentJob]);
 
   return (
     <div className={styles.progress_tabs_wrapper}>
@@ -65,7 +66,8 @@ const ProgressTabs = ({
 };
 
 const mapStateToProps = (state) => ({
-  currentJob: state.currentJob.jobData,
+  // currentJob: state.currentJob.jobData,
+  currentJob: state.userData.userJobs[state.currentJob.jobId],
   whatsNextTab: state.whatsNextTab,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
