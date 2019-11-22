@@ -17,13 +17,15 @@ import Ad from '../advertisment/Advertisment.jsx';
 const useStyles = makeStyles({
   jobSearchGoalsContainer: {
     display: 'flex',
-    width: '100%',
     flexDirection: 'row',
     justifyContent: 'center',
+    marginLeft: '10%',
+    paddingRight: '10%',
+    width: '100%',
   },
-  adSpace: {
-    flex: 2,
-  },
+  // adSpace: {
+  //   flex: 2,
+  // },
   root: {
     paddingLeft: 40,
     paddingRight: 40,
@@ -77,7 +79,7 @@ const JobSearch = ({
     <>
       <Headerbar />
       <div className={classes.jobSearchGoalsContainer}>
-        <div className={classes.adSpace} />
+        {/* <div className={classes.adSpace} /> */}
         <Paper container item className={classes.root}>
           <SearchBar
             className={classes.search}
