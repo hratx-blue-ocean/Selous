@@ -1,9 +1,15 @@
 // miles & tyler
 const router = require('express').Router();
 const debug = require('debug')('server');
+const bcrypt = require('bcryptjs');
 const db = require('../../database/db.js');
 
+const salt = bcrypt.genSaltSync(10);
+
 router.post('/signup', (req, res) => {
+  let hash = req.body.data.password;
+  hash = bcrypt.hashSync(hash, salt);
+  req.body.data.password = hash;
   db.validateSignup(req.body.data, (err, result) => {
     if (err) {
       res.status(409).send(err);
@@ -16,6 +22,8 @@ router.post('/signup', (req, res) => {
 router.post('/login', (req, res) => {
   db.validateLogin(req.body.data, (err, user) => {
     if (err) {
+      res.status(401).send(false);
+    } else if (bcrypt.compareSync(req.body.data.password, user.password) === false) {
       res.status(401).send(false);
     } else {
       res.status(200).send(user);

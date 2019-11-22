@@ -1,6 +1,7 @@
 // miles & tyler
 const mongoose = require('mongoose');
 const debug = require('debug')('mongoDB');
+const bcrypt = require('bcryptjs');
 
 mongoose.connect(`mongodb+srv://FriendMiles:${process.env.MONGO_DB_PASSWORD}@cluster0-4q3ra.gcp.mongodb.net/Selous`, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
@@ -53,7 +54,7 @@ const Job = mongoose.model('Job', JobSchema);
 const validateLogin = (login, callback) => {
   User.findOne({ userName: login.username })
     .then((user) => {
-      if (user === null || user.password !== login.password) {
+      if (user === null) {
         callback(new Error('incorrect login credentials'), null);
       } else {
         callback(null, user);
