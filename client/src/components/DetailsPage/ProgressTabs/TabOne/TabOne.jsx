@@ -96,7 +96,6 @@ const mapStateToProps = (state) => ({
   currentId: state.currentJob.jobId,
   showEdit: state.editModal,
   showWhatsNext: state.whatsNextModal,
-  // currentJob: state.userData.userJobs[state.currentJob.jobId],
   currentJob: state.currentJob.jobData,
   whatsNextTab: state.whatsNextTab,
   userData: state.userData,

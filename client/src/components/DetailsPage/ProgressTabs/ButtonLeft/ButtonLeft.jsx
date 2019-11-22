@@ -48,7 +48,6 @@ const ButtonLeft = ({
 };
 
 const mapStateToProps = (state) => ({
-  // currentJob: state.userData.userJobs[state.currentJob.jobId],
   currentJob: state.currentJob.jobData,
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
