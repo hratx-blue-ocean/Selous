@@ -127,7 +127,15 @@ function Headerbar({
                   >
                     Signup
                   </Button>
-                  <Button color="inherit" onClick={handleDir} component={Link} to="/login">Login</Button>
+                  <Button
+                    color="inherit"
+                    onClick={handleDir}
+                    className={classes.login}
+                    component={Link}
+                    to="/login"
+                  >
+                    Login
+                  </Button>
                 </>
               )
         }
