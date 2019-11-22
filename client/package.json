@@ -6,7 +6,7 @@
   "scripts": {
     "build-dev": "webpack -d -w",
     "build-prod": "webpack -p",
-    "test": "jest",
+    "test": "jest --coverage",
     "server": "webpack-dev-server --mode development --open --hot"
   },
   "author": "",
