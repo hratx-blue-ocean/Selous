@@ -88,14 +88,13 @@ const useStyles = makeStyles(({
   h2: {
     marginTop: '-10px',
     color: 'white',
+    fontFamily: 'Cairo',
   },
   notesContainer: {
     display: 'flex',
     flexDirection: 'column',
   },
 }));
-
-// const mapStateToProps = (state) => ({ show: state.editModal });
 
 function EditDetailsModal({ setShow, show }) {
   const classes = useStyles();
@@ -136,12 +135,26 @@ function EditDetailsModal({ setShow, show }) {
             <Fab onClick={() => { setShow(!show); }} className={classes.buttonBoi}>
               <AddCircleIcon className={classes.doNot} />
             </Fab>
-            <Fab className={classes.fabStuff}>
+            <Fab onClick={() => { setShow(!show); }} className={classes.fabStuff}>
               <CheckCircleIcon className={classes.do} />
             </Fab>
           </Box>
         </div>
       </div>
+      {/* <Box className={classes.root}>
+        <Typography className={classes.cairo}>
+          Notes
+        </Typography>
+       <Box className={classes.buttons} flexDirection="column" display="flex" alignItems="flex-end">
+          <Fab onClick={() => { setShow(!show); }} className={classes.buttonBoi}>
+            <AddCircleIcon className={classes.doNot} />
+          </Fab>
+          <Fab onClick={() => { setShow(!show); }} className={classes.fabStuff}>
+            <CheckCircleIcon className={classes.do} />
+          </Fab>
+        </Box>
+        <textarea className={classes.notes} />
+      </Box> */}
     </Modal>
 
   );

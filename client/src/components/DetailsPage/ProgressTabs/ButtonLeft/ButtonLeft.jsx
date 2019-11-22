@@ -1,8 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable prefer-const */
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 import styles from './ButtonLeft.css';
 import { moveLeftDisplayedTabs } from '../../../../redux/actions/actions.js';
 
@@ -14,9 +14,9 @@ const ButtonLeft = ({
   dispatch,
 }) => {
   const handleOnClick = () => {
-    if (JSON.stringify(displayedTabs[0]) !== JSON.stringify(currentJob.progressArray[0])) {
+    if (!_.isEqual(displayedTabs, currentJob.progressArray[0])) {
       for (let i = 1, len = currentJob.progressArray.length; i < len; i += 1) {
-        if (JSON.stringify(displayedTabs[0]) === JSON.stringify(currentJob.progressArray[i])) {
+        if (_.isEqual(displayedTabs[0], currentJob.progressArray[i])) {
           const tab = currentJob.progressArray[i - 1];
           tab.color = tabColors[currentJob.progressArray.indexOf(tab)];
           dispatch(moveLeftDisplayedTabs(tab));
@@ -28,7 +28,7 @@ const ButtonLeft = ({
   let [showButton, toggleShowButton] = useState(false);
 
   useEffect(() => {
-    if (JSON.stringify(displayedTabs[0]) !== JSON.stringify(currentJob.progressArray[0]) && JSON.stringify(displayedTabs[0]) !== JSON.stringify(whatsNextTab)) {
+    if (!_.isEqual(displayedTabs[0], currentJob.progressArray[0]) && !_.isEqual(displayedTabs[0], whatsNextTab)) {
       toggleShowButton(true);
       return;
     }
@@ -48,12 +48,11 @@ const ButtonLeft = ({
 };
 
 const mapStateToProps = (state) => ({
-  currentJob: state.currentJob,
+  // currentJob: state.currentJob.jobData,
+  currentJob: state.userData.userJobs[state.currentJob.jobId],
   displayedTabs: state.displayedTabs,
   tabColors: state.tabColors,
   whatsNextTab: state.whatsNextTab,
 });
 
-const isEqual = (nextProps, prevProps) => _.isEqual(nextProps, prevProps);
-
-export default connect(mapStateToProps)(React.memo(ButtonLeft, isEqual));
+export default connect(mapStateToProps)(ButtonLeft);

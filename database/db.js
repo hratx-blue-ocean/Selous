@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 const debug = require('debug')('mongoDB');
 
-mongoose.connect('mongodb+srv://FriendMiles:Igala1rele@cluster0-4q3ra.gcp.mongodb.net/Selous', { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(`mongodb+srv://FriendMiles:${process.env.MONGO_DB_PASSWORD}@cluster0-4q3ra.gcp.mongodb.net/Selous`, { useNewUrlParser: true, useUnifiedTopology: true });
 const db = mongoose.connection;
 db.on('error', debug.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -13,6 +13,7 @@ db.once('open', () => {
 const JobSchema = new mongoose.Schema({
   completed: Boolean,
   notes: String,
+  description: String,
   createdAt: String,
   company: String,
   position: String,
@@ -140,16 +141,16 @@ const addGoal = (userId, goalData, callback) => {
 const editGoalProgress = (userId, goalId, increment, callback) => {
   User.findOne({ _id: userId }).then((user) => {
     // eslint-disable-next-line
-    user.userGoals[goalId].goalProgress += increment;    
+    user.userGoals[goalId].goalProgress += increment;
     const progress = user.userGoals[goalId].goalProgress;
     const target = user.userGoals[goalId].goalTarget;
     if (progress < 0) {
       // eslint-disable-next-line
-      user.userGoals[goalId].goalProgress = 0;    
+      user.userGoals[goalId].goalProgress = 0;
     }
     if (progress > target) {
       // eslint-disable-next-line
-      user.userGoals[goalId].goalProgress = target;        
+      user.userGoals[goalId].goalProgress = target;
     }
     user.save((err) => {
       if (err) callback(err, null);
@@ -179,7 +180,9 @@ const addJobProgress = (userId, jobId, progressData, callback) => {
 const changeProgress = (userId, jobId, progId, completed, callback) => {
   User.findOne({ _id: userId })
     .then((user) => {
+      debug('jobId', jobId);
       // eslint-disable-next-line
+      // eslint-disable-next-line no-param-reassign
       user.userJobs[jobId].progressArray[progId].isCompleted = completed;
       user.save((err) => {
         if (err) callback(err, null);
@@ -201,6 +204,23 @@ const editProgress = (userId, jobId, progressId, progressData, callback) => {
       callback(err, null);
     });
   });
+};
+
+const editNotes = (userId, jobId, notes, callback) => {
+  User.findOne({ _id: userId })
+    .then((user) => {
+      // eslint-disable-next-line no-param-reassign
+      user.userJobs[jobId].notes = notes;
+      user.save((err) => {
+        if (err) callback(err, null);
+        else {
+          callback(null, notes);
+        }
+      });
+    })
+    .catch((err) => {
+      callback(err, null);
+    });
 };
 
 // Goal Schema
@@ -273,5 +293,6 @@ module.exports = {
   changeProgress,
   getUser,
   editProgress,
+  editNotes,
   editGoalProgress,
 };

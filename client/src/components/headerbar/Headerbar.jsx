@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
@@ -5,8 +6,9 @@ import { connect } from 'react-redux';
 import {
   AppBar, Toolbar, Typography, Button,
 } from '@material-ui/core';
-import { landingAction } from '../../redux/actions/actions.js';
+import { landingAction, sizeWindowAction } from '../../redux/actions/actions.js';
 import Menu from './menu/Menu.jsx';
+import Mobile from './menu/MobileMenu.jsx';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
   signup: {
     float: 'right',
     marginLeft: '28%',
+    fontFamily: 'Cairo',
+  },
+  login: {
+    fontFamily: 'Cairo',
   },
   break: {
     maxWidth: 1240,
@@ -59,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(0),
   },
   hello: {
-    fontFamily: '"Roboto","Helvetica","Arial", sans-serif',
+    fontFamily: 'Cairo',
     color: 'rgba(0, 0, 0, 0.87)',
     fontSize: '1rem',
     minWidth: '64px',
@@ -77,10 +83,11 @@ const mapStateToProps = (state) => ({
   show: state.haveLanding,
   tell: state.isLoggedIn,
   user: state.userData,
+  windowz: state.win,
 });
 
 function Headerbar({
-  show, tell, user, dispatch,
+  show, tell, user, dispatch, windowz,
 }) {
   const classes = useStyles();
   const handleDir = () => {
@@ -88,6 +95,11 @@ function Headerbar({
       dispatch(landingAction());
     }
   };
+
+  window.addEventListener('resize', () => {
+    dispatch(sizeWindowAction(window.innerWidth));
+  });
+
   return (
     <div className={classes.root}>
       <AppBar position="static" className={classes.app}>
@@ -103,20 +115,21 @@ function Headerbar({
             Selous
           </Button>
           {tell ? <Menu />
-            : (
-              <>
-                <Button
-                  color="inherit"
-                  onClick={handleDir}
-                  className={classes.signup}
-                  component={Link}
-                  to="/signup"
-                >
-                  Signup
-                </Button>
-                <Button color="inherit" onClick={handleDir} component={Link} to="/login">Login</Button>
-              </>
-            )
+            : windowz < 500 ? <Mobile />
+              : (
+                <>
+                  <Button
+                    color="inherit"
+                    onClick={handleDir}
+                    className={classes.signup}
+                    component={Link}
+                    to="/signup"
+                  >
+                    Signup
+                  </Button>
+                  <Button color="inherit" onClick={handleDir} component={Link} to="/login">Login</Button>
+                </>
+              )
         }
         </Toolbar>
       </AppBar>

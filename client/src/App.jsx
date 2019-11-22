@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 import './App.css';
 import { connect } from 'react-redux';
 import Headerbar from './components/headerbar/Headerbar.jsx';
@@ -15,4 +16,6 @@ function App({ user }) {
   );
 }
 
-export default connect(mapStateToProps)(App);
+const areEqual = (prevProps, nextProps) => _.isEqual(prevProps, nextProps);
+
+export default connect(mapStateToProps)(React.memo(App, areEqual));

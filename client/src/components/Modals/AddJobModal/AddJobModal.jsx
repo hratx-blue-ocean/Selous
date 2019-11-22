@@ -111,6 +111,7 @@ const useStyles = makeStyles(({
   h2: {
     marginLeft: '10px',
     color: 'white',
+    fontFamily: 'Cairo',
   },
 }));
 
@@ -151,11 +152,11 @@ function AddJobModal({ user, show, dispatch }) {
             dispatch(userToState(results.data));
           })
           .catch((err) => {
-            console.error(err);
+            throw new Error(err);
           });
       })
       .catch((err) => {
-        console.log(err);
+        throw new Error(err);
       });
   };
 
@@ -306,6 +307,5 @@ function AddJobModal({ user, show, dispatch }) {
     </Modal>
   );
 }
-
 
 export default connect(mapStateToProps)(AddJobModal);

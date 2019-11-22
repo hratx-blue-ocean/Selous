@@ -97,6 +97,7 @@ const useStyles = makeStyles(({
   },
   h2: {
     color: 'white',
+    fontFamily: 'Cairo',
   },
 }));
 
@@ -129,11 +130,11 @@ function AddGoalModal({ user, show, dispatch }) {
             dispatch(userToState(results.data));
           })
           .catch((err) => {
-            console.error(err);
+            throw new Error(err);
           });
       })
       .catch((err) => {
-        console.log(err);
+        throw new Error(err);
       });
   };
 
