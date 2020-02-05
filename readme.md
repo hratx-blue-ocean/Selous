@@ -9,6 +9,8 @@
 
 Trello Board: https://trello.com/b/KGOifPLt/blue-ocean
 
+
+
 # Stack
 
 <table>
@@ -46,6 +48,9 @@ Trello Board: https://trello.com/b/KGOifPLt/blue-ocean
 
 
 ## Front-End
+
+## Figma
+![Figma1]("Screen/ Shot/ 2019-11-21/ at/ 3.38.42/ PM.png")
 
 ## Back-End
 
