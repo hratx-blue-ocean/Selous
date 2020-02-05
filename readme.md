@@ -9,6 +9,8 @@
 
 Trello Board: https://trello.com/b/KGOifPLt/blue-ocean
 
+
+
 # Stack
 
 <table>
@@ -46,6 +48,13 @@ Trello Board: https://trello.com/b/KGOifPLt/blue-ocean
 
 
 ## Front-End
+
+### Figma Wire Frames
+### Full-Site WireFrame
+<img src="Screen Shot 2019-11-21 at 3.38.42 PM.png" width="100%" title="hover text">
+
+### Search Page Wireframe
+<img src="Screen Shot 2020-02-05 at 10.02.26 AM.png" width="100%" title="hover text">
 
 ## Back-End
 
