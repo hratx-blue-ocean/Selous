@@ -5,11 +5,11 @@
 
 *Selous* (say-lou) is a job search tracking tool. *Selous* enables job seekers to organize potential positions and track their progress with each job application. 
 
-## Cool graphic / DEMO
+## Search Page
+<img src="SelousSearch.gif" width="100%" title="Selous_Search">
 
+## Trello
 Trello Board: https://trello.com/b/KGOifPLt/blue-ocean
-
-
 
 # Stack
 
